@@ -780,3 +780,67 @@ article.full {
 		}
 	}
 }
+
+#comments {
+	.comment-list {
+		margin: 0;
+		list-style: none;
+		.comment {
+			border-bottom: 1px solid #ccc;
+			a {
+				text-decoration: none;
+			}
+			.avatar {
+				margin-bottom: 20px;
+			}
+			.comment-meta {
+				margin-bottom: 10px;
+			}
+			.comment-author	{
+				cite {
+					font-weight: 600;
+				}
+			}
+			.comment-date {
+				font-size: 11px;
+				margin: 0 0 20px;
+				display: inline;
+				color: #999;
+				a {
+					color: #999;
+				}
+			}
+			.comment-edit-link {
+				font-size: 11px;
+				a {
+					color: #999;
+				}
+			}
+			.comment-content {
+				margin: 0 0 40px;
+				font-size: 16px;
+				line-height: 24px;
+			}
+			.reply {
+				margin-top: -30px;
+				float: right;
+				line-height: 35px;
+				a {
+					padding: 10px;
+					background: #333;
+					color: #f0f0f0;
+					font-size: 12px;
+					text-transform: uppercase;
+					font-weight: 200;
+				}
+			}
+			.children {
+				margin: 0;
+				padding: 0;
+				.comment {
+					border: 0;
+				}
+			}
+		}
+	}
+}

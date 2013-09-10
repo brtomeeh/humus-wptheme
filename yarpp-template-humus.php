@@ -12,7 +12,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="twelve columns">
-				<h3 class="section-title"><?php _e('See also', 'humus'); ?></h3>
+				<h3 class="section-title"><?php _e('You might also like', 'humus'); ?></h3>
 			</div>
 			<?php
 			while(have_posts()) :

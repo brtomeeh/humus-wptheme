@@ -72,3 +72,12 @@ article.full .post-content h3{margin:30px 0;font-size:35px;line-height:40px;}
 article.full .post-content ul,article.full .post-content ol{margin:0 0 40px 40px;}article.full .post-content ul li,article.full .post-content ol li{margin:0 0 20px;padding:0 0 0 10px;font-size:18px;line-height:30px;}
 article.full .post-content ul{list-style:disc;}
 article.full .post-content ol{list-style:decimal;}
+#comments .comment-list{margin:0;list-style:none;}#comments .comment-list .comment{border-bottom:1px solid #ccc;}#comments .comment-list .comment a{text-decoration:none;}
+#comments .comment-list .comment .avatar{margin-bottom:20px;}
+#comments .comment-list .comment .comment-meta{margin-bottom:10px;}
+#comments .comment-list .comment .comment-author cite{font-weight:600;}
+#comments .comment-list .comment .comment-date{font-size:11px;margin:0 0 20px;display:inline;color:#999;}#comments .comment-list .comment .comment-date a{color:#999;}
+#comments .comment-list .comment .comment-edit-link{font-size:11px;}#comments .comment-list .comment .comment-edit-link a{color:#999;}
+#comments .comment-list .comment .comment-content{margin:0 0 40px;font-size:16px;line-height:24px;}
+#comments .comment-list .comment .reply{margin-top:-30px;float:right;line-height:35px;}#comments .comment-list .comment .reply a{padding:10px;background:#333;color:#f0f0f0;font-size:12px;text-transform:uppercase;font-weight:200;}
+#comments .comment-list .comment .children{margin:0;padding:0;}#comments .comment-list .comment .children .comment{border:0;}
