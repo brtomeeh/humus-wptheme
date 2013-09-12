@@ -50,7 +50,7 @@ if(is_single()) :
 				<div class="twelve columns">
 					<div class="row">
 						<aside id="post-meta">
-							<div class="four columns alpha">
+							<div class="three columns alpha">
 								<div class="post-author">
 									<p>
 										<span><?php _e('by', 'humus'); ?></span>
@@ -58,7 +58,7 @@ if(is_single()) :
 									</p>
 								</div>
 							</div>
-							<div class="four columns">
+							<div class="five columns">
 								<div class="post-date">
 									<p>
 										<span><?php _e('published', 'humus'); ?></span>
@@ -97,7 +97,7 @@ if(is_single()) :
 				</div>
 				<div class="nine columns">
 					<div class="row">
-						<section class="post-content">
+						<section id="post-content" class="post-content">
 							<?php the_content(); ?>
 						</section>
 					</div>

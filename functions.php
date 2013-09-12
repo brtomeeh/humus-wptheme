@@ -3,8 +3,8 @@
 /*
  * Taxonomies
  */
-
-require_once(TEMPLATEPATH . '/inc/taxonomies.php');
+require_once(TEMPLATEPATH . '/inc/section.php');
+require_once(TEMPLATEPATH . '/inc/axis.php');
 
 /*
  * Advanced Custom Fields
@@ -42,7 +42,8 @@ add_action('wp_enqueue_scripts', 'humus_styles');
 function humus_scripts() {
 	wp_register_script('imagesloaded', get_template_directory_uri() . '/js/imagesloaded.js', array('jquery'), '3.0.4');
 	wp_register_script('fitvids', get_template_directory_uri() . '/js/jquery.fitvids.js', array('jquery'), '1.0');
-	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery',  'imagesloaded', 'fitvids'), '0.0.1');
+	wp_register_script('lockfixed', get_template_directory_uri() . '/js/jquery.lockfixed.min.js', array('jquery'), '0.1');
+	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery',  'imagesloaded', 'fitvids', 'lockfixed'), '0.0.1');
 
 	wp_enqueue_script('frontend');
 }
@@ -110,39 +111,6 @@ function humus_get_header_image_url() {
 	return false;
 }
 
-function humus_get_term_icon_url($id = false, $tax = false) {
-
-	if($id)
-		$field = get_field('section_icon', $id);
-
-	if($field)
-		return $field;
-
-	if(is_tax()) {
-		$term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
-		$id = get_query_var('taxonomy') . '_' . $term->term_id;
-	} elseif(is_category()) {
-		$term = get_category_by_slug(get_query_var('category_name'));
-		$id = 'category_' . $term->term_id;
-	} elseif(is_single() || get_post($id)) {
-		global $post;
-		if($tax) {
-			$terms = get_the_terms($id, $tax);
-			if($terms) {
-				$term = array_shift($terms);
-				$id = $tax . '_' . $term->term_id;
-			}
-		} else {
-			$id = $post->ID;
-		}
-	}
-
-	if($id)
-		return get_field('section_icon', $id);
-
-	return false;
-}
-
 function humus_breadcrumb($before = '', $sep = '/', $after = '/') {
 
 	/*
@@ -158,6 +126,17 @@ function humus_breadcrumb($before = '', $sep = '/', $after = '/') {
 
 	if(is_single()) {
 		global $post;
+		// Axis
+		$axes = get_the_terms($post->ID, 'axis');
+		if($axes) {
+			$axis = array_shift($axes);
+			$items[] = array(
+				'url' => get_term_link($axis),
+				'title' => $axis->name,
+				'class' => $section->slug
+			);
+		}
+		// Section
 		$sections = get_the_terms($post->ID, 'section');
 		if($sections) {
 			$section = array_shift($sections);
@@ -227,7 +206,7 @@ function humus_get_post_tax_label($post_id = false) {
 	$post_id = $post_id ? $post_id : $post->ID;
 
 	$color_taxonomy = 'section';
-	$label_taxonomy = 'axis';
+	$label_taxonomy = 'category';
 
 	$color_term = get_the_terms($post_id, $color_taxonomy);
 	if($color_term)

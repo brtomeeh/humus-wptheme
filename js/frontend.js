@@ -82,9 +82,19 @@
 	/*
 	 * Fit vids
 	 */
-	 $(document).ready(function() {
-	 	$('body').fitVids();
-	 });
+	$(document).ready(function() {
+		$('body').fitVids();
+	});
+
+	/*
+	 * Follow scroll
+	 */
+	$(document).ready(function() {
+		console.log($('body').outerHeight());
+		var bottom = $('body').outerHeight() - ($('#post-content').offset().top + $('#post-content').innerHeight());
+		console.log(bottom);
+		$.lockfixed('#post-terms', { offset: { top: 160, bottom: bottom }});
+	});
 
 
 })(jQuery);
