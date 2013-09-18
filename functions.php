@@ -1,6 +1,16 @@
 <?php
 
 /*
+ * Tools
+ */
+require_once(TEMPLATEPATH . '/inc/map.php');
+require_once(TEMPLATEPATH . '/inc/media.php');
+require_once(TEMPLATEPATH . '/inc/header-image.php');
+require_once(TEMPLATEPATH . '/inc/taxonomy-styles.php');
+
+require_once(TEMPLATEPATH . '/inc/theme-options.php');
+
+/*
  * Taxonomies
  */
 require_once(TEMPLATEPATH . '/inc/section.php');
@@ -17,8 +27,6 @@ add_filter('acf/helpers/get_dir', 'toolkit_acf_path');
 
 define('ACF_LITE', false);
 require_once(TEMPLATEPATH . '/inc/acf/acf.php');
-include_once(TEMPLATEPATH . '/inc/acf/add-ons/acf-location-field/acf-location.php');
-include_once(TEMPLATEPATH . '/inc/acf/add-ons/acf-options-page/acf-options-page.php');
 
 /*
  * Humus includes
@@ -34,8 +42,13 @@ function humus_styles() {
 	wp_register_style('skeleton', get_template_directory_uri() . '/css/skeleton.css', array('base'));
 	wp_register_style('webfonts', 'http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic|Open+Sans:300italic,400italic,600italic,400,300,600,700,800');
 	wp_register_style('main', get_template_directory_uri() . '/css/main.css', array('skeleton', 'webfonts'));
+	wp_register_style('home', get_template_directory_uri() . '/css/home.css', array('main'));
 
 	wp_enqueue_style('main');
+
+	if(is_front_page())
+		wp_enqueue_style('home');
+
 }
 add_action('wp_enqueue_scripts', 'humus_styles');
 
@@ -43,7 +56,9 @@ function humus_scripts() {
 	wp_register_script('imagesloaded', get_template_directory_uri() . '/js/imagesloaded.js', array('jquery'), '3.0.4');
 	wp_register_script('fitvids', get_template_directory_uri() . '/js/jquery.fitvids.js', array('jquery'), '1.0');
 	wp_register_script('lockfixed', get_template_directory_uri() . '/js/jquery.lockfixed.min.js', array('jquery'), '0.1');
-	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery',  'imagesloaded', 'fitvids', 'lockfixed'), '0.0.1');
+	wp_register_script('sly', get_template_directory_uri() . '/js/sly.min.js', array('jquery'), '1.1.0');
+	wp_register_script('motio', get_template_directory_uri() . '/js/motio.min.js', array(), '2.2.1');
+	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery',  'imagesloaded', 'fitvids', 'lockfixed', 'sly'), '0.0.1');
 
 	wp_enqueue_script('frontend');
 }

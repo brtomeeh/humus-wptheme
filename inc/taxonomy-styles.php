@@ -14,8 +14,16 @@ class Humus_Taxonomy_Styles {
 
 	function __construct() {
 
-		if(function_exists('register_field_group'))
-			$this->init();
+		add_action('init', array($this, 'init'), 100);
+
+	}
+
+	function init() {
+
+		if(function_exists('register_field_group')){
+			$this->register_field_group();
+			add_action('wp_head', array($this, 'set_page_color'));
+		}
 
 	}
 
@@ -23,7 +31,7 @@ class Humus_Taxonomy_Styles {
 		return apply_filters('humus_styled_taxonomies', array());
 	}
 
-	function init() {
+	function register_field_group() {
 
 		$field_group = array(
 			'id' => 'acf_taxonomy_styles',
@@ -90,10 +98,57 @@ class Humus_Taxonomy_Styles {
 		if(!empty($locations)) {
 
 			$field_group['location'] = $locations;
+
+			$field_group = apply_filters('humus_taxonomy_styles_field_group', $field_group);
+
 			register_field_group($field_group);
 
 		}
 
+	}
+
+	function set_page_color() {
+
+		$taxonomies = $this->get_taxonomies();
+		$term = false;
+
+		if(is_tax($taxonomies)) {
+
+			$term = get_queried_object();
+
+		} elseif(is_single()) {
+			global $post;
+			foreach($taxonomies as $taxonomy) {
+
+				if($term)
+					continue;
+
+				$terms = get_the_terms($post->ID, $taxonomy);
+
+				foreach($terms as $t) {
+
+					if($term)
+						continue;
+
+					if(get_field('term_color', $t->taxonomy . '_' . $t->term_id))
+						$term = array_shift($terms);
+				}
+
+			}
+		}
+		$color = get_field('term_color', $term->taxonomy . '_' . $term->term_id);
+
+		$GLOBALS['humus_page_color'] = apply_filters('humus_page_color', $color);
+
+		if($GLOBALS['humus_page_color']) {
+			?>
+			<style>
+			body::-webkit-scrollbar-thumb {
+				background: <?php echo $color; ?> !important;
+			}
+			</style>
+			<?php
+		}
 	}
 
 }
@@ -103,7 +158,7 @@ new Humus_Taxonomy_Styles();
 function humus_get_term_icon_url($id = false, $tax = false) {
 
 	if($id)
-		$field = get_field('section_icon', $id);
+		$field = get_field('term_icon', $id);
 
 	if($field)
 		return $field;
@@ -128,7 +183,7 @@ function humus_get_term_icon_url($id = false, $tax = false) {
 	}
 
 	if($id)
-		return get_field('section_icon', $id);
+		return get_field('term_icon', $id);
 
 	return false;
 }

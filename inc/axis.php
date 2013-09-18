@@ -13,6 +13,7 @@ class Humus_Axes {
 
 	function init() {
 
+		add_filter('humus_header_image_locations', array($this, 'register_header_image'));
 		$this->register_taxonomy();
 
 	}
@@ -49,6 +50,15 @@ class Humus_Axes {
 
 		register_taxonomy('axis', $this->axis_post_types(), $args);
 
+	}
+
+	function register_header_image($locations) {
+		if(!is_array($locations['taxonomy']))
+			$locations['taxonomy'] = array();
+
+		$locations['taxonomy'][] = 'axis';
+
+		return $locations;
 	}
 
 	function axis_post_types() {

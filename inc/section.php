@@ -14,8 +14,8 @@ class Humus_Sections {
 	function init() {
 
 		$this->register_taxonomy();
-		add_filter('humus_styled_taxonomies', array($this, 'styled_taxonomy'));
-		require_once(TEMPLATEPATH . '/inc/taxonomy-styles.php');
+		add_filter('humus_styled_taxonomies', array($this, 'register_taxonomy_styles'));
+		add_filter('humus_header_image_locations', array($this, 'register_header_image'));
 
 	}
 
@@ -53,9 +53,18 @@ class Humus_Sections {
 
 	}
 
-	function styled_taxonomy($taxonomies) {
+	function register_taxonomy_styles($taxonomies) {
 		$taxonomies[] = 'section';
 		return $taxonomies;
+	}
+
+	function register_header_image($locations) {
+		if(!is_array($locations['taxonomy']))
+			$locations['taxonomy'] = array();
+
+		$locations['taxonomy'][] = 'section';
+
+		return $locations;
 	}
 
 	function section_post_types() {

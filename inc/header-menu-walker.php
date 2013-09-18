@@ -75,7 +75,7 @@ class Humus_Header_Menu_Walker extends Walker_Nav_Menu {
 			$output .= '<h3>' . __('Sections', 'humus') . '</h3>';
 			$output .= '<ul>';
 			foreach($sections as $section) {
-				$menu_icon = get_field('section_menu_icon', 'section_' . $section->term_id);
+				$menu_icon = get_field('term_menu_icon', 'section_' . $section->term_id);
 				$menu_icon_attr = '';
 				if($menu_icon)
 					$menu_icon_attr = 'style="background-image: url(' . $menu_icon . ');"';

@@ -96,6 +96,16 @@ html {
 body {
 	background: @background;
 	font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
+	&::-webkit-scrollbar {
+		width: 5px;
+		background: #fff;
+	}
+	&::-webkit-scrollbar-thumb {
+		background: #333;
+		&:hover {
+			background: #222;
+		}
+	}
 }
 
 /*
@@ -121,6 +131,12 @@ h6 {
 .alignright {
 	float: right;
 	margin: 0 0 40px 40px;
+}
+
+.columns.relative,
+.column.relative {
+	position: relative;
+	display: block;
 }
 
 .humus-dropdown {
@@ -371,17 +387,7 @@ h6 {
 	}
 }
 
-.full-height-section {
-	width: 100%;
-	height: 800px;
-	.background-size(cover);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-}
-
 .page-header {
-	//.box-sizing(border-box);
 	padding-top: 140px;
 	overflow: hidden;
 	height: 100px;

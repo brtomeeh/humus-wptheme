@@ -10,7 +10,7 @@ $section_icon = humus_get_term_icon_url($post->ID, 'section');
 if(is_single()) :
 
 	$header_image = humus_get_header_image_url();
-	$media_url = get_field('media_url');
+	$media = get_post_meta($post->ID, 'media_oembed', true);
 
 	?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class('full row'); ?>>
@@ -36,12 +36,12 @@ if(is_single()) :
 		</header>
 		<section class="page-content">
 			<div class="container">
-				<?php if($media_url) : ?>
+				<?php if($media) : ?>
 					<div class="twelve columns">
 						<section id="post-media" class="row">
 							<?php
 							do_action('humus_before_post_media');
-							echo wp_oembed_get($media_url);
+							echo $media;
 							do_action('humus_after_post_media');
 							?>
 						</section>
