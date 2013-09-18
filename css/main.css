@@ -27,7 +27,7 @@ h1,h2,h3,h4,h5,h6{font-family:"Open Sans","Helvetica","Arial",sans-serif;font-we
 #masthead #mastnav .menu>li>ul.explore-menu ul{margin:0;}#masthead #mastnav .menu>li>ul.explore-menu ul li{font-size:16px;line-height:40px;font-weight:400;margin:0;padding:0;}#masthead #mastnav .menu>li>ul.explore-menu ul li a{display:block;line-height:40px;}
 #masthead #mastnav .menu>li:hover>ul{height:auto;opacity:1;margin-top:0;padding:20px 0;-webkit-transition:all 0.2s ease-in-out;-khtml-transition:all 0.2s ease-in-out;-moz-transition:all 0.2s ease-in-out;-o-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;}
 .admin-bar #masthead{top:48px;}
-@media only screen and (min-width:1200px){#masthead h1{margin:0 40px 0 0;}}.page-header{padding-top:140px;overflow:hidden;height:100px;}.page-header .header-content{position:fixed;z-index:1;width:100%;}
+@media only screen and (min-width:1200px){#masthead h1{margin:0 40px 0 0;}}.page-header{padding-top:140px;overflow:hidden;height:100px;position:relative;}.page-header .header-content{position:fixed;z-index:1;width:100%;}
 .page-header .humus-breadcrumb{text-transform:uppercase;font-size:12px;line-height:12px;color:#999;margin:-20px 0 5px;position:relative;z-index:1;}.page-header .humus-breadcrumb a{color:#999;text-decoration:none;}
 .page-header .page-title{font-family:"Lato";font-size:60px;line-height:60px;text-transform:uppercase;margin-bottom:40px;}
 .page-header p{font-size:18px;line-height:28px;margin:0 0 40px;}
@@ -82,3 +82,4 @@ article.full .post-content ol{list-style:decimal;}
 #comments .comment-list .comment .comment-content{margin:0 0 40px;font-size:16px;line-height:24px;}
 #comments .comment-list .comment .reply{margin-top:-30px;float:right;line-height:35px;}#comments .comment-list .comment .reply a{padding:10px;background:#333;color:#f0f0f0;font-size:12px;text-transform:uppercase;font-weight:200;}
 #comments .comment-list .comment .children{margin:0;padding:0;}#comments .comment-list .comment .children .comment{border:0;}
+#colophon{background:#333;}

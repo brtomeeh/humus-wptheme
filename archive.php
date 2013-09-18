@@ -30,6 +30,9 @@ get_header(); ?>
 		<header class="page-header <?php if($header_image) echo 'header-image'; ?>" <?php if($header_image) echo 'style="background-image:url(' . $header_image . ')"'; ?>>
 
 			<div class="header-content">
+
+				<?php do_action('humus_before_header_content'); ?>
+
 				<div class="container">
 
 					<div class="one column">
@@ -83,6 +86,9 @@ get_header(); ?>
 					</div>
 
 				</div>
+
+				<?php do_action('humus_after_header_content'); ?>
+
 			</div>
 
 		</header><!-- .page-header -->

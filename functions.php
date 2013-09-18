@@ -3,7 +3,7 @@
 /*
  * Tools
  */
-require_once(TEMPLATEPATH . '/inc/map.php');
+require_once(TEMPLATEPATH . '/inc/map/map.php');
 require_once(TEMPLATEPATH . '/inc/media.php');
 require_once(TEMPLATEPATH . '/inc/header-image.php');
 require_once(TEMPLATEPATH . '/inc/taxonomy-styles.php');

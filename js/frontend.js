@@ -466,18 +466,20 @@
 	 */
 	function fixedPageHeader() {
 		var header = $('.page-header');
-		var content = header.find('.header-content');
-		var paddingTop = parseInt(header.css('paddingTop'));
-		var paddingBottom = parseInt(header.css('paddingBottom'));
+		var content = header.find('> *');
+		var height = header.innerHeight();
 
 		header.css('height', header.height());
 
 		function scroll() {
-			var scroll = $(window).scrollTop();
-			if(scroll >= (header.height() + paddingTop + paddingBottom))
+			var contentHeight = height - $(window).scrollTop();
+			if(contentHeight >= 0) {
+				content.show().css({
+					'max-height': contentHeight
+				});
+			} else {
 				content.hide();
-			else
-				content.show();
+			}
 		}
 
 		function resize() {

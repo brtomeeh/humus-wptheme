@@ -30,7 +30,7 @@ class Humus_Theme_Options {
 			'fields' => array(
 				array(
 					'key' => 'field_style_tab',
-					'label' => __('Style settings', 'humus'),
+					'label' => __('Styles', 'humus'),
 					'name' => '',
 					'type' => 'tab',
 				),
@@ -45,7 +45,7 @@ class Humus_Theme_Options {
 				),
 				array(
 					'key' => 'field_contact_tab',
-					'label' => __('Contact settings', 'humus'),
+					'label' => __('Contact info', 'humus'),
 					'name' => '',
 					'type' => 'tab',
 				),
