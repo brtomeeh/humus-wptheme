@@ -24,8 +24,6 @@
 		markerLayer = L.geoJson(humus_map.geojson);
 		markerLayer.addTo(map);
 
-		console.log(markerLayer.getBounds());
-
 		//map.fitBounds(markerLayer.getBounds());
 
 		if(humus_map.zoom && !isNaN(humus_map.zoom)) {
@@ -36,27 +34,39 @@
 		 * Map view
 		 */
 
-		 if($('.map-view').length) {
+		(function() {
 
-		 	var items = $('.post-list .navigation-item');
+			if($('.map-view').length) {
 
-		 	$(window).scroll(function() {
+				var items = $('.post-list .navigation-item');
 
-		 		items.each(function() {
+				$(window).scroll(function() {
 
-		 			var relTop = $(this).offset().top - $(window).scrollTop();
+					items.each(function() {
 
-		 			var relBottom = relTop + $(this).innerHeight();
+						var relTop = $(this).offset().top - $(window).scrollTop();
 
-		 			if(relTop <= 300 && relBottom >= 300) {
-		 				console.log($(this).attr('id'));
-		 			}
+						var relBottom = relTop + $(this).innerHeight();
 
-		 		})
+						if(relTop <= 300 && relBottom >= 300) {
 
-		 	});
+							activate();
 
-		 }
+						}
+
+					})
+
+				});
+
+			}
+
+			function activate(postid) {
+
+
+
+			}
+
+		})();
 
 	});
 
