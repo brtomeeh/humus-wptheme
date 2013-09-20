@@ -403,8 +403,6 @@
 
 				var margin = (amountVisible - 1) * 20;
 
-				alert(posts.filter(':first').height());
-
 				height = posts.filter(':first').height() * amountVisible + margin;
 
 				$container.find('.video-list').css({
@@ -430,6 +428,8 @@
 					'paddingTop': (height/2) - ($container.height()/2)
 				});
 
+				setupSly();
+
 			});
 
 			posts.click(function() {
@@ -440,31 +440,33 @@
 			/*
 			 * Sly
 			 */
-			var options = {
-				itemNav: 'basic',
-				smart: 1,
-				activateOn: 'click',
-				mouseDragging: 1,
-				touchDragging: 1,
-				releaseSwing: 1,
-				startAt: 0,
-				scrollBy: 1,
-				speed: 300,
-				elasticBounds: 0,
-				dragHandle: 1,
-				dynamicHandle: 0,
-				keyboardNavBy: 'items',
-				prev: $container.find('.video-list-controls .prev'),
-				next: $container.find('.video-list-controls .next')
-			};
-			sly = new Sly($container.find('.video-list'), options);
+			function setupSly() {
+				var options = {
+					itemNav: 'basic',
+					smart: 1,
+					activateOn: 'click',
+					mouseDragging: 1,
+					touchDragging: 1,
+					releaseSwing: 1,
+					startAt: 0,
+					scrollBy: 1,
+					speed: 300,
+					elasticBounds: 0,
+					dragHandle: 1,
+					dynamicHandle: 0,
+					keyboardNavBy: 'items',
+					prev: $container.find('.video-list-controls .prev'),
+					next: $container.find('.video-list-controls .next')
+				};
+				sly = new Sly($container.find('.video-list'), options);
 
-			sly.init();
+				sly.init();
 
-			// Reload on resize
-			$(window).on('resize', function() {
-				sly.reload();
-			});
+				// Reload on resize
+				$(window).on('resize', function() {
+					sly.reload();
+				});
+			}
 
 		}
 
