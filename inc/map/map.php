@@ -254,7 +254,7 @@ class Humus_Map {
 
 	function register_scripts() {
 
-		wp_register_script('leaflet', get_template_directory_uri() . '/inc/map/js/leaflet.js', array(), '0.7-dev');
+		wp_register_script('leaflet', get_template_directory_uri() . '/inc/map/js/leaflet.js', array(), '0.6.4');
 		wp_register_style('leaflet', get_template_directory_uri() . '/inc/map/css/leaflet.css');
 		wp_register_style('leaflet-ie', get_template_directory_uri() . '/inc/map/css/leaflet.ie.css');
 		$GLOBALS['wp_styles']->add_data('leaflet-ie', 'conditional', 'lte IE 8');

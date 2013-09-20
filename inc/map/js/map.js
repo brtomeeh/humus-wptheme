@@ -9,21 +9,25 @@
 		tileLayer,
 		markers = [],
 		locationLayers = {},
-		markerLayer;
-
-	$(document).ready(function() {
-
-		var options = {
+		markerLayer,
+		mapOptions = {
 			scrollWheelZoom: false,
-			attributionControl: false
-		};
+			attributionControl: false,
+			center: [0,0],
+			zoom: 3
+		},
+		mapInit = _.once(function() {
 
-		map = L.map(humus_map.canvas, options).setView([0, 0], 3);
+			map.fitBounds(markerLayer.getBounds());
 
-		tileLayer = L.tileLayer(humus_map.tiles);
-		tileLayer.addTo(map);
+			if(humus_map.zoom && !isNaN(humus_map.zoom)) {
+				map.setZoom(humus_map.zoom);
+			}
 
-		function createLayer(geojson) {
+			mapView();
+
+		}),
+		createLayer = function(geojson) {
 
 			return L.geoJson(geojson, {
 				pointToLayer: function(f, latlng) {
@@ -33,362 +37,366 @@
 				}
 			});
 
+		};
+
+	map = L.map(humus_map.canvas, mapOptions);
+
+	tileLayer = L.tileLayer(humus_map.tiles);
+
+	tileLayer.on('load', mapInit);
+
+	tileLayer.addTo(map);
+
+	// Separete marker layers per location
+	var locationFeatures = [];
+	_.each(humus_map.geojson.features, function(feature) {
+
+		var location = feature.properties.location;
+
+		if(typeof locationFeatures[location] !== 'object') {
+			locationFeatures[location] = {
+				type: 'FeatureCollection',
+				features: []
+			};
 		}
 
-		markerLayer = L.featureGroup();
+		locationFeatures[location].features.push(feature);
 
-		// Separete marker layers per location
-		var locationFeatures = [];
-		_.each(humus_map.geojson.features, function(feature) {
+	});
 
-			var location = feature.properties.location;
+	// Set marker layer as feature group
 
-			if(typeof locationFeatures[location] !== 'object') {
-				locationFeatures[location] = {
-					type: 'FeatureCollection',
-					features: []
-				};
-			}
+	markerLayer = L.featureGroup();
 
-			locationFeatures[location].features.push(feature);
+	// Add location layers to feature group (markerLayer)
 
-		});
+	for(var location in locationFeatures) {
 
-		for(var location in locationFeatures) {
+		var layer = createLayer(locationFeatures[location]);
 
-			var layer = createLayer(locationFeatures[location]);
+		locationLayers[location] = layer;
 
-			locationLayers[location] = layer;
+		markerLayer.addLayer(layer);
 
-			markerLayer.addLayer(layer);
+	}
 
-		}
+	markerLayer.addTo(map);
 
-		markerLayer.addTo(map);
+	/*
+	 * Map view
+	 */
 
-		map.fitBounds(markerLayer.getBounds());
+	var mapView = function() {
 
-		if(humus_map.zoom && !isNaN(humus_map.zoom)) {
-			map.setZoom(humus_map.zoom);
-		}
+		var container = $('.map-view');
 
-		/*
-		 * Map view
-		 */
+		if(container.length) {
 
-		(function() {
+			var items = container.find('.post-list .navigation-item'),
+				locations = items.filter('.location'),
+				posts = items.filter('.post'),
+				scrollLocation = items.filter(':first').attr('id'),
+				post;
 
-			var $container = $('.map-view');
+			var init = function(silent) {
 
-			if($container.length) {
-
-				var items = $('.post-list .navigation-item'),
-					locations = items.filter('.location'),
-					posts = items.filter('.post'),
-					scrollLocation = items.filter(':first').attr('id'),
-					post;
-
-				var init = function(silent) {
-
-					if(locations.length) {
-						locations.show();
-						$container.find('.button.location-list').hide();
-						locations.find('.button.this').show();
-						posts.hide();
-					}
-
-					$('#' + scrollLocation).addClass('active');
-					locate($('#' + scrollLocation).data('postid'));
-
-					if(fragment().get('location')) {
-						openLocation(fragment().get('location'), true);
-					}
-
-					if(fragment().get('post')) {
-						openPost(fragment().get('post'));
-					}
-
-				};
-
-				var home = function(silent) {
-
-					$('.location-dropdown li').removeClass('active');
-					$('.location-dropdown li.all').addClass('active');
-
-					closePost();
-
-					if(locations.length) {
-						locations.show();
-						$container.find('.button.location-list').hide();
-						locations.find('.button.this').show();
-						posts.hide();
-					}
-
-					fragment().rm('location');
-					fragment().rm('post');
-
-					if(typeof silent === 'undefined' || !silent) {
-						$('html,body').animate({
-							scrollTop: 0
-						}, 400, function() {
-							map.fitBounds(markerLayer.getBounds());
-						});
-					}
-
-				};
-
-				var fragment = function() {
-
-					var f = {};
-					var _set = function(query) {
-						var hash = [];
-						_.each(query, function(v, k) {
-							hash.push(k + '=' + v);
-						});
-						document.location.hash = '!/' + hash.join('&');
-					};
-					f.set = function(options) {
-						_set(_.extend(f.get(), options));
-					};
-					f.get = function(key, defaultVal) {
-						var vars = document.location.hash.substring(3).split('&');
-						var hash = {};
-						_.each(vars, function(v) {
-							var pair = v.split("=");
-							if (!pair[0] || !pair[1]) return;
-							hash[pair[0]] = unescape(pair[1]);
-							if (key && key == pair[0]) {
-								defaultVal = hash[pair[0]];
-							}
-						});
-						return key ? defaultVal : hash;
-					};
-					f.rm = function(key) {
-						var hash = f.get();
-						hash[key] && delete hash[key];
-						_set(hash);
-					};
-					return f;
-
-				};
-
-				var locate = function(id) {
-
-					var marker = _.filter(markers, function(m) { return m.toGeoJSON().properties.id == id; });
-
-					if(marker.length) {
-
-						$('.map-container').removeClass('disabled');
-
-						marker = marker[0];
-
-						map.setView(marker.getLatLng(), 15);
-
-					} else if(typeof id === 'string' && locationLayers[id]) {
-
-						$('.map-container').removeClass('disabled');
-
-						var bounds = locationLayers[id].getBounds();
-
-						map.setView(bounds.getCenter(), 12);
-
-					} else {
-
-						$('.map-container').addClass('disabled');
-
-					}
-
-				};
-
-				var scrollLocate = function() {
-
-					var halfWindow = $(window).height() / 2;
-
-					items.each(function() {
-
-						if($(this).is(':visible')) {
-
-							var relTop = $(this).offset().top - $(window).scrollTop();
-							var relBottom = relTop + $(this).innerHeight();
-
-							if(relTop <= halfWindow && relBottom >= halfWindow) {
-
-								if(scrollLocation !== $(this).attr('id')) {
-
-									scrollLocation = $(this).attr('id');
-
-									var id = $(this).data('postid') ? $(this).data('postid') : $(this).data('location');
-
-									locate(id);
-
-								}
-
-								items.removeClass('active');
-								$(this).addClass('active');
-
-							}
-
-						}
-
-					})
-
-				};
-
-				var openLocation = function(locationName, silent) {
-
-					var location = locations.filter('[data-location="' + locationName + '"]');
-
-					if(!location.length)
-						return false;
-
-					closePost();
-
-					locations.hide();
+				if(locations.length) {
+					locations.show();
+					container.find('.button.location-list').hide();
+					locations.find('.button.this').show();
 					posts.hide();
+				}
 
-					location.show();
-					posts.filter('[data-location="' + locationName + '"]').show();
+				$('#' + scrollLocation).addClass('active');
+				locate($('#' + scrollLocation).data('postid'));
 
-					$container.find('.button.location-list').show();
-					locations.find('a.button.this').hide();
+				if(fragment().get('location')) {
+					openLocation(fragment().get('location'), true);
+				}
 
-					$('.location-dropdown li').removeClass('active');
-					$('.location-dropdown li[data-location="' + locationName + '"]').addClass('active');
+				if(fragment().get('post')) {
+					openPost(fragment().get('post'));
+				}
 
-					locate(locationName);
+			};
 
-					fragment().set({'location': locationName});
+			var home = function(silent) {
 
-					var firstPost = posts.filter('[data-location="' + locationName + '"]:first');
+				$('.location-dropdown li').removeClass('active');
+				$('.location-dropdown li.all').addClass('active');
 
-					if(!fragment().get('post')) {
+				closePost();
 
-						if((typeof silent === 'undefined' || !silent)) {
+				if(locations.length) {
+					locations.show();
+					container.find('.button.location-list').hide();
+					locations.find('.button.this').show();
+					posts.hide();
+				}
 
-							var center = firstPost.offset().top - ($(window).height()/2) + (firstPost.innerHeight()/2);
+				fragment().rm('location');
+				fragment().rm('post');
 
-							locate(firstPost.data('postid'));
+				if(typeof silent === 'undefined' || !silent) {
+					$('html,body').animate({
+						scrollTop: 0
+					}, 400, function() {
+						map.fitBounds(markerLayer.getBounds());
+					});
+				}
 
-							$('html,body').stop().animate({
-								scrollTop: center
-							}, 400);
+			};
 
-						} else {
+			var fragment = function() {
 
-							$('#' + scrollLocation).addClass('active');
-							locate($('#' + scrollLocation).data('postid'));
-
-						}
-
-					}
-
+				var f = {};
+				var _set = function(query) {
+					var hash = [];
+					_.each(query, function(v, k) {
+						hash.push(k + '=' + v);
+					});
+					document.location.hash = '!/' + hash.join('&');
 				};
+				f.set = function(options) {
+					_set(_.extend(f.get(), options));
+				};
+				f.get = function(key, defaultVal) {
+					var vars = document.location.hash.substring(3).split('&');
+					var hash = {};
+					_.each(vars, function(v) {
+						var pair = v.split("=");
+						if (!pair[0] || !pair[1]) return;
+						hash[pair[0]] = unescape(pair[1]);
+						if (key && key == pair[0]) {
+							defaultVal = hash[pair[0]];
+						}
+					});
+					return key ? defaultVal : hash;
+				};
+				f.rm = function(key) {
+					var hash = f.get();
+					hash[key] && delete hash[key];
+					_set(hash);
+				};
+				return f;
 
-				var openedPostHeight = function() {
+			};
 
-					post.stop().animate({
-						height: $(window).height() - 300
-					}, 400);
+			var locate = function(id) {
+
+				var marker = _.filter(markers, function(m) { return m.toGeoJSON().properties.id == id; });
+
+				if(marker.length) {
+
+					$('.map-container').removeClass('disabled');
+
+					marker = marker[0];
+
+					map.setView(marker.getLatLng(), 15);
+
+				} else if(typeof id === 'string' && locationLayers[id]) {
+
+					$('.map-container').removeClass('disabled');
+
+					var bounds = locationLayers[id].getBounds();
+
+					map.setView(bounds.getCenter(), 12);
+
+				} else {
+
+					$('.map-container').addClass('disabled');
 
 				}
 
-				var openPost = function(postid) {
+			};
 
-					closePost();
+			var scrollLocate = function() {
 
-					post = posts.filter('[data-postid="' + postid + '"]');
+				var halfWindow = $(window).height() / 2;
 
-					if(post.length) {
+				items.each(function() {
 
-						post.addClass('post-active active');
-						fragment().set({'post': postid});
+					if($(this).is(':visible')) {
 
-						$(window).bind('resize', openedPostHeight).resize();
-						$(window).unbind('scroll', scrollLocate);
+						var relTop = $(this).offset().top - $(window).scrollTop();
+						var relBottom = relTop + $(this).innerHeight();
 
-						$('body').css({overflow:'hidden'});
+						if(relTop <= halfWindow && relBottom >= halfWindow) {
 
-						locate(postid);
+							if(scrollLocation !== $(this).attr('id')) {
 
-						$('#content').addClass('dark');
-						$('.map-container').addClass('disabled');
+								scrollLocation = $(this).attr('id');
 
-						$('html,body').stop().animate({
-							scrollTop: post.offset().top - 150
-						}, 400, _.once(function() {
-							post.find('.post-excerpt').hide();
-							post.find('.post-content').show();
+								var id = $(this).data('postid') ? $(this).data('postid') : $(this).data('location');
 
-							if(post.find('.video').length)
-								post.find('.video').clone().appendTo($container.find('#media'));
+								locate(id);
 
-							$container.find('#media').show();
-							$container.fitVids();
+							}
 
-						}));
+							items.removeClass('active');
+							$(this).addClass('active');
+
+						}
 
 					}
 
-				};
-
-				var closePost = function() {
-
-					if(typeof post !== 'undefined') {
-						$('#content').removeClass('dark');
-						$('.map-container').removeClass('disabled');
-						post.find('.post-excerpt').show();
-						post.find('.post-content').hide();
-						post.css({height: 'auto'});
-						post.removeClass('post-active');
-						$container.find('#media').empty().hide();
-						fragment().rm('post');
-						$('body').css({overflow:'auto'});
-						$(window).bind('scroll', scrollLocate).scroll();
-						$(window).unbind('resize', openedPostHeight).resize();
-						post = undefined;
-					}
-
-				};
-
-				$(window).bind('scroll', scrollLocate);
-
-				init();
-
-				locations.click(function() {
-					openLocation($(this).data('location'));
-					return false;
-				});
-
-				posts.find('.button.this').click(function() {
-					openPost($(this).parents('.post').data('postid'));
-					return false;
-				});
-
-				posts.find('.close-post').click(function() {
-					closePost();
-					return false;
 				})
 
-				$container.find('.button.location-list').click(function() {
-					home();
+			};
+
+			var openLocation = function(locationName, silent) {
+
+				var location = locations.filter('[data-location="' + locationName + '"]');
+
+				if(!location.length)
 					return false;
-				});
 
-				$('.location-dropdown li a').click(function() {
-					var location = $(this).parent().data('location');
+				closePost();
 
-					if(location)
-						openLocation(location, true);
-					else
-						home();
+				locations.hide();
+				posts.hide();
 
-					return false;
-				});
+				location.show();
+				posts.filter('[data-location="' + locationName + '"]').show();
+
+				container.find('.button.location-list').show();
+				locations.find('a.button.this').hide();
+
+				$('.location-dropdown li').removeClass('active');
+				$('.location-dropdown li[data-location="' + locationName + '"]').addClass('active');
+
+				locate(locationName);
+
+				fragment().set({'location': locationName});
+
+				var firstPost = posts.filter('[data-location="' + locationName + '"]:first');
+
+				if(!fragment().get('post')) {
+
+					if((typeof silent === 'undefined' || !silent)) {
+
+						var center = firstPost.offset().top - ($(window).height()/2) + (firstPost.innerHeight()/2);
+
+						locate(firstPost.data('postid'));
+
+						$('html,body').stop().animate({
+							scrollTop: center
+						}, 400);
+
+					} else {
+
+						$('#' + scrollLocation).addClass('active');
+						locate($('#' + scrollLocation).data('postid'));
+
+					}
+
+				}
+
+			};
+
+			var openedPostHeight = function() {
+
+				post.stop().animate({
+					height: $(window).height() - 300
+				}, 400);
 
 			}
 
-		})();
+			var openPost = function(postid) {
 
-	});
+				closePost();
+
+				post = posts.filter('[data-postid="' + postid + '"]');
+
+				if(post.length) {
+
+					post.addClass('post-active active');
+					fragment().set({'post': postid});
+
+					$(window).bind('resize', openedPostHeight).resize();
+					$(window).unbind('scroll', scrollLocate);
+
+					$('body').css({overflow:'hidden'});
+
+					locate(postid);
+
+					$('#content').addClass('dark');
+					$('.map-container').addClass('disabled');
+
+					$('html,body').stop().animate({
+						scrollTop: post.offset().top - 150
+					}, 400, _.once(function() {
+						post.find('.post-excerpt').hide();
+						post.find('.post-content').show();
+
+						if(post.find('.video').length)
+							post.find('.video').clone().appendTo(container.find('#media'));
+
+						container.find('#media').show();
+						container.fitVids();
+
+					}));
+
+				}
+
+			};
+
+			var closePost = function() {
+
+				if(typeof post !== 'undefined') {
+					$('#content').removeClass('dark');
+					$('.map-container').removeClass('disabled');
+					post.find('.post-excerpt').show();
+					post.find('.post-content').hide();
+					post.css({height: 'auto'});
+					post.removeClass('post-active');
+					container.find('#media').empty().hide();
+					fragment().rm('post');
+					$('body').css({overflow:'auto'});
+					$(window).bind('scroll', scrollLocate).scroll();
+					$(window).unbind('resize', openedPostHeight).resize();
+					post = undefined;
+				}
+
+			};
+
+			$(window).bind('scroll', scrollLocate);
+
+			init();
+
+			locations.click(function() {
+				openLocation($(this).data('location'));
+				return false;
+			});
+
+			posts.find('.button.this').click(function() {
+				openPost($(this).parents('.post').data('postid'));
+				return false;
+			});
+
+			posts.find('.close-post').click(function() {
+				closePost();
+				return false;
+			})
+
+			container.find('.button.location-list').click(function() {
+				home();
+				return false;
+			});
+
+			$('.location-dropdown li a').click(function() {
+				var location = $(this).parent().data('location');
+
+				if(location)
+					openLocation(location, true);
+				else
+					home();
+
+				return false;
+			});
+
+		}
+
+	};
 
 })(jQuery);
