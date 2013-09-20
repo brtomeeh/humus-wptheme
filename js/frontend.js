@@ -403,7 +403,7 @@
 
 				var margin = (amountVisible - 1) * 20;
 
-				height = posts.height() * amountVisible + margin;
+				height = posts.filter(':first').height() * amountVisible + margin;
 
 				$container.find('.video-list').css({
 					'height': height
@@ -420,12 +420,14 @@
 			});
 
 			$container.imagesLoaded(function() {
+
 				$(window).resize(fixHeight).resize();
 
 				var height = $(window).height() - 60 - parseInt($('html').css('marginTop'));
 				$container.css({
 					'paddingTop': (height/2) - ($container.height()/2)
 				});
+
 			});
 
 			posts.click(function() {
