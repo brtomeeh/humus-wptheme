@@ -21,77 +21,7 @@ get_header(); ?>
 <section id="primary" class="content-area">
 	<div id="content" class="site-content" role="main">
 
-		<?php
-
-		$header_image = humus_get_header_image_url();
-		$section_icon = humus_get_term_icon_url();
-
-		?>
-		<header class="page-header <?php if($header_image) echo 'header-image'; ?>" <?php if($header_image) echo 'style="background-image:url(' . $header_image . ')"'; ?>>
-
-			<div class="header-content">
-
-				<?php do_action('humus_before_header_content'); ?>
-
-				<div class="container">
-
-					<div class="one column">
-						<?php if($section_icon) : ?>
-							<img src="<?php echo $section_icon; ?>" alt="<?php single_term_title(); ?>" />
-						<?php else : ?>
-							&nbsp;
-						<?php endif; ?>
-					</div>
-
-					<div class="ten columns">
-
-						<?php humus_breadcrumb(); ?>
-
-						<h1 class="page-title">
-
-							<?php
-
-							if(is_day()) :
-								printf( __( 'Day: %s', 'twentyfourteen' ), get_the_date() );
-
-							elseif(is_month()) :
-								printf( __( 'Month: %s', 'twentyfourteen' ), get_the_date( 'F Y' ) );
-
-							elseif(is_year()) :
-								printf( __( 'Year: %s', 'twentyfourteen' ), get_the_date( 'Y' ) );
-
-							elseif(is_tax() || is_tag() || is_category()) :
-								single_term_title();
-
-							else :
-								_e( 'Archives', 'twentyfourteen' );
-
-							endif;
-							?>
-
-						</h1>
-
-						<?php
-						if(is_tax() || is_tax() || is_category()) :
-
-								$description = term_description();
-								if($description) :
-									echo $description;
-
-								endif;
-
-						endif;
-						?>
-
-					</div>
-
-				</div>
-
-				<?php do_action('humus_after_header_content'); ?>
-
-			</div>
-
-		</header><!-- .page-header -->
+		<?php humus_archive_header(); ?>
 
 		<section class="page-content">
 

@@ -483,7 +483,7 @@
 		}
 
 		function resize() {
-			var height = content.height();
+			var height = content.innerHeight();
 			header.height(height);
 		}
 

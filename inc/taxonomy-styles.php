@@ -143,8 +143,15 @@ class Humus_Taxonomy_Styles {
 		if($GLOBALS['humus_page_color']) {
 			?>
 			<style>
-			body::-webkit-scrollbar-thumb {
+			body::-webkit-scrollbar-thumb,
+			.page-scrollbar-thumb::-webkit-scrollbar-thumb {
 				background: <?php echo $color; ?> !important;
+			}
+			.page-color {
+				color: <?php echo $color; ?> !important;
+			}
+			.page-background {
+				background-color: <?php echo $color; ?> !important;
 			}
 			</style>
 			<?php

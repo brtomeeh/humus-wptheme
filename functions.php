@@ -58,6 +58,8 @@ function humus_scripts() {
 	wp_register_script('lockfixed', get_template_directory_uri() . '/js/jquery.lockfixed.min.js', array('jquery'), '0.1');
 	wp_register_script('sly', get_template_directory_uri() . '/js/sly.min.js', array('jquery'), '1.1.0');
 	wp_register_script('motio', get_template_directory_uri() . '/js/motio.min.js', array(), '2.2.1');
+	wp_register_script('underscore', get_template_directory_uri() . '/js/underscore-min.js', array(), '1.5.2');
+
 	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery',  'imagesloaded', 'fitvids', 'lockfixed', 'sly'), '0.0.1');
 
 	wp_enqueue_script('frontend');
@@ -339,5 +341,92 @@ function humus_comment( $comment, $args, $depth ) {
 		break;
 	endswitch; // end comment_type check
 }
+
+function humus_archive_header($short_version = false) {
+
+	$header_image = $short_version ? false : humus_get_header_image_url();
+	$section_icon = humus_get_term_icon_url();
+
+	?>
+	<header class="page-header <?php if($header_image) echo 'header-image'; ?>" <?php if($header_image) echo 'style="background-image:url(' . $header_image . ')"'; ?>>
+
+		<div class="header-content">
+
+			<?php do_action('humus_before_header_content'); ?>
+
+			<div class="container">
+
+				<div class="one column">
+					<?php if($section_icon) : ?>
+						<img src="<?php echo $section_icon; ?>" alt="<?php single_term_title(); ?>" />
+					<?php else : ?>
+						&nbsp;
+					<?php endif; ?>
+				</div>
+
+				<div class="six columns">
+
+					<?php humus_breadcrumb(); ?>
+
+					<h1 class="page-title">
+
+						<?php
+
+						if(is_day()) :
+							printf( __( 'Day: %s', 'twentyfourteen' ), get_the_date() );
+
+						elseif(is_month()) :
+							printf( __( 'Month: %s', 'twentyfourteen' ), get_the_date( 'F Y' ) );
+
+						elseif(is_year()) :
+							printf( __( 'Year: %s', 'twentyfourteen' ), get_the_date( 'Y' ) );
+
+						elseif(is_tax() || is_tag() || is_category()) :
+							single_term_title();
+
+						else :
+							_e( 'Archives', 'twentyfourteen' );
+
+						endif;
+						?>
+
+					</h1>
+
+					<?php
+					if((is_tax() || is_tag() || is_category()) && !$short_version) :
+
+							$description = term_description();
+							if($description) :
+								echo $description;
+
+							endif;
+
+					endif;
+					?>
+
+				</div>
+
+				<?php do_action('humus_header_content'); ?>
+
+			</div>
+
+			<?php do_action('humus_after_header_content'); ?>
+
+		</div>
+
+	</header>
+	<?php
+}
+
+/*
+ * Humus
+ * Map view terms
+ */
+
+function humus_map_view_terms($terms) {
+	$terms[] = get_term_by('slug', 'tape', 'section');
+	return $terms;
+}
+add_filter('humus_map_view_terms', 'humus_map_view_terms');
 
 ?>

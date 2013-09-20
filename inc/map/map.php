@@ -15,15 +15,22 @@ class Humus_Map {
 
 	function init() {
 
-		if(function_exists('register_field_group')) {
-			$this->register_field();
-		}
+		if(!function_exists('register_field_group'))
+			return false;
+
+		$this->register_location_field();
+		$this->register_location_taxonomy();
 
 		add_action('wp_head', array($this, 'register_scripts'), 100);
 		add_filter('post_class', array($this, 'post_class'));
 		add_action('humus_before_header_content', array($this, 'map'));
 
+		add_filter('query_vars', array($this, 'location_query_var'));
+		add_filter('posts_clauses', array($this, 'location_clauses'), 10, 2);
+
 		$this->setup_template();
+
+		add_action('humus_header_content', array($this, 'location_dropdown'));
 
 	}
 
@@ -33,7 +40,23 @@ class Humus_Map {
 
 	}
 
-	function register_field() {
+	function get_map_view_terms() {
+		// list of term objects
+		return apply_filters('humus_map_view_terms', array());
+	}
+
+	function is_map_view() {
+
+		$terms = $this->get_map_view_terms();
+
+		if(in_array(get_queried_object(), $terms))
+			return true;
+
+		return false;
+
+	}
+
+	function register_location_field() {
 
 		$field_group = array(
 			'id' => 'acf_location',
@@ -95,6 +118,107 @@ class Humus_Map {
 
 	}
 
+	function register_location_taxonomy() {
+
+		$labels = array(
+			'name' => _x('Locations', 'Location general name', 'humus'),
+			'singular_name' => _x('Location', 'Location singular name', 'humus'),
+			'all_items' => __('All locations', 'humus'),
+			'edit_item' => __('Edit location', 'humus'),
+			'view_item' => __('View location', 'humus'),
+			'update_item' => __('Update location', 'humus'),
+			'add_new_item' => __('Add new location', 'humus'),
+			'new_item_name' => __('New location name', 'humus'),
+			'parent_item' => __('Parent location', 'humus'),
+			'parent_item_colon' => __('Parent location:', 'humus'),
+			'search_items' => __('Search locations', 'humus'),
+			'popular_items' => __('Popular locations', 'humus'),
+			'separate_items_with_commas' => __('Separate locations with commas', 'humus'),
+			'add_or_remove_items' => __('Add or remove locations', 'humus'),
+			'choose_from_most_used' => __('Choose from most used locations', 'humus'),
+			'not_found' => __('No locations found', 'humus')
+		);
+
+		$args = array(
+			'labels' => $labels,
+			'public' => true,
+			'show_admin_column' => true,
+			'hierarchical' => true,
+			'query_var' => 'location',
+			'rewrite' => array('slug' => 'locations', 'with_front' => false)
+		);
+
+		register_taxonomy('location', $this->get_post_types(), $args);
+
+	}
+
+	function location_query_var($vars) {
+		$vars[] = 'humus_location';
+		return $vars;
+	}
+
+	function get_current_location() {
+
+		global $wp_query;
+
+		$location = false;
+		if($wp_query->get('humus_location'))
+			$location = $wp_query->get('humus_location');
+
+		return $location;
+
+	}
+
+	function location_dropdown() {
+
+		if(!$this->is_map_view())
+			return false;
+
+		$locations = get_terms('location');
+		if(!$locations)
+			return false;
+
+		wp_enqueue_style('humus-map');
+
+		$current = $this->get_current_location();
+
+		?>
+		<div class="two columns">
+			<div class="location-dropdown">
+				<div class="humus-dropdown">
+					<ul>
+						<li class="all <?php if(!$current) echo 'active'; ?>"><a href="<?php echo remove_query_arg('humus_location'); ?>"><?php _e('All locations', 'humus'); ?></a></li>
+						<?php foreach($locations as $location) : ?>
+							<li data-location="<?php echo $location->slug; ?>" <?php if($current == $location->term_id) echo 'class="active"'; ?>><a href="<?php echo add_query_arg(array('humus_location' => $location->term_id)); ?>"><?php echo $location->name; ?></a></li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<?php
+	}
+
+	function location_clauses($clauses, $query) {
+
+		global $wp_the_query, $wpdb;
+
+		if($query->get('humus_location') && $wp_the_query === $query && !$query->get('map')) {
+
+			$key = 'humus_location';
+			$term_id = $query->get('humus_location');
+
+			$clauses['join'] .= "
+				INNER JOIN {$wpdb->term_relationships} AS {$key} ON ({$wpdb->posts}.ID = {$key}.object_id)
+				";
+
+			$clauses['where'] .= " AND ( {$key}.term_taxonomy_id IN ({$term_id}) ) ";
+
+		}
+
+		return $clauses;
+
+	}
+
 	function get_map_tile() {
 
 		$color = $GLOBALS['humus_page_color'];
@@ -135,7 +259,7 @@ class Humus_Map {
 		wp_register_style('leaflet-ie', get_template_directory_uri() . '/inc/map/css/leaflet.ie.css');
 		$GLOBALS['wp_styles']->add_data('leaflet-ie', 'conditional', 'lte IE 8');
 
-		wp_register_script('humus-map', get_template_directory_uri() . '/inc/map/js/map.js', array('jquery', 'leaflet'), '0.1.0');
+		wp_register_script('humus-map', get_template_directory_uri() . '/inc/map/js/map.js', array('jquery', 'underscore', 'leaflet', 'fitvids'), '0.1.0');
 
 		wp_localize_script('humus-map', 'humus_map', array(
 			'tiles' => $this->get_map_tile(),
@@ -168,10 +292,16 @@ class Humus_Map {
 
 				the_post();
 
-				$location = get_field('location');
-				if($location) {
+				$coordinates = get_field('location');
+				if($coordinates) {
 
-					$latlng = split(',', $location['coordinates']);
+					global $post;
+
+					$latlng = split(',', $coordinates['coordinates']);
+
+					$location = get_the_terms($post->ID, 'location');
+					if($location)
+						$location = array_shift($location);
 
 					$feature = array(
 						'type' => 'Feature',
@@ -186,7 +316,8 @@ class Humus_Map {
 							'id' => get_the_ID(),
 							'date' => get_the_date(),
 							'title' => get_the_title(),
-							'excerpt' => get_the_excerpt()
+							'excerpt' => get_the_excerpt(),
+							'location' => $location->slug
 						)
 					);
 
@@ -224,13 +355,37 @@ class Humus_Map {
 	}
 
 	/*
-	 * Map post template
+	 * Map view template
 	 */
 
 	function setup_template() {
 		add_filter('query_vars', array($this, 'query_vars'));
+		add_action('humus_header_content', array($this, 'map_view_dropdown'));
 		add_action('template_redirect', array($this, 'template_redirect'));
 		add_filter('body_class', array($this, 'body_class'));
+	}
+
+	function map_view_dropdown() {
+
+		if(!$this->is_map_view())
+			return false;
+	
+		global $wp_query;
+		wp_enqueue_style('humus-map');
+		$is_map_view = $wp_query->get('map');
+		?>
+		<div class="three columns">
+			<div class="map-view-dropdown">
+				<p class="label"><?php _e('View as', 'humus'); ?></p>
+				<div class="humus-dropdown">
+					<ul>
+						<li <?php if($is_map_view) echo 'class="active"'; ?>><a href="<?php echo add_query_arg(array('map' => 1), remove_query_arg('humus_location')); ?>"><?php _e('Map', 'humus'); ?></a></li>
+						<li <?php if(!$is_map_view) echo 'class="active"'; ?>><a href="<?php echo remove_query_arg('map'); ?>"><?php _e('List', 'humus'); ?></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<?php
 	}
 
 	function query_vars($vars) {
@@ -239,8 +394,9 @@ class Humus_Map {
 	}
 
 	function template_redirect() {
+
 		global $wp_query;
-		if($wp_query->get('map')) {
+		if($wp_query->get('map') && $this->is_map_view()) {
 			include_once(TEMPLATEPATH . '/inc/map/template.php');
 			exit;
 		}
