@@ -403,6 +403,8 @@
 
 				var margin = (amountVisible - 1) * 20;
 
+				alert(posts.filter(':first').height());
+
 				height = posts.filter(':first').height() * amountVisible + margin;
 
 				$container.find('.video-list').css({
