@@ -13,11 +13,9 @@
 		this.contentArea = container;
 		this.sections = this.contentArea.find('.full-height-section');
 
-		// Height
-		this.fixHeight();
-		$(window).on('resize', function() {
-			self.fixHeight();
-		});
+		this.sections.imagesLoaded(function() { self.fixHeight(); });
+
+		$(window).on('resize', function() { self.fixHeight(); });
 
 		// Scroll control
 		this.scrollControl();
@@ -421,7 +419,14 @@
 				open(posts.filter(':first').data('postid'));
 			});
 
-			$(window).resize(fixHeight).resize();
+			$container.imagesLoaded(function() {
+				$(window).resize(fixHeight).resize();
+
+				var height = $(window).height() - 60 - parseInt($('html').css('marginTop'));
+				$container.css({
+					'paddingTop': (height/2) - ($container.height()/2)
+				});
+			});
 
 			posts.click(function() {
 				open($(this).data('postid'));
