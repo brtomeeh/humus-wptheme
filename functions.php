@@ -1,9 +1,22 @@
 <?php
 
 /*
+ * Advanced Custom Fields
+ */
+
+function toolkit_acf_path() {
+	return get_template_directory_uri() . '/inc/acf/';
+}
+add_filter('acf/helpers/get_dir', 'toolkit_acf_path');
+
+define('ACF_LITE', false);
+require_once(TEMPLATEPATH . '/inc/acf/acf.php');
+
+/*
  * Tools
  */
 require_once(TEMPLATEPATH . '/inc/map/map.php');
+require_once(TEMPLATEPATH . '/inc/magazine/magazine.php');
 require_once(TEMPLATEPATH . '/inc/media.php');
 require_once(TEMPLATEPATH . '/inc/header-image.php');
 require_once(TEMPLATEPATH . '/inc/taxonomy-styles.php');
@@ -15,18 +28,6 @@ require_once(TEMPLATEPATH . '/inc/theme-options.php');
  */
 require_once(TEMPLATEPATH . '/inc/section.php');
 require_once(TEMPLATEPATH . '/inc/axis.php');
-
-/*
- * Advanced Custom Fields
- */
-
-function toolkit_acf_path() {
-	return get_template_directory_uri() . '/inc/acf/';
-}
-add_filter('acf/helpers/get_dir', 'toolkit_acf_path');
-
-define('ACF_LITE', false);
-require_once(TEMPLATEPATH . '/inc/acf/acf.php');
 
 /*
  * Humus includes
@@ -428,5 +429,17 @@ function humus_map_view_terms($terms) {
 	return $terms;
 }
 add_filter('humus_map_view_terms', 'humus_map_view_terms');
+
+
+/*
+ * Connect REMIX
+ */
+
+function humus_connect_remix_post_type($post_types) {
+	$post_types[] = 'remix';
+	return $post_types;
+}
+add_filter('humus_axis_post_types', 'humus_connect_remix_post_type');
+add_filter('humus_section_post_types', 'humus_connect_remix_post_type');
 
 ?>

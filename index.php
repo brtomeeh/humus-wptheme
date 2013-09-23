@@ -230,6 +230,8 @@ get_header(); ?>
 													foreach($recent_videos as $post) :
 														global $post;
 														setup_postdata($post);
+														if(!has_post_thumbnail())
+															continue;
 														$section_icon = humus_get_term_icon_url($post->ID, 'section');
 														?>
 														<li data-postid="<?php the_ID(); ?>">

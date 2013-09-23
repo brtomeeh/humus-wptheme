@@ -14,8 +14,10 @@ class Humus_Sections {
 	function init() {
 
 		$this->register_taxonomy();
-		add_filter('humus_styled_taxonomies', array($this, 'register_taxonomy_styles'));
+		$this->home_featured_fields();
+
 		add_filter('humus_header_image_locations', array($this, 'register_header_image'));
+		add_filter('humus_styled_taxonomies', array($this, 'register_taxonomy_styles'));
 
 	}
 
@@ -49,7 +51,7 @@ class Humus_Sections {
 			'rewrite' => array('slug' => 'sections', 'with_front' => false)
 		);
 
-		register_taxonomy('section', $this->section_post_types(), $args);
+		register_taxonomy('section', $this->get_post_types(), $args);
 
 	}
 
@@ -67,8 +69,161 @@ class Humus_Sections {
 		return $locations;
 	}
 
-	function section_post_types() {
+	function get_post_types() {
 		return apply_filters('humus_section_post_types', array('post'));
+	}
+
+	function home_featured_fields() {
+
+		$field_group = array (
+			'id' => 'acf_section-featured-options',
+			'title' => __('Section featured options', 'humus'),
+			'fields' => array (
+				array (
+					'key' => 'field_section_featured',
+					'label' => __('Section featured', 'humus'),
+					'name' => 'section_featured',
+					'type' => 'true_false',
+					'message' => __('Featured on home section slider', 'humus'),
+					'default_value' => 0,
+				),
+				array (
+					'key' => 'field_section_featured_image',
+					'label' => __('Full screen image', 'humus'),
+					'name' => 'section_featured_image',
+					'type' => 'image',
+					'conditional_logic' => array (
+						'status' => 1,
+						'rules' => array (
+							array (
+								'field' => 'field_section_featured',
+								'operator' => '==',
+								'value' => '1',
+							),
+						),
+						'allorany' => 'all',
+					),
+					'save_format' => 'url',
+					'preview_size' => 'thumbnail',
+					'library' => 'all',
+				),
+				array (
+					'key' => 'field_section_featured_image_only',
+					'label' => __('Image only', 'humus'),
+					'name' => 'section_featured_image_only',
+					'type' => 'true_false',
+					'conditional_logic' => array (
+						'status' => 1,
+						'rules' => array (
+							array (
+								'field' => 'field_section_featured',
+								'operator' => '==',
+								'value' => '1',
+							),
+						),
+						'allorany' => 'all',
+					),
+					'message' => 'Show only featured image (no title)',
+					'default_value' => 0,
+				),
+				array (
+					'key' => 'field_section_featured_title',
+					'label' => __('Title', 'humus'),
+					'name' => 'section_featured_title',
+					'type' => 'text',
+					'instructions' => __('Title to show on home slider (default is post title)', 'humus'),
+					'conditional_logic' => array (
+						'status' => 1,
+						'rules' => array (
+							array (
+								'field' => 'field_section_featured',
+								'operator' => '==',
+								'value' => '1',
+							),
+							array (
+								'field' => 'field_section_featured_image_only',
+								'operator' => '!=',
+								'value' => '1',
+							),
+						),
+						'allorany' => 'all',
+					),
+					'default_value' => '',
+					'placeholder' => '',
+					'prepend' => '',
+					'append' => '',
+					'formatting' => 'html',
+					'maxlength' => '',
+				),
+				array (
+					'key' => 'field_section_featured_color',
+					'label' => __('Color scheme', 'humus'),
+					'name' => 'section_featured_color',
+					'type' => 'radio',
+					'conditional_logic' => array (
+						'status' => 1,
+						'rules' => array (
+							array (
+								'field' => 'field_section_featured',
+								'operator' => '==',
+								'value' => '1',
+							),
+							array (
+								'field' => 'field_section_featured_image_only',
+								'operator' => '!=',
+								'value' => '1',
+							),
+						),
+						'allorany' => 'all',
+					),
+					'choices' => array (
+						'dark' => 'Dark',
+						'light' => 'Light',
+					),
+					'other_choice' => 0,
+					'save_other_choice' => 0,
+					'default_value' => '',
+					'layout' => 'vertical',
+				),
+			),
+			'options' => array (
+				'position' => 'side',
+				'layout' => 'default',
+				'hide_on_screen' => array (
+				),
+			),
+			'menu_order' => 0,
+		);
+
+		$post_types = $this->get_post_types();
+
+		if(is_array($post_types) && !empty($post_types)) {
+
+			foreach($post_types as $post_type) {
+
+				$locations[] = array(
+					array(
+						'param' => 'post_type',
+						'operator' => '==',
+						'value' => $post_type,
+						'order_no' => 0,
+						'group_no' => 0,
+					),
+				);
+			}
+
+		}
+
+		if(!empty($locations)) {
+
+			$field_group['location'] = $locations;
+
+			$field_group = apply_filters('humus_section_home_featured_field_group', $field_group);
+			
+			register_field_group($field_group);
+	
+		}
+
 	}
 
 }
