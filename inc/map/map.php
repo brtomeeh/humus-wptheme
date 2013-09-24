@@ -315,9 +315,9 @@ class Humus_Map {
 							)
 						),
 						'properties' => array(
-							'id' => get_the_ID(),
+							'postid' => get_the_ID(),
 							'date' => get_the_date(),
-							'title' => get_the_title(),
+							'post_title' => get_the_title(),
 							'excerpt' => get_the_excerpt(),
 							'location' => $location->slug
 						)

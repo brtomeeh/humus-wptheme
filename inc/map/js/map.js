@@ -31,7 +31,9 @@
 
 			return L.geoJson(geojson, {
 				pointToLayer: function(f, latlng) {
-					var marker = new L.marker(latlng);
+					var marker = new L.marker(latlng, {
+						riseOnHover: true
+					});
 					markers.push(marker);
 					return marker;
 				}
@@ -132,7 +134,7 @@
 				fragment().rm('post');
 
 				if(typeof silent === 'undefined' || !silent) {
-					$('html,body').animate({
+					$('html,body').stop().animate({
 						scrollTop: 0
 					}, 400, function() {
 						map.fitBounds(markerLayer.getBounds());
@@ -176,23 +178,32 @@
 
 			};
 
-			var fromPost = fragment().get('post') ? true : false;
+			var fromPost = false;
+			var previousTop = $(window).scrollTop();
 
 			var fragmentNavigate = _.debounce(function() {
-				if(fragment().get('post')) {
-					openLocation(fragment().get('location'), fromPost);
-					openPost(fragment().get('post'));
-				} else if(fragment().get('location')) {
-					openLocation(fragment().get('location'), fromPost);
+				if(fragment().get('location') || fragment().get('post')) {
+					if(fragment().get('location'))
+						openLocation(fragment().get('location'), fromPost);
+					if(fragment().get('post'))
+						openPost(fragment().get('post'));
 				} else {
-					home();
+					home(fromPost);
+				}
+				if(fromPost) {
+					$('html,body').stop().animate({
+						scrollTop: previousTop
+					}, 400, function() {
+						$(window).trigger('scroll');
+					});
 				}
 				fromPost = fragment().get('post') ? true : false;
+				previousTop = $(window).scrollTop();
 			}, 10);
 
 			var locate = function(id) {
 
-				var marker = _.filter(markers, function(m) { return m.toGeoJSON().properties.id == id; });
+				var marker = _.filter(markers, function(m) { return m.toGeoJSON().properties.postid == id; });
 
 				if(marker.length) {
 
@@ -254,6 +265,9 @@
 
 			var openLocation = function(locationName, silent) {
 
+				if(typeof locationName === 'undefined')
+					return false;
+
 				var location = locations.filter('[data-location="' + locationName + '"]');
 
 				if(!location.length)
@@ -272,8 +286,6 @@
 
 				$('.location-dropdown li').removeClass('active');
 				$('.location-dropdown li[data-location="' + locationName + '"]').addClass('active');
-
-				locate(locationName);
 
 				fragment().set({'location': locationName});
 
@@ -320,6 +332,7 @@
 
 				if(post.length) {
 
+					post.show();
 					post.addClass('post-active active');
 					fragment().set({'post': postid});
 
@@ -370,6 +383,27 @@
 			};
 
 			init();
+
+			// marker stuff
+			_.each(markers, function(m, i) {
+
+				var geojson = m.toGeoJSON();
+
+				m.bindPopup('<h3>' + geojson.properties.post_title + '</h3><p>' + geojson.properties.excerpt + '</p>');
+
+				m.on('click', function() {
+					fragment().set({'post': geojson.properties.postid });
+				});
+
+				m.on('mouseover', function() {
+					m.openPopup();
+				});
+
+				m.on('mouseout', function() {
+					m.closePopup();
+				});
+
+			});
 
 			$(window).bind('scroll', scrollLocate);
 			$(window).bind('hashchange', fragmentNavigate);

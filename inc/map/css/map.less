@@ -213,6 +213,30 @@ article.map {
 			.leaflet-top {
 				display: none;
 			}
+			.leaflet-popup-close-button {
+				display: none;
+			}
+			.leaflet-popup-content-wrapper,
+			.leaflet-popup-tip {
+				background: #333;
+				color: #f0f0f0;
+			}
+			.leaflet-popup-content-wrapper {
+				.box-shadow(0 3px 15px rgba(0,0,0,0.7));
+				.border-radius(0);
+				padding: 20px;
+				h3 {
+					font-family: "Lato";
+					font-size: 22px;
+					line-height: 30px;
+					font-weight: 600;
+					color: #f0f0f0;
+				}
+				p {
+					font-size: 12px;
+					line-height: 20px;
+				}
+			}
 		}
 	}
 	.map-content {

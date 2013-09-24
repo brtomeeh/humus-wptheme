@@ -14,6 +14,10 @@ article.map .page-header.post-header{min-height:0;padding:140px 0 80px;}
 .map-view .page-header .map-view-dropdown .label{opacity:.6;}
 .map-view .map-container{position:fixed;top:0;right:0;left:33%;bottom:0;opacity:1;-webkit-transition:opacity 0.3s ease-in-out;-khtml-transition:opacity 0.3s ease-in-out;-moz-transition:opacity 0.3s ease-in-out;-o-transition:opacity 0.3s ease-in-out;transition:opacity 0.3s ease-in-out;}.map-view .map-container.disabled{opacity:.2;}
 .map-view .map-container #map{width:200%;position:absolute;right:0;left:-50%;height:100%;}.map-view .map-container #map .leaflet-top{display:none;}
+.map-view .map-container #map .leaflet-popup-close-button{display:none;}
+.map-view .map-container #map .leaflet-popup-content-wrapper,.map-view .map-container #map .leaflet-popup-tip{background:#333;color:#f0f0f0;}
+.map-view .map-container #map .leaflet-popup-content-wrapper{-webkit-box-shadow:0 3px 15px rgba(0, 0, 0, 0.7);-khtml-box-shadow:0 3px 15px rgba(0, 0, 0, 0.7);-moz-box-shadow:0 3px 15px rgba(0, 0, 0, 0.7);-o-box-shadow:0 3px 15px rgba(0, 0, 0, 0.7);box-shadow:0 3px 15px rgba(0, 0, 0, 0.7);-webkit-border-radius:0;-khtml-border-radius:0;-moz-border-radius:0;-o-border-radius:0;border-radius:0;padding:20px;}.map-view .map-container #map .leaflet-popup-content-wrapper h3{font-family:"Lato";font-size:22px;line-height:30px;font-weight:600;color:#f0f0f0;}
+.map-view .map-container #map .leaflet-popup-content-wrapper p{font-size:12px;line-height:20px;}
 .map-view .map-content{pointer-events:none;}
 .map-view #page-description div.description p{font-size:24px;line-height:30px;font-weight:600;}
 .map-view .post-list{color:#f0f0f0;text-shadow:1px 1px 1px rgba(0, 0, 0, 0.8);margin-bottom:500px;}.map-view .post-list .navigation-item{padding:40px;background:#333;margin:0 0 40px;opacity:.3;-webkit-transition:opacity 0.6s ease-in-out;-khtml-transition:opacity 0.6s ease-in-out;-moz-transition:opacity 0.6s ease-in-out;-o-transition:opacity 0.6s ease-in-out;transition:opacity 0.6s ease-in-out;position:relative;pointer-events:auto;}.map-view .post-list .navigation-item.active{opacity:1;}
