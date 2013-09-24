@@ -6,12 +6,14 @@
 (function($) {
 
 	var map,
+		zoomControl,
 		tileLayer,
 		markers = [],
 		locationLayers = {},
 		markerLayer,
 		mapOptions = {
 			scrollWheelZoom: false,
+			zoomControl: false,
 			attributionControl: false,
 			center: [0,0],
 			zoom: 3
@@ -42,6 +44,10 @@
 		};
 
 	map = L.map(humus_map.canvas, mapOptions);
+
+	zoomControl = L.control.zoom({position: 'topright'});
+
+	zoomControl.addTo(map);
 
 	tileLayer = L.tileLayer(humus_map.tiles);
 

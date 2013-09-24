@@ -210,8 +210,12 @@ article.map {
 			right: 0;
 			left: -50%;
 			height: 100%;
+			.leaflet-right {
+				right: 26%;
+				bottom: 60px;
+			}
 			.leaflet-top {
-				display: none;
+				top: 150px;
 			}
 			.leaflet-popup-close-button {
 				display: none;
@@ -306,9 +310,9 @@ article.map {
 				background: #333;
 			}
 			.close-post {
-				position: absolute;
-				top: 0;
-				left: 0;
+				position: fixed;
+				top: 150px;
+				margin-left: -40px;
 				font-weight: 800;
 				font-family: "Lato";
 				background: #333;
