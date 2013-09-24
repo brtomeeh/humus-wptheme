@@ -110,13 +110,7 @@
 				$('#' + scrollLocation).addClass('active');
 				locate($('#' + scrollLocation).data('postid'));
 
-				if(fragment().get('location')) {
-					openLocation(fragment().get('location'), true);
-				}
-
-				if(fragment().get('post')) {
-					openPost(fragment().get('post'));
-				}
+				fragmentNavigate();
 
 			};
 
@@ -181,6 +175,20 @@
 				return f;
 
 			};
+
+			var fromPost = fragment().get('post') ? true : false;
+
+			var fragmentNavigate = _.debounce(function() {
+				if(fragment().get('post')) {
+					openLocation(fragment().get('location'), fromPost);
+					openPost(fragment().get('post'));
+				} else if(fragment().get('location')) {
+					openLocation(fragment().get('location'), fromPost);
+				} else {
+					home();
+				}
+				fromPost = fragment().get('post') ? true : false;
+			}, 10);
 
 			var locate = function(id) {
 
@@ -292,6 +300,8 @@
 
 				}
 
+				$(window).trigger('scroll');
+
 			};
 
 			var openedPostHeight = function() {
@@ -351,7 +361,6 @@
 					post.css({height: 'auto'});
 					post.removeClass('post-active');
 					container.find('#media').empty().hide();
-					fragment().rm('post');
 					$('body').css({overflow:'auto'});
 					$(window).bind('scroll', scrollLocate).scroll();
 					$(window).unbind('resize', openedPostHeight).resize();
@@ -360,27 +369,29 @@
 
 			};
 
-			$(window).bind('scroll', scrollLocate);
-
 			init();
 
+			$(window).bind('scroll', scrollLocate);
+			$(window).bind('hashchange', fragmentNavigate);
+
 			locations.click(function() {
-				openLocation($(this).data('location'));
+				fragment().set({'location': $(this).data('location')});
 				return false;
 			});
 
 			posts.find('.button.this').click(function() {
-				openPost($(this).parents('.post').data('postid'));
+				fragment().set({'post': $(this).parents('.post').data('postid')});
 				return false;
 			});
 
 			posts.find('.close-post').click(function() {
-				closePost();
+				fragment().rm('post');
 				return false;
 			})
 
 			container.find('.button.location-list').click(function() {
-				home();
+				fragment().rm('post');
+				fragment().rm('location');
 				return false;
 			});
 
@@ -388,7 +399,7 @@
 				var location = $(this).parent().data('location');
 
 				if(location)
-					openLocation(location, true);
+					fragment().set({'location': location});
 				else
 					home();
 

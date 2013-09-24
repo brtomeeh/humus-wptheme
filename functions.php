@@ -20,7 +20,7 @@ require_once(TEMPLATEPATH . '/inc/magazine/magazine.php');
 require_once(TEMPLATEPATH . '/inc/media.php');
 require_once(TEMPLATEPATH . '/inc/header-image.php');
 require_once(TEMPLATEPATH . '/inc/taxonomy-styles.php');
-
+require_once(TEMPLATEPATH . '/inc/filters.php');
 require_once(TEMPLATEPATH . '/inc/theme-options.php');
 
 /*
@@ -30,9 +30,10 @@ require_once(TEMPLATEPATH . '/inc/section.php');
 require_once(TEMPLATEPATH . '/inc/axis.php');
 
 /*
- * Humus includes
+ * Side stuff
  */
-include_once(TEMPLATEPATH . '/inc/filters.php');
+require_once(TEMPLATEPATH . '/inc/events.php');
+require_once(TEMPLATEPATH . '/inc/partners.php');
 
 /*
  * Styles
@@ -442,4 +443,30 @@ function humus_connect_remix_post_type($post_types) {
 add_filter('humus_axis_post_types', 'humus_connect_remix_post_type');
 add_filter('humus_section_post_types', 'humus_connect_remix_post_type');
 
-?>
+/*
+ * Connect event
+ */
+
+function humus_connect_event_post_type($post_types) {
+	$post_types[] = 'event';
+	return $post_types;
+}
+add_filter('humus_axis_post_types', 'humus_connect_event_post_type');
+add_filter('humus_section_post_types', 'humus_connect_event_post_type');
+
+/*
+ * Connect PARTNER
+ */
+
+function humus_connect_partner_post_type($post_types) {
+	$post_types[] = 'partner';
+	return $post_types;
+}
+add_filter('humus_media_post_types', 'humus_connect_partner_post_type');
+
+function humus_enable_filter_partner() {
+	if(is_post_type_archive('partner'))
+		return false;
+	return true;
+}
+add_filter('humus_enable_filter', 'humus_enable_filter_partner');

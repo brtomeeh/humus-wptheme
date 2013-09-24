@@ -12,6 +12,13 @@ if(is_single()) :
 	$header_image = humus_get_header_image_url();
 	$media = get_post_meta($post->ID, 'media_oembed', true);
 
+	$content_columns = 'nine columns';
+	$media_columns = 'twelve columns';
+	if(get_post_type() == 'partner') {
+		$content_columns = 'ten columns';
+		$media_columns = 'ten columns';
+	}
+
 	?>
 	<article id="post-<?php the_ID(); ?>" <?php post_class('full row'); ?>>
 		<header class="page-header post-header <?php if($header_image) echo 'header-image'; ?>" <?php if($header_image) echo 'style="background-image:url(' . $header_image . ')"'; ?>>
@@ -38,65 +45,74 @@ if(is_single()) :
 		<section class="page-content">
 			<div class="container">
 				<?php if($media) : ?>
-					<div class="twelve columns">
-						<section id="post-media" class="row">
-							<?php
-							do_action('humus_before_post_media');
-							echo $media;
-							do_action('humus_after_post_media');
-							?>
-						</section>
+					<div class="row">
+						<?php if(get_post_type() == 'partner') : ?>
+							<div class="one column">&nbsp;</div>
+						<?php endif; ?>
+						<div class="<?php echo $media_columns; ?>">
+							<section id="post-media">
+								<?php
+								do_action('humus_before_post_media');
+								echo $media;
+								do_action('humus_after_post_media');
+								?>
+							</section>
+						</div>
 					</div>
 				<?php endif; ?>
-				<div class="twelve columns">
-					<div class="row">
-						<aside id="post-meta">
-							<div class="three columns alpha">
-								<div class="post-author">
-									<p>
-										<span><?php _e('by', 'humus'); ?></span>
-										<span class="meta-content"><?php the_author(); ?></span>
-									</p>
+				<?php if(get_post_type() !== 'partner') : ?>
+					<div class="twelve columns">
+						<div class="row">
+							<aside id="post-meta">
+								<div class="three columns alpha">
+									<div class="post-author">
+										<p>
+											<span><?php _e('by', 'humus'); ?></span>
+											<span class="meta-content"><?php the_author(); ?></span>
+										</p>
+									</div>
 								</div>
-							</div>
-							<div class="five columns">
-								<div class="post-date">
-									<p>
-										<span><?php _e('published', 'humus'); ?></span>
-										<span class="meta-content"><?php the_date(); ?></span>
-									</p>
+								<div class="five columns">
+									<div class="post-date">
+										<p>
+											<span><?php _e('published', 'humus'); ?></span>
+											<span class="meta-content"><?php the_date(); ?></span>
+										</p>
+									</div>
 								</div>
-							</div>
-							<div class="four columns omega">
-								<div class="share">
-									<ul>
-										<li>
-											<div class="fb-like" data-href="<?php the_permalink(); ?>" data-layout="box_count" data-show-faces="false" data-send="false"></div>
-										</li>
-										<li>
-											<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php the_permalink(); ?>" data-lang="en" data-count="vertical">Tweet</a>
-										</li>
-										<li>
-											<div class="g-plusone" data-size="tall" data-href="<?php the_permalink(); ?>"></div>
-										</li>
-									</ul>
+								<div class="four columns omega">
+									<div class="share">
+										<ul>
+											<li>
+												<div class="fb-like" data-href="<?php the_permalink(); ?>" data-layout="box_count" data-show-faces="false" data-send="false"></div>
+											</li>
+											<li>
+												<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php the_permalink(); ?>" data-lang="en" data-count="vertical">Tweet</a>
+											</li>
+											<li>
+												<div class="g-plusone" data-size="tall" data-href="<?php the_permalink(); ?>"></div>
+											</li>
+										</ul>
+									</div>
 								</div>
-							</div>
-							<div class="clearfix"></div>
-						</aside>
+								<div class="clearfix"></div>
+							</aside>
+						</div>
 					</div>
-				</div>
-				<div class="three columns">
-					<div class="row">
-						<aside id="post-terms">
-							<?php do_action('humus_before_single_post_meta'); ?>
-							<?php echo humus_get_post_tax_label(); ?>
-							<?php the_tags('<p class="tags"><span class="label">' . __('Tags', 'humus') . '</span>', ', ', '</p>'); ?>
-							<?php do_action('humus_after_single_post_meta'); ?>
-						</aside>
+					<div class="three columns">
+						<div class="row">
+							<aside id="post-terms">
+								<?php do_action('humus_before_single_post_meta'); ?>
+								<?php echo humus_get_post_tax_label(); ?>
+								<?php the_tags('<p class="tags"><span class="label">' . __('Tags', 'humus') . '</span>', ', ', '</p>'); ?>
+								<?php do_action('humus_after_single_post_meta'); ?>
+							</aside>
+						</div>
 					</div>
-				</div>
-				<div class="nine columns">
+				<?php else : ?>
+					<div class="one column">&nbsp;</div>
+				<?php endif; ?>
+				<div class="<?php echo $content_columns; ?>">
 					<div class="row">
 						<section id="post-content" class="post-content">
 							<?php the_content(); ?>

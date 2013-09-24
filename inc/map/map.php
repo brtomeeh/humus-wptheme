@@ -259,7 +259,9 @@ class Humus_Map {
 		wp_register_style('leaflet-ie', get_template_directory_uri() . '/inc/map/css/leaflet.ie.css');
 		$GLOBALS['wp_styles']->add_data('leaflet-ie', 'conditional', 'lte IE 8');
 
-		wp_register_script('humus-map', get_template_directory_uri() . '/inc/map/js/map.js', array('jquery', 'underscore', 'leaflet', 'fitvids'), '0.1.0');
+		wp_register_script('jquery-hashchange', get_template_directory_uri() . '/inc/map/js/jquery.ba-hashchange.min.js', array('jquery'), '1.3');
+
+		wp_register_script('humus-map', get_template_directory_uri() . '/inc/map/js/map.js', array('jquery', 'underscore', 'leaflet', 'fitvids', 'jquery-hashchange'), '0.1.2');
 
 		wp_localize_script('humus-map', 'humus_map', array(
 			'tiles' => $this->get_map_tile(),

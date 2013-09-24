@@ -20,6 +20,10 @@ class Humus_Filters {
 		add_action('posts_clauses', array($this, 'posts_clauses'), 10, 2);
 	}
 
+	function enable_filters() {
+		return apply_filters('humus_enable_filter', true);
+	}
+
 	function get_taxonomies() {
 		return apply_filters('humus_filterable_taxonomies', array('axis', 'section'));
 	}
@@ -135,6 +139,10 @@ class Humus_Filters {
 	}
 
 	function form() {
+
+		if(!$this->enable_filters())
+			return false;
+
 		$taxonomies = $this->get_taxonomies();
 		$relatable_taxonomies = $this->get_related_selector_taxonomies();
 		?>

@@ -79,7 +79,7 @@ class Humus_Magazine_Remix extends Humus_Magazine {
 			),
 			'options' => array(
 				'position' => 'normal',
-				'layout' => 'default',
+				'layout' => 'no_box',
 				'hide_on_screen' => array(),
 			),
 			'location' => array(

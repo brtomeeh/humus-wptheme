@@ -24,7 +24,7 @@ class Humus_Media {
 
 	function get_post_types() {
 
-		return apply_filters('humus_media_field_post_types', array('post'));
+		return apply_filters('humus_media_post_types', array('post'));
 
 	}
 

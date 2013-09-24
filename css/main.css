@@ -12,6 +12,7 @@ h1,h2,h3,h4,h5,h6{font-family:"Open Sans","Helvetica","Arial",sans-serif;font-we
 .humus-dropdown:after{content:url(../img/arrow-down.png);padding:10px;position:absolute;top:1px;right:1px;}
 .humus-dropdown:hover,.humus-dropdown.opened{z-index:100;}.humus-dropdown:hover ul li,.humus-dropdown.opened ul li{display:block;}
 .section-title{text-transform:uppercase;margin:0 0 40px;letter-spacing:1px;font-family:"Lato";}
+.arrow-link{line-height:40px;font-weight:200;text-transform:uppercase;text-decoration:none;}.arrow-link:before{content:url(../img/link-bullet.png);float:left;margin-right:15px;margin-top:4px;}
 #masthead{position:fixed;z-index:10;left:0;right:0;top:20px;background:rgba(255, 255, 255, 0.9);}#masthead h1{margin:0 20px 0 0;padding:0;float:left;line-height:60px;}#masthead h1.with-logo{text-indent:-9999px;line-height:0;}#masthead h1.with-logo a{padding:0;}
 #masthead h1 a{display:block;background:#000;color:#fff;font-size:16px;text-transform:uppercase;padding:0 20px;text-decoration:none;}
 #masthead h1 img{display:block;}
