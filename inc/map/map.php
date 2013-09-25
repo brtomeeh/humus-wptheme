@@ -9,6 +9,7 @@ class Humus_Map {
 	function __construct() {
 
 		require_once(TEMPLATEPATH . '/inc/acf/add-ons/acf-location-field/acf-location.php');
+		include_once(TEMPLATEPATH . '/inc/map/tiles.php');
 		add_action('init', array($this, 'init'), 100);
 
 	}
@@ -219,11 +220,15 @@ class Humus_Map {
 
 	}
 
+	function get_map_tile_default_color() {
+		return 'f0f0f0';
+	}
+
 	function get_map_tile() {
 
 		$color = $GLOBALS['humus_page_color'];
 
-		$color = $color ? str_replace('#', '', $color) : 'f0f0f0';
+		$color = $color ? str_replace('#', '', $color) : $this->get_map_tile_default_color();
 
 		/*
 		 * Gray background
@@ -241,7 +246,7 @@ class Humus_Map {
 
 		//$tile = 'http://tile.stamen.com/toner/{z}/{x}/{y}.png';
 
-		return apply_filters('humus_map_tiles', $tile);
+		return apply_filters('humus_map_tiles', $tile, $color);
 	}
 
 	function get_map_zoom() {

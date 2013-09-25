@@ -43,8 +43,8 @@ class acf_field_date_time_picker extends acf_field
 
     	// settings
 		$this->settings = array(
-			'path'      => apply_filters('acf/helpers/get_path', __FILE__)
-			, 'dir'     => apply_filters('acf/helpers/get_dir', __FILE__)
+			'path'      => apply_filters('acf/add-ons/date-time-picker/get_path', apply_filters('acf/helpers/get_path', __FILE__))
+			, 'dir'     => apply_filters('acf/add-ons/date-time-picker/get_dir', apply_filters('acf/helpers/get_dir', __FILE__))
 			, 'version' => '2.0.9'
 		);
 

@@ -4,12 +4,17 @@
  * Advanced Custom Fields
  */
 
-function toolkit_acf_path() {
+function humus_acf_dir() {
 	return get_template_directory_uri() . '/inc/acf/';
 }
-add_filter('acf/helpers/get_dir', 'toolkit_acf_path');
+add_filter('acf/helpers/get_dir', 'humus_acf_dir');
 
-define('ACF_LITE', true);
+function humus_acf_date_time_picker_dir() {
+	return humus_acf_dir() . '/add-ons/acf-field-date-time-picker/';
+}
+add_filter('acf/add-ons/date-time-picker/get_dir', 'humus_acf_date_time_picker_dir');
+
+define('ACF_LITE', false);
 require_once(TEMPLATEPATH . '/inc/acf/acf.php');
 
 /*

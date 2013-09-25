@@ -22,7 +22,8 @@ class Humus_Taxonomy_Styles {
 
 		if(function_exists('register_field_group')){
 			$this->register_field_group();
-			add_action('wp_head', array($this, 'set_page_color'));
+			add_action('pre_get_posts', array($this, 'color_var'));
+			add_action('wp_footer', array($this, 'set_page_color'), 15);
 		}
 
 	}
@@ -107,40 +108,50 @@ class Humus_Taxonomy_Styles {
 
 	}
 
-	function set_page_color() {
+	function color_var($query) {
 
-		$taxonomies = $this->get_taxonomies();
-		$term = false;
+		if($query->is_main_query() && !isset($GLOBALS['humus_page_color'])) {
 
-		if(is_tax($taxonomies)) {
+			$taxonomies = $this->get_taxonomies();
+			$term = false;
 
-			$term = get_queried_object();
+			if(is_tax($taxonomies)) {
 
-		} elseif(is_single()) {
-			global $post;
-			foreach($taxonomies as $taxonomy) {
+				$term = get_queried_object();
 
-				if($term)
-					continue;
-
-				$terms = get_the_terms($post->ID, $taxonomy);
-
-				foreach($terms as $t) {
+			} elseif(is_single()) {
+				global $post;
+				foreach($taxonomies as $taxonomy) {
 
 					if($term)
 						continue;
 
-					if(get_field('term_color', $t->taxonomy . '_' . $t->term_id))
-						$term = array_shift($terms);
+					$terms = get_the_terms($post->ID, $taxonomy);
+
+					foreach($terms as $t) {
+
+						if($term)
+							continue;
+
+						if(get_field('term_color', $t->taxonomy . '_' . $t->term_id))
+							$term = array_shift($terms);
+					}
+
 				}
-
 			}
+			$color = get_field('term_color', $term->taxonomy . '_' . $term->term_id);
+
+			$GLOBALS['humus_page_color'] = apply_filters('humus_page_color', $color);
+
 		}
-		$color = get_field('term_color', $term->taxonomy . '_' . $term->term_id);
 
-		$GLOBALS['humus_page_color'] = apply_filters('humus_page_color', $color);
+	}
 
-		if($GLOBALS['humus_page_color']) {
+	function set_page_color() {
+
+		$color = $GLOBALS['humus_page_color'];
+
+		if($color) {
 			?>
 			<style>
 			body::-webkit-scrollbar-thumb,

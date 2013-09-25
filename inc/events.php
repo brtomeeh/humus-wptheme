@@ -60,18 +60,18 @@ class Humus_Events {
 			'title' => __('Event settings', 'humus'),
 			'fields' => array(
 				array(
-					'key' => 'field_partner_url',
-					'label' => __('Partner website', 'humus'),
-					'name' => 'partner_url',
-					'type' => 'text',
+					'key' => 'field_event_time',
+					'label' => __('Event time', 'humus'),
+					'name' => 'event_time',
+					'type' => 'date_time_picker',
 					'required' => 1,
-					'instructions' => __('Enter the partner\'s website url', 'humus'),
-					'default_value' => '',
-					'placeholder' => 'http://www.partner.com/',
-					'prepend' => '',
-					'append' => '',
-					'formatting' => 'html',
-					'maxlength' => '',
+					'show_date' => 'true',
+					'date_format' => _x('m/d/y', 'Event date', 'humus'),
+					'time_format' => _x('h:mm tt', 'Event time', 'humus'),
+					'show_week_number' => 'false',
+					'picker' => 'slider',
+					'save_as_timestamp' => 'true',
+					'get_as_timestamp' => 'false',
 				),
 			),
 			'options' => array(
@@ -84,7 +84,7 @@ class Humus_Events {
 					array(
 						'param' => 'post_type',
 						'operator' => '==',
-						'value' => 'partner',
+						'value' => 'event',
 						'order_no' => 0,
 						'group_no' => 0,
 					)
@@ -93,7 +93,7 @@ class Humus_Events {
 			'menu_order' => 0,
 		);
 
-		//register_field_group($config);
+		register_field_group($config);
 
 	}
 
