@@ -43,6 +43,10 @@ class Humus_Map_Tiles extends Humus_Map {
 	function init_template() {
 
 		if(isset($_GET['humus_map_tile'])) {
+			if(strpos($_SERVER['HTTP_REFERER'], home_url()) === false) {
+				header('HTTP/1.0 404 Not Found');
+ 				exit;
+ 			}
 			$tile = str_replace($this->get_map_tile_default_color(), $_GET['color'], $this->get_map_tile());
 			$this->get_tile($tile, intval($_GET['humus_tile_z']), intval($_GET['humus_tile_x']), intval($_GET['humus_tile_y']));
 			exit;
