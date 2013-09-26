@@ -68,9 +68,10 @@ article.minimal:hover .post-thumbnail img{opacity:.5;-webkit-transform:scale(1.5
 article.minimal:hover .post-content p{margin:20px;height:105px;}
 article.full{border-bottom:1px solid #ccc;}article.full #post-media{max-width:960px;margin-top:20px;margin-left:auto;margin-right:auto;}article.full #post-media iframe,article.full #post-media img{width:100% !important;}
 article.full #post-media img{height:auto !important;}
-article.full #post-meta{border-bottom:1px solid #ccc;}article.full #post-meta span{display:block;text-transform:uppercase;color:#999;font-size:14px;}article.full #post-meta span.meta-content{color:#333;font-weight:600;font-size:18px;}
+article.full #post-meta{border-bottom:1px solid #ccc;}article.full #post-meta span{display:block;text-transform:uppercase;color:#999;font-size:14px;}article.full #post-meta span.meta-content,article.full #post-meta span.meta-content>*{color:#333;font-weight:600;font-size:18px;}
 article.full #post-meta .post-date .meta-content{text-transform:none;}
 article.full #post-meta .post-date,article.full #post-meta .post-author{margin-top:10px;}
+article.full #post-meta .event-date .meta-content,article.full #post-meta .event-date .meta-content>*{text-transform:none;font-weight:400;}article.full #post-meta .event-date .meta-content .time,article.full #post-meta .event-date .meta-content>* .time{display:block;font-size:12px;}
 article.full #post-meta .share ul{float:right;margin:0;padding:0;}article.full #post-meta .share ul li{float:left;margin:0 0 20px 20px;padding:0;}
 article.full #post-terms .post-tax-label{font-size:14px;line-height:30px;margin:0 0 40px;}article.full #post-terms .post-tax-label a{padding:5px 40px;color:#fff;text-decoration:none;text-transform:uppercase;font-weight:600;}
 article.full #post-terms .tags{line-height:24px;margin-top:5px;}article.full #post-terms .tags span{background:#111;color:#f0f0f0;padding:10px;width:40px;text-align:center;font-size:14px;line-height:14px;display:block;float:left;font-weight:600;text-transform:uppercase;position:relative;margin-right:40px;margin-top:-5px;margin-bottom:40px;}article.full #post-terms .tags span:after{content:'';position:absolute;top:0;right:-34px;border-left:17px solid #111;border-right:17px solid transparent;border-top:17px solid transparent;border-bottom:17px solid transparent;}

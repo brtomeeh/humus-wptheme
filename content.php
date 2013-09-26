@@ -65,20 +65,38 @@ if(is_single()) :
 						<div class="row">
 							<aside id="post-meta">
 								<div class="three columns alpha">
-									<div class="post-author">
-										<p>
-											<span><?php _e('by', 'humus'); ?></span>
-											<span class="meta-content"><?php the_author(); ?></span>
-										</p>
-									</div>
+									<?php if(get_post_type() == 'event'	) : ?>
+										<div class="event-date">
+											<p>
+												<span><?php _e('When', 'humus'); ?></span>
+												<span class="meta-content"><?php echo humus_get_event_date(); ?></span>
+											</p>
+										</div>
+									<?php else : ?>
+										<div class="post-author">
+											<p>
+												<span><?php _e('by', 'humus'); ?></span>
+												<span class="meta-content"><?php the_author(); ?></span>
+											</p>
+										</div>
+									<?php endif; ?>
 								</div>
 								<div class="five columns">
-									<div class="post-date">
-										<p>
-											<span><?php _e('published', 'humus'); ?></span>
-											<span class="meta-content"><?php the_date(); ?></span>
-										</p>
-									</div>
+									<?php if(get_post_type() == 'event') : ?>
+										<div class="event-location">
+											<p>
+												<span><?php _e('Where', 'humus'); ?></span>
+												<span class="meta-content"><?php echo humus_get_event_location(); ?></span>
+											</p>
+										</div>
+									<?php else : ?>
+										<div class="post-date">
+											<p>
+												<span><?php _e('published', 'humus'); ?></span>
+												<span class="meta-content"><?php the_date(); ?></span>
+											</p>
+										</div>
+									<?php endif; ?>
 								</div>
 								<div class="four columns omega">
 									<div class="share">

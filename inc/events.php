@@ -113,7 +113,7 @@ class Humus_Events {
 					'show_week_number' => 'false',
 					'picker' => 'slider',
 					'save_as_timestamp' => 'true',
-					'get_as_timestamp' => 'false',
+					'get_as_timestamp' => 'true',
 				),
 			),
 			'options' => array(
@@ -139,6 +139,49 @@ class Humus_Events {
 
 	}
 
+	function get_event_date($post_id = false) {
+		global $post;
+		$post_id = $post_id ? $post_id : $post->ID;
+
+		$ts = get_field('event_time', $post_id);
+
+		if($ts) {
+			$date = date(_x('F jS, Y', 'Event date output', 'humus'), $ts);
+			$time = date(_x('g:i a', 'Event time output', 'humus'), $ts);
+		}
+
+		$output = '<span class="date">' . $date . '</span><span class="time">' . _x('starting', 'Event time output prefix', 'humus') . ' ' . $time . '</span>';
+
+		return $output;
+	}
+
+	function get_event_location($post_id = false) {
+		global $post;
+		$post_id = $post_id ? $post_id : $post->ID;
+
+		$locations = get_the_terms($post_id, 'event-location');
+
+		if(!$locations)
+			return false;
+
+		$location = array_shift($locations);
+
+		// TODO : How to get location field address input???
+		// $address = get_field()
+
+		return '';
+	}
+
 }
 
 $humus_events = new Humus_Events();
+
+function humus_get_event_date($post_id = false) {
+	global $humus_events;
+	return $humus_events->get_event_date($post_id);
+}
+
+function humus_get_event_location($post_id = false) {
+	global $humus_events;
+	return $humus_events->get_event_location($post_id);
+}

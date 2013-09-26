@@ -753,7 +753,8 @@ article.full {
 			text-transform: uppercase;
 			color: #999;
 			font-size: 14px;
-			&.meta-content {
+			&.meta-content,
+			&.meta-content > * {
 				color: #333;
 				font-weight: 600;
 				font-size: 18px;
@@ -767,6 +768,17 @@ article.full {
 		.post-date,
 		.post-author {
 			margin-top: 10px;
+		}
+		.event-date {
+			.meta-content,
+			.meta-content > * {
+				text-transform: none;
+				font-weight: 400;
+				.time {
+					display: block;
+					font-size: 12px;
+				}
+			}
 		}
 		.share {
 			ul {
