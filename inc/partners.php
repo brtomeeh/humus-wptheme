@@ -99,6 +99,7 @@ class Humus_Partners {
 		global $post;
 		if(get_post_type($post->ID) === 'partner' && get_field('partner_url', $post->ID)) {
 			$content .= '<p><a class="arrow-link" href="' . get_field('partner_url', $post->ID) . '" target="_blank" title="' . get_the_title() . '">' . __('Visit official website', 'humus') . '</a></p>';
+			$content .= do_shortcode('[gallery]');
 		}
 		return $content;
 	}

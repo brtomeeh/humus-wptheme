@@ -88,6 +88,10 @@ function humus_setup() {
 
 	// Menus
 	register_nav_menu('primary', __('Primary menu', 'humus'));
+
+	// Humus Gallery
+	remove_shortcode('gallery', 'gallery_shortcode');
+	add_shortcode('gallery', 'humus_gallery');
 }
 add_action('after_setup_theme', 'humus_setup');
 
@@ -391,6 +395,9 @@ function humus_archive_header($short_version = false) {
 						elseif(is_tax() || is_tag() || is_category()) :
 							single_term_title();
 
+						elseif(is_post_type_archive()) :
+							post_type_archive_title();
+
 						else :
 							_e( 'Archives', 'twentyfourteen' );
 
@@ -423,6 +430,73 @@ function humus_archive_header($short_version = false) {
 
 	</header>
 	<?php
+}
+
+function humus_gallery($atts, $content = null) {
+
+	extract(shortcode_atts(array(
+		'ids' => false,
+	), $atts));
+
+	if($ids) {
+
+		$ids = split(',', $ids);
+		
+		$images = array();
+
+		foreach($ids as $id) {
+			$images[] = get_post($id);
+		}
+
+	} else {
+
+		global $post;
+		$images = get_posts(array(
+			'post_type' => 'attachment',
+			'post_parent' => $post->ID,
+			'posts_per_page' => -1,
+			'post_status' => null
+		));
+
+	}
+
+	if(!$images || empty($images))
+		return '';
+
+	wp_enqueue_script('humus-gallery', get_template_directory_uri() . '/js/gallery.js', array('jquery', 'sly'), '0.1.0');
+
+	ob_start();
+	?>
+
+	<div class="humus-gallery-container row">
+
+		<div class="image-container">
+			<a href="#" class="next"><?php _e('Next image', 'humus'); ?></a>
+			<a href="#" class="prev"><?php _e('Previous image', 'humus'); ?></a>
+			<div class="image"></div>
+		</div>
+		<div class="image-list-container">
+			<ul class="image-list">
+				<?php foreach($images as $image) :
+					$large = wp_get_attachment_image_src($image->ID, 'large');
+					$thumb = wp_get_attachment_image_src($image->ID, 'thumbnail');
+					?>
+					<li class="image-thumb" data-image="<?php echo $large[0]; ?>">
+						<img src="<?php echo $thumb[0]; ?>" alt="<?php echo $image->post_title; ?>" />
+					</li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+		<div class="scrollbar">
+			<div class="handle"></div>
+		</div>
+
+	</div>
+
+	<?php
+	$output = ob_get_clean();
+
+	return $output;
 }
 
 /*

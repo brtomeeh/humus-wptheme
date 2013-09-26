@@ -128,13 +128,17 @@ class Humus_Taxonomy_Styles {
 
 					$terms = get_the_terms($post->ID, $taxonomy);
 
-					foreach($terms as $t) {
+					if($terms) {
 
-						if($term)
-							continue;
+						foreach($terms as $t) {
 
-						if(get_field('term_color', $t->taxonomy . '_' . $t->term_id))
-							$term = array_shift($terms);
+							if($term)
+								continue;
+
+							if(get_field('term_color', $t->taxonomy . '_' . $t->term_id))
+								$term = array_shift($terms);
+						}
+
 					}
 
 				}
