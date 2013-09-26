@@ -325,9 +325,11 @@ class Humus_Map {
 
 			foreach($taxonomies as $taxonomy) {
 				$terms = get_the_terms($obj->ID, $taxonomy);
-				foreach($terms as $term) {
-					if(get_field('location', $taxonomy . '_' . $term->term_id))
-						return true;
+				if($terms) {
+					foreach($terms as $term) {
+						if(get_field('location', $taxonomy . '_' . $term->term_id))
+							return true;
+					}
 				}
 			}
 
