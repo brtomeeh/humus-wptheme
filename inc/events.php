@@ -15,8 +15,11 @@ class Humus_Events {
 	}
 
 	function init() {
+		$this->register_location_taxonomy();
 		$this->register_post_type();
 		$this->register_field_group();
+
+		add_filter('humus_map_taxonomies', array($this, 'register_location_map'));
 	}
 
 
@@ -46,11 +49,50 @@ class Humus_Events {
 			'show_in_menu' => true,
 			'has_archive' => false,
 			'menu_position' => 4,
-			'rewrite' => array('slug' => 'event', 'with_front' => false)
+			'rewrite' => array('slug' => 'events', 'with_front' => false)
 		);
 
 		register_post_type('event', $args);
 
+	}
+
+	function register_location_taxonomy() {
+
+		$labels = array(
+			'name' => _x('Locations', 'Location general name', 'humus'),
+			'singular_name' => _x('Location', 'Location singular name', 'humus'),
+			'all_items' => __('All locations', 'humus'),
+			'edit_item' => __('Edit location', 'humus'),
+			'view_item' => __('View location', 'humus'),
+			'update_item' => __('Update location', 'humus'),
+			'add_new_item' => __('Add new location', 'humus'),
+			'new_item_name' => __('New location name', 'humus'),
+			'parent_item' => __('Parent location', 'humus'),
+			'parent_item_colon' => __('Parent location:', 'humus'),
+			'search_items' => __('Search locations', 'humus'),
+			'popular_items' => __('Popular locations', 'humus'),
+			'separate_items_with_commas' => __('Separate locations with commas', 'humus'),
+			'add_or_remove_items' => __('Add or remove locations', 'humus'),
+			'choose_from_most_used' => __('Choose from most used locations', 'humus'),
+			'not_found' => __('No locations found', 'humus')
+		);
+
+		$args = array(
+			'labels' => $labels,
+			'public' => true,
+			'show_admin_column' => true,
+			'hierarchical' => true,
+			'query_var' => 'event-location',
+			'rewrite' => array('slug' => 'events/locations', 'with_front' => false)
+		);
+
+		register_taxonomy('event-location', 'event', $args);
+
+	}
+
+	function register_location_map($taxonomies) {
+		$taxonomies[] = 'event-location';
+		return $taxonomies;
 	}
 
 	function register_field_group() {

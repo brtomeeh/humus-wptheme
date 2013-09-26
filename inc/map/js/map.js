@@ -59,7 +59,7 @@
 	var locationFeatures = [];
 	_.each(humus_map.geojson.features, function(feature) {
 
-		var location = feature.properties.location;
+		var location = feature.properties.location ? feature.properties.location : 'none';
 
 		if(typeof locationFeatures[location] !== 'object') {
 			locationFeatures[location] = {

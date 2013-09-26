@@ -22,7 +22,7 @@ class Humus_Map {
 		$this->register_location_field();
 		$this->register_location_taxonomy();
 
-		add_action('wp_head', array($this, 'register_scripts'), 100);
+		add_action('wp_enqueue_scripts', array($this, 'register_scripts'), 100);
 		add_filter('post_class', array($this, 'post_class'));
 		add_action('humus_before_header_content', array($this, 'map'));
 
@@ -39,6 +39,10 @@ class Humus_Map {
 
 		return apply_filters('humus_map_post_types', array('post'));
 
+	}
+
+	function get_taxonomies() {
+		return apply_filters('humus_map_taxonomies', array('location'));
 	}
 
 	function get_map_view_terms() {
@@ -101,7 +105,26 @@ class Humus_Map {
 						'value' => $post_type,
 						'order_no' => 0,
 						'group_no' => 0,
-					),
+					)
+				);
+			}
+
+		}
+
+		$taxonomies = $this->get_taxonomies();
+
+		if(is_array($taxonomies) && !empty($taxonomies)) {
+
+			foreach($taxonomies as $taxonomy) {
+
+				$locations[] = array(
+					array(
+						'param' => 'ef_taxonomy',
+						'operator' => '==',
+						'value' => $taxonomy,
+						'order_no' => 0,
+						'group_no' => 0
+					)
 				);
 			}
 
@@ -250,11 +273,11 @@ class Humus_Map {
 	}
 
 	function get_map_zoom() {
-		$zoom = false;
+		$this->zoom = false;
 		if(is_single())
-			$zoom = 14;
+			$this->zoom = 14;
 
-		return apply_filters('humus_map_zoom', $zoom);
+		return apply_filters('humus_map_zoom', $this->zoom);
 	}
 
 	function register_scripts() {
@@ -284,6 +307,36 @@ class Humus_Map {
 		wp_enqueue_style('humus-map');
 	}
 
+	function object_has_map() {
+
+		$obj = get_queried_object();
+
+		$taxonomies = $this->get_taxonomies();
+
+		if(is_tax($taxonomies)) {
+
+			return get_field('location', $obj->taxonomy . '_' . $obj->term_id) ? true : false;
+
+		} elseif(is_single()) {
+
+			if(get_field('location', $obj->ID)) {
+				return true;
+			}
+
+			foreach($taxonomies as $taxonomy) {
+				$terms = get_the_terms($obj->ID, $taxonomy);
+				foreach($terms as $term) {
+					if(get_field('location', $taxonomy . '_' . $term->term_id))
+						return true;
+				}
+			}
+
+
+		}
+
+		return false;
+	}
+
 	function get_geojson($query = false) {
 		global $wp_query;
 
@@ -294,7 +347,81 @@ class Humus_Map {
 		);
 		$features = array();
 
-		if($query->have_posts()) {
+		if(is_tax($this->get_taxonomies())) {
+
+			$term = get_queried_object();
+
+			$coordinates = get_field('location', $term->taxonomy . '_' . $term->term_id);
+
+			if($coordinates) {
+
+				$latlng = split(',', $coordinates['coordinates']);
+					
+				$feature = array(
+					'type' => 'Feature',
+					'geometry' => array(
+						'type' => 'Point',
+						'coordinates' => array(
+							floatval($latlng[1]),
+							floatval($latlng[0])
+						)
+					),
+					'properties' => array(
+						'termid' => $term->term_id,
+						'term_name' => $term->name,
+						'term_description' => $term->description
+					)
+				);
+
+				$features[] = $feature;
+
+			}
+
+		} elseif(is_single() && !get_field('location')) {
+
+			$taxonomies = $this->get_taxonomies();
+
+			foreach($taxonomies as $tax) {
+
+				$terms = get_the_terms($post->ID, $tax);
+				if($terms) {
+
+					foreach($terms as $term) {
+
+						$coordinates = get_field('location', $term->taxonomy . '_' . $term->term_id);
+
+						if($coordinates) {
+
+							$latlng = split(',', $coordinates['coordinates']);
+								
+							$feature = array(
+								'type' => 'Feature',
+								'geometry' => array(
+									'type' => 'Point',
+									'coordinates' => array(
+										floatval($latlng[1]),
+										floatval($latlng[0])
+									)
+								),
+								'properties' => array(
+									'termid' => $term->term_id,
+									'term_name' => $term->name,
+									'term_description' => $term->description
+								)
+							);
+
+							$features[] = $feature;
+
+						}
+
+					}
+
+				}
+
+			}
+
+		} elseif($query->have_posts()) {
+
 			while($query->have_posts()) {
 
 				the_post();
@@ -333,6 +460,7 @@ class Humus_Map {
 				}
 
 			}
+
 		}
 
 		$geojson['features'] = $features;
@@ -342,7 +470,7 @@ class Humus_Map {
 
 	function map($force = false) {
 		global $post;
-		if(is_single() && get_field('location') || $force) {
+		if($this->object_has_map() || $force) {
 			$this->enqueue_scripts();
 			?>
 			<div class="map-container">
@@ -355,7 +483,7 @@ class Humus_Map {
 
 	function post_class($class) {
 		global $post;
-		if(is_single() && get_field('location')) {
+		if($this->object_has_map()) {
 			$class[] = 'map';
 		}
 		return $class;
@@ -411,8 +539,11 @@ class Humus_Map {
 
 	function body_class($class) {
 		global $wp_query;
+		$obj = get_queried_object();
 		if($wp_query->get('map')) {
 			$class[] = 'map-view';
+		} elseif(is_tax($this->get_taxonomies()) && get_field('location', $obj->taxonomy . '_' . $obj->term_id)) {
+			$class[] = 'map';
 		}
 		return $class;
 	}

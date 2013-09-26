@@ -22,7 +22,7 @@ class Humus_Taxonomy_Styles {
 
 		if(function_exists('register_field_group')){
 			$this->register_field_group();
-			add_action('pre_get_posts', array($this, 'color_var'));
+			add_action('pre_get_posts', array($this, 'color_var'), 5);
 			add_action('wp_footer', array($this, 'set_page_color'), 15);
 		}
 
