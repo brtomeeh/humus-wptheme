@@ -22,7 +22,7 @@ class Humus_Taxonomy_Styles {
 
 		if(function_exists('register_field_group')){
 			$this->register_field_group();
-			add_action('pre_get_posts', array($this, 'color_var'), 5);
+			add_action('wp_head', array($this, 'color_var'), 5);
 			add_action('wp_footer', array($this, 'set_page_color'), 15);
 		}
 
@@ -108,9 +108,9 @@ class Humus_Taxonomy_Styles {
 
 	}
 
-	function color_var($query) {
+	function color_var() {
 
-		if($query->is_main_query() && !isset($GLOBALS['humus_page_color'])) {
+		if(!isset($GLOBALS['humus_page_color'])) {
 
 			$taxonomies = $this->get_taxonomies();
 			$term = false;
@@ -120,7 +120,9 @@ class Humus_Taxonomy_Styles {
 				$term = get_queried_object();
 
 			} elseif(is_single()) {
+
 				global $post;
+
 				foreach($taxonomies as $taxonomy) {
 
 					if($term)

@@ -22,7 +22,7 @@ class Humus_Map {
 		$this->register_location_field();
 		$this->register_location_taxonomy();
 
-		add_action('wp_enqueue_scripts', array($this, 'register_scripts'), 100);
+		add_action('wp_head', array($this, 'register_scripts'), 100);
 		add_filter('post_class', array($this, 'post_class'));
 		add_action('humus_before_header_content', array($this, 'map'));
 
@@ -332,7 +332,6 @@ class Humus_Map {
 					}
 				}
 			}
-
 
 		}
 
