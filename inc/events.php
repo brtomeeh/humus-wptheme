@@ -43,7 +43,7 @@ class Humus_Events {
 			'labels' => $labels,
 			'hierarchical' => false,
 			'description' => __('Humus events', 'humus'),
-			'supports' => array('title', 'editor', 'excerpt', 'thumbnail'),
+			'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'comments'),
 			'public' => true,
 			'show_ui' => true,
 			'show_in_menu' => true,
@@ -166,10 +166,10 @@ class Humus_Events {
 
 		$location = array_shift($locations);
 
-		// TODO : How to get location field address input???
-		// $address = get_field()
+		$name = $location->name;
+		$address = humus_get_address($location->taxonomy . '_' . $location->term_id);
 
-		return '';
+		return '<span class="location-name">' . $name . '</span><span class="location-address">' . $address . '</span>';
 	}
 
 }

@@ -38,7 +38,7 @@ class Humus_Partners {
 			'labels' => $labels,
 			'hierarchical' => false,
 			'description' => __('Humus partners', 'humus'),
-			'supports' => array('title', 'editor', 'excerpt', 'thumbnail'),
+			'supports' => array('title', 'editor', 'excerpt', 'thumbnail', 'comments'),
 			'public' => true,
 			'show_ui' => true,
 			'show_in_menu' => true,

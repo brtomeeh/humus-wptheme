@@ -315,11 +315,11 @@ class Humus_Map {
 
 		if(is_tax($taxonomies)) {
 
-			return get_field('location', $obj->taxonomy . '_' . $obj->term_id) ? true : false;
+			return $this->get_location($obj->taxonomy . '_' . $obj->term_id) ? true : false;
 
 		} elseif(is_single()) {
 
-			if(get_field('location', $obj->ID)) {
+			if($this->get_location($obj->ID)) {
 				return true;
 			}
 
@@ -327,7 +327,7 @@ class Humus_Map {
 				$terms = get_the_terms($obj->ID, $taxonomy);
 				if($terms) {
 					foreach($terms as $term) {
-						if(get_field('location', $taxonomy . '_' . $term->term_id))
+						if($this->get_location($taxonomy . '_' . $term->term_id))
 							return true;
 					}
 				}
@@ -336,6 +336,37 @@ class Humus_Map {
 		}
 
 		return false;
+	}
+
+	function get_location($id = false) {
+
+		global $post;
+		$id = $id ? $id : $post->ID;
+
+		return get_field('location', $id);
+
+	}
+
+	function get_coordinates($id = false) {
+
+		$location = $this->get_location($id);
+
+		if($location)
+			return split(',', $location['coordinates']);
+
+		return false;
+
+	}
+
+	function get_address($id = false) {
+
+		$location = $this->get_location($id);
+
+		if($location)
+			return $location['address'];
+
+		return false;
+
 	}
 
 	function get_geojson($query = false) {
@@ -352,19 +383,17 @@ class Humus_Map {
 
 			$term = get_queried_object();
 
-			$coordinates = get_field('location', $term->taxonomy . '_' . $term->term_id);
+			$coordinates = $this->get_coordinates($term->taxonomy . '_' . $term->term_id);
 
 			if($coordinates) {
-
-				$latlng = split(',', $coordinates['coordinates']);
 					
 				$feature = array(
 					'type' => 'Feature',
 					'geometry' => array(
 						'type' => 'Point',
 						'coordinates' => array(
-							floatval($latlng[1]),
-							floatval($latlng[0])
+							floatval($coordinates[1]),
+							floatval($coordinates[0])
 						)
 					),
 					'properties' => array(
@@ -389,19 +418,17 @@ class Humus_Map {
 
 					foreach($terms as $term) {
 
-						$coordinates = get_field('location', $term->taxonomy . '_' . $term->term_id);
+						$coordinates = $this->get_coordinates($term->taxonomy . '_' . $term->term_id);
 
 						if($coordinates) {
-
-							$latlng = split(',', $coordinates['coordinates']);
 								
 							$feature = array(
 								'type' => 'Feature',
 								'geometry' => array(
 									'type' => 'Point',
 									'coordinates' => array(
-										floatval($latlng[1]),
-										floatval($latlng[0])
+										floatval($coordinates[1]),
+										floatval($coordinates[0])
 									)
 								),
 								'properties' => array(
@@ -427,12 +454,11 @@ class Humus_Map {
 
 				the_post();
 
-				$coordinates = get_field('location');
+				$coordinates = $this->get_coordinates();
+
 				if($coordinates) {
 
 					global $post;
-
-					$latlng = split(',', $coordinates['coordinates']);
 
 					$location = get_the_terms($post->ID, 'location');
 					if($location)
@@ -443,8 +469,8 @@ class Humus_Map {
 						'geometry' => array(
 							'type' => 'Point',
 							'coordinates' => array(
-								floatval($latlng[1]),
-								floatval($latlng[0])
+								floatval($coordinates[1]),
+								floatval($coordinates[0])
 							)
 						),
 						'properties' => array(
@@ -555,4 +581,12 @@ $GLOBALS['humus_map'] = new Humus_Map();
 
 function humus_map() {
 	$GLOBALS['humus_map']->map(true);
+}
+
+function humus_get_location($id = false) {
+	return $GLOBALS['humus_map']->get_location($id);
+}
+
+function humus_get_address($id = false) {
+	return $GLOBALS['humus_map']->get_address($id);
 }
