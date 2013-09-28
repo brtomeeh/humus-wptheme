@@ -164,7 +164,7 @@ class Humus_Filters {
 
 					$this->ordering_selector();
 
-					if($relatable_taxonomies) {
+					if($relatable_taxonomies && $this->get_related_terms('category')) {
 						?>
 						<div class="three columns">
 							<a href="#" class="toggle-more-filters"><?php _e('Filter results', 'humus'); ?></a>
@@ -229,6 +229,27 @@ class Humus_Filters {
 		endif;
 	}
 
+	function get_related_terms($taxonomy) {
+
+		$term = get_queried_object();
+
+		$related_terms = array();
+		$taxonomy_terms = get_terms($taxonomy);
+
+		foreach($taxonomy_terms as $taxonomy_term) {
+			$taxonomy_term_relateds = get_field('related_' . $term->taxonomy, $taxonomy . '_' . $taxonomy_term->term_id);
+			if(is_array($taxonomy_term_relateds) && in_array($term->term_id, $taxonomy_term_relateds)) {
+				$related_terms[] = $taxonomy_term;
+			}
+		}
+
+		if(!$related_terms || empty($related_terms))
+			return false;
+
+		return $related_terms;
+
+	}
+
 	function related_selector($relatable_taxonomies) {
 
 		if(!is_tax($this->get_taxonomies()) || !$relatable_taxonomies)
@@ -238,15 +259,7 @@ class Humus_Filters {
 
 		foreach($relatable_taxonomies as $taxonomy) {
 
-			$related_terms = array();
-			$taxonomy_terms = get_terms($taxonomy);
-
-			foreach($taxonomy_terms as $taxonomy_term) {
-				$taxonomy_term_relateds = get_field('related_' . get_query_var('taxonomy'), $taxonomy . '_' . $taxonomy_term->term_id);
-				if(is_array($taxonomy_term_relateds) && in_array($term->term_id, $taxonomy_term_relateds)) {
-					$related_terms[] = $taxonomy_term;
-				}
-			}
+			$related_terms = $this->get_related_terms($taxonomy);
 
 			if(!$related_terms)
 				continue;

@@ -37,7 +37,7 @@ require_once(TEMPLATEPATH . '/inc/axis.php');
 /*
  * Side stuff
  */
-require_once(TEMPLATEPATH . '/inc/events.php');
+require_once(TEMPLATEPATH . '/inc/events/events.php');
 require_once(TEMPLATEPATH . '/inc/partners.php');
 
 /*
@@ -384,13 +384,13 @@ function humus_archive_header($short_version = false) {
 						<?php
 
 						if(is_day()) :
-							printf( __( 'Day: %s', 'twentyfourteen' ), get_the_date() );
+							printf( __( 'Day: %s', 'humus' ), get_the_date() );
 
 						elseif(is_month()) :
-							printf( __( 'Month: %s', 'twentyfourteen' ), get_the_date( 'F Y' ) );
+							printf( __( 'Month: %s', 'humus' ), get_the_date( 'F Y' ) );
 
 						elseif(is_year()) :
-							printf( __( 'Year: %s', 'twentyfourteen' ), get_the_date( 'Y' ) );
+							printf( __( 'Year: %s', 'humus' ), get_the_date( 'Y' ) );
 
 						elseif(is_tax() || is_tag() || is_category()) :
 							single_term_title();
@@ -398,8 +398,14 @@ function humus_archive_header($short_version = false) {
 						elseif(is_post_type_archive()) :
 							post_type_archive_title();
 
+						elseif(is_search()) :
+							_e('Search', 'humus');
+
+						elseif(is_404()) :
+							_e('Nothing found', 'humus');
+
 						else :
-							_e( 'Archives', 'twentyfourteen' );
+							_e( 'Archives', 'humus' );
 
 						endif;
 						?>
@@ -414,6 +420,32 @@ function humus_archive_header($short_version = false) {
 								echo $description;
 
 							endif;
+
+					elseif(is_search() || is_404()) :
+					
+						global $wp;
+
+						$s = isset($_GET['s']) ? $_GET['s'] : str_replace('/', ' ', $wp->request);
+
+						?>
+						<form id="searchform" action="<?php echo home_url(); ?>">
+							<input name="s"	 type="text" placeholder="<?php _e('Type your search...', 'humus'); ?>" value="<?php if($s) echo $s; ?>" />
+						</form>
+						<?php
+						if(is_search()) :
+							global $wp_query;
+							?>
+							<p class="results">
+								<?php printf(_n('We found just %d result for your search', 'We found %d results for your search', $wp_query->found_posts, 'humus'), $wp_query->found_posts); ?>
+							</p>
+							<?php
+						else :
+							?>
+							<p class="results">
+								<?php _e('Try using our search!', 'humus'); ?>
+							</p>
+							<?php
+						endif;
 
 					endif;
 					?>
@@ -499,6 +531,23 @@ function humus_gallery($atts, $content = null) {
 	return $output;
 }
 
+function humus_pagination() {
+	global $wp_query;
+	if($wp_query->max_num_pages > 1) {
+
+		echo '<div class="container"><div class="twelve columns"><div class="humus-pagination">';
+			if(function_exists('wp_pagenavi'))
+				wp_pagenavi();
+			else {
+				echo '<div class="wp-pagination">';
+				posts_nav_link();
+				echo '</div>';
+			}
+		echo '</div></div></div>';
+
+	}
+}
+
 /*
  * Humus
  * Map view terms
@@ -509,6 +558,14 @@ function humus_map_view_terms($terms) {
 	return $terms;
 }
 add_filter('humus_map_view_terms', 'humus_map_view_terms');
+
+function humus_404_template() {
+	if(is_404()) {
+		include_once(TEMPLATEPATH . '/search.php');
+		exit;
+	}
+}
+add_action('template_redirect', 'humus_404_template');
 
 
 /*

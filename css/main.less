@@ -224,6 +224,54 @@ h6 {
 	}
 }
 
+.humus-pagination {
+	border-top: 1px solid #ccc;
+	height: 0;
+	margin-bottom: 55px;
+	.wp-pagenavi {
+		float: right;
+		background: @background;
+		margin-top: -22px;
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		padding: 3px 0;
+		line-height: 28px;
+		> * {
+			border: 0;
+			margin: 0;
+			padding: 5px 10px;
+			line-height: 28px;
+			color: #999;
+		}
+		.nextpostslink,
+		.previouspostslink {
+			font-size: 24px;
+		}
+		.current {
+			font-weight: 800;
+			font-size: 16px;
+		}
+		.pages {
+			display: none;
+		}
+	}
+	.wp-pagination {
+		text-align: right;
+		margin-top: -18px;
+		line-height: 28px;
+		text-transform: uppercase;
+		font-weight: 600;
+		a {
+			color: #999;
+			text-decoration: none;
+			border-top: 1px solid #ccc;
+			border-bottom: 1px solid #ccc;
+			padding: 10px;
+			background: @background;
+		}
+	}
+}
+
 .humus-gallery-container {
 	.image-container {
 		width: 100%;
@@ -538,6 +586,30 @@ h6 {
 	}
 }
 
+.search-results {
+	.page-header {
+		.page-title {
+			font-size: 50px;
+			line-height: 50px;
+		}
+		#searchform {
+			input[type=text] {
+				display: block;
+				.box-sizing(border-box);
+				padding: 17px;
+				width: 100%;
+				font-size: 24px;
+				line-height: 28px;
+				color: #333;
+				border: 0;
+			}
+		}
+		p.results {
+			color: #999;
+		}
+	}
+}
+
 .page-content {
 	position: relative;
 	z-index: 2;
@@ -560,6 +632,11 @@ h6 {
 		text-transform: uppercase;
 		line-height: 34px;
 		text-decoration: none;
+		&.active {
+			&:after {
+				content: url(../img/double-arrow-up.png);
+			}
+		}
 		&:after {
 			content: url(../img/double-arrow-down.png);
 			margin: 2px 0 0 10px;
@@ -567,6 +644,12 @@ h6 {
 		}
 	}
 	.related-selector {
+		max-height: 0;
+		overflow: hidden;
+		.transition(all .3s ease-in-out);
+		&.active {
+			max-height: 600px;
+		}
 		.related-terms {
 			li {
 				margin: 0 20px 20px 0;
@@ -597,6 +680,35 @@ h6 {
 					}
 				}
 			}
+		}
+	}
+}
+
+.sub-posts {
+	.sub-posts-title {
+		h2 {
+			font-weight: 600;
+			text-transform: uppercase;
+			margin: 0;
+		}
+		.toggle-sub-posts {
+			float: right;
+			font-size: 30px;
+			line-height: 40px;
+			width: 40px;
+			text-align: center;
+			background: #111;
+			color: #f0f0f0;
+			text-decoration: none;
+			display: block;
+		}
+	}
+	.sub-posts-content {
+		max-height: 0;
+		overflow: hidden;
+		.transition(max-height .5s ease-in-out);
+		&.active {
+			max-height: 1000px;
 		}
 	}
 }

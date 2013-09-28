@@ -505,6 +505,74 @@
 
 
 	/*
+	 * Archive
+	 */
+
+	// Filters toggler
+
+	$(document).ready(function() {
+
+		if($('#filters .related-selector').length) {
+
+			$('#filters .toggle-more-filters').click(function() {
+
+				if($(this).hasClass('active'))
+					$(this).removeClass('active');
+				else
+					$(this).addClass('active');
+
+				$('#filters .related-selector').each(function() {
+
+					if($(this).hasClass('active'))
+						$(this).removeClass('active');
+					else
+						$(this).addClass('active');
+				});
+
+				return false;
+			});
+
+		}
+
+	});
+
+	// Sub posts toggler
+	$(document).ready(function() {
+
+		if($('.sub-posts').length) {
+
+			$('.sub-posts').each(function() {
+
+				var area = $(this);
+				var  content = area.find('.sub-posts-content');
+
+				area.find('.toggle-sub-posts').click(function() {
+
+					if(content.hasClass('active')) {
+
+						$(this).text('+');
+						content.removeClass('active');
+
+					} else {
+
+						$(this).text('-');
+						content.addClass('active');
+
+					}
+
+					return false;
+
+				});
+
+			});
+
+			$('.sub-posts:first .toggle-sub-posts').trigger('click');
+
+		}
+
+	});
+
+	/*
 	 * Adjust article list item height
 	 */
 	function articleItemHeight() {
