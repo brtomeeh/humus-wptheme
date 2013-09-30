@@ -12,10 +12,6 @@ class Humus_Events {
 		require_once(TEMPLATEPATH . '/inc/acf/add-ons/acf-field-date-time-picker/acf-date_time_picker.php');
 		add_action('init', array($this, 'init'));
 
-		add_filter('query_vars', array($this, 'query_vars'));
-		add_action('pre_get_posts', array($this, 'pre_get_posts'));
-		add_filter('posts_clauses', array($this, 'posts_clauses'), 10, 2);
-
 	}
 
 	function init() {
@@ -23,8 +19,17 @@ class Humus_Events {
 		$this->register_post_type();
 		$this->register_field_group();
 
+		add_filter('query_vars', array($this, 'query_vars'));
+		add_action('pre_get_posts', array($this, 'pre_get_posts'));
+		add_filter('posts_clauses', array($this, 'posts_clauses'), 10, 2);
+
 		add_filter('humus_map_taxonomies', array($this, 'register_location_map'));
 		add_action('humus_before_archive_posts', array($this, 'archive'));
+
+		add_filter('humus_list_article_footer', array($this, 'list_article_footer'));
+		add_filter('humus_list_article_before_title', array($this, 'list_article_before_title'));
+
+		add_filter('humus_filter_order_options', array($this, 'disable_order_filter'));
 	}
 
 
@@ -54,6 +59,7 @@ class Humus_Events {
 			'show_in_menu' => true,
 			'has_archive' => false,
 			'menu_position' => 4,
+			'taxonomies' => array('post_tag', 'category'),
 			'rewrite' => array('slug' => 'events', 'with_front' => false)
 		);
 
@@ -154,15 +160,19 @@ class Humus_Events {
 
 	}
 
-	function get_event_date($post_id = false) {
+	function get_event_date($post_id = false, $format = false) {
 		global $post;
 		$post_id = $post_id ? $post_id : $post->ID;
 
 		$ts = get_field('event_time', $post_id);
 
 		if($ts) {
-			$date = date_i18n(_x('F jS, Y', 'Event date output', 'humus'), $ts);
-			$time = date_i18n(_x('g:i a', 'Event time output', 'humus'), $ts);
+			if(!$format) { 
+				$date = date_i18n(_x('F jS, Y', 'Event date output', 'humus'), $ts);
+				$time = date_i18n(_x('g:i a', 'Event time output', 'humus'), $ts);
+			} else {
+				return date_i18n($format, $ts);
+			}
 		}
 
 		$output = '<span class="date">' . $date . '</span><span class="time">' . _x('starting', 'Event time output prefix', 'humus') . ' ' . $time . '</span>';
@@ -170,7 +180,7 @@ class Humus_Events {
 		return $output;
 	}
 
-	function get_event_location($post_id = false) {
+	function get_event_location($post_id = false, $name_only = false) {
 		global $post;
 		$post_id = $post_id ? $post_id : $post->ID;
 
@@ -183,6 +193,9 @@ class Humus_Events {
 
 		$name = $location->name;
 		$address = humus_get_address($location->taxonomy . '_' . $location->term_id);
+
+		if($name_only)
+			return $name;
 
 		return '<span class="location-name">' . $name . '</span><span class="location-address">' . $address . '</span>';
 	}
@@ -201,8 +214,10 @@ class Humus_Events {
 
 		$obj = get_queried_object();
 
-		if($query->get('post_type') === 'event' || ($obj->slug === 'agenda' && $obj->taxonomy === 'section'))
+		if($query->get('post_type') === 'event' || ($obj->slug === 'agenda' && $obj->taxonomy === 'section')){
 			$query->set('humus_event_query', 1);
+			$query->set('posts_per_page', -1);
+		}
 
 	}
 
@@ -214,8 +229,15 @@ class Humus_Events {
 
 			$clauses['join'] .= " INNER JOIN {$wpdb->postmeta} AS event_ts ON ({$wpdb->posts}.ID = event_ts.post_id) ";
 
-			$order = $query->get('humus_event_order') ? $query->get('humus_event_order') : 'DESC';
-			$clauses['orderby'] = "event_ts.meta_value+0 {$order}";
+			$clauses['where'] .= " AND event_ts.meta_key = 'event_time' ";
+
+			//$order = $query->get('humus_event_order') ? $query->get('humus_event_order') : 'DESC';
+			//$clauses['orderby'] = "event_ts.meta_value+0 {$order}";
+
+			$clauses['orderby'] = "
+				CASE WHEN event_ts.meta_value > UNIX_TIMESTAMP(NOW()) THEN 0 ELSE 1 END,
+				CASE WHEN event_ts.meta_value > UNIX_TIMESTAMP(NOW()) THEN event_ts.meta_value ELSE event_ts.meta_value * -1 END
+			";
 
 		}
 
@@ -401,6 +423,31 @@ class Humus_Events {
 
 		}
 
+	}
+
+	function list_article_footer($content) {
+		if(get_post_type() == 'event') {
+			ob_start();
+			?>
+			<p class="event-date"><?php echo $this->get_event_date(false, _x('m/d/Y', 'Minimal event date format', 'humus')); ?>, <?php _e('starting at', 'humus'); ?> <?php echo $this->get_event_date(false, _x('g:i a', 'Minimal event time format', 'humus')); ?></p>
+
+			<?php
+			$content = ob_get_clean();
+		}
+		return $content;
+	}
+
+	function list_article_before_title() {
+		if(get_post_type() == 'event') {
+			echo '<p class="location-name">' . $this->get_event_location(false, true) . '</p>';
+		}
+	}
+
+	function disable_order_filter($options) {
+		if(get_post_type() == 'event') {
+			$options = false;
+		}
+		return $options;
 	}
 
 }

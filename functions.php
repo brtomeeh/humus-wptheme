@@ -425,8 +425,15 @@ function humus_archive_header($short_version = false) {
 					
 						global $wp;
 
-						$s = isset($_GET['s']) ? $_GET['s'] : str_replace('/', ' ', $wp->request);
+						$s_request = str_replace('/', ' ', str_replace('-', ' ', $wp->request));
 
+						$s = isset($_GET['s']) ? $_GET['s'] : $s_request;
+
+						if(is_404()) : 
+							?>
+							<p class="results"><?php _e('Try using our search', 'humus'); ?></p>0
+							<?php
+						endif;
 						?>
 						<form id="searchform" action="<?php echo home_url(); ?>">
 							<input name="s"	 type="text" placeholder="<?php _e('Type your search...', 'humus'); ?>" value="<?php if($s) echo $s; ?>" />
@@ -437,12 +444,6 @@ function humus_archive_header($short_version = false) {
 							?>
 							<p class="results">
 								<?php printf(_n('We found just %d result for your search', 'We found %d results for your search', $wp_query->found_posts, 'humus'), $wp_query->found_posts); ?>
-							</p>
-							<?php
-						else :
-							?>
-							<p class="results">
-								<?php _e('Try using our search!', 'humus'); ?>
 							</p>
 							<?php
 						endif;
@@ -531,6 +532,49 @@ function humus_gallery($atts, $content = null) {
 	return $output;
 }
 
+function humus_get_image_count($p = false) {
+	global $post;
+	$p = $p ? $p : $post;
+
+	$content = $p->post_content;
+
+	$photos = array();
+
+	if(strpos($content, '[gallery') !== false) {
+
+		$pattern = get_shortcode_regex();
+
+		preg_match('/'.$pattern.'/s', $p->post_content, $matches);
+
+		if (is_array($matches) && $matches[2] == 'gallery') {
+
+			preg_match('/\[gallery ids=\"(.*?)\"]/',$matches[0],$ids);
+
+			if (is_array($ids) && $ids[1] ) {
+
+				$photos = explode(',',$ids[1]);
+
+			}
+
+		}
+
+	}
+
+	if(empty($photos)) {
+
+		$photos = get_posts(array(
+			'post_type' => 'attachment',
+			'post_status' => null,
+			'post_parent' => $p->ID,
+			'posts_per_page' => -1
+		));
+
+	}
+
+	return count($photos);
+
+}
+
 function humus_pagination() {
 	global $wp_query;
 	if($wp_query->max_num_pages > 1) {
@@ -566,6 +610,15 @@ function humus_404_template() {
 	}
 }
 add_action('template_redirect', 'humus_404_template');
+
+function humus_404_query($query) {
+	if($query->is_404()) {
+		global $wp;
+		$s_request = str_replace('/', ' ', str_replace('-', ' ', $wp->request));
+		$query->set('s', $s_request);
+	}
+}
+add_action('pre_get_posts', 'humus_404_query');
 
 
 /*

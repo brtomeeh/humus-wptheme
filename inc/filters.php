@@ -140,7 +140,7 @@ class Humus_Filters {
 
 	function form() {
 
-		if(!$this->enable_filters())
+		if(!$this->enable_filters() || is_404())
 			return false;
 
 		$taxonomies = $this->get_taxonomies();
