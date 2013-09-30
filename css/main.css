@@ -75,6 +75,7 @@ article.list .post-meta{width:100%;-webkit-box-sizing:border-box;-moz-box-sizing
 article.list .post-meta .tags{font-weight:800;text-transform:uppercase;}
 .tax-section.term-albuns article.list{height:auto !important;}.tax-section.term-albuns article.list .post-thumbnail{margin-bottom:10px;}
 .tax-section.term-albuns article.list h2{font-size:18px;line-height:24px;}
+.tax-section.term-albuns article.list .image-count{font-weight:600;color:#aaa;}
 article.minimal{position:relative;margin:0 0 40px;}article.minimal a.cover-link{display:block;position:absolute;top:0;right:0;bottom:0;left:0;z-index:2;}
 article.minimal .post-thumbnail{overflow:hidden;background:#fff;}article.minimal .post-thumbnail img{display:block;-webkit-transition:all 0.2s ease-in-out;-khtml-transition:all 0.2s ease-in-out;-moz-transition:all 0.2s ease-in-out;-o-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;}
 article.minimal .post-header .icon{width:40px;height:40px;float:left;margin-right:15px;}

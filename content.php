@@ -180,10 +180,10 @@ else :
 					</div>
 				<?php endif; ?>
 				<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
-				<?php
+				<p class="image-count"><?php
 				$image_count = humus_get_image_count();
 				printf(_n('%d image', '%d images', $image_count, 'humus'), $image_count);
-				?>
+				?></p>
 			</article>
 		</div>
 
