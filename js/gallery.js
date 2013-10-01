@@ -4,19 +4,34 @@
 		image,
 		list,
 		current,
-		sly;
+		sly,
+		masonry;
 
 	$(document).ready(function() {
 
 		gallery = $('.humus-gallery-container');
-		image = gallery.find('.image');
-		list = gallery.find('.image-list li');
 
-		bindEvents();
+		if(gallery.length) {
+			image = gallery.find('.image');
+			list = gallery.find('.image-list li');
 
-		listNav();
+			bindEvents();
 
-		openImage(list.filter(':first').data('image'));
+			listNav();
+
+			openImage(list.filter(':first').data('image'));
+		}
+
+		// Masonry
+		masonry = $('.humus-masonry-gallery');
+		if(masonry.length) {
+			$('.swipebox').swipebox();
+			masonry.imagesLoaded(function() {
+				masonry.find('ul').isotope({
+					layoutMode: 'masonry'
+				});
+			});
+		}
 
 	});
 

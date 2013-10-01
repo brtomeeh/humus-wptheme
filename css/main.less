@@ -346,6 +346,25 @@ h6 {
 	}
 }
 
+.humus-masonry-gallery {
+	ul.images {
+		list-style: none !important;
+		margin: 0 !important;
+		padding: 0 !important;
+		li.image {
+			margin: 0 !important;
+			padding: 10px !important;
+			width: 33%;
+			.box-sizing(border-box);
+			img {
+				width: 100%;
+				height: auto;
+				display: block;
+			}
+		}
+	}
+}
+
 /*
  * Header
  */
@@ -586,8 +605,8 @@ h6 {
 	}
 }
 
-.search-results,
-.error404 {
+body.search,
+body.error404 {
 	.page-header {
 		.page-title {
 			font-size: 50px;
@@ -869,7 +888,6 @@ article.minimal {
 }
 
 article.full {
-	border-bottom: 1px solid #ccc;
 	#post-media {
 		max-width: 960px;
 		margin-top: 20px;
@@ -939,6 +957,44 @@ article.full {
 			}
 		}
 	}
+	.tags {
+		line-height: 24px;
+		span {
+			background: #111;
+			color: #f0f0f0;
+			padding: 10px;
+			width: 40px;
+			text-align: center;
+			font-size: 14px;
+			line-height: 14px;
+			display: block;
+			float: left;
+			font-weight: 600;
+			text-transform: uppercase;
+			position: relative;
+			margin-right: 40px;
+			margin-top: -5px;
+			margin-bottom: 40px;
+			&:after {
+				content: '';
+				position: absolute;
+				top: 0;
+				right: -34px;
+				border-left: 17px solid #111;
+				border-right: 17px solid transparent;
+				border-top: 17px solid transparent;
+				border-bottom: 17px solid transparent;
+			}
+		}
+		a {
+			font-size: 12px;
+			text-decoration: none;
+			color: #666;
+			&:hover {
+				color: #333;
+			}
+		}
+	}
 	#post-terms {
 		.post-tax-label {
 			font-size: 14px;
@@ -951,44 +1007,8 @@ article.full {
 				text-transform: uppercase;
 				font-weight: 600;
 			}
-		}
-		.tags {
-			line-height: 24px;
-			margin-top: 5px;
-			span {
-				background: #111;
-				color: #f0f0f0;
-				padding: 10px;
-				width: 40px;
-				text-align: center;
-				font-size: 14px;
-				line-height: 14px;
-				display: block;
-				float: left;
-				font-weight: 600;
-				text-transform: uppercase;
-				position: relative;
-				margin-right: 40px;
-				margin-top: -5px;
-				margin-bottom: 40px;
-				&:after {
-					content: '';
-					position: absolute;
-					top: 0;
-					right: -34px;
-					border-left: 17px solid #111;
-					border-right: 17px solid transparent;
-					border-top: 17px solid transparent;
-					border-bottom: 17px solid transparent;
-				}
-			}
-			a {
-				font-size: 12px;
-				text-decoration: none;
-				color: #666;
-				&:hover {
-					color: #333;
-				}
+			.tags {
+				margin-top: 5px;
 			}
 		}
 	}
@@ -1030,10 +1050,16 @@ article.full {
 		ol {
 			list-style: decimal;
 		}
+		.tags {
+			a {
+				font-size: 14px;
+			}
+		}
 	}
 }
 
 #comments {
+	border-top: 1px solid #ccc;
 	.comment-list {
 		margin: 0;
 		list-style: none;
@@ -1099,4 +1125,9 @@ article.full {
 
 #colophon {
 	background: #333;
+}
+
+#swipebox-action,
+#swipebox-caption {
+	background: #333 !important;
 }

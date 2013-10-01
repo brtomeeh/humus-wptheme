@@ -64,10 +64,13 @@ function humus_scripts() {
 	wp_register_script('fitvids', get_template_directory_uri() . '/js/jquery.fitvids.js', array('jquery'), '1.0');
 	wp_register_script('lockfixed', get_template_directory_uri() . '/js/jquery.lockfixed.min.js', array('jquery'), '0.1');
 	wp_register_script('sly', get_template_directory_uri() . '/js/sly.min.js', array('jquery'), '1.1.0');
-	wp_register_script('motio', get_template_directory_uri() . '/js/motio.min.js', array(), '2.2.1');
+	wp_register_script('isotope', get_template_directory_uri() . '/js/jquery.isotope.min.js', array('jquery'), '1.5.25');
 	wp_register_script('underscore', get_template_directory_uri() . '/js/underscore-min.js', array(), '1.5.2');
 
-	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery',  'imagesloaded', 'fitvids', 'lockfixed', 'sly'), '0.0.1');
+	wp_register_script('swipebox', get_template_directory_uri() . '/js/swipebox/jquery.swipebox.min.js', array('jquery'));
+	wp_register_style('swipebox', get_template_directory_uri() . '/js/swipebox/swipebox.css');
+
+	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery',  'imagesloaded', 'fitvids', 'lockfixed', 'sly'), '0.0.2');
 
 	wp_enqueue_script('frontend');
 }
@@ -431,7 +434,7 @@ function humus_archive_header($short_version = false) {
 
 						if(is_404()) : 
 							?>
-							<p class="results"><?php _e('Try using our search', 'humus'); ?></p>0
+							<p class="results"><?php _e('Try using our search:', 'humus'); ?></p>
 							<?php
 						endif;
 						?>
@@ -532,6 +535,61 @@ function humus_gallery($atts, $content = null) {
 	return $output;
 }
 
+function humus_album_gallery() {
+
+	extract(shortcode_atts(array(
+		'ids' => false,
+	), $atts));
+
+	if($ids) {
+
+		$ids = split(',', $ids);
+		
+		$images = array();
+
+		foreach($ids as $id) {
+			$images[] = get_post($id);
+		}
+
+	} else {
+
+		global $post;
+		$images = get_posts(array(
+			'post_type' => 'attachment',
+			'post_parent' => $post->ID,
+			'posts_per_page' => -1,
+			'post_status' => null
+		));
+
+	}
+
+	if(!$images || empty($images))
+		return '';
+
+	wp_enqueue_style('swipebox');
+
+	wp_enqueue_script('humus-gallery', get_template_directory_uri() . '/js/gallery.js', array('jquery', 'sly', 'isotope', 'imagesloaded', 'swipebox'), '0.1.0');
+
+	ob_start();
+	?>
+	<div class="humus-masonry-gallery row">
+		<ul class="images">
+			<?php foreach($images as $image) :
+				$large = wp_get_attachment_image_src($image->ID, 'large');
+				$medium = wp_get_attachment_image_src($image->ID, 'medium');
+				?>
+				<li class="image">
+					<a rel="gallery-<?php echo $post->ID; ?>" href="<?php echo $large[0]; ?>" class="swipebox" title="<?php echo $image->post_title; ?>"><img src="<?php echo $medium[0]; ?>" alt="<?php echo $image->post_title; ?>" /></a>
+				</li>
+			<?php endforeach; ?>
+		</ul>
+	</div>
+	<?php
+	$output = ob_get_clean();
+
+	return $output;
+}
+
 function humus_get_image_count($p = false) {
 	global $post;
 	$p = $p ? $p : $post;
@@ -573,6 +631,43 @@ function humus_get_image_count($p = false) {
 
 	return count($photos);
 
+}
+
+function humus_album_page_template() {
+
+	global $post;
+	if(has_term('albuns', 'section') && is_single()) {
+		get_template_part('full', 'width-page');
+		exit;
+	}
+
+}
+add_action('template_redirect', 'humus_album_page_template');
+
+function humus_album_content($content) {
+
+	if(has_term('albuns', 'section') && strpos($content, '[gallery') === false) {
+
+		remove_shortcode('gallery', 'humus_gallery');
+		add_shortcode('gallery', 'humus_album_gallery');
+
+		add_action('humus_after_page_content', 'humus_outside_album_gallery');
+
+	}
+
+	return $content;
+
+}
+add_filter('the_content', 'humus_album_content');
+
+function humus_outside_album_gallery() {
+	?>
+	<div class="container row">
+		<div class="twelve columns">
+			<?php echo do_shortcode('[gallery]'); ?>
+		</div>
+	</div>
+	<?php
 }
 
 function humus_pagination() {
