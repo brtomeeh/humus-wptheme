@@ -139,6 +139,22 @@ h6 {
 	display: block;
 }
 
+.button,
+button,
+input[type=submit] {
+	background: #222;
+	color: #f0f0f0;
+	padding: 10px 15px;
+	border: 0;
+	font-weight: 600;
+	font-family: "Open Sans";
+	text-transform: uppercase;
+	cursor: pointer;
+	&:hover {
+		background: #111;
+	}
+}
+
 .humus-dropdown {
 	background: @background;
 	border: 1px solid #ccc;
@@ -361,6 +377,82 @@ h6 {
 				height: auto;
 				display: block;
 			}
+		}
+	}
+}
+
+.humus-contact {
+	.contacts {
+		.email,
+		.phone {
+			padding-top: 70px;
+			p {
+				padding-top: 10px;
+				text-align: center;
+				border-top: 1px solid #999;
+			}
+		}
+		.email {
+			padding-top: 60px;
+			background: url(../img/contact-icon-big.png) top center no-repeat;
+		}
+		.phone {
+			padding-top: 80px;
+			background: url(../img/phone-icon-big.png) top center no-repeat;
+		}
+	}
+}
+
+.humus-contact-form {
+	width: 100%;
+	input[type=text],
+	textarea {
+		.box-sizing(border-box);
+		width: 100%;
+		padding: 10px;
+		border: 0;
+		background: #bbbbbb;
+		color: #333;
+		font-family: "Open Sans";
+	}
+	input.name {
+		width: 48%;
+		float: left;
+	}
+	input.email {
+		width: 48%;
+		float: right;
+	}
+	textarea {
+		height: 200px;
+	}
+	input[type=submit] {
+		float: right;
+		padding: 10px 40px;
+	}
+	@ph_color: #666;
+	::-webkit-input-placeholder { /* WebKit browsers */
+		color: @ph_color;
+	}
+	:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+		color: @ph_color;
+	}
+	::-moz-placeholder { /* Mozilla Firefox 19+ */
+		color: @ph_color;
+	}
+	:-ms-input-placeholder { /* Internet Explorer 10+ */
+		color: @ph_color;
+	}
+	.message {
+		float: left;
+		font-size: 14px;
+		font-weight: 600;
+		p {
+			margin: 0;
+		}
+		.error {
+			color: #f00;
+			opacity: .6;
 		}
 	}
 }

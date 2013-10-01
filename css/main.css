@@ -5,6 +5,7 @@ h1,h2,h3,h4,h5,h6{font-family:"Open Sans","Helvetica","Arial",sans-serif;font-we
 .alignleft{float:left;margin:0 40px 40px 0;}
 .alignright{float:right;margin:0 0 40px 40px;}
 .columns.relative,.column.relative{position:relative;display:block;}
+.button,button,input[type=submit]{background:#222;color:#f0f0f0;padding:10px 15px;border:0;font-weight:600;font-family:"Open Sans";text-transform:uppercase;cursor:pointer;}.button:hover,button:hover,input[type=submit]:hover{background:#111;}
 .humus-dropdown{background:#f0f0f0;border:1px solid #ccc;text-transform:uppercase;font-size:14px;line-height:14px;height:34px;position:relative;}.humus-dropdown a{text-decoration:none;}
 .humus-dropdown ul{margin:-1px;padding:36px 0 0;}.humus-dropdown ul li{font-size:14px;line-height:14px;margin:0;padding:0;background:#e0e0e0;display:none;-webkit-transition:all 0.2s ease-in-out;-khtml-transition:all 0.2s ease-in-out;-moz-transition:all 0.2s ease-in-out;-o-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;}.humus-dropdown ul li.active{display:block;position:absolute;top:0;left:0;right:0;background:transparent;}.humus-dropdown ul li.active:hover{background:transparent;}.humus-dropdown ul li.active:hover a{color:inherit;}
 .humus-dropdown ul li a{padding:10px;display:block;-webkit-transition:all 0.2s ease-in-out;-khtml-transition:all 0.2s ease-in-out;-moz-transition:all 0.2s ease-in-out;-o-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;}
@@ -27,6 +28,20 @@ h1,h2,h3,h4,h5,h6{font-family:"Open Sans","Helvetica","Arial",sans-serif;font-we
 .humus-gallery-container .image-list-container .image-list li img{display:block;width:100%;height:auto;}
 .humus-gallery-container .scrollbar{margin:0 0 1em 0;height:2px;background:#ccc;line-height:0;}.humus-gallery-container .scrollbar .handle{width:100px;height:100%;background:#292a33;cursor:pointer;}
 .humus-masonry-gallery ul.images{list-style:none !important;margin:0 !important;padding:0 !important;}.humus-masonry-gallery ul.images li.image{margin:0 !important;padding:10px !important;width:33%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}.humus-masonry-gallery ul.images li.image img{width:100%;height:auto;display:block;}
+.humus-contact .contacts .email,.humus-contact .contacts .phone{padding-top:70px;}.humus-contact .contacts .email p,.humus-contact .contacts .phone p{padding-top:10px;text-align:center;border-top:1px solid #999;}
+.humus-contact .contacts .email{padding-top:60px;background:url(../img/contact-icon-big.png) top center no-repeat;}
+.humus-contact .contacts .phone{padding-top:80px;background:url(../img/phone-icon-big.png) top center no-repeat;}
+.humus-contact-form{width:100%;}.humus-contact-form input[type=text],.humus-contact-form textarea{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;width:100%;padding:10px;border:0;background:#bbbbbb;color:#333;font-family:"Open Sans";}
+.humus-contact-form input.name{width:48%;float:left;}
+.humus-contact-form input.email{width:48%;float:right;}
+.humus-contact-form textarea{height:200px;}
+.humus-contact-form input[type=submit]{float:right;padding:10px 40px;}
+.humus-contact-form ::-webkit-input-placeholder{color:#666666;}
+.humus-contact-form :-moz-placeholder{color:#666666;}
+.humus-contact-form ::-moz-placeholder{color:#666666;}
+.humus-contact-form :-ms-input-placeholder{color:#666666;}
+.humus-contact-form .message{float:left;font-size:14px;font-weight:600;}.humus-contact-form .message p{margin:0;}
+.humus-contact-form .message .error{color:#f00;opacity:.6;}
 #masthead{position:fixed;z-index:10;left:0;right:0;top:20px;background:rgba(255, 255, 255, 0.9);}#masthead h1{margin:0 20px 0 0;padding:0;float:left;line-height:60px;}#masthead h1.with-logo{text-indent:-9999px;line-height:0;}#masthead h1.with-logo a{padding:0;}
 #masthead h1 a{display:block;background:#000;color:#fff;font-size:16px;text-transform:uppercase;padding:0 20px;text-decoration:none;}
 #masthead h1 img{display:block;}

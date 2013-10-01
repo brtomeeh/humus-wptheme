@@ -39,6 +39,7 @@ require_once(TEMPLATEPATH . '/inc/axis.php');
  */
 require_once(TEMPLATEPATH . '/inc/events/events.php');
 require_once(TEMPLATEPATH . '/inc/partners.php');
+require_once(TEMPLATEPATH . '/inc/contact/contact.php');
 
 /*
  * Styles
