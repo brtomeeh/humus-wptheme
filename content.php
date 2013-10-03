@@ -45,7 +45,7 @@ if(is_single()) :
 		<section class="page-content">
 			<div class="container">
 				<?php
-				$show_media = false
+				$show_media = false;
 				if($media && $show_media) :
 					?>
 					<div class="row">
