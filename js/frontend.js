@@ -52,7 +52,7 @@
 			releaseSwing: 1,
 			startAt: 0,
 			scrollBy: 1,
-			speed: 300,
+			speed: 600,
 			elasticBounds: 0,
 			dragHandle: 1,
 			dynamicHandle: 0,
@@ -169,12 +169,7 @@
 
 					axis = axes.filter('.' + post.data('axis'));
 
-					if(!axis.is('.active')) {
-						axes.removeClass('active');
-						window.setTimeout(function() {
-							axis.addClass('active');
-						}, 200);
-					}
+					activateAxis(post.data('axis'));
 
 					posts.removeClass('active');
 					window.setTimeout(function() {
@@ -204,6 +199,23 @@
 					bg = bgs.filter(function() { return !$(this).hasClass('active'); });
 
 				}
+
+			}
+
+			function activateAxis(axis) {
+				
+				var el = axes.filter('.' + axis);				
+
+				if(!el.is('.active') && axes.filter('.active').length) {
+					axes.removeClass('active');
+						el.addClass('active');
+				} else {
+					el.addClass('active');
+				}
+
+				postsArray = posts.filter('[data-axis="' + axis + '"]').toArray();
+
+				return el;
 
 			}
 
@@ -243,6 +255,13 @@
 
 			run = setInterval(next, 8000);
 
+			$container.click(function() {
+
+				clearInterval(run);
+				run = false;
+
+			});
+
 			nav.click(function() {
 
 				if($(this).is('.next'))
@@ -250,8 +269,10 @@
 				else if($(this).is('.prev'))
 					previous();
 
-				clearInterval(run);
-				run = setInterval(next, 8000);
+				if(run) {
+					clearInterval(run);
+					run = setInterval(next, 8000);
+				}
 
 				return false;
 
@@ -263,8 +284,10 @@
 
 					open(posts.filter('[data-axis="' + $(this).data('axis') + '"]:first').data('postid'));
 
-					clearInterval(run);
-					run = setInterval(next, 8000);
+					if(run) {
+						clearInterval(run);
+						run = setInterval(next, 8000);
+					}
 
 					return false;
 

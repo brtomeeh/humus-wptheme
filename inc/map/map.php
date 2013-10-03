@@ -226,7 +226,7 @@ class Humus_Map {
 
 		global $wp_the_query, $wpdb;
 
-		if($query->get('humus_location') && $wp_the_query === $query && !$query->get('map')) {
+		if($query->get('humus_location') && $wp_the_query === $query && $query->get('list')) {
 
 			$key = 'humus_location';
 			$term_id = $query->get('humus_location');
@@ -534,15 +534,15 @@ class Humus_Map {
 	
 		global $wp_query;
 		wp_enqueue_style('humus-map');
-		$is_map_view = $wp_query->get('map');
+		$is_map_view = (!$wp_query->get('list'));
 		?>
 		<div class="three columns">
 			<div class="map-view-dropdown">
 				<p class="label"><?php _e('View as', 'humus'); ?></p>
 				<div class="humus-dropdown">
 					<ul>
-						<li <?php if($is_map_view) echo 'class="active"'; ?>><a href="<?php echo add_query_arg(array('map' => 1), remove_query_arg('humus_location')); ?>"><?php _e('Map', 'humus'); ?></a></li>
-						<li <?php if(!$is_map_view) echo 'class="active"'; ?>><a href="<?php echo remove_query_arg('map'); ?>"><?php _e('List', 'humus'); ?></a></li>
+						<li <?php if($is_map_view) echo 'class="active"'; ?>><a href="<?php echo remove_query_arg('list', remove_query_arg('humus_location')); ?>"><?php _e('Map', 'humus'); ?></a></li>
+						<li <?php if(!$is_map_view) echo 'class="active"'; ?>><a href="<?php echo add_query_arg(array('list' => 1)); ?>"><?php _e('List', 'humus'); ?></a></li>
 					</ul>
 				</div>
 			</div>
@@ -552,13 +552,14 @@ class Humus_Map {
 
 	function query_vars($vars) {
 		$vars[] = 'map';
+		$vars[] = 'list';
 		return $vars;
 	}
 
 	function template_redirect() {
 
 		global $wp_query;
-		if($wp_query->get('map') && $this->is_map_view()) {
+		if(!$wp_query->get('list') && $this->is_map_view()) {
 			include_once(TEMPLATEPATH . '/inc/map/template.php');
 			exit;
 		}
@@ -567,12 +568,40 @@ class Humus_Map {
 	function body_class($class) {
 		global $wp_query;
 		$obj = get_queried_object();
-		if($wp_query->get('map')) {
+		if(!$wp_query->get('list')) {
 			$class[] = 'map-view';
 		} elseif(is_tax($this->get_taxonomies()) && get_field('location', $obj->taxonomy . '_' . $obj->term_id)) {
 			$class[] = 'map';
 		}
 		return $class;
+	}
+
+	function get_map_view_url($post_id = false, $tax = 'section') {
+
+		global $post;
+		$post_id = $post_id ? $post_id : $post->ID;
+
+		$term = get_the_terms($post_id, $tax);
+
+		if($term)
+			$term = array_shift($term);
+		else 
+			return false;
+
+		$url = get_term_link($term);
+
+		$url .= '#!/';
+
+		$location = get_the_terms($post_id, 'location');
+		if($location){
+			$location = array_shift($location);
+			$url .= 'location=' . $location->slug . '&';
+		}
+
+		$url .= 'post=' . $post_id;
+
+		return $url;
+
 	}
 
 }
@@ -589,4 +618,8 @@ function humus_get_location($id = false) {
 
 function humus_get_address($id = false) {
 	return $GLOBALS['humus_map']->get_address($id);
+}
+
+function humus_get_map_view_url($post_id = false, $tax = 'section') {
+	return $GLOBALS['humus_map']->get_map_view_url($post_id, $tax);
 }
