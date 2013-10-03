@@ -560,6 +560,7 @@ class Humus_Map {
 
 		global $wp_query;
 		if(!$wp_query->get('list') && $this->is_map_view()) {
+			error_log('der');
 			include_once(TEMPLATEPATH . '/inc/map/template.php');
 			exit;
 		}
@@ -568,7 +569,7 @@ class Humus_Map {
 	function body_class($class) {
 		global $wp_query;
 		$obj = get_queried_object();
-		if(!$wp_query->get('list')) {
+		if(!$wp_query->get('list') && $this->is_map_view()) {
 			$class[] = 'map-view';
 		} elseif(is_tax($this->get_taxonomies()) && get_field('location', $obj->taxonomy . '_' . $obj->term_id)) {
 			$class[] = 'map';
