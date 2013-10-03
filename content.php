@@ -44,7 +44,10 @@ if(is_single()) :
 		</header>
 		<section class="page-content">
 			<div class="container">
-				<?php if($media) : ?>
+				<?php
+				$show_media = false
+				if($media && $show_media) :
+					?>
 					<div class="row">
 						<?php if(get_post_type() == 'partner') : ?>
 							<div class="one column">&nbsp;</div>
