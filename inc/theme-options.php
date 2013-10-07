@@ -110,7 +110,7 @@ class Humus_Theme_Options {
 				'placeholder' => '',
 				'prepend' => '',
 				'append' => '',
-				'formatting' => 'html',
+				'formatting' => 'br',
 				'maxlength' => '',
 			),
 			array(

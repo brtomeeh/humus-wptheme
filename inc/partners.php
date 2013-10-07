@@ -71,6 +71,18 @@ class Humus_Partners {
 					'formatting' => 'html',
 					'maxlength' => '',
 				),
+				array(
+					'key' => 'field_partner_logo',
+					'label' => __('Logo', 'humus'),
+					'name' => 'partner_logo',
+					'type' => 'image',
+					'required' => 1,
+					'instructions' => __('Upload the partner\'s logo in white, with transparent background', 'humus'),
+					'column_width' => '',
+					'save_format' => 'object',
+					'preview_size' => 'thumbnail',
+					'library' => 'all',
+				),
 			),
 			'options' => array(
 				'position' => 'normal',

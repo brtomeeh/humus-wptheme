@@ -1505,6 +1505,132 @@ article.full {
 
 #colophon {
 	background: #333;
+	padding: 40px 0;
+	h3,
+	p,
+	a {
+		color: #f0f0f0;
+	}
+	h3 {
+		text-transform: uppercase;
+		font-family: "Lato";
+		margin-bottom: 20px;
+	}
+	.partners {
+		position: relative;
+		.partner-list {
+			width: 150px;
+			height: 150px;
+			overflow: hidden;
+			ul {
+				li {
+					width: 150px;
+					height: 150px;
+					float: left;
+					img {
+						width: 100%;
+						height: auto;
+					}
+				}
+			}
+		}
+		.navigate {
+			position: absolute;
+			bottom: 0;
+			right: 30%;
+			a {
+				width: 14px;
+				height: 13px;
+				text-indent: -9999px;
+				display: block;
+				float: left;
+				background-position: center;
+				background-repeat: no-repeat;
+				margin-left: 10px;
+				&.next-partner {
+					background-image: url(../img/arrow-right-white.png);
+				}
+				&.prev-partner {
+					background-image: url(../img/arrow-left-white.png);
+				}
+			}
+		}
+	}
+	.social {
+		.social-icons {
+			a {
+				.lsf;
+				font-size: 30px;
+				line-height: 30px;
+				display: block;
+				float: left;
+				margin: 0 20px 0 0;
+				text-decoration: none;
+			}
+		}
+	}
+	.newsletter {
+		.newsletter-container {
+			padding: 20px;
+			background: #222;
+			&:before {
+				content: url(../img/stamp.png);
+				float: right;
+				margin: 0 0 20px 20px;
+			}
+			p {
+				color: #999;
+			}
+			form {
+				position: relative;
+				&:after {
+					content: '\E08a';
+					position: absolute;
+					font-size: 30px;
+					line-height: 30px;
+					color: #f0f0f0;
+					top: 10px;
+					right: 0;
+					font-family: "LigatureSymbols";
+				}
+				input {
+					background: transparent;
+					width: 100%;
+					padding: 15px 20px;
+					border: 0;
+					background: #3f3f3f;
+					margin-left: -20px;
+					position: relative;
+				}
+			}
+		}
+	}
+	.contacts {
+		p {
+			color: #aaa;
+			line-height: 26px;
+			font-size: 12px;
+		}
+	}
+	.colophon {
+		table {
+			width: 100%;
+			tr {
+				td {
+					vertical-align: middle;
+					height: 30px;
+					color: #999;
+					font-size: 12px;
+					a {
+						text-decoration: none;
+					}
+					&.logos {
+						line-height: 30px;
+					}
+				}
+			}
+		}
+	}
 }
 
 #swipebox-action,

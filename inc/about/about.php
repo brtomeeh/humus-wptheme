@@ -20,7 +20,7 @@ class Humus_About_Page {
 		//add_action('generate_rewrite_rules', array($this, 'generate_rewrite_rules'));
 		//add_action('template_redirect', array($this, 'template_redirect'));
 		add_filter('humus_theme_options_fields', array($this, 'theme_options_fields'));
-		add_shortcode('humus_about', array($this, 'content'	));
+		add_shortcode('humus-about', array($this, 'content'	));
 
 	}
 
@@ -72,9 +72,8 @@ class Humus_About_Page {
 			</div>
 			<?php if($team) : ?>
 				<div class="humus-about-heads about-area" data-area="team">
-					<?php for($j = 1; $j <= 10; $j++) : ?>
 					<?php $i = 0; foreach($team as $member) : $i++; ?>
-						<div class="member-item three columns <?php if($j%4 == 1) echo 'alpha'; if(($j+1)%4 == 1) echo 'omega'; ?>">
+						<div class="member-item three columns <?php if($i%4 == 1) echo 'alpha'; if(($i+1)%4 == 1) echo 'omega'; ?>">
 							<div class="row">
 								<div class="member-thumbnail">
 									<img class="scale-with-grid" src="<?php echo $member['member_photo']['sizes']['humus-thumbnail']; ?>" alt="<?php echo $member['member_name']; ?>" />
@@ -85,7 +84,6 @@ class Humus_About_Page {
 							<div class="member-profile"><?php echo $member['member_profile']; ?></div>
 						</div>
 					<?php endforeach; ?>
-					<?php endfor; ?>
 				</div>
 			<?php endif; ?>
 			<div class="member-content-container">

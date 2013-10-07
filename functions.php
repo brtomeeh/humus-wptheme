@@ -46,6 +46,7 @@ require_once(TEMPLATEPATH . '/inc/events/events.php');
 require_once(TEMPLATEPATH . '/inc/partners.php');
 require_once(TEMPLATEPATH . '/inc/contact/contact.php');
 require_once(TEMPLATEPATH . '/inc/about/about.php');
+require_once(TEMPLATEPATH . '/inc/newsletter/newsletter.php');
 
 /*
  * Styles
@@ -194,7 +195,7 @@ function humus_breadcrumb($before = '', $sep = '/', $after = '/') {
 				);
 			}
 		}
-		
+
 		if(count($items) == 1) {
 			$post_type = get_post_type();
 			$post_type_obj = get_post_type_object($post_type);
