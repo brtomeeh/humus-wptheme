@@ -14,6 +14,11 @@ function humus_acf_date_time_picker_dir() {
 }
 add_filter('acf/add-ons/date-time-picker/get_dir', 'humus_acf_date_time_picker_dir');
 
+function humus_acf_repeater_dir() {
+	return humus_acf_dir() . '/add-ons/acf-repeater/';
+}
+add_filter('acf/add-ons/repeater/get_dir', 'humus_acf_repeater_dir');
+
 define('ACF_LITE', false);
 require_once(TEMPLATEPATH . '/inc/acf/acf.php');
 
@@ -40,6 +45,7 @@ require_once(TEMPLATEPATH . '/inc/axis.php');
 require_once(TEMPLATEPATH . '/inc/events/events.php');
 require_once(TEMPLATEPATH . '/inc/partners.php');
 require_once(TEMPLATEPATH . '/inc/contact/contact.php');
+require_once(TEMPLATEPATH . '/inc/about/about.php');
 
 /*
  * Styles
@@ -176,6 +182,26 @@ function humus_breadcrumb($before = '', $sep = '/', $after = '/') {
 				'url' => get_term_link($section),
 				'title' => $section->name,
 				'class' => $section->slug
+			);
+		} else {
+			$categories = get_the_terms($post->ID, 'category');
+			if($categories) {
+				$category = array_shift($categories);
+				$items[] = array(
+					'url' => get_term_link($category),
+					'title' => $category->name,
+					'class' => $category->slug
+				);
+			}
+		}
+		
+		if(count($items) == 1) {
+			$post_type = get_post_type();
+			$post_type_obj = get_post_type_object($post_type);
+			$items[] = array(
+				'url' => get_post_type_archive_link($post_type),
+				'title' => $post_type_obj->labels->name,
+				'class' => $post_type
 			);
 		}
 	}

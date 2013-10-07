@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Full Width Page
+ * Template Name: Full Width Page with wider content
  *
  * @package Cardume
  * @subpackage Humus
@@ -42,8 +42,7 @@ get_header(); ?>
 					</header>
 					<section class="page-content">
 						<div class="container">
-							<div class="one column">&nbsp;</div>
-							<div class="ten columns">
+							<div class="twelve columns">
 								<section id="post-content" class="post-content">
 									<?php the_content(); ?>
 									<?php the_tags('<p class="tags"><span class="label">' . __('Tags', 'humus') . '</span>', ', ', '</p>'); ?>

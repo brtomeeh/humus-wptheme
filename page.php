@@ -1,6 +1,6 @@
 <?php
 /**
- * The Template for displaying all pages.
+ * Template Name: Full Width Page
  *
  * @package Cardume
  * @subpackage Humus
@@ -16,11 +16,6 @@ get_header(); ?>
 				the_post();
 
 				do_action('humus_before_page_content');	$header_image = humus_get_header_image_url();
-
-				$media = get_post_meta($post->ID, 'media_oembed', true);
-
-				$content_columns = 'ten columns';
-				$media_columns = 'ten columns';
 
 				?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class('full row'); ?>>
@@ -47,29 +42,12 @@ get_header(); ?>
 					</header>
 					<section class="page-content">
 						<div class="container">
-							<?php if($media) : ?>
-								<div class="row">
-									<?php if(get_post_type() == 'partner') : ?>
-										<div class="one column">&nbsp;</div>
-									<?php endif; ?>
-									<div class="<?php echo $media_columns; ?>">
-										<section id="post-media">
-											<?php
-											do_action('humus_before_post_media');
-											echo $media;
-											do_action('humus_after_post_media');
-											?>
-										</section>
-									</div>
-								</div>
-							<?php endif; ?>
 							<div class="one column">&nbsp;</div>
-							<div class="<?php echo $content_columns; ?>">
-								<div class="row">
-									<section id="post-content" class="post-content">
-										<?php the_content(); ?>
-									</section>
-								</div>
+							<div class="ten columns">
+								<section id="post-content" class="post-content">
+									<?php the_content(); ?>
+									<?php the_tags('<p class="tags"><span class="label">' . __('Tags', 'humus') . '</span>', ', ', '</p>'); ?>
+								</section>
 							</div>
 						</div>
 					</section>
@@ -77,6 +55,17 @@ get_header(); ?>
 				<?php
 
 				do_action('humus_after_page_content');
+
+				// If comments are open or we have at least one comment, load up the comment template.
+				if (comments_open() || get_comments_number()) {
+
+					do_action('humus_before_single_post_comments');
+
+					comments_template();
+
+					do_action('humus_after_single_post_comments');
+					
+				}
 
 			endwhile;
 		?>

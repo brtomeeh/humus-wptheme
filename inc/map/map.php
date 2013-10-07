@@ -577,10 +577,13 @@ class Humus_Map {
 		return $class;
 	}
 
-	function get_map_view_url($post_id = false, $tax = 'section') {
+	function get_map_view_url($post_id = false, $tax = false) {
 
 		global $post;
 		$post_id = $post_id ? $post_id : $post->ID;
+
+		if(!$tax)
+			return false;
 
 		$term = get_the_terms($post_id, $tax);
 

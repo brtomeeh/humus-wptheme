@@ -627,5 +627,26 @@
 		}
 	});
 
+	/*
+	 * Trigger focus on header search form
+	 */
+	 $(document).ready(function() {
+	 	$('#masthead .search').on('mouseenter click', function() {
+
+	 		var input = $(this).find('input[type=text]');
+
+	 		if(!input.is(':focus'))
+	 			input.trigger('focus');
+
+	 	});
+	 	$('#masthead .search').on('mouseleave', function() {
+
+	 		var input = $(this).find('input[type=text]');
+	 		$(input.is(':focus'))
+	 			input.trigger('blur');
+
+	 	});
+	 });
+
 
 })(jQuery);
