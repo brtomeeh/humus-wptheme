@@ -1338,6 +1338,34 @@ article.full {
 	}
 }
 
+.related-content {
+	position: relative;
+	.related-posts {
+		width: 100%;
+		height: 285px;
+	}
+	.next {
+		background: url(../img/arrow-right-big.png);
+		width: 33px;
+		height: 60px;
+		display: block;
+		position: absolute;
+		top: 50%;
+		margin-top: -30px;
+		right: -40px;
+	}
+	.prev {
+		background: url(../img/arrow-left-big.png);
+		width: 33px;
+		height: 60px;
+		display: block;
+		position: absolute;
+		top: 50%;
+		margin-top: -30px;
+		left: -40px;
+	}
+}
+
 .post-content {
 	.humus-about {
 		.humus-about-filter {
@@ -1460,6 +1488,7 @@ article.full {
 
 #comments {
 	border-top: 1px solid #ccc;
+	padding-top: 40px;
 	.comment-list {
 		margin: 0;
 		list-style: none;
@@ -1519,6 +1548,11 @@ article.full {
 					border: 0;
 				}
 			}
+		}
+	}
+	#respond {
+		textarea {
+			width: 100%;
 		}
 	}
 }

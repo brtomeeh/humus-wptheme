@@ -19,7 +19,7 @@ if ( post_password_required() )
 
 <div class="container">
 
-	<div id="comments" class="comments-area">
+	<div id="comments" class="comments-area row">
 
 		<?php if ( have_comments() ) : ?>
 			<div class="twelve columns">
@@ -61,7 +61,9 @@ if ( post_password_required() )
 
 		<?php endif; // have_comments() ?>
 
-		<?php comment_form(); ?>
+		<div class="twelve columns">
+			<?php comment_form(); ?>
+		</div>
 
 	</div><!-- #comments -->
 

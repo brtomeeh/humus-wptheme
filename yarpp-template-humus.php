@@ -10,18 +10,24 @@
 <?php // query_posts() ; ?>
 <?php if(have_posts()) : ?>
 	<div class="container">
-		<div class="row">
+		<div class="related-content row">
 			<div class="twelve columns">
 				<h3 class="section-title"><?php _e('You might also like', 'humus'); ?></h3>
 			</div>
-			<?php
-			while(have_posts()) :
+			<div class="related-posts">
+				<div class="post-list">
+					<?php
+					while(have_posts()) :
 
-				the_post();
-				get_template_part('content');
+						the_post();
+						get_template_part('content');
 
-			endwhile;
-			?>
+					endwhile;
+					?>
+				</div>
+			</div>
+			<a href="#" class="next"></a>
+			<a href="#" class="prev"></a>
 		</div>
 	</div>
 <?php endif; ?>

@@ -690,5 +690,38 @@
 	 	});
 	 });
 
+	 /*
+	  * Related slider
+	  */
+	$(document).ready(function() {
+
+		var related = $('.related-posts');
+
+		if(related.length && $('.post-list > *').length >= 3) {
+
+			var sly = new Sly('.related-posts', {
+				horizontal: 1,
+				itemNav: 'basic',
+				smart: 1,
+				startAt: 0,
+				scrollBy: 0,
+				speed: 200,
+				ease: 'easeOutExpo',
+				next: $('.related-content .next'),
+				prev: $('.related-content .prev')
+			});
+
+			$(window).on('resize', function() {
+				sly.reload();
+			});
+
+			sly.init();
+
+		} else {
+			$('.related-content .next, .related-content .prev').remove();
+		}
+
+	});
+
 
 })(jQuery);

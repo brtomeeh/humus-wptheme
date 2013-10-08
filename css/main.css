@@ -135,6 +135,9 @@ article.full .post-content ul,article.full .post-content ol{margin:0 0 40px 40px
 article.full .post-content ul{list-style:disc;}
 article.full .post-content ol{list-style:decimal;}
 article.full .post-content .tags a{font-size:14px;}
+.related-content{position:relative;}.related-content .related-posts{width:100%;height:285px;}
+.related-content .next{background:url(../img/arrow-right-big.png);width:33px;height:60px;display:block;position:absolute;top:50%;margin-top:-30px;right:-40px;}
+.related-content .prev{background:url(../img/arrow-left-big.png);width:33px;height:60px;display:block;position:absolute;top:50%;margin-top:-30px;left:-40px;}
 .post-content .humus-about .humus-about-filter h3,.post-content .humus-about .humus-about-filter h4{font-size:20px;line-height:34px;text-transform:uppercase;font-weight:400;margin:0 0 8px;}
 .post-content .humus-about .humus-about-filter .about-filter{display:block;float:left;margin:0 40px 0 0;line-height:34px;font-size:14px;background:#e0e0e0;padding:0 68px;text-align:center;text-decoration:none;text-transform:uppercase;-webkit-transition:all 0.2s ease-in-out;-khtml-transition:all 0.2s ease-in-out;-moz-transition:all 0.2s ease-in-out;-o-transition:all 0.2s ease-in-out;transition:all 0.2s ease-in-out;}.post-content .humus-about .humus-about-filter .about-filter.active{background:#333;color:#f0f0f0;}
 .post-content .humus-about .humus-about-heads .member-item{margin-bottom:40px;cursor:pointer;}.post-content .humus-about .humus-about-heads .member-item .member-thumbnail img{display:block;width:100%;height:auto;margin:0 0 20px;}
@@ -148,7 +151,7 @@ article.full .post-content .tags a{font-size:14px;}
 .post-content .humus-about .member-content-container .member-content h2,.post-content .humus-about .member-content-container .member-content h2 a,.post-content .humus-about .member-content-container .member-content p{color:#f0f0f0;}
 .post-content .humus-about .member-content-container .member-content h2{margin:0 0 20px;padding-top:40px;}.post-content .humus-about .member-content-container .member-content h2 a{text-decoration:none;}
 .post-content .humus-about .member-content-container .member-content .role{color:#999;}
-#comments{border-top:1px solid #ccc;}#comments .comment-list{margin:0;list-style:none;}#comments .comment-list .comment{border-bottom:1px solid #ccc;}#comments .comment-list .comment a{text-decoration:none;}
+#comments{border-top:1px solid #ccc;padding-top:40px;}#comments .comment-list{margin:0;list-style:none;}#comments .comment-list .comment{border-bottom:1px solid #ccc;}#comments .comment-list .comment a{text-decoration:none;}
 #comments .comment-list .comment .avatar{margin-bottom:20px;}
 #comments .comment-list .comment .comment-meta{margin-bottom:10px;}
 #comments .comment-list .comment .comment-author cite{font-weight:600;}
@@ -157,6 +160,7 @@ article.full .post-content .tags a{font-size:14px;}
 #comments .comment-list .comment .comment-content{margin:0 0 40px;font-size:16px;line-height:24px;}
 #comments .comment-list .comment .reply{margin-top:-30px;float:right;line-height:35px;}#comments .comment-list .comment .reply a{padding:10px;background:#333;color:#f0f0f0;font-size:12px;text-transform:uppercase;font-weight:200;}
 #comments .comment-list .comment .children{margin:0;padding:0;}#comments .comment-list .comment .children .comment{border:0;}
+#comments #respond textarea{width:100%;}
 #colophon{background:#333;padding:40px 0;}#colophon h3,#colophon p,#colophon a{color:#f0f0f0;}
 #colophon h3{text-transform:uppercase;font-family:"Lato";margin-bottom:20px;}
 #colophon .partners{position:relative;width:80%;}#colophon .partners .partner-list{width:150px;height:150px;overflow:hidden;}#colophon .partners .partner-list ul li{width:150px;height:150px;float:left;}#colophon .partners .partner-list ul li img{width:100%;height:auto;}
