@@ -6,6 +6,7 @@
  */
 
 $section_icon = humus_get_term_icon_url($post->ID, 'section');
+$display_author = get_field('display_author');
 
 if(is_single()) :
 
@@ -76,10 +77,10 @@ if(is_single()) :
 											</p>
 										</div>
 									<?php else : ?>
-										<div class="post-author">
+										<div class="post-date">
 											<p>
-												<span><?php _e('by', 'humus'); ?></span>
-												<span class="meta-content"><?php the_author(); ?></span>
+												<span><?php _e('published', 'humus'); ?></span>
+												<span class="meta-content"><?php the_date(); ?></span>
 											</p>
 										</div>
 									<?php endif; ?>
@@ -92,13 +93,15 @@ if(is_single()) :
 												<span class="meta-content"><?php echo humus_get_event_location(); ?></span>
 											</p>
 										</div>
-									<?php else : ?>
-										<div class="post-date">
+									<?php elseif($display_author) : ?>
+										<div class="post-author">
 											<p>
-												<span><?php _e('published', 'humus'); ?></span>
-												<span class="meta-content"><?php the_date(); ?></span>
+												<span><?php _e('by', 'humus'); ?></span>
+												<span class="meta-content"><?php the_author(); ?></span>
 											</p>
 										</div>
+									<?php else : ?>
+										&nbsp;
 									<?php endif; ?>
 								</div>
 								<div class="four columns omega">
@@ -216,7 +219,9 @@ else :
 							<?php endif; ?>
 							<?php do_action('humus_list_article_before_title'); ?>
 							<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
-							<p class="author"><?php _e('by', 'humus'); ?> <span><?php the_author(); ?></span></p>
+							<?php if($display_author) : ?>
+								<p class="author"><?php _e('by', 'humus'); ?> <span><?php the_author(); ?></span></p>
+							<?php endif; ?>
 						</header>
 						<section class="post-content">
 							<?php the_excerpt(); ?>

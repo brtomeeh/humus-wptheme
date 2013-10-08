@@ -375,4 +375,4 @@ class Humus_Filters {
 
 }
 
-new Humus_Filters();
+$GLOBALS['humus_filters'] = new Humus_Filters();

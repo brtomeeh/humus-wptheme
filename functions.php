@@ -767,6 +767,53 @@ function humus_404_query($query) {
 add_action('pre_get_posts', 'humus_404_query');
 
 
+function humus_toggle_display_author() {
+	if(function_exists('register_field_group')) {
+
+		$post_types = get_post_types(array('public' => true, '_builtin' => false), 'names');
+		$post_types[] = 'post';
+
+		$locations = array();
+		foreach($post_types as $post_type) {
+			$locations[] = array(
+				array(
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => $post_type,
+					'order_no' => 0,
+					'group_no' => 0
+				)
+			);
+		}
+
+		register_field_group(array (
+			'id' => 'acf_show-author-info',
+			'title' => __('Show author info', 'humus'),
+			'fields' => array (
+				array (
+					'key' => 'field_display_author',
+					'label' => __('Author info', 'humus'),
+					'name' => 'display_author',
+					'type' => 'true_false',
+					'instructions' => __('Check to show author information', 'humus'),
+					'message' => __('Display author information', 'humus'),
+					'default_value' => 0,
+				),
+			),
+			'location' => $locations,
+			'options' => array (
+				'position' => 'normal',
+				'layout' => 'no_box',
+				'hide_on_screen' => array (
+				),
+			),
+			'menu_order' => 0,
+		));
+	}
+}
+add_action('init', 'humus_toggle_display_author');
+
+
 /*
  * Connect REMIX
  */

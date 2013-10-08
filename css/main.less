@@ -1029,14 +1029,15 @@ article.list {
 			background: #333;
 			color: #f0f0f0;
 			font-weight: 600;
-			padding: 10px;
+			padding: 10px 15px 9px;
 			font-size: 18px;
 		}
 		.section-icon {
 			position: absolute;
 			right: 10px;
 			top: -10px;
-			width: 50px;
+			width: 40px;
+			z-index: 2;
 			&:hover {
 				.label {
 					display: block;
@@ -1050,7 +1051,7 @@ article.list {
 				display: none;
 				position: absolute;
 				right: 0;
-				top: 70px;
+				top: 60px;
 				font-weight: 600;
 				background: #fff;
 				padding: 7px 9px;
@@ -1145,6 +1146,11 @@ article.list {
 			text-overflow: ellipsis;
 			font-weight: 800;
 			text-transform: uppercase;
+		}
+		.event-location {
+			font-weight: 800;
+			font-size: 11px;
+			color: #333;
 		}
 	}
 }

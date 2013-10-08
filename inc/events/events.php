@@ -7,21 +7,28 @@
 
 class Humus_Events {
 
+	var $filters;
+
 	function __construct() {
 
 		require_once(TEMPLATEPATH . '/inc/acf/add-ons/acf-field-date-time-picker/acf-date_time_picker.php');
+
 		add_action('init', array($this, 'init'));
 
 	}
 
 	function init() {
+
+		global $humus_filters;
+		$this->filters = $humus_filters;
+
 		$this->register_location_taxonomy();
 		$this->register_post_type();
 		$this->register_field_group();
 
 		add_filter('query_vars', array($this, 'query_vars'));
 		add_action('pre_get_posts', array($this, 'pre_get_posts'));
-		add_filter('posts_clauses', array($this, 'posts_clauses'), 10, 2);
+		add_filter('posts_clauses', array($this, 'posts_clauses'), 20, 2);
 
 		add_filter('humus_map_taxonomies', array($this, 'register_location_map'));
 		add_action('humus_before_archive_posts', array($this, 'archive'));
@@ -30,7 +37,7 @@ class Humus_Events {
 		add_filter('humus_list_article_footer', array($this, 'list_article_footer'));
 		add_filter('humus_list_article_before_title', array($this, 'list_article_before_title'));
 
-		add_filter('humus_filter_order_options', array($this, 'disable_order_filter'));
+		add_filter('humus_filter_order_options', array($this, 'order_options'));
 	}
 
 
@@ -71,39 +78,39 @@ class Humus_Events {
 	function register_location_taxonomy() {
 
 		$labels = array(
-			'name' => _x('Locations', 'Location general name', 'humus'),
-			'singular_name' => _x('Location', 'Location singular name', 'humus'),
-			'all_items' => __('All locations', 'humus'),
-			'edit_item' => __('Edit location', 'humus'),
-			'view_item' => __('View location', 'humus'),
-			'update_item' => __('Update location', 'humus'),
-			'add_new_item' => __('Add new location', 'humus'),
-			'new_item_name' => __('New location name', 'humus'),
-			'parent_item' => __('Parent location', 'humus'),
-			'parent_item_colon' => __('Parent location:', 'humus'),
-			'search_items' => __('Search locations', 'humus'),
-			'popular_items' => __('Popular locations', 'humus'),
-			'separate_items_with_commas' => __('Separate locations with commas', 'humus'),
-			'add_or_remove_items' => __('Add or remove locations', 'humus'),
-			'choose_from_most_used' => __('Choose from most used locations', 'humus'),
-			'not_found' => __('No locations found', 'humus')
+			'name' => _x('Venues', 'venue general name', 'humus'),
+			'singular_name' => _x('venue', 'venue singular name', 'humus'),
+			'all_items' => __('All venues', 'humus'),
+			'edit_item' => __('Edit venue', 'humus'),
+			'view_item' => __('View venue', 'humus'),
+			'update_item' => __('Update venue', 'humus'),
+			'add_new_item' => __('Add new venue', 'humus'),
+			'new_item_name' => __('New venue name', 'humus'),
+			'parent_item' => __('Parent venue', 'humus'),
+			'parent_item_colon' => __('Parent venue:', 'humus'),
+			'search_items' => __('Search venues', 'humus'),
+			'popular_items' => __('Popular venues', 'humus'),
+			'separate_items_with_commas' => __('Separate venues with commas', 'humus'),
+			'add_or_remove_items' => __('Add or remove venues', 'humus'),
+			'choose_from_most_used' => __('Choose from most used venues', 'humus'),
+			'not_found' => __('No venues found', 'humus')
 		);
 
 		$args = array(
 			'labels' => $labels,
 			'public' => true,
 			'show_admin_column' => true,
-			'hierarchical' => true,
-			'query_var' => 'event-location',
-			'rewrite' => array('slug' => 'events/locations', 'with_front' => false)
+			'hierarchical' => false,
+			'query_var' => 'event-venue',
+			'rewrite' => array('slug' => 'events/venues', 'with_front' => false)
 		);
 
-		register_taxonomy('event-location', 'event', $args);
+		register_taxonomy('event-venue', 'event', $args);
 
 	}
 
 	function register_location_map($taxonomies) {
-		$taxonomies[] = 'event-location';
+		$taxonomies[] = 'event-venue';
 		return $taxonomies;
 	}
 
@@ -185,7 +192,7 @@ class Humus_Events {
 		global $post;
 		$post_id = $post_id ? $post_id : $post->ID;
 
-		$locations = get_the_terms($post_id, 'event-location');
+		$locations = get_the_terms($post_id, 'event-venue');
 
 		if(!$locations)
 			return false;
@@ -215,11 +222,40 @@ class Humus_Events {
 
 		$obj = get_queried_object();
 
+		$query_arg = $this->filters->filter_prefix . 'order';
+		$active = $this->filters->get_active_filter($query_arg);
+
 		if($query->get('post_type') === 'event' || ($obj->slug === 'agenda' && $obj->taxonomy === 'section')){
 			$query->set('humus_event_query', 1);
-			$query->set('posts_per_page', -1);
+			if(!$active)
+				$query->set('posts_per_page', -1);
 		}
 
+	}
+
+	function order_options($options) {
+
+		global $wp_query;
+		if($wp_query->get('humus_event_query')) {
+
+			$query_arg = $this->filters->filter_prefix . 'order';
+			$active = $this->filters->get_active_filter($query_arg);
+
+			$options = array(
+				'default' => array(
+					'name' => __('Next events', 'humus'),
+					'active' => $active ? false : true,
+					'order' => 0
+				),
+				'old_events' => array(
+					'name' => __('Past events', 'humus'),
+					'active' => ($active == 'old_events') ? true : false,
+					'order' => 5
+				)
+			);
+		}
+
+		return $options;
 	}
 
 	function posts_clauses($clauses, $query) {
@@ -228,17 +264,27 @@ class Humus_Events {
 
 		if($query->get('humus_event_query') && !$query->is_single()) {
 
-			$clauses['join'] .= " INNER JOIN {$wpdb->postmeta} AS event_ts ON ({$wpdb->posts}.ID = event_ts.post_id) ";
+			$query_arg = $this->filters->filter_prefix . 'order';
+			$active = $this->filters->get_active_filter($query_arg);
 
+			$clauses['join'] .= " INNER JOIN {$wpdb->postmeta} AS event_ts ON ({$wpdb->posts}.ID = event_ts.post_id) ";
 			$clauses['where'] .= " AND event_ts.meta_key = 'event_time' ";
 
-			//$order = $query->get('humus_event_order') ? $query->get('humus_event_order') : 'DESC';
-			//$clauses['orderby'] = "event_ts.meta_value+0 {$order}";
+			if(!$active) {
 
-			$clauses['orderby'] = "
-				CASE WHEN event_ts.meta_value > UNIX_TIMESTAMP(NOW()) THEN 0 ELSE 1 END,
-				CASE WHEN event_ts.meta_value > UNIX_TIMESTAMP(NOW()) THEN event_ts.meta_value ELSE event_ts.meta_value * -1 END
-			";
+				$clauses['orderby'] = "
+					CASE WHEN event_ts.meta_value > UNIX_TIMESTAMP(NOW()) THEN 0 ELSE 1 END,
+					CASE WHEN event_ts.meta_value > UNIX_TIMESTAMP(NOW()) THEN event_ts.meta_value ELSE event_ts.meta_value * -1 END
+				";
+
+			} elseif($active == 'old_events') {
+
+				$time = time();
+				$clauses['where'] .= " AND event_ts.meta_value < '{$time}' ";
+
+				$clauses['orderby'] = "event_ts.meta_value ASC";
+
+			}
 
 		}
 
@@ -256,7 +302,10 @@ class Humus_Events {
 		global $wp_query;
 		$obj = get_queried_object();
 
-		if(is_post_type_archive('event') || (is_tax('section') && $obj->slug == 'agenda')) {
+		$query_arg = $this->filters->filter_prefix . 'order';
+		$active = $this->filters->get_active_filter($query_arg);
+
+		if(is_post_type_archive('event') || (is_tax('section') && $obj->slug == 'agenda') && $active !== 'old_events') {
 
 			$GLOBALS['humus_custom_archived'] = 1;
 
@@ -438,6 +487,7 @@ class Humus_Events {
 		if(get_post_type() == 'event') {
 			ob_start();
 			?>
+			<p class="event-location"><?php echo $this->get_event_location(false, true); ?></p>
 			<p class="event-time"><?php _e('starting at', 'humus'); ?> <?php echo $this->get_event_date(false, _x('g:i a', 'Minimal event time format', 'humus')); ?></p>
 
 			<?php
@@ -448,15 +498,8 @@ class Humus_Events {
 
 	function list_article_before_title() {
 		if(get_post_type() == 'event') {
-			echo '<p class="location-name">' . $this->get_event_location(false, true) . '</p>';
+			//echo '<p class="location-name">' . $this->get_event_location(false, true) . '</p>';
 		}
-	}
-
-	function disable_order_filter($options) {
-		if(get_post_type() == 'event') {
-			$options = false;
-		}
-		return $options;
 	}
 
 }

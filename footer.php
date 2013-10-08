@@ -115,7 +115,7 @@
 						?>
 						<div class="contacts row">
 							<h3><?php _e('Contact', 'humus'); ?></h3>
-							<p><?php echo $contact; ?></p>
+							<?php echo $contact; ?>
 						</div>
 						<?php
 					endif;

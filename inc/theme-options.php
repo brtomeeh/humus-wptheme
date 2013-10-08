@@ -105,13 +105,10 @@ class Humus_Theme_Options {
 				'key' => 'field_footer_contact',
 				'label' => __('Footer contact content', 'humus'),
 				'name' => 'footer_contact',
-				'type' => 'textarea',
+				'type' => 'wysiwyg',
 				'default_value' => '',
-				'placeholder' => '',
-				'prepend' => '',
-				'append' => '',
-				'formatting' => 'br',
-				'maxlength' => '',
+				'toolbar' => 'full',
+				'media_upload' => 'no'
 			),
 			array(
 				'key' => 'field_social_tab',
