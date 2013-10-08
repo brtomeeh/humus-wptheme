@@ -300,6 +300,7 @@ input[type=submit] {
 	border-top: 1px solid #ccc;
 	height: 0;
 	margin-bottom: 55px;
+	margin-top: 22px;
 	.wp-pagenavi {
 		float: right;
 		background: @background;
@@ -964,6 +965,25 @@ body.error404 {
 	}
 }
 
+.humus-ad {
+	.ad-title {
+		padding: 40px;
+		.gradient(transparent, transparent, rgba(0,0,0,0.1));
+	}
+	.ad-content {
+		padding: 20px;
+		background: #fff;
+		img,
+		iframe,
+		object {
+			max-width: 100%;
+			height: auto;
+			margin: 0 auto;
+			display: block;
+		}
+	}
+}
+
 .sub-posts {
 	.sub-posts-title {
 		h2 {
@@ -1518,6 +1538,7 @@ article.full {
 	}
 	.partners {
 		position: relative;
+		width: 80%;
 		.partner-list {
 			width: 150px;
 			height: 150px;
@@ -1537,7 +1558,7 @@ article.full {
 		.navigate {
 			position: absolute;
 			bottom: 0;
-			right: 30%;
+			right: 15%;
 			a {
 				width: 14px;
 				height: 13px;
@@ -1557,6 +1578,7 @@ article.full {
 		}
 	}
 	.social {
+		width: 80%;
 		.social-icons {
 			a {
 				.lsf;
@@ -1570,6 +1592,7 @@ article.full {
 		}
 	}
 	.newsletter {
+		width: 80%;
 		.newsletter-container {
 			padding: 20px;
 			background: #222;
@@ -1606,6 +1629,7 @@ article.full {
 		}
 	}
 	.contacts {
+		width: 80%;
 		p {
 			color: #aaa;
 			line-height: 26px;
@@ -1613,6 +1637,7 @@ article.full {
 		}
 	}
 	.colophon {
+		width: 80%;
 		table {
 			width: 100%;
 			tr {

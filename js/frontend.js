@@ -150,7 +150,8 @@
 				post,
 				image,
 				axis,
-				run;
+				run,
+				clickCount = 0;
 
 			function setNavHeight() {
 				nav.css({
@@ -249,6 +250,27 @@
 
 			}
 
+			function displayAd() {
+
+				$.get(humus_frontend.ajaxurl + '?action=humus_ads', function(ad) {
+					var container = $('<div class="axes-ad"><a class="close-ad" href="#"></a></div>');
+					container.append($(ad));
+					$('body').append(container);
+					container.find('.close-ad').click(function() {
+						clearAd();
+					});
+				});
+
+				clickCount = -1;
+
+			}
+
+			function clearAd() {
+
+				$('body').find('.axes-ad').remove();
+
+			}
+
 			$(window).resize(setNavHeight).resize();
 
 			open(posts.filter(':first').data('postid'));
@@ -274,6 +296,16 @@
 					run = setInterval(next, 8000);
 				}
 
+				clearAd();
+
+				if(clickCount == 3) {
+
+					//displayAd();
+
+				}
+
+				clickCount++;
+
 				return false;
 
 			});
@@ -288,6 +320,16 @@
 						clearInterval(run);
 						run = setInterval(next, 8000);
 					}
+
+					clearAd();
+
+					if(clickCount == 3) {
+
+						//displayAd();
+
+					}
+
+					clickCount++;
 
 					return false;
 

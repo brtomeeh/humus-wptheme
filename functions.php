@@ -48,6 +48,8 @@ require_once(TEMPLATEPATH . '/inc/contact/contact.php');
 require_once(TEMPLATEPATH . '/inc/about/about.php');
 require_once(TEMPLATEPATH . '/inc/newsletter/newsletter.php');
 
+include_once(TEMPLATEPATH . '/inc/ads.php');
+
 /*
  * Styles
  */
@@ -81,6 +83,9 @@ function humus_scripts() {
 	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery',  'imagesloaded', 'fitvids', 'lockfixed', 'sly'), '0.0.2');
 
 	wp_enqueue_script('frontend');
+	wp_localize_script('frontend', 'humus_frontend', array(
+		'ajaxurl' => admin_url('admin-ajax.php')
+	));
 }
 add_action('wp_enqueue_scripts', 'humus_scripts');
 
