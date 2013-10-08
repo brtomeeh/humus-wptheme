@@ -693,12 +693,30 @@ function humus_album_content($content) {
 }
 add_filter('the_content', 'humus_album_content');
 
+$after_gallery = '';
+
+function humus_album_after_gallery_content($atts, $content = '') {
+	global $after_gallery;
+	$after_gallery = $content;
+	return '';
+}
+add_shortcode('humus-after-gallery', 'humus_album_after_gallery_content');
+
 function humus_outside_album_gallery() {
+	global $after_gallery;
 	?>
 	<div class="container row">
 		<div class="twelve columns">
 			<?php echo do_shortcode('[gallery]'); ?>
 		</div>
+		<?php if($after_gallery) : ?>
+			<div class="one column">&nbsp;</div>
+			<div class="ten columns">
+				<section class="post-content">
+					<?php echo apply_filters('the_content', $after_gallery); ?>
+				</section>
+			</div>
+		<?php endif; ?>
 	</div>
 	<?php
 }
