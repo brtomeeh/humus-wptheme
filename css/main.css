@@ -102,8 +102,9 @@ article.list h2{font-size:20px;line-height:26px;font-weight:400;margin:0 0 9px;}
 article.list .author{font-size:12px;line-height:13px;margin:0;}article.list .author span{font-weight:800;}
 article.list .post-header{margin:0 0 13px;}
 article.list .post-content{font-size:11px;line-height:20px;}article.list .post-content p{font-size:11px;line-height:20px;}
-article.list .post-meta{width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:13px 0 0;position:absolute;bottom:0;background:#f0f0f0;}article.list .post-meta p{font-size:10px;line-height:13px;margin:0;}
-article.list .post-meta .tags{font-weight:800;text-transform:uppercase;}
+article.list .with-thumbnail{position:absolute;top:0;bottom:0;}
+article.list .post-meta{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;padding:13px 0 0;position:absolute;bottom:0;left:0;right:0;background:#f0f0f0;}article.list .post-meta p{font-size:10px;line-height:13px;margin:0;}
+article.list .post-meta .tags{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:800;text-transform:uppercase;}
 .tax-section.term-albuns article.list{height:auto !important;}.tax-section.term-albuns article.list .post-thumbnail{margin-bottom:10px;}
 .tax-section.term-albuns article.list h2{font-size:18px;line-height:24px;}
 .tax-section.term-albuns article.list .image-count{font-weight:600;color:#aaa;}

@@ -1067,12 +1067,18 @@ article.list {
 			line-height: 20px;
 		}
 	}
+	.with-thumbnail {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+	}
 	.post-meta {
-		width: 100%;
 		.box-sizing(border-box);
 		padding: 13px 0 0;
 		position: absolute;
 		bottom: 0;
+		left: 0;
+		right: 0;
 		background: @background;
 		p {
 			font-size: 10px;
@@ -1080,6 +1086,9 @@ article.list {
 			margin: 0;
 		}
 		.tags {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 			font-weight: 800;
 			text-transform: uppercase;
 		}

@@ -697,7 +697,7 @@
 
 		var related = $('.related-posts');
 
-		if(related.length && $('.post-list > *').length >= 3) {
+		if(related.length && $('.post-list > *').length > 3) {
 
 			var sly = new Sly('.related-posts', {
 				horizontal: 1,

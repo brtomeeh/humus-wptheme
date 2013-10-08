@@ -202,32 +202,38 @@ else :
 					</div>
 				<?php endif; ?>
 				<div class="three columns omega">
-					<header class="post-header">
-						<?php
-						$category = get_the_terms($post->ID, 'category');
-						if($category) : 
-							$category = array_shift($category);
+					<?php if(has_post_thumbnail()) : ?>
+						<div class="with-thumbnail">
+					<?php endif; ?>
+						<header class="post-header">
+							<?php
+							$category = get_the_terms($post->ID, 'category');
+							if($category) : 
+								$category = array_shift($category);
+								?>
+								<h3 class="category"><a href="<?php echo get_term_link($category); ?>"><?php echo $category->name; ?></a></h3>
+							<?php endif; ?>
+							<?php do_action('humus_list_article_before_title'); ?>
+							<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+							<p class="author"><?php _e('by', 'humus'); ?> <span><?php the_author(); ?></span></p>
+						</header>
+						<section class="post-content">
+							<?php the_excerpt(); ?>
+						</section>
+						<footer class="post-meta">
+							<?php
+							$footer = apply_filters('humus_list_article_footer', '');
+							if($footer === '') {
+								the_tags('<p class="tags">', ', ', '</p>');
+								echo '<p class="date">' . get_the_date() . '</p>';
+							} else {
+								echo $footer;
+							}
 							?>
-							<h3 class="category"><a href="<?php echo get_term_link($category); ?>"><?php echo $category->name; ?></a></h3>
-						<?php endif; ?>
-						<?php do_action('humus_list_article_before_title'); ?>
-						<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
-						<p class="author"><?php _e('by', 'humus'); ?> <span><?php the_author(); ?></span></p>
-					</header>
-					<section class="post-content">
-						<?php the_excerpt(); ?>
-					</section>
-					<footer class="post-meta">
-						<?php
-						$footer = apply_filters('humus_list_article_footer', '');
-						if($footer === '') {
-							the_tags('<p class="tags">', ', ', '</p>');
-							echo '<p class="date">' . get_the_date() . '</p>';
-						} else {
-							echo $footer;
-						}
-						?>
-					</footer>
+						</footer>
+					<?php if(has_post_thumbnail()) : ?>
+						</div>
+					<?php endif; ?>
 				</div>
 			</article>
 		</div>
