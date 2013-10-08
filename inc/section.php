@@ -18,6 +18,7 @@ class Humus_Sections {
 
 		add_filter('humus_header_image_locations', array($this, 'register_header_image'));
 		add_filter('humus_styled_taxonomies', array($this, 'register_taxonomy_styles'));
+		add_action('humus_list_article_before_thumbnail', array($this, 'list_article_before_thumbnail'));
 
 	}
 
@@ -222,6 +223,30 @@ class Humus_Sections {
 			
 			register_field_group($field_group);
 	
+		}
+
+	}
+
+	function list_article_before_thumbnail() {
+
+		if(!is_tax('section')) {
+			global $post;
+			$section = get_the_terms($post->ID, 'section');
+			if($section) {
+				$section = array_shift($section);
+				$icon = humus_get_term_icon_url($post->ID, 'section');
+				if($icon) {
+					?>
+
+					<div class="section-icon">
+						<a href="<?php echo get_term_link($section); ?>" title="<?php echo $section->name; ?>"><img src="<?php echo $icon; ?>" alt="<?php echo $section->name; ?>" /></a>
+						<p class="label"><?php echo $section->name; ?></p>
+					</div>
+
+					<?php
+				}
+			}
+
 		}
 
 	}

@@ -197,6 +197,7 @@ else :
 				<?php if(has_post_thumbnail()) : ?>
 					<div class="three columns alpha">
 						<div class="post-thumbnail">
+							<?php do_action('humus_list_article_before_thumbnail'); ?>
 							<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('humus-thumbnail', array('class' => 'scale-with-grid')); ?></a>
 						</div>
 					</div>

@@ -26,6 +26,7 @@ class Humus_Events {
 		add_filter('humus_map_taxonomies', array($this, 'register_location_map'));
 		add_action('humus_before_archive_posts', array($this, 'archive'));
 
+		add_action('humus_list_article_before_thumbnail', array($this, 'list_article_before_thumbnail'));
 		add_filter('humus_list_article_footer', array($this, 'list_article_footer'));
 		add_filter('humus_list_article_before_title', array($this, 'list_article_before_title'));
 
@@ -425,11 +426,19 @@ class Humus_Events {
 
 	}
 
+	function list_article_before_thumbnail() {
+		if(get_post_type() == 'event') {
+			?>
+			<p class="event-date"><?php echo $this->get_event_date(false, _x('d M', 'Thumbnail event date format', 'humus')); ?></p>
+			<?php
+		}
+	}
+
 	function list_article_footer($content) {
 		if(get_post_type() == 'event') {
 			ob_start();
 			?>
-			<p class="event-date"><?php echo $this->get_event_date(false, _x('m/d/Y', 'Minimal event date format', 'humus')); ?>, <?php _e('starting at', 'humus'); ?> <?php echo $this->get_event_date(false, _x('g:i a', 'Minimal event time format', 'humus')); ?></p>
+			<p class="event-time"><?php _e('starting at', 'humus'); ?> <?php echo $this->get_event_date(false, _x('g:i a', 'Minimal event time format', 'humus')); ?></p>
 
 			<?php
 			$content = ob_get_clean();

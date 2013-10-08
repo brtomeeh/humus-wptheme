@@ -187,7 +187,13 @@ function humus_get_term_icon_url($id = false, $tax = false) {
 	if($field)
 		return $field;
 
-	if(is_tax()) {
+	if($tax) {
+		$terms = get_the_terms($id, $tax);
+		if($terms) {
+			$term = array_shift($terms);
+			$id = $tax . '_' . $term->term_id;
+		}
+	} elseif(is_tax()) {
 		$term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
 		$id = get_query_var('taxonomy') . '_' . $term->term_id;
 	} elseif(is_category()) {
@@ -195,15 +201,7 @@ function humus_get_term_icon_url($id = false, $tax = false) {
 		$id = 'category_' . $term->term_id;
 	} elseif(is_single() || get_post($id)) {
 		global $post;
-		if($tax) {
-			$terms = get_the_terms($id, $tax);
-			if($terms) {
-				$term = array_shift($terms);
-				$id = $tax . '_' . $term->term_id;
-			}
-		} else {
-			$id = $post->ID;
-		}
+		$id = $post->ID;
 	}
 
 	if($id)

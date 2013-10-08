@@ -1014,14 +1014,67 @@ body.error404 {
 }
 
 article.list {
-	overflow: hidden;
 	position: relative;
 	margin: 0 0 40px;
 	a {
 		text-decoration: none;
 	}
-	.wp-post-image {
-		display: block;
+	.post-thumbnail {
+		position: relative;
+		.event-date {
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			background: #333;
+			color: #f0f0f0;
+			font-weight: 600;
+			padding: 10px;
+			font-size: 18px;
+		}
+		.section-icon {
+			position: absolute;
+			right: 10px;
+			top: -10px;
+			width: 50px;
+			&:hover {
+				.label {
+					display: block;
+				}
+			}
+			img {
+				width: 100%;
+				height: auto;
+			}
+			.label {
+				display: none;
+				position: absolute;
+				right: 0;
+				top: 70px;
+				font-weight: 600;
+				background: #fff;
+				padding: 7px 9px;
+				font-size: 12px;
+				line-height: 12px;
+				text-transform: uppercase;
+				&:before {
+					content: '';
+					width: 0;
+					height: 0;
+					border-left: 7px solid transparent;
+					border-right: 7px solid transparent;
+					border-top: 7px solid transparent;
+					border-bottom: 7px solid #fff;
+					position: absolute;
+					top: -14px;
+					z-index: 1000;
+					right: 10px;
+				}
+			}
+		}
+		.wp-post-image {
+			display: block;
+		}
 	}
 	.category {
 		font-size: 12px;
@@ -1071,6 +1124,7 @@ article.list {
 		position: absolute;
 		top: 0;
 		bottom: 0;
+		overflow: hidden;
 	}
 	.post-meta {
 		.box-sizing(border-box);
