@@ -289,13 +289,25 @@ class Humus_Map {
 
 		wp_register_script('jquery-hashchange', get_template_directory_uri() . '/inc/map/js/jquery.ba-hashchange.min.js', array('jquery'), '1.3');
 
-		wp_register_script('humus-map', get_template_directory_uri() . '/inc/map/js/map.js', array('jquery', 'underscore', 'leaflet', 'fitvids', 'jquery-hashchange'), '0.1.2');
+		wp_register_script('humus-map', get_template_directory_uri() . '/inc/map/js/map.js', array('jquery', 'underscore', 'leaflet', 'fitvids', 'jquery-hashchange'), '0.1.3');
 
 		wp_localize_script('humus-map', 'humus_map', array(
 			'tiles' => $this->get_map_tile(),
 			'geojson' => $this->get_geojson(),
 			'canvas' => 'map',
-			'zoom' => $this->get_map_zoom()
+			'zoom' => $this->get_map_zoom(),
+			'pin' => array(
+				'iconUrl' => get_template_directory_uri() . '/inc/map/img/pin_small.png',
+				'iconSize' => array(30, 48),
+				'iconAnchor' => array(15, 48),
+				'popupAnchor' => array(0, -40)
+			),
+			'pin_active' => array(
+				'iconUrl' => get_template_directory_uri() . '/inc/map/img/pin_big.png',
+				'iconSize' => array(50, 80),
+				'iconAnchor' => array(25, 80),
+				'popupAnchor' => array(0, -70)
+			)
 		));
 
 		wp_register_style('humus-map', get_template_directory_uri() . '/inc/map/css/map.css', array('leaflet', 'leaflet-ie'), '0.1.0');

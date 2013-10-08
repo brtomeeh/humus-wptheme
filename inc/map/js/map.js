@@ -9,6 +9,7 @@
 		zoomControl,
 		tileLayer,
 		markers = [],
+		icon = L.Icon.extend({}),
 		locationLayers = {},
 		markerLayer,
 		mapOptions = {
@@ -38,10 +39,16 @@
 					});
 					markers.push(marker);
 					return marker;
+				},
+				onEachFeature: function(f, l) {
+					l.setIcon(defaultIcon);
 				}
 			});
 
 		};
+
+	defaultIcon = new icon(humus_map.pin);
+	activeIcon = new icon(humus_map.pin_active);
 
 	map = L.map(humus_map.canvas, mapOptions);
 
@@ -104,6 +111,7 @@
 				locations = items.filter('.location'),
 				posts = items.filter('.post'),
 				scrollLocation = items.filter(':first').attr('id'),
+				activeMarker = undefined,
 				post;
 
 			var init = function(silent) {
@@ -126,6 +134,11 @@
 
 				$('.location-dropdown li').removeClass('active');
 				$('.location-dropdown li.all').addClass('active');
+
+				if(typeof activeMarker !== 'undefined'){
+					activeMarker.setIcon(defaultIcon);
+					activeMarker = undefined;
+				}
 
 				closePost();
 
@@ -215,7 +228,15 @@
 
 					$('.map-container').removeClass('disabled');
 
+					if(typeof activeMarker !== 'undefined'){
+						activeMarker.setIcon(defaultIcon);
+						activeMarker = undefined;
+					}
+
 					marker = marker[0];
+
+					marker.setIcon(activeIcon);
+					activeMarker = marker;
 
 					map.setView(marker.getLatLng(), 15);
 
@@ -280,6 +301,11 @@
 					return false;
 
 				closePost();
+
+				if(typeof activeMarker !== 'undefined'){
+					activeMarker.setIcon(defaultIcon);
+					activeMarker = undefined;
+				}
 
 				locations.hide();
 				posts.hide();
