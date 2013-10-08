@@ -82,6 +82,29 @@ class Humus_Axes {
 					'default_value' => 0,
 				),
 				array (
+					'key' => 'field_home_featured_axis',
+					'label' => 'Axis',
+					'name' => 'home_featured_axis',
+					'type' => 'taxonomy',
+					'conditional_logic' => array (
+						'status' => 1,
+						'rules' => array (
+							array (
+								'field' => 'field_home_featured',
+								'operator' => '==',
+								'value' => '1',
+							),
+						),
+						'allorany' => 'all',
+					),
+					'taxonomy' => 'axis',
+					'field_type' => 'radio',
+					'allow_null' => 0,
+					'load_save_terms' => 0,
+					'return_format' => 'id',
+					'multiple' => 0,
+				),
+				array (
 					'key' => 'field_home_featured_title',
 					'label' => __('Title', 'humus'),
 					'name' => 'home_featured_title',

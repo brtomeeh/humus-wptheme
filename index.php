@@ -52,6 +52,10 @@ get_header(); ?>
 												array(
 													'key' => 'home_featured',
 													'value' => 1
+												),
+												array(
+													'key' => 'home_featured_axis',
+													'value' => $axis->term_id
 												)
 											),
 											'orderby' => 'rand'

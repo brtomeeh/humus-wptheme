@@ -282,7 +282,7 @@ class Humus_Events {
 				$time = time();
 				$clauses['where'] .= " AND event_ts.meta_value < '{$time}' ";
 
-				$clauses['orderby'] = "event_ts.meta_value ASC";
+				$clauses['orderby'] = "event_ts.meta_value DESC";
 
 			}
 
