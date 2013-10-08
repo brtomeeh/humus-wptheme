@@ -80,7 +80,11 @@
 
 	function openImage(url) {
 
-		image.empty().append($('<img src="' + url + '" />'));
+		var newImage = $('<img src="' + url + '" />');
+
+		image.empty().append(newImage);
+
+		pinImage(newImage);
 
 		current = list.filter('[data-image="' + url + '"]');
 

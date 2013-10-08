@@ -1,3 +1,5 @@
+var pinImage;
+
 (function($) {
 	'use scrict';
 
@@ -722,6 +724,77 @@
 		}
 
 	});
+
+	/*
+	 * Auto pin
+	 */
+
+	$(document).ready(function() {
+
+		var images = $('.single .post-content img, .humus-masonry-gallery img');
+
+		if(images.length) {
+
+			images.each(function() {
+				if(!$(this).parents('.humus-gallery-container').length)
+					pinImage($(this));
+			});
+
+		}
+	
+	});
+
+	pinImage = function(image) {
+
+		var classes = image.attr('class');
+
+		image.addClass('pinable-image');
+
+		var imageUrl = escape(image.attr('src'));
+		var url = escape(location.href);
+		var description = escape((image.attr('alt') ? image.attr('alt') + ' - ' : '') + $('.page-title').text());
+
+		if(image.parents('a')) {
+			var types = ['jpg', 'jpeg', 'png', 'gif'];
+			$.each(types, function(i, type) {
+				if(image.attr('href') && image.attr('href').indexOf(type) !== -1) {
+					imageUrl = escape(image.attr('href'));
+				}
+			});
+		}
+
+		var container = $('<span class="pinable" />');
+
+		container.addClass(classes);
+
+		var pinUrl = '//www.pinterest.com/pin/create/button/?url=' + url + '&media=' + imageUrl + '&description=' + description;
+
+		container.append('<a target="_blank" href="' + pinUrl + '" class="pin-it"><img src="http://assets.pinterest.com/images/pidgets/pin_it_button.png" /></a>');
+
+		container.append(image.clone());
+
+		image.replaceWith(container);
+
+		container.find('.pin-it').click(function() {
+			window.open(pinUrl, '_blank');
+			return false;
+		});
+
+		container.imagesLoaded(function() {
+			container.css({
+				width: container.find('.pinable-image').width(),
+				height: container.find('.pinable-image').height()
+			});
+		});
+
+		$(window).resize(function() {
+			container.css({
+				width: container.find('.pinable-image').width(),
+				height: container.find('.pinable-image').height()
+			});
+		});
+
+	}
 
 
 })(jQuery);

@@ -352,7 +352,7 @@ input[type=submit] {
 		margin: 0 0 20px;
 		position: relative;
 		background: rgba(0,0,0,0.3);
-		.image img {
+		.image * {
 			max-width: 100%;
 			max-height: 100%;
 			width: auto;
@@ -1764,4 +1764,22 @@ article.full {
 #swipebox-action,
 #swipebox-caption {
 	background: #333 !important;
+}
+
+.pinable {
+	position: relative;
+	display: block;
+	.pin-it {
+		position: absolute;
+		top: 10px;
+		right: 10px;
+		opacity: 0;
+		.transition(opacity .3s ease-in-out);
+		z-index: 999;
+	}
+	&:hover {
+		.pin-it {
+			opacity: 1;
+		}
+	}
 }
