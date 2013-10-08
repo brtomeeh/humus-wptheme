@@ -23,8 +23,6 @@ class Humus_Ads {
 		if(is_tax() || is_category() || is_tag()) {
 			$obj = get_queried_object();
 			$ad = $samObject->buildAd(array('name' => $obj->name));
-		} else {
-			$ad = $samObject->buildAd(array('name' => 'Tape'));
 		}
 
 		if($ad) {
