@@ -54,7 +54,7 @@ class Humus_Filters {
 
 	function get_related_selector_taxonomies() {
 
-		if(!is_tax($this->get_taxonomies()))
+		if(!is_tax($this->get_taxonomies()) && !is_search())
 			return false;
 
 		return $this->get_relatable_taxonomies();
@@ -120,6 +120,16 @@ class Humus_Filters {
 					'multiple' => 0,
 				);
 			}
+
+			$args['fields'][] = array(
+				'key' => 'field_search_related',
+				'label' => __('Search', 'humus'),
+				'name' => 'search_related',
+				'type' => 'true_false',
+				'instructions' => __('Enable as filterable term while searching content', 'humus'),
+				'message' => __('Enable as a search filter', 'humus'),
+				'default_value' => 0
+			);
 
 			foreach($locations as $location) {
 				$args['location'][] = array(
@@ -229,6 +239,22 @@ class Humus_Filters {
 		endif;
 	}
 
+	function get_search_terms($taxonomy) {
+
+		$taxonomy_terms = get_terms($taxonomy);
+		$related_terms = array();
+
+		foreach($taxonomy_terms as $taxonomy_term) {
+
+			if(get_field('search_related', $taxonomy . '_' . $taxonomy_term->term_id))
+				$related_terms[] = $taxonomy_term;
+
+		}
+
+		return $related_terms;
+
+	}
+
 	function get_related_terms($taxonomy) {
 
 		$term = get_queried_object();
@@ -252,14 +278,19 @@ class Humus_Filters {
 
 	function related_selector($relatable_taxonomies) {
 
-		if(!is_tax($this->get_taxonomies()) || !$relatable_taxonomies)
+		if(!$relatable_taxonomies)
 			return false;
 
-		$term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
+		if(!is_tax($this->get_taxonomies()) && !is_search())
+			return false;
 
 		foreach($relatable_taxonomies as $taxonomy) {
 
-			$related_terms = $this->get_related_terms($taxonomy);
+			if(is_search()) {
+				$related_terms = $this->get_search_terms($taxonomy);
+			} else {
+				$related_terms = $this->get_related_terms($taxonomy);
+			}
 
 			if(!$related_terms)
 				continue;

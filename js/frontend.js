@@ -581,6 +581,9 @@ var pinImage;
 
 		if($('#filters .related-selector').length) {
 
+			if(!$('#filters .toggle-more-filters').length)
+				$('#filters .related-selector').addClass('active');
+
 			$('#filters .toggle-more-filters').click(function() {
 
 				if($(this).hasClass('active'))
