@@ -95,6 +95,9 @@ add_action('wp_enqueue_scripts', 'humus_scripts');
 
 function humus_setup() {
 
+	// i18n
+	load_theme_textdomain('humus', get_template_directory() . '/languages');
+
 	// Thumbnail support
 	add_theme_support('post-thumbnails');
 

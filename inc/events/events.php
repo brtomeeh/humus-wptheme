@@ -79,7 +79,7 @@ class Humus_Events {
 
 		$labels = array(
 			'name' => _x('Venues', 'venue general name', 'humus'),
-			'singular_name' => _x('venue', 'venue singular name', 'humus'),
+			'singular_name' => _x('Venue', 'venue singular name', 'humus'),
 			'all_items' => __('All venues', 'humus'),
 			'edit_item' => __('Edit venue', 'humus'),
 			'view_item' => __('View venue', 'humus'),
