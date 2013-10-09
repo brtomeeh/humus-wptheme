@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Humus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-09 09:44-0300\n"
-"PO-Revision-Date: 2013-10-09 09:58-0300\n"
+"POT-Creation-Date: 2013-10-09 10:19-0300\n"
+"PO-Revision-Date: 2013-10-09 10:19-0300\n"
 "Last-Translator: Miguel Peixe <miguel@cardume.art.br>\n"
 "Language-Team: Cardume <miguel@cardume.art.br>\n"
 "Language: \n"
@@ -33,99 +33,104 @@ msgstr "Comentários mais novos &rarr;"
 msgid "Comments are closed."
 msgstr "Comentários estão fechados."
 
-#: ../functions.php:106
+#: ../functions.php:109
 msgid "Primary menu"
 msgstr "Menu principal"
 
-#: ../functions.php:336
+#: ../functions.php:136
+#, php-format
+msgid "Page %s"
+msgstr "Página %s"
+
+#: ../functions.php:361
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: ../functions.php:336
+#: ../functions.php:361
 msgid "(Edit)"
 msgstr "(Editar)"
 
-#: ../functions.php:366
+#: ../functions.php:391
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s às %2$s"
 
-#: ../functions.php:370
+#: ../functions.php:395
 msgid "Edit"
 msgstr "Editar"
 
-#: ../functions.php:374
+#: ../functions.php:399
 msgid "Your comment is awaiting moderation."
 msgstr "Seu comentário está aguardando moderação."
 
-#: ../functions.php:382
+#: ../functions.php:407
 msgid "Reply"
 msgstr "Responder"
 
-#: ../functions.php:423
+#: ../functions.php:448
 #, php-format
 msgid "Day: %s"
 msgstr "Dia: %s"
 
-#: ../functions.php:426
+#: ../functions.php:451
 #, php-format
 msgid "Month: %s"
 msgstr "Mês: %s"
 
-#: ../functions.php:429
+#: ../functions.php:454
 #, php-format
 msgid "Year: %s"
 msgstr "Ano: %s"
 
-#: ../functions.php:438
+#: ../functions.php:463
 msgid "Search"
 msgstr "Buscar"
 
-#: ../functions.php:441
+#: ../functions.php:466
 msgid "Nothing found"
 msgstr "Nada encontrado"
 
-#: ../functions.php:444
+#: ../functions.php:469
 msgid "Archives"
 msgstr "Arquivos"
 
-#: ../functions.php:470
+#: ../functions.php:495
 msgid "Try using our search:"
 msgstr "Tente usar nossa busca:"
 
-#: ../functions.php:475
+#: ../functions.php:500
 #: ../searchform.php:3
 msgid "Type your search..."
 msgstr "Digite sua busca..."
 
-#: ../functions.php:482
+#: ../functions.php:507
 #, php-format
 msgid "We found just %d result for your search"
 msgid_plural "We found %d results for your search"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../functions.php:543
+#: ../functions.php:568
 msgid "Next image"
 msgstr "Próxima imagem"
 
-#: ../functions.php:544
+#: ../functions.php:569
 msgid "Previous image"
 msgstr "Imagem anterior"
 
-#: ../functions.php:791
+#: ../functions.php:816
 msgid "Show author info"
 msgstr "Exibir informação do autor"
 
-#: ../functions.php:795
+#: ../functions.php:820
 msgid "Author info"
 msgstr "Informação do autor"
 
-#: ../functions.php:798
+#: ../functions.php:823
 msgid "Check to show author information"
 msgstr "Marque para exibir informação do autor"
 
-#: ../functions.php:799
+#: ../functions.php:824
 msgid "Display author information"
 msgstr "Exibir informação do autor"
 
@@ -232,7 +237,7 @@ msgstr "Leia mais sobre este conteúdo"
 msgid "Subscribe to our channel"
 msgstr "Assine nosso canal"
 
-#: ../inc/ads.php:37
+#: ../inc/ads.php:49
 #, php-format
 msgid "%1$s %2$s is sponsored by %3$s"
 msgstr "%2$s %1$s é um oferecimento de %3$s"
