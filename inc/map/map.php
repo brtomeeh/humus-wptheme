@@ -25,6 +25,7 @@ class Humus_Map {
 		add_action('wp_head', array($this, 'register_scripts'), 100);
 		add_filter('post_class', array($this, 'post_class'));
 		add_action('humus_before_header_content', array($this, 'map'));
+		add_action('humus_list_article_after_title', array($this, 'list_article_after_title'));
 
 		add_filter('query_vars', array($this, 'location_query_var'));
 		add_filter('posts_clauses', array($this, 'location_clauses'), 10, 2);
@@ -526,6 +527,17 @@ class Humus_Map {
 			$class[] = 'map';
 		}
 		return $class;
+	}
+
+	function list_article_after_title($content) {
+		global $post;
+		$location = get_the_terms($post->ID, 'location');
+		if($location) {
+			$location = array_shift($location);
+			?>
+			<p class="location"><?php echo $location->name; ?></p>
+			<?php
+		}
 	}
 
 	/*

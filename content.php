@@ -219,6 +219,7 @@ else :
 							<?php endif; ?>
 							<?php do_action('humus_list_article_before_title'); ?>
 							<h2><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h2>
+							<?php do_action('humus_list_article_after_title'); ?>
 							<?php if($display_author) : ?>
 								<p class="author"><?php _e('by', 'humus'); ?> <span><?php the_author(); ?></span></p>
 							<?php endif; ?>
