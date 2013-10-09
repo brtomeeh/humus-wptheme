@@ -794,5 +794,12 @@ var pinImage;
 
 	}
 
+	/*
+	 * RESPONSIVE
+	 */
+	 $(document).ready(function() {
+		var nav = responsiveNav(".header-navigation");
+	});
+
 
 })(jQuery);

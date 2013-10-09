@@ -58,7 +58,8 @@ function humus_styles() {
 	wp_register_style('base', get_template_directory_uri() . '/css/base.css');
 	wp_register_style('skeleton', get_template_directory_uri() . '/css/skeleton.css', array('base'));
 	wp_register_style('webfonts', 'http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic|Open+Sans:300italic,400italic,600italic,400,300,600,700,800');
-	wp_register_style('main', get_template_directory_uri() . '/css/main.css', array('skeleton', 'webfonts'));
+	wp_register_style('responsive-nav', get_template_directory_uri() . '/css/responsive-nav.css');
+	wp_register_style('main', get_template_directory_uri() . '/css/main.css', array('skeleton', 'webfonts', 'responsive-nav'));
 	wp_register_style('home', get_template_directory_uri() . '/css/home.css', array('main'));
 
 	wp_enqueue_style('main');
@@ -80,7 +81,10 @@ function humus_scripts() {
 	wp_register_script('swipebox', get_template_directory_uri() . '/js/swipebox/jquery.swipebox.min.js', array('jquery'));
 	wp_register_style('swipebox', get_template_directory_uri() . '/js/swipebox/swipebox.css');
 
-	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery',  'imagesloaded', 'fitvids', 'lockfixed', 'sly'), '0.0.2');
+	wp_register_script('responsive-nav', get_template_directory_uri() . '/js/responsive-nav.min.js', array('jquery'));
+
+	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery',  'imagesloaded', 'fitvids', 'lockfixed', 'sly', 'responsive-nav'), '0.0.2');
+
 
 	wp_enqueue_script('frontend');
 	wp_localize_script('frontend', 'humus_frontend', array(

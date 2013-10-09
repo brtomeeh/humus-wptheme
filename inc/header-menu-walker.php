@@ -73,7 +73,7 @@ class Humus_Header_Menu_Walker extends Walker_Nav_Menu {
 
 			$output .= '<li class="sections">';
 			$output .= '<h3>' . __('Sections', 'humus') . '</h3>';
-			$output .= '<ul>';
+			$output .= '<ul class="clearfix">';
 			foreach($sections as $section) {
 				$menu_icon = get_field('term_menu_icon', 'section_' . $section->term_id);
 				$menu_icon_attr = '';

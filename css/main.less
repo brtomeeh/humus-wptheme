@@ -797,6 +797,16 @@ input[type=submit] {
 	top: 48px;
 }
 
+@media only screen and (max-width: 767px) {
+	#masthead {
+		top: 0;
+		height: 60px;
+	}
+	.admin-bar #masthead {
+		top: 28px;
+	}
+}
+
 @media only screen and (min-width: 1200px) {
 	#masthead h1 {
 		margin: 0 40px 0 0;
@@ -1781,5 +1791,155 @@ article.full {
 		.pin-it {
 			opacity: 1;
 		}
+	}
+}
+
+/*
+ * RESPONSIVE
+ */
+
+/* HEADER */
+
+#masthead {
+	.nav-toggle {
+		display: none;
+		.lsf;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.hide-if-mobile {
+		display: none !important;
+	}
+	#masthead {
+		.header-navigation {
+			background: #fff;
+			top: 60px;
+			position: fixed !important;
+			clip: auto;
+			left: 0;
+			right: 0;
+			#mastnav .menu > li {
+				width: auto;
+				margin: 0;
+				font-size: 14px;
+				line-height: 18px;
+				padding: 0;
+				border-bottom: 1px solid #ccc;
+				float: none;
+				clear: both;
+				> a {
+					display: block;
+					padding: 15px;
+				}
+				ul {
+					display: block;
+					width: auto;
+					height: auto;
+					opacity: 1;
+					overflow: visible;
+					position: static;
+					margin: 0;
+					padding: 0;
+					&:before {
+						display: none;
+					}
+					li {
+						display: block;
+						width: 100%;
+						border: 0;
+						float: none;
+						padding: 0;
+					}
+				}
+				.sub-menu {
+					margin-left: 15px;
+					margin-bottom: 15px;
+					a {
+						padding: 5px 10px;
+						display: block;
+					}
+				}
+				&.explore {
+					padding: 15px 15px 0;
+					> a {
+						display: none;
+					}
+					ul {
+						li {
+							margin: 0 0 15px;
+							padding: 0;
+							width: auto;
+							font-size: 14px;
+							line-height: 18px;
+							float: none;
+							h3 {
+								font-size: 12px;
+								padding-bottom: 10px;
+								margin-bottom: 10px;
+								color: #999;
+								border: 0;
+							}
+							a {
+								line-height: 18px;
+							}
+							&.axes {
+								ul {
+									width: 100%;
+									display: table;
+									li {
+										width: 1%;
+										text-align: center;
+										display: table-cell;
+									}
+								}
+							}
+						}
+					}
+					.explore-menu > li,
+					.explore-menu > li > ul {
+						clear: both;
+					}
+				}
+			}
+			.right-side {
+				float: none;
+			}
+			.search {
+				width: auto;
+				float: none;
+				padding: 0;
+				margin: 0;
+				position: static;
+				.searchform {
+					width: auto;
+					height: auto;
+					opacity: 1;
+					overflow: visible;
+					position: static;
+					form {
+						margin: 0;
+						background: transparent;
+					}
+				}
+				&:before {
+					display: none;
+				}
+			}
+		}
+		.nav-toggle {
+			display: block;
+			position: absolute;
+			right: 0;
+			top: 10px;
+		}
+	}
+	.js .nav-collapse {
+	  clip: rect(0 0 0 0);
+	  max-height: 0;
+	  position: absolute;
+	  display: block;
+	  overflow: hidden;
+	  zoom: 1;
 	}
 }

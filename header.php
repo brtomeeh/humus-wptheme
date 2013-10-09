@@ -11,7 +11,7 @@
 <html <?php language_attributes(); ?> class="no-js">
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>" />
-<meta name="viewport" content="width=device-width, height=device-height" />
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1" />
 <title><?php wp_title( '|', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
@@ -38,44 +38,46 @@
 						<?php humus_logo(); ?>
 					</a>
 				</h1>
-				<nav id="mastnav">
-					<?php
-					wp_nav_menu(array(
-						'theme_location' => 'primary',
-						'container' => false,
-						'walker' => new Humus_Header_Menu_Walker()
-					));
-					?>
-				</nav>
-				<div class="right-side">
-					<div class="search">
-						<div class="searchform">
-							<?php get_search_form(); ?>
+				<div class="header-navigation">
+					<nav id="mastnav">
+						<?php
+						wp_nav_menu(array(
+							'theme_location' => 'primary',
+							'container' => false,
+							'walker' => new Humus_Header_Menu_Walker()
+						));
+						?>
+					</nav>
+					<div class="right-side">
+						<div class="search">
+							<div class="searchform">
+								<?php get_search_form(); ?>
+							</div>
 						</div>
-					</div>
-					<div class="social">
-						<div class="social-content">
-							<div class="social-icons">
-								<?php
-								$facebook = get_field('facebook_url', 'option');
-								if($facebook)
-									echo '<a href="' . $facebook . '" title="Facebook" target="_blank">facebook</a>';
-								$twitter = get_field('twitter_url', 'option');
-								if($twitter)
-									echo '<a href="' . $twitter . '" title="Twitter" target="_blank">twitter</a>';
-								$youtube = get_field('youtube_url', 'option');
-								if($youtube)
-									echo '<a href="' . $youtube . '" title="YouTube" target="_blank">youtube</a>';
-								$instagram = get_field('instagram_url', 'option');
-								if($instagram)
-									echo '<a href="' . $instagram . '" title="Instagram" target="_blank">instagram</a>';
-								$gplus = get_field('gplus_url', 'option');
-								if($gplus)
-									echo '<a href="' . $gplus . '" title="Google Plus" target="_blank">google</a>';
-								$pinterest = get_field('pinterest_url', 'option');
-								if($pinterest)
-									echo '<a href="' . $pinterest . '" title="Pinterest" target="_blank">pinterest</a>';
-								?>
+						<div class="social hide-if-mobile">
+							<div class="social-content">
+								<div class="social-icons">
+									<?php
+									$facebook = get_field('facebook_url', 'option');
+									if($facebook)
+										echo '<a href="' . $facebook . '" title="Facebook" target="_blank">facebook</a>';
+									$twitter = get_field('twitter_url', 'option');
+									if($twitter)
+										echo '<a href="' . $twitter . '" title="Twitter" target="_blank">twitter</a>';
+									$youtube = get_field('youtube_url', 'option');
+									if($youtube)
+										echo '<a href="' . $youtube . '" title="YouTube" target="_blank">youtube</a>';
+									$instagram = get_field('instagram_url', 'option');
+									if($instagram)
+										echo '<a href="' . $instagram . '" title="Instagram" target="_blank">instagram</a>';
+									$gplus = get_field('gplus_url', 'option');
+									if($gplus)
+										echo '<a href="' . $gplus . '" title="Google Plus" target="_blank">google</a>';
+									$pinterest = get_field('pinterest_url', 'option');
+									if($pinterest)
+										echo '<a href="' . $pinterest . '" title="Pinterest" target="_blank">pinterest</a>';
+									?>
+								</div>
 							</div>
 						</div>
 					</div>
