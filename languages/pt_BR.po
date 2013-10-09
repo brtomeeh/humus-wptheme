@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Humus\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-09 10:19-0300\n"
-"PO-Revision-Date: 2013-10-09 11:49-0300\n"
+"PO-Revision-Date: 2013-10-09 12:18-0300\n"
 "Last-Translator: Miguel Peixe <miguel@cardume.art.br>\n"
 "Language-Team: Cardume <miguel@cardume.art.br>\n"
 "Language: \n"
@@ -184,7 +184,7 @@ msgstr "Desenvolvimento"
 
 #: ../yarpp-template-humus.php:15
 msgid "You might also like"
-msgstr "Você também poderá gostar de"
+msgstr "Continue lendo"
 
 #: ../full-width-page-wider.php:48
 #: ../page.php:49
