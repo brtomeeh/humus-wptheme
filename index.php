@@ -79,7 +79,7 @@ get_header(); ?>
 															<li data-postid="<?php echo $post->ID; ?>" data-image="<?php echo $image; ?>" data-axis="<?php echo $axis->slug; ?>" class="axis-post">
 																<img src="<?php echo humus_get_term_icon_url($post->ID, 'section'); ?>" class="section-icon" />
 																<h3><a href="<?php the_permalink(); ?>"><?php echo $title; ?></a></h3>
-																<p><?php echo $description; ?></p>
+																<p><a href="<?php the_permalink(); ?>"><?php echo $description; ?></a></p>
 															</li>
 															<?php
 															wp_reset_postdata();
