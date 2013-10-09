@@ -644,8 +644,10 @@ var pinImage;
 		var items = $('article.list');
 		if(items.length) {
 			items.each(function() {
-				var height = $(this).find('.wp-post-image').height();
-				$(this).height(height);
+				setTimeout(function() {
+					var height = $(this).find('.wp-post-image').height();
+					$(this).height(height);
+				}, 200);
 			});
 		}
 	}
