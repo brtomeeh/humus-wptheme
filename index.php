@@ -176,6 +176,8 @@ get_header(); ?>
 															<?php if(!get_field('section_featured_image_only')) : ?>
 																<div class="post-content <?php echo get_field('section_featured_color'); ?>">
 																	<?php
+																	/*
+																	<?php
 																	$axis = get_the_terms($post->ID, 'axis');
 																	if($axis) :
 																		$axis = array_shift($axis);
@@ -183,6 +185,10 @@ get_header(); ?>
 																		<h3><?php echo $axis->name; ?></h3>
 																	<?php endif; ?>
 																	<h2><?php echo $title; ?></h2>
+																	*/
+																	?>
+																	<h2><?php echo $title; ?></h2>
+																	<?php the_excerpt(); ?>
 																</div>
 															<?php endif; ?>
 														</div>

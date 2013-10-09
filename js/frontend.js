@@ -362,11 +362,6 @@ var pinImage;
 				posts.css({
 					'height': $('#sections-area').innerHeight() - $container.innerHeight()
 				});
-				posts.each(function() {
-					$(this).find('.post-content').css({
-						'margin-top': ($(this).height()/2) - ($(this).find('.post-content').height()/2)
-					});
-				});
 			}
 
 			function open(termid) {
