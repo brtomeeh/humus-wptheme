@@ -289,10 +289,14 @@ get_header(); ?>
 						endif;
 						?>
 
-					</div>
+					</div><!-- .items -->
 
-				</div>
+				</div><!-- .full-height-sections -->
 
+			</div><!-- #full-height-content -->
+
+			<div class="home-ad">
+				<?php humus_ad(array('name' => 'Home')); ?>
 			</div>
 
 		</div><!-- #content -->

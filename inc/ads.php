@@ -17,13 +17,25 @@ class Humus_Ads {
 
 	}
 
-	function ad() {
-		global $samObject;
+	function ad($options = false) {
 		$ad = false;
-		if(is_tax() || is_category() || is_tag()) {
-			$obj = get_queried_object();
-			$ad = $samObject->buildAd(array('name' => $obj->name));
+
+		if($options) {
+
+			$settings = $options;
+
+		} else {
+
+			if(is_tax() || is_category() || is_tag()) {
+
+				$obj = get_queried_object();
+				$settings = array('name' => $obj->name);
+
+			}
+
 		}
+
+		$ad = $this->get_ad($settings);
 
 		if($ad) {
 			if($obj->taxonomy)
@@ -34,7 +46,7 @@ class Humus_Ads {
 					<div class="twelve columns">
 						<?php if($obj->taxonomy) : ?>
 							<div class="ad-title">
-								<h4><?php printf(__('%1$s %2$s is sponsored by %3$s', 'humus'), $taxonomy->labels->singular_name, $obj->name, $this->get_ad_name($GLOBALS['sam_ad_id'])); ?></h4>
+								<h4><?php printf(__('%1$s %2$s is sponsored by %3$s', 'humus'), $taxonomy->labels->singular_name, $obj->name, $this->get_ad_name($this->get_current_ad_id())); ?></h4>
 							</div>
 						<?php endif; ?>
 						<div class="ad-content">
@@ -47,9 +59,16 @@ class Humus_Ads {
 		}
 	}
 
+	function get_ad($options) {
+
+		global $samObject;
+		return $samObject->buildAd($options);
+
+	}
+
 	function get_ad_name($ad_id) {
 
-		$ad = $this->get_ad($ad_id);
+		$ad = $this->get_ad_row($ad_id);
 
 		if($ad)
 			return $ad->name;
@@ -58,7 +77,11 @@ class Humus_Ads {
 
 	}
 
-	function get_ad($ad_id) {
+	function get_current_ad_id() {
+		return $GLOBALS['sam_ad_id'];
+	}
+
+	function get_ad_row($ad_id) {
 
 		if(!$ad_id)
 			return false;
@@ -70,4 +93,12 @@ class Humus_Ads {
 
 }
 
-new Humus_Ads();
+$GLOBALS['humus_ads'] = new Humus_Ads();
+
+function humus_get_ad($options) {
+	return $GLOBALS['humus_ads']->get_ad($options);
+}
+
+function humus_ad($options) {
+	return $GLOBALS['humus_ads']->ad($options);
+}
