@@ -643,12 +643,12 @@ var pinImage;
 	function articleItemHeight() {
 		var items = $('article.list');
 		if(items.length) {
-			items.each(function() {
-				setTimeout(function() {
+			setTimeout(function() {
+				items.each(function() {
 					var height = $(this).find('.wp-post-image').height();
 					$(this).height(height);
-				}, 200);
-			});
+				});
+			}, 200);
 		}
 	}
 	$('body').imagesLoaded(articleItemHeight);
