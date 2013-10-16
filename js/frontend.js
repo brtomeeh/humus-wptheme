@@ -122,7 +122,7 @@ var pinImage;
 				if(window.removeEventListener) {
 					window.removeEventListener('DOMMouseScroll', disableMousewheel);
 				}
-				window.onmousewheel = document.onmousewheel = disableMousewheel;
+				window.onmousewheel = document.onmousewheel = null;
 
 				if(e === 'moveEnd')
 					$(window).scrollTop(1);
