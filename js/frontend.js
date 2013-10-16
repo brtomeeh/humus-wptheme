@@ -26,7 +26,7 @@ var pinImage;
 	}
 
 	fullHeightSection.prototype.fixHeight = function() {
-		$('body').css({'overflow':'hidden'});
+		//$('body').css({'overflow':'hidden'});
 		var height = $(window).height() - 60 - parseInt($('html').css('marginTop'));
 		this.contentArea.find('.full-height-sections').height(height);
 		this.contentArea.find('.vertical-center').each(function() {
@@ -76,12 +76,21 @@ var pinImage;
 		this.sly.on('moveEnd', manageFooter);
 		$(window).on('scroll', manageFooter);
 
+
+		function disableMousewheel(e) {
+			e.preventDefault();
+		}
+
 		function disableScroll() {
 			self.sly.set('scrollBy', 0);
 			self.sly.set('keyboardNavBy', 0);
 			self.sly.set('mouseDragging', 0);
 			self.sly.set('touchDragging', 0);
 			self.sly.set('dragHandle', 0);
+			if(window.addEventListener) {
+				window.addEventListener('DOMMouseScroll', disableMousewheel, false);
+			}
+			window.onmousewheel = document.onmousewheel = null;
 		}
 
 		function enableScroll() {
@@ -90,6 +99,10 @@ var pinImage;
 			self.sly.set('mouseDragging', 1);
 			self.sly.set('touchDragging', 1);
 			self.sly.set('dragHandle', 1);
+			if(window.removeEventListener) {
+				window.removeEventListener('DOMMouseScroll', disableMousewheel);
+			}
+			window.onmousewheel = document.onmousewheel = disableMousewheel;
 		}
 
 		var previousScroll = $(window).scrollTop();
@@ -103,7 +116,13 @@ var pinImage;
 
 				$('body').css({'overflow':'auto'});
 				$('.scroll-tip').addClass('hidden');
+
 				disableScroll();
+
+				if(window.removeEventListener) {
+					window.removeEventListener('DOMMouseScroll', disableMousewheel);
+				}
+				window.onmousewheel = document.onmousewheel = disableMousewheel;
 
 				if(e === 'moveEnd')
 					$(window).scrollTop(1);
@@ -112,7 +131,7 @@ var pinImage;
 
 					previousScroll = false;
 
-					$('body').css({'overflow':'hidden'});
+					//$('body').css({'overflow':'hidden'});
 					$('.scroll-tip').removeClass('hidden');
 					enableScroll();
 
