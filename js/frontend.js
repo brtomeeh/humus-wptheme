@@ -90,7 +90,7 @@ var pinImage;
 			if(window.addEventListener) {
 				window.addEventListener('DOMMouseScroll', disableMousewheel, false);
 			}
-			window.onmousewheel = document.onmousewheel = null;
+			window.onmousewheel = document.onmousewheel = disableMousewheel;
 		}
 
 		function enableScroll() {
@@ -102,7 +102,7 @@ var pinImage;
 			if(window.removeEventListener) {
 				window.removeEventListener('DOMMouseScroll', disableMousewheel);
 			}
-			window.onmousewheel = document.onmousewheel = disableMousewheel;
+			window.onmousewheel = document.onmousewheel = null;
 		}
 
 		var previousScroll = $(window).scrollTop();

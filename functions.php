@@ -83,7 +83,7 @@ function humus_scripts() {
 
 	wp_register_script('responsive-nav', get_template_directory_uri() . '/js/responsive-nav.min.js', array('jquery'));
 
-	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery',  'imagesloaded', 'fitvids', 'lockfixed', 'sly', 'responsive-nav'), '0.1.0');
+	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery',  'imagesloaded', 'fitvids', 'lockfixed', 'sly', 'responsive-nav'), '0.1.1');
 
 
 	wp_enqueue_script('frontend');
