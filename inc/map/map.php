@@ -584,7 +584,6 @@ class Humus_Map {
 
 		global $wp_query;
 		if(!$wp_query->get('list') && $this->is_map_view()) {
-			error_log('der');
 			include_once(TEMPLATEPATH . '/inc/map/template.php');
 			exit;
 		}
