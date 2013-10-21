@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Humus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-09 10:19-0300\n"
-"PO-Revision-Date: 2013-10-09 12:18-0300\n"
+"POT-Creation-Date: 2013-10-21 14:22-0300\n"
+"PO-Revision-Date: 2013-10-21 14:26-0300\n"
 "Last-Translator: Miguel Peixe <miguel@cardume.art.br>\n"
 "Language-Team: Cardume <miguel@cardume.art.br>\n"
 "Language: \n"
@@ -33,104 +33,104 @@ msgstr "Comentários mais novos &rarr;"
 msgid "Comments are closed."
 msgstr "Comentários estão fechados."
 
-#: ../functions.php:109
+#: ../functions.php:113
 msgid "Primary menu"
 msgstr "Menu principal"
 
-#: ../functions.php:136
+#: ../functions.php:140
 #, php-format
 msgid "Page %s"
 msgstr "Página %s"
 
-#: ../functions.php:361
+#: ../functions.php:365
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: ../functions.php:361
+#: ../functions.php:365
 msgid "(Edit)"
 msgstr "(Editar)"
 
-#: ../functions.php:391
+#: ../functions.php:395
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s às %2$s"
 
-#: ../functions.php:395
+#: ../functions.php:399
 msgid "Edit"
 msgstr "Editar"
 
-#: ../functions.php:399
+#: ../functions.php:403
 msgid "Your comment is awaiting moderation."
 msgstr "Seu comentário está aguardando moderação."
 
-#: ../functions.php:407
+#: ../functions.php:411
 msgid "Reply"
 msgstr "Responder"
 
-#: ../functions.php:448
+#: ../functions.php:452
 #, php-format
 msgid "Day: %s"
 msgstr "Dia: %s"
 
-#: ../functions.php:451
+#: ../functions.php:455
 #, php-format
 msgid "Month: %s"
 msgstr "Mês: %s"
 
-#: ../functions.php:454
+#: ../functions.php:458
 #, php-format
 msgid "Year: %s"
 msgstr "Ano: %s"
 
-#: ../functions.php:463
+#: ../functions.php:467
 msgid "Search"
 msgstr "Buscar"
 
-#: ../functions.php:466
+#: ../functions.php:470
 msgid "Nothing found"
 msgstr "Nada encontrado"
 
-#: ../functions.php:469
+#: ../functions.php:473
 msgid "Archives"
 msgstr "Arquivos"
 
-#: ../functions.php:495
+#: ../functions.php:499
 msgid "Try using our search:"
 msgstr "Tente usar nossa busca:"
 
-#: ../functions.php:500
+#: ../functions.php:504
 #: ../searchform.php:3
 msgid "Type your search..."
 msgstr "Digite sua busca..."
 
-#: ../functions.php:507
+#: ../functions.php:511
 #, php-format
 msgid "We found just %d result for your search"
 msgid_plural "We found %d results for your search"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../functions.php:568
+#: ../functions.php:572
 msgid "Next image"
 msgstr "Próxima imagem"
 
-#: ../functions.php:569
+#: ../functions.php:573
 msgid "Previous image"
 msgstr "Imagem anterior"
 
-#: ../functions.php:816
+#: ../functions.php:820
 msgid "Show author info"
 msgstr "Exibir informação do autor"
 
-#: ../functions.php:820
+#: ../functions.php:824
 msgid "Author info"
 msgstr "Informação do autor"
 
-#: ../functions.php:823
+#: ../functions.php:827
 msgid "Check to show author information"
 msgstr "Marque para exibir informação do autor"
 
-#: ../functions.php:824
+#: ../functions.php:828
 msgid "Display author information"
 msgstr "Exibir informação do autor"
 
@@ -223,7 +223,7 @@ msgstr "Role para explorar nosso conteúdo"
 
 #: ../index.php:151
 msgid "View all content from this section"
-msgstr "Ver todo o conteúdo desta sessão"
+msgstr "Ver todo o conteúdo desta seção"
 
 #: ../index.php:225
 msgid "Recent videos"
@@ -343,76 +343,76 @@ msgstr "Imagem full screen"
 #: ../inc/section.php:28
 msgctxt "Section general name"
 msgid "Sections"
-msgstr "Sessões"
+msgstr "Seções"
 
 #: ../inc/section.php:29
 msgctxt "Section singular name"
 msgid "Section"
-msgstr "Sessão"
+msgstr "Seção"
 
 #: ../inc/section.php:30
 msgid "All sections"
-msgstr "Todas as sessões"
+msgstr "Todas as seções"
 
 #: ../inc/section.php:31
 msgid "Edit section"
-msgstr "Editar sessão"
+msgstr "Editar seção"
 
 #: ../inc/section.php:32
 msgid "View section"
-msgstr "Ver sessão"
+msgstr "Ver seção"
 
 #: ../inc/section.php:33
 msgid "Update section"
-msgstr "Atualizar sessão"
+msgstr "Atualizar seção"
 
 #: ../inc/section.php:34
 msgid "Add new section"
-msgstr "Adicionar nova sessão"
+msgstr "Adicionar nova seção"
 
 #: ../inc/section.php:35
 msgid "New section name"
-msgstr "Novo nome de sessão"
+msgstr "Novo nome de seção"
 
 #: ../inc/section.php:36
 msgid "Parent section"
-msgstr "Sessão pai"
+msgstr "Seção pai"
 
 #: ../inc/section.php:37
 msgid "Parent section:"
-msgstr "Sessão pai:"
+msgstr "Seção pai:"
 
 #: ../inc/section.php:38
 msgid "Search sections"
-msgstr "Buscar sessões"
+msgstr "Buscar seções"
 
 #: ../inc/section.php:39
 msgid "Popular sections"
-msgstr "Sessões populares"
+msgstr "Seções populares"
 
 #: ../inc/section.php:40
 msgid "Separate sections with commas"
-msgstr "Separar sessões por vírgulas"
+msgstr "Separar seções por vírgulas"
 
 #: ../inc/section.php:41
 msgid "Add or remove sections"
-msgstr "Adicionar ou remover sessões"
+msgstr "Adicionar ou remover seções"
 
 #: ../inc/section.php:42
 msgid "Choose from most used sections"
-msgstr "Escolher entre as sessões mais utilizadas"
+msgstr "Escolher entre as seções mais utilizadas"
 
 #: ../inc/section.php:43
 msgid "No sections found"
-msgstr "Nenhum sessão encontrada"
+msgstr "Nenhum seção encontrada"
 
 #: ../inc/section.php:81
 msgid "Section featured options"
-msgstr "Opções de destaque da sessão"
+msgstr "Opções de destaque da seção"
 
 #: ../inc/section.php:85
 msgid "Section featured"
-msgstr "Destaque na sessão"
+msgstr "Destaque na seção"
 
 #: ../inc/section.php:88
 msgid "Featured on home section slider"
@@ -506,7 +506,7 @@ msgstr "Ícone"
 
 #: ../inc/taxonomy-styles.php:46
 msgid "60x60 image to represent the section on the section's page and posts association"
-msgstr "Imagem 60x60 para representar a sessão na página da sessão e em associação com posts"
+msgstr "Imagem 60x60 para representar a seção na página da seção e em associação com posts"
 
 #: ../inc/taxonomy-styles.php:53
 msgid "Menu icon"
@@ -514,7 +514,7 @@ msgstr "Ícone do menu"
 
 #: ../inc/taxonomy-styles.php:56
 msgid "21x21 image to represent the section on the navigation menu"
-msgstr "Imagem 21x21 para representar a sessão no menu de navegação"
+msgstr "Imagem 21x21 para representar a seção no menu de navegação"
 
 #: ../inc/taxonomy-styles.php:63
 msgid "Color"
@@ -587,7 +587,7 @@ msgstr "Eixos"
 
 #: ../inc/header-menu-walker.php:75
 msgid "Sections"
-msgstr "Sessões"
+msgstr "Seções"
 
 #: ../inc/header-image.php:36
 msgid "Header image file"
