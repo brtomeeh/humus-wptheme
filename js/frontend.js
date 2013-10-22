@@ -822,5 +822,53 @@ var pinImage;
 		var nav = responsiveNav(".header-navigation");
 	});
 
+	 /*
+	  * Maintain hover
+	  */
+	 $(document).ready(function() {
+
+	 	var maintainHovers = $('.maintain-hover');
+
+	 	if(maintainHovers.length) {
+
+	 		maintainHovers.each(function() {
+
+	 			var hover = $(this);
+	 			var t = undefined;
+
+	 			hover.on('mouseover', function() {
+
+	 				activate();
+	 				clearTimeout(t);
+
+	 			});
+
+	 			hover.on('mouseout', function() {
+
+
+	 				t = setTimeout(deactivate, 1000);
+
+
+	 			})
+
+	 			var activate = function() {
+
+	 				maintainHovers.removeClass('active');
+	 				hover.addClass('active');
+
+	 			};
+
+	 			var deactivate = function() {
+
+	 				hover.removeClass('active');
+
+	 			}
+
+	 		});
+
+	 	}
+
+	 });
+
 
 })(jQuery);

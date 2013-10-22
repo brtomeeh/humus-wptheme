@@ -49,12 +49,12 @@
 						?>
 					</nav>
 					<div class="right-side">
-						<div class="search">
+						<div class="search maintain-hover">
 							<div class="searchform">
 								<?php get_search_form(); ?>
 							</div>
 						</div>
-						<div class="social hide-if-mobile">
+						<div class="social hide-if-mobile maintain-hover">
 							<div class="social-content">
 								<div class="social-icons">
 									<?php
