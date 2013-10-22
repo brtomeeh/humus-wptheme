@@ -633,6 +633,7 @@ class Humus_Map {
 	}
 
 	function embed_oembed_html($html) {
+		global $wp_query;
 		if(!$wp_query->get('list') && $this->is_map_view() && !is_admin()) {
 			return '';
 		}
