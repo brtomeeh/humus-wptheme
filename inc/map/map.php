@@ -549,6 +549,7 @@ class Humus_Map {
 		add_action('humus_header_content', array($this, 'map_view_dropdown'));
 		add_action('template_redirect', array($this, 'template_redirect'));
 		add_filter('body_class', array($this, 'body_class'));
+		add_filter('embed_oembed_html', array($this, 'embed_oembed_html'));
 	}
 
 	function map_view_dropdown() {
@@ -629,6 +630,13 @@ class Humus_Map {
 
 		return $url;
 
+	}
+
+	function embed_oembed_html($html) {
+		if(!$wp_query->get('list') && $this->is_map_view() && !is_admin()) {
+			return '';
+		}
+		return $html;
 	}
 
 }

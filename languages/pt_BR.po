@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Humus\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-21 14:22-0300\n"
-"PO-Revision-Date: 2013-10-21 14:26-0300\n"
+"PO-Revision-Date: 2013-10-22 20:03-0300\n"
 "Last-Translator: Miguel Peixe <miguel@cardume.art.br>\n"
 "Language-Team: Cardume <miguel@cardume.art.br>\n"
 "Language: \n"
@@ -2645,7 +2645,7 @@ msgstr "Localização"
 #: ../inc/map/map.php:151
 #: ../inc/map/map.php:215
 msgid "All locations"
-msgstr "Todas as localizações"
+msgstr "Localizações"
 
 #: ../inc/map/map.php:152
 msgid "Edit location"
