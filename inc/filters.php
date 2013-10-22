@@ -63,7 +63,7 @@ class Humus_Filters {
 
 	function get_related_term_url($term_id, $active, $query_arg) {
 		if(!is_array($active))
-			return add_query_arg(array($query_arg => array($term_id)));
+			return $this->add_query_arg(array($query_arg => array($term_id)));
 
 		if(in_array($term_id, $active)) {
 			$key = array_search($term_id, $active);
@@ -71,7 +71,7 @@ class Humus_Filters {
 		} else {
 			$active[] = $term_id;
 		}
-		return add_query_arg(array($query_arg => $active));
+		return $this->add_query_arg(array($query_arg => $active));
 	}
 
 	function get_active_filter($query_arg) {
@@ -192,6 +192,30 @@ class Humus_Filters {
 		<?php
 	}
 
+	function add_query_arg($array = array()) {
+
+		$url = add_query_arg($array);
+
+		if(is_paged()) {
+			$url = preg_replace('/\/page\/[0-9]/', '', $url);
+		}
+
+		return $url;
+
+	}
+
+	function remove_query_arg($key) {
+
+		$url = remove_query_arg($key);
+
+		if(is_paged()) {
+			$url = preg_replace('/\/page\/[0-9]/', '', $url);
+		}
+
+		return $url;
+
+	}
+
 	function taxonomy_selector($taxonomy = false) {
 		if(!$taxonomy)
 			return false;
@@ -207,9 +231,9 @@ class Humus_Filters {
 				<div class="humus-dropdown">
 					<ul>
 						<?php foreach($terms as $term) { ?>
-							<li <?php if($active == $term->term_id) echo 'class="active"'; ?>><a href="<?php echo add_query_arg(array($query_arg => $term->term_id)); ?>"><?php echo $term->name; ?></a></li>
+							<li <?php if($active == $term->term_id) echo 'class="active"'; ?>><a href="<?php echo $this->add_query_arg(array($query_arg => $term->term_id)); ?>"><?php echo $term->name; ?></a></li>
 						<?php } ?>
-						<li <?php if(!$active) echo 'class="active"'; ?>><a href="<?php echo remove_query_arg($query_arg); ?>"><?php echo $tax_object->labels->all_items; ?></a></li>
+						<li <?php if(!$active) echo 'class="active"'; ?>><a href="<?php echo $this->remove_query_arg($query_arg); ?>"><?php echo $tax_object->labels->all_items; ?></a></li>
 					</ul>
 				</div>
 			</div>
@@ -226,9 +250,9 @@ class Humus_Filters {
 				<div class="humus-dropdown">
 					<ul>
 						<?php foreach($options as $key => $option) :
-							$url = add_query_arg(array($query_arg => $key));
+							$url = $this->add_query_arg(array($query_arg => $key));
 							if($key == 'default')
-								$url = remove_query_arg($query_arg);
+								$url = $this->remove_query_arg($query_arg);
 							?>
 							<li <?php if($option['active']) echo 'class="active"'; ?>><a href="<?php echo $url; ?>"><?php echo $option['name']; ?></a></li>
 						<?php endforeach; ?>

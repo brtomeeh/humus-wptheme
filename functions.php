@@ -852,7 +852,7 @@ function humus_add_video_wmode_transparent($html, $url, $attr) {
 
 	return $html; 
 }
-add_filter( 'embed_oembed_html', 'humus_add_video_wmode_transparent', 10, 3);
+add_filter('embed_oembed_html', 'humus_add_video_wmode_transparent', 10, 3);
 
 
 /*
