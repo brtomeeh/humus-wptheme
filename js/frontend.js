@@ -294,7 +294,7 @@ var pinImage;
 
 			$(window).resize(setNavHeight).resize();
 
-			open(posts.filter(':first').data('postid'));
+			open(posts.filter(':nth-child(' + _.random(1, posts.length) + ')').data('postid'));
 
 			run = setInterval(next, 8000);
 

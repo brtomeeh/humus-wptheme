@@ -43,7 +43,6 @@ get_header(); ?>
 								<div class="container">
 									<?php
 									$axes = get_terms('axis', array('hide_empty' => 0));
-									shuffle($axes);
 									foreach($axes as $axis) : 
 										$axis_posts = get_posts(array(
 											'posts_per_page' => 4,

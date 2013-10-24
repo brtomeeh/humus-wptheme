@@ -15,8 +15,11 @@ class Humus_Axes {
 		
 		$this->register_taxonomy();
 		$this->home_featured_fields();
+		$this->custom_sort_field();
 
 		add_filter('humus_header_image_locations', array($this, 'register_header_image'));
+
+		add_filter('get_terms', array($this, 'custom_sort'), 10, 3);
 
 	}
 
@@ -208,6 +211,127 @@ class Humus_Axes {
 			register_field_group($field_group);
 	
 		}
+	}
+
+	function custom_sort_field() {
+
+		$field_group = array(
+			'id' => 'acf_axis_custom_sort',
+			'title' => __('Custom sort', 'humus'),
+			'fields' => array(
+				array(
+					'key' => 'field_axis_order',
+					'label' => __('Order', 'humus'),
+					'name' => 'axis_order',
+					'type' => 'text',
+					'instructions' => __('Select a number for order of appearance.', 'humus')
+				)
+			),
+			'options' => array(
+				'position' => 'normal',
+				'layout' => 'no_box',
+			),
+			'menu_order' => 0,
+			'location' => array(
+				array(
+					array(
+						'param' => 'ef_taxonomy',
+						'operator' => '==',
+						'value' => 'axis',
+						'order_no' => 0,
+						'group_no' => 0
+					)
+				)
+			)
+		);
+
+		register_field_group($field_group);
+
+	}
+
+	function custom_sort($terms, $taxonomies, $args) {
+
+		if(!in_array('axis', $taxonomies))
+			return $terms;
+
+		// Controls behavior when get_terms is called at unusual times resulting in a terms array without objects
+		$empty = false;
+
+		// Create collector arrays
+		$ordered_terms = array();
+		$unordered_terms = array();
+
+		// Add taxonomy order to terms
+		foreach($terms as $term) {
+			// Only set tax_order if value is an object
+			if(is_object($term)) {
+				if($taxonomy_sort = get_field('axis_order', 'axis_' . $term->term_id)) {
+					$term->tax_order = (int) $taxonomy_sort;
+					$ordered_terms[] = $term;
+				} else {
+					$term->tax_order = (int) 0;
+					$unordered_terms[] = $term;
+				}
+			} else $empty = true;
+		}
+
+		// Only sort by tax_order if there are items to sort, otherwise return the original array
+		if(!$empty && count($ordered_terms) > 0)
+			$this->quickSort($ordered_terms);
+		else
+			return $terms;
+
+		// Combine the newly ordered items with the unordered items and return
+		return array_merge($ordered_terms, $unordered_terms);  
+	}
+
+	function quickSort(&$array) {
+		$cur = 1;
+		$stack[1]['l'] = 0;
+		$stack[1]['r'] = count($array)-1;
+		
+		do {
+			$l = $stack[$cur]['l'];
+			$r = $stack[$cur]['r'];
+			$cur--;
+		
+			do {
+				$i = $l;
+				$j = $r;
+				$tmp = $array[(int)( ($l+$r)/2 )];
+			
+				// partion the array in two parts.
+				// left from $tmp are with smaller values,
+				// right from $tmp are with bigger ones
+				do {
+					while( $array[$i]->tax_order < $tmp->tax_order )
+					$i++;
+				
+					while( $tmp->tax_order < $array[$j]->tax_order )
+				 	$j--;
+				
+					// swap elements from the two sides
+					if( $i <= $j) {
+						 $w = $array[$i];
+						 $array[$i] = $array[$j];
+						 $array[$j] = $w;
+				
+				 		$i++;
+				 		$j--;
+					}
+				
+				}while( $i <= $j );
+				
+				if( $i < $r ) {
+					$cur++;
+					$stack[$cur]['l'] = $i;
+					$stack[$cur]['r'] = $r;
+				}
+				$r = $j;
+				
+			}while( $l < $r );
+				
+		}while( $cur != 0 );
 	}
 
 }
