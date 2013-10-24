@@ -706,6 +706,15 @@ function humus_album_page_template() {
 }
 add_action('template_redirect', 'humus_album_page_template');
 
+function humus_album_query($query) {
+
+	if(is_tax('section', 'albuns') && $query->is_main_query() && !is_admin()) {
+		$query->set('posts_per_page', 10);
+	}
+
+}
+add_action('pre_pet_posts', 'humus_album_query');
+
 function humus_album_content($content) {
 
 	if(has_term('albuns', 'section') && strpos($content, '[gallery') === false) {
