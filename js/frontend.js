@@ -191,6 +191,8 @@ var pinImage;
 
 					axis = axes.filter('.' + post.data('axis'));
 
+					console.log(axis);
+
 					activateAxis(post.data('axis'));
 
 					posts.removeClass('active');
@@ -292,8 +294,6 @@ var pinImage;
 			}
 
 			$(window).resize(setNavHeight).resize();
-
-			alert(_.random(1, posts.length));
 
 			open(posts.filter(':nth-child(' + _.random(1, posts.length) + ')').data('postid'));
 
