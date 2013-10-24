@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Humus\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-21 14:22-0300\n"
-"PO-Revision-Date: 2013-10-22 20:03-0300\n"
+"PO-Revision-Date: 2013-10-24 13:42-0300\n"
 "Last-Translator: Miguel Peixe <miguel@cardume.art.br>\n"
 "Language-Team: Cardume <miguel@cardume.art.br>\n"
 "Language: \n"
@@ -460,7 +460,7 @@ msgstr "Redes sociais"
 
 #: ../inc/filters.php:41
 msgid "Most recent"
-msgstr "Mais recente"
+msgstr "Mais recentes"
 
 #: ../inc/filters.php:46
 msgid "Oldest"
