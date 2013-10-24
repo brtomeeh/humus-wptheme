@@ -228,12 +228,11 @@ var pinImage;
 				
 				var el = axes.filter('.' + axis);				
 
-				if(!el.is('.active') && axes.filter('.active').length) {
+				if(axes.filter('.active').length) {
 					axes.removeClass('active');
-						el.addClass('active');
-				} else {
-					el.addClass('active');
 				}
+
+				el.addClass('active');
 
 				postsArray = posts.filter('[data-axis="' + axis + '"]').toArray();
 
@@ -293,6 +292,8 @@ var pinImage;
 			}
 
 			$(window).resize(setNavHeight).resize();
+
+			alert(_.random(1, posts.length));
 
 			open(posts.filter(':nth-child(' + _.random(1, posts.length) + ')').data('postid'));
 
