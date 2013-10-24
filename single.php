@@ -28,7 +28,7 @@ get_header(); ?>
 
 					?>
 					<div class="container">
-						<div class="twelve columns">
+						<div class="twelve columns row">
 							<?php comments_template(); ?>
 						</div>
 					</div>
