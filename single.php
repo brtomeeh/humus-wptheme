@@ -26,7 +26,13 @@ get_header(); ?>
 
 					do_action('humus_before_single_post_comments');
 
-					comments_template();
+					?>
+					<div class="container">
+						<div class="twelve columns">
+							<?php comments_template(); ?>
+						</div>
+					</div>
+					<?php
 
 					do_action('humus_after_single_post_comments');
 					
