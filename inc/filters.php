@@ -231,9 +231,15 @@ class Humus_Filters {
 				<div class="humus-dropdown">
 					<ul>
 						<?php foreach($terms as $term) { ?>
-							<li <?php if($active == $term->term_id) echo 'class="active"'; ?>><a href="<?php echo $this->add_query_arg(array($query_arg => $term->term_id)); ?>"><?php echo $term->name; ?></a></li>
+							<?php if($active == $term->term_id) : ?>
+								<li class="active"><a href="<?php echo $this->add_query_arg(array($query_arg => $term->term_id)); ?>"><?php echo $term->name; ?></a></li>
+							<?php endif; ?>
+							<li><a href="<?php echo $this->add_query_arg(array($query_arg => $term->term_id)); ?>"><?php echo $term->name; ?></a></li>
 						<?php } ?>
-						<li <?php if(!$active) echo 'class="active"'; ?>><a href="<?php echo $this->remove_query_arg($query_arg); ?>"><?php echo $tax_object->labels->all_items; ?></a></li>
+						<?php if(!$active) : ?>
+							<li <?php if(!$active) echo 'class="active"'; ?>><a href="<?php echo $this->remove_query_arg($query_arg); ?>"><?php echo $tax_object->labels->all_items; ?></a></li>
+						<?php endif; ?>
+						<li><a href="<?php echo $this->remove_query_arg($query_arg); ?>"><?php echo $tax_object->labels->all_items; ?></a></li>
 					</ul>
 				</div>
 			</div>
@@ -254,7 +260,10 @@ class Humus_Filters {
 							if($key == 'default')
 								$url = $this->remove_query_arg($query_arg);
 							?>
-							<li <?php if($option['active']) echo 'class="active"'; ?>><a href="<?php echo $url; ?>"><?php echo $option['name']; ?></a></li>
+							<?php if($option['active']) : ?>
+								<li class="active"><a href="<?php echo $url; ?>"><?php echo $option['name']; ?></a></li>
+							<?php endif; ?>	
+							<li><a href="<?php echo $url; ?>"><?php echo $option['name']; ?></a></li>
 						<?php endforeach; ?>
 					</ul>
 				</div>
