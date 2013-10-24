@@ -182,6 +182,8 @@ var pinImage;
 
 			function open(postid) {
 
+				console.log(postid);
+
 				post = posts.filter('[data-postid="' + postid + '"]');
 
 				console.log(post);
