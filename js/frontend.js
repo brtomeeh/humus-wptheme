@@ -184,6 +184,8 @@ var pinImage;
 
 				post = posts.filter('[data-postid="' + postid + '"]');
 
+				console.log(post);
+
 				if(post.length) {
 
 					if(post.is('.active'))
@@ -227,6 +229,8 @@ var pinImage;
 			}
 
 			function activateAxis(axis) {
+
+				console.log(axis);
 				
 				var el = axes.filter('.' + axis);				
 
