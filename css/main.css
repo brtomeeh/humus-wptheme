@@ -179,7 +179,7 @@ article.full .post-content .tags a{font-size:14px;}
 #colophon .newsletter .newsletter-container form input{background:transparent;width:100%;padding:15px 20px;border:0;background:#3f3f3f;margin-left:-20px;position:relative;}
 #colophon .contacts{width:80%;}#colophon .contacts p{color:#aaa;line-height:26px;font-size:12px;}
 #colophon .colophon{width:80%;}#colophon .colophon table{width:100%;}#colophon .colophon table tr td{vertical-align:middle;height:30px;color:#999;font-size:12px;}#colophon .colophon table tr td a{text-decoration:none;}
-#colophon .colophon table tr td.logos{line-height:30px;}
+#colophon .colophon table tr td.logos{line-height:30px;}#colophon .colophon table tr td.logos a,#colophon .colophon table tr td.logos span{float:left;}#colophon .colophon table tr td.logos a.plus,#colophon .colophon table tr td.logos span.plus{margin:0 10px;}
 #swipebox-action,#swipebox-caption{background:#333 !important;}
 .pinable{position:relative;display:block;}.pinable .pin-it{position:absolute;top:10px;right:10px;opacity:0;-webkit-transition:opacity 0.3s ease-in-out;-khtml-transition:opacity 0.3s ease-in-out;-moz-transition:opacity 0.3s ease-in-out;-o-transition:opacity 0.3s ease-in-out;transition:opacity 0.3s ease-in-out;z-index:999;}
 .pinable:hover .pin-it{opacity:1;}

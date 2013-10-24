@@ -137,7 +137,7 @@
 							</tr>
 							<tr>
 								<td><?php _e('Development', 'humus'); ?></td>
-								<td class="logos"><a href="http://espacohumus.com/" target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/img/humus.png" /></a> - <a href="http://cardume.art.br/" target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/img/cardume.png" /></a></td>
+								<td class="logos"><a href="http://espacohumus.com/" target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/img/humus.png" /></a><span class="plus">+</span><a href="http://cardume.art.br/" target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/img/cardume.png" /></a></td>
 							</tr>
 						</table>
 					</div>
