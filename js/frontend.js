@@ -182,11 +182,7 @@ var pinImage;
 
 			function open(postid) {
 
-				console.log(postid);
-
 				post = posts.filter('[data-postid="' + postid + '"]');
-
-				console.log(post);
 
 				if(post.length) {
 
@@ -194,8 +190,6 @@ var pinImage;
 						return false;
 
 					axis = axes.filter('.' + post.data('axis'));
-
-					console.log(axis);
 
 					activateAxis(post.data('axis'));
 
@@ -231,8 +225,6 @@ var pinImage;
 			}
 
 			function activateAxis(axis) {
-
-				console.log(axis);
 				
 				var el = axes.filter('.' + axis);				
 
@@ -301,7 +293,7 @@ var pinImage;
 
 			$(window).resize(setNavHeight).resize();
 
-			open(posts.filter(':nth-child(' + _.random(1, posts.length) + ')').data('postid'));
+			open(posts.eq(_.random(0, posts.length-1)).data('postid'));
 
 			run = setInterval(next, 8000);
 
