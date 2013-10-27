@@ -78,39 +78,39 @@ class Humus_About_Page {
 				<div class="humus-about-heads about-area" data-area="team">
 					<?php $i = 0; foreach($team as $member) : $i++; ?>
 						<div class="member-item three columns <?php if($i%4 == 1) echo 'alpha'; if(($i+1)%4 == 1) echo 'omega'; ?>">
-							<div class="row">
 								<div class="member-thumbnail">
 									<img class="scale-with-grid" src="<?php echo $member['member_photo']['sizes']['humus-big-thumbnail']; ?>" alt="<?php echo $member['member_name']; ?>" />
 								</div>
-								<h2><a href="#"><?php echo $member['member_name']; ?></a></h2>
-								<p class="role"><?php echo $member['member_role']; ?></p>
-								<div class="member-profile">
-									<?php echo $member['member_profile']; ?>
-									<div class="social-icons">
-										<?php
-										$facebook = $member['facebook_url'];
-										if($facebook)
-											echo '<a href="' . $facebook . '" title="Facebook" target="_blank">facebook</a>';
-										$twitter = $member['twitter_url'];
-										if($twitter)
-											echo '<a href="' . $twitter . '" title="Twitter" target="_blank">twitter</a>';
-										$youtube = $member['youtube_url'];
-										if($youtube)
-											echo '<a href="' . $youtube . '" title="YouTube" target="_blank">youtube</a>';
-										$instagram = $member['instagram_url'];
-										if($instagram)
-											echo '<a href="' . $instagram . '" title="Instagram" target="_blank">instagram</a>';
-										$gplus = $member['gplus_url'];
-										if($gplus)
-											echo '<a href="' . $gplus . '" title="Google Plus" target="_blank">google</a>';
-										$pinterest = $member['pinterest_url'];
-										if($pinterest)
-											echo '<a href="' . $pinterest . '" title="Pinterest" target="_blank">pinterest</a>';
-										?>
+								<div class="member-profile-content">
+									<h2><a href="#"><?php echo $member['member_name']; ?></a></h2>
+									<p class="role"><?php echo $member['member_role']; ?></p>
+									<div class="member-profile clearfix">
+										<?php echo $member['member_profile']; ?>
+										<div class="social-icons">
+											<?php
+											$facebook = $member['facebook_url'];
+											if($facebook)
+												echo '<a href="' . $facebook . '" title="Facebook" target="_blank">facebook</a>';
+											$twitter = $member['twitter_url'];
+											if($twitter)
+												echo '<a href="' . $twitter . '" title="Twitter" target="_blank">twitter</a>';
+											$youtube = $member['youtube_url'];
+											if($youtube)
+												echo '<a href="' . $youtube . '" title="YouTube" target="_blank">youtube</a>';
+											$instagram = $member['instagram_url'];
+											if($instagram)
+												echo '<a href="' . $instagram . '" title="Instagram" target="_blank">instagram</a>';
+											$gplus = $member['gplus_url'];
+											if($gplus)
+												echo '<a href="' . $gplus . '" title="Google Plus" target="_blank">google</a>';
+											$pinterest = $member['pinterest_url'];
+											if($pinterest)
+												echo '<a href="' . $pinterest . '" title="Pinterest" target="_blank">pinterest</a>';
+											?>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 					<?php endforeach; ?>
 				</div>
 			<?php endif; ?>

@@ -1520,6 +1520,14 @@ article.full {
 			background: rgba(50,50,50,0.95);
 			padding: 180px 0 40px;
 			overflow: auto;
+			.container,
+			.columns {
+				height: 100%;
+			}
+			.row {
+				margin: 0;
+				height: 100%;
+			}
 			&::-webkit-scrollbar {
 				width: 5px;
 				background: #fff;
@@ -1567,17 +1575,35 @@ article.full {
 					}
 				}
 			}
+			.member-profile-content {
+				overflow: auto;
+				height: 100%;
+				position: relative;
+				&::-webkit-scrollbar {
+					width: 15px;
+					background: #f0f0f0;
+				}
+				&::-webkit-scrollbar-thumb {
+					background: #333;
+					border: 5px solid #f0f0f0;
+					&:hover {
+						background: #222;
+					}
+				}
+			}
 			.member-content {
 				position: relative;
 				background: #f0f0f0;
-				padding-right: 40px;
+				height: 100%;
+				max-height: 600px;
 				.member-thumbnail {
-					width: 50%;
+					width: auto;
+					height: 100%;
 					float: left;
 					margin: 0 40px 0 0;
 					img {
-						width: 100%;
-						height: auto;
+						width: auto;
+						height: 100%;
 						display: block;
 					}
 				}
@@ -1590,6 +1616,10 @@ article.full {
 				}
 				.role {
 					color: #999;
+				}
+				.member-profile {
+					margin-right: 40px;
+					margin-bottom: 40px;
 				}
 				.social-icons {
 					a {
