@@ -107,6 +107,7 @@ function humus_setup() {
 
 	// Image sizes
 	add_image_size('humus-thumbnail', 260, 260, true);
+	add_image_size('humus-big-thumbnail', 560, 560, true);
 	add_image_size('humus-wide-thumbnail', 360, 205, true);
 
 	// Menus

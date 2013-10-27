@@ -46,7 +46,7 @@ class Humus_About_Page {
 
 	function content() {
 
-		wp_enqueue_script('humus-about', get_template_directory_uri() . '/inc/about/about.js', array('jquery'));
+		wp_enqueue_script('humus-about', get_template_directory_uri() . '/inc/about/about.js', array('jquery'), '0.1.0');
 
 		$content = get_field('about_content', 'option');
 		$team = get_field('team', 'option');
@@ -80,12 +80,36 @@ class Humus_About_Page {
 						<div class="member-item three columns <?php if($i%4 == 1) echo 'alpha'; if(($i+1)%4 == 1) echo 'omega'; ?>">
 							<div class="row">
 								<div class="member-thumbnail">
-									<img class="scale-with-grid" src="<?php echo $member['member_photo']['sizes']['humus-thumbnail']; ?>" alt="<?php echo $member['member_name']; ?>" />
+									<img class="scale-with-grid" src="<?php echo $member['member_photo']['sizes']['humus-big-thumbnail']; ?>" alt="<?php echo $member['member_name']; ?>" />
 								</div>
 								<h2><a href="#"><?php echo $member['member_name']; ?></a></h2>
 								<p class="role"><?php echo $member['member_role']; ?></p>
+								<div class="member-profile">
+									<?php echo $member['member_profile']; ?>
+									<div class="social-icons">
+										<?php
+										$facebook = $member['facebook_url'];
+										if($facebook)
+											echo '<a href="' . $facebook . '" title="Facebook" target="_blank">facebook</a>';
+										$twitter = $member['twitter_url'];
+										if($twitter)
+											echo '<a href="' . $twitter . '" title="Twitter" target="_blank">twitter</a>';
+										$youtube = $member['youtube_url'];
+										if($youtube)
+											echo '<a href="' . $youtube . '" title="YouTube" target="_blank">youtube</a>';
+										$instagram = $member['instagram_url'];
+										if($instagram)
+											echo '<a href="' . $instagram . '" title="Instagram" target="_blank">instagram</a>';
+										$gplus = $member['gplus_url'];
+										if($gplus)
+											echo '<a href="' . $gplus . '" title="Google Plus" target="_blank">google</a>';
+										$pinterest = $member['pinterest_url'];
+										if($pinterest)
+											echo '<a href="' . $pinterest . '" title="Pinterest" target="_blank">pinterest</a>';
+										?>
+									</div>
+								</div>
 							</div>
-							<div class="member-profile"><?php echo $member['member_profile']; ?></div>
 						</div>
 					<?php endforeach; ?>
 				</div>
@@ -94,6 +118,10 @@ class Humus_About_Page {
 				<div class="container">
 					<div class="twelve columns">
 						<a href="#" class="close-member">x</a>
+						<div class="navigation">
+							<a class="previous" title="<?php _e('Previous', 'humus'); ?>"><?php _e('Previous', 'humus'); ?></a>
+							<a class="next" href="#" title="<?php _e('Next', 'humus'); ?>"><?php _e('Next', 'humus'); ?></a>
+						</div>
 						<div class="member-content">
 						</div>
 					</div>
@@ -176,6 +204,54 @@ class Humus_About_Page {
 						'toolbar' => 'basic',
 						'media_upload' => 'no',
 					),
+					array(
+						'key' => 'field_fb',
+						'label' => 'Facebook',
+						'name' => 'facebook_url',
+						'type' => 'text',
+						'placeholder' => 'http://facebook.com/...',
+						'formatting' => 'html',
+					),
+					array(
+						'key' => 'field_tw',
+						'label' => 'Twitter',
+						'name' => 'twitter_url',
+						'type' => 'text',
+						'placeholder' => 'http://twitter.com/...',
+						'formatting' => 'html',
+					),
+					array(
+						'key' => 'field_instagram',
+						'label' => 'Instagram',
+						'name' => 'instagram_url',
+						'type' => 'text',
+						'placeholder' => 'http://instagram.com/...',
+						'formatting' => 'html',
+					),
+					array(
+						'key' => 'field_gplus',
+						'label' => 'Google Plus',
+						'name' => 'gplus_url',
+						'type' => 'text',
+						'placeholder' => 'http://plus.google.com/...',
+						'formatting' => 'html',
+					),
+					array(
+						'key' => 'field_yt',
+						'label' => 'YouTube',
+						'name' => 'youtube_url',
+						'type' => 'text',
+						'placeholder' => 'http://youtube.com/...',
+						'formatting' => 'html',
+					),
+					array(
+						'key' => 'field_pinterest',
+						'label' => 'Pinterest',
+						'name' => 'pinterest_url',
+						'type' => 'text',
+						'placeholder' => 'http://pinterest.com/...',
+						'formatting' => 'html',
+					)
 				),
 				'row_min' => 0,
 				'row_limit' => '',
