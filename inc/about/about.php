@@ -73,7 +73,7 @@ class Humus_About_Page {
 			<?php if($team) : ?>
 				<div class="humus-about-heads about-area" data-area="team">
 					<?php $i = 0; foreach($team as $member) : $i++; ?>
-						<div class="member-item three columns <?php if($i%4 == 1) echo 'offset-by-one'; if(($i+1)%4 == 1) echo 'omega'; ?>">
+						<div class="member-item two columns <?php if($i%4 == 1) echo 'offset-by-one'; if(($i+1)%4 == 1) echo 'omega'; ?>">
 							<div class="row">
 								<div class="member-thumbnail">
 									<img class="scale-with-grid" src="<?php echo $member['member_photo']['sizes']['humus-thumbnail']; ?>" alt="<?php echo $member['member_name']; ?>" />
