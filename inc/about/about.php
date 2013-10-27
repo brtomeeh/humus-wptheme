@@ -58,22 +58,26 @@ class Humus_About_Page {
 			if($team) :
 				?>
 				<div class="humus-about-filter row">
-					<div class="three columns offset-by-one">
+					<div class="three columns alpha">
 						<h3 class="filter-title"><?php _e('Showing', 'humus'); ?></h3>
 					</div>
-					<a href="#" class="about-filter" data-area="content"><?php _e('Our ideas', 'humus'); ?></a>
-					<a href="#" class="about-filter" data-area="team"><?php _e('Our heads', 'humus'); ?></a>
+					<div class="three columns">
+						<a href="#" class="about-filter" data-area="content"><?php _e('Our ideas', 'humus'); ?></a>
+					</div>
+					<div class="three columns">
+						<a href="#" class="about-filter" data-area="team"><?php _e('Our heads', 'humus'); ?></a>
+					</div>
 				</div>
 				<?php
 			endif;
 			?>
-			<div class="humus-about-content about-area row ten columns offset-by-one" data-area="content">
+			<div class="humus-about-content about-area row" data-area="content">
 				<?php echo $content; ?>
 			</div>
 			<?php if($team) : ?>
 				<div class="humus-about-heads about-area" data-area="team">
 					<?php $i = 0; foreach($team as $member) : $i++; ?>
-						<div class="member-item two columns <?php if($i%4 == 1) echo 'offset-by-one'; if(($i+1)%4 == 1) echo 'omega'; ?>">
+						<div class="member-item three columns <?php if($i%4 == 1) echo 'alpha'; if(($i+1)%4 == 1) echo 'omega'; ?>">
 							<div class="row">
 								<div class="member-thumbnail">
 									<img class="scale-with-grid" src="<?php echo $member['member_photo']['sizes']['humus-thumbnail']; ?>" alt="<?php echo $member['member_name']; ?>" />
