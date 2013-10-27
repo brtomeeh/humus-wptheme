@@ -72,7 +72,10 @@ class Humus_About_Page {
 			endif;
 			?>
 			<div class="humus-about-content about-area row" data-area="content">
-				<?php echo $content; ?>
+				<div class="three columns alpha">&nbsp;</div>
+				<div class="nine columns omega">
+					<?php echo $content; ?>
+				</div>
 			</div>
 			<?php if($team) : ?>
 				<div class="humus-about-heads about-area" data-area="team">
