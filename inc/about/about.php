@@ -119,7 +119,7 @@ class Humus_About_Page {
 					<div class="twelve columns">
 						<a href="#" class="close-member">x</a>
 						<div class="navigation">
-							<a class="previous" title="<?php _e('Previous', 'humus'); ?>"><?php _e('Previous', 'humus'); ?></a>
+							<a class="previous" href="#" title="<?php _e('Previous', 'humus'); ?>"><?php _e('Previous', 'humus'); ?></a>
 							<a class="next" href="#" title="<?php _e('Next', 'humus'); ?>"><?php _e('Next', 'humus'); ?></a>
 						</div>
 						<div class="member-content">

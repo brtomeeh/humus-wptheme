@@ -115,7 +115,7 @@
 
 		navigation.find('a').click(function() {
 
-			if($(this).is('previous')) {
+			if($(this).is('.previous')) {
 				previousMember();
 			} else {
 				nextMember();
