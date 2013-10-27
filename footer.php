@@ -47,6 +47,8 @@
 							(function($) {
 
 								var sly;
+								var activeItem = 0;
+								var t;
 
 								$(document).ready(function() {
 
@@ -54,15 +56,40 @@
 										horizontal: 1,
 										itemNav: 'basic',
 										smart: 1,
-										startAt: 0,
-										scrollBy: 1,
+										startAt: activeItem,
+										scrollBy: 0,
 										speed: 200,
-										ease: 'easeOutExpo',
-										next: $('.partners .next-partner'),
-										prev: $('.partners .prev-partner')
+										ease: 'easeOutExpo'
 									});
 
 									sly.init();
+
+									$('.partners .next-partner').click(function() {
+										cycle();
+										clearInterval(t);
+										t = setInterval(cycle, 4000);
+										return false;
+									});
+
+									$('.partners .prev-partner').click(function() {
+										if(!sly.items[sly.rel.activeItem-1])
+											sly.activate(sly.items.length-1);
+										else
+											sly.activate(sly.rel.activeItem-1);
+
+										clearInterval(t);
+										t = setInterval(cycle, 4000);
+										return false;
+									});
+
+									function cycle() {
+										if(!sly.items[sly.rel.activeItem+1])
+											sly.activate(0);
+										else
+											sly.activate(sly.rel.activeItem+1);
+									}
+
+									t = setInterval(cycle, 4000);
 
 								});
 
