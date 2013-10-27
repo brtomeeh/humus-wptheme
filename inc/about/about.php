@@ -92,7 +92,7 @@ class Humus_About_Page {
 			<?php endif; ?>
 			<div class="member-content-container">
 				<div class="container">
-					<div class="ten columns offset-by-one">
+					<div class="twelve columns">
 						<a href="#" class="close-member">x</a>
 						<div class="member-content">
 						</div>
