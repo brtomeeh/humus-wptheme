@@ -50,7 +50,7 @@ class Humus_Axes {
 			'show_admin_column' => true,
 			'hierarchical' => true,
 			'query_var' => 'axis',
-			'rewrite' => array('slug' => 'axes', 'with_front' => false)
+			'rewrite' => array('slug' => 'eixos', 'with_front' => false)
 		);
 
 		register_taxonomy('axis', $this->get_post_types(), $args);

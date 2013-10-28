@@ -49,7 +49,7 @@ class Humus_Sections {
 			'show_admin_column' => true,
 			'hierarchical' => true,
 			'query_var' => 'section',
-			'rewrite' => array('slug' => 'sections', 'with_front' => false)
+			'rewrite' => array('slug' => 'secoes', 'with_front' => false)
 		);
 
 		register_taxonomy('section', $this->get_post_types(), $args);

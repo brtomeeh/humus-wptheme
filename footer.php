@@ -151,19 +151,19 @@
 						<h3><?php _e('Colophon', 'humus'); ?></h3>
 						<table class="colophon-table">
 							<tr>
-								<td><?php _e('Typography', 'humus'); ?></td>
+								<th><?php _e('Typography', 'humus'); ?></th>
 								<td><a href="http://www.latofonts.com/" target="_blank">Lato</a>, <a href="http://www.google.com/fonts/specimen/Open+Sans" target="_blank">Open Sans</a></td>
 							</tr>
 							<tr>
-								<td><?php _e('Some icons by', 'humus'); ?></td>
+								<th><?php _e('Some icons by', 'humus'); ?></th>
 								<td><a href="http://www.entypo.com/" target="_blank">Entypo</a>, <a href="http://kudakurage.com/ligature_symbols/" target="_blank">Ligature Symbols</a></td>
 							</tr>
 							<tr>
-								<td><?php _e('License', 'humus'); ?></td>
+								<th><?php _e('License', 'humus'); ?></th>
 								<td><a href="http://creativecommons.org/licenses/by-sa/3.0/deed.pt" target="_blank">CC BY - SA 3.0</a></td>
 							</tr>
 							<tr>
-								<td><?php _e('Development', 'humus'); ?></td>
+								<th><?php _e('Development', 'humus'); ?></th>
 								<td class="logos"><a href="http://espacohumus.com/" target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/img/humus.png" /></a><span class="plus">+</span><a href="http://cardume.art.br/" target="_blank"><img src="<?php echo get_template_directory_uri(); ?>/img/cardume.png" /></a></td>
 							</tr>
 						</table>

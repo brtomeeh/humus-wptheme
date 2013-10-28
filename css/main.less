@@ -1791,15 +1791,33 @@ article.full {
 			}
 			form {
 				position: relative;
+				input[type=submit] {
+					position: absolute;
+					color: #f0f0f0;
+					top: 10px;
+					right: 0;
+					text-indent: -9999px;
+					line-height: 30px;
+					padding: 0;
+					margin: 0;
+					z-index: 2;
+					width: 30px;
+					display: block;
+					background: transparent;
+				}
 				&:after {
+					z-index: 1;
 					content: '\E08a';
 					position: absolute;
-					font-size: 30px;
-					line-height: 30px;
+					width: auto;
 					color: #f0f0f0;
 					top: 10px;
 					right: 0;
 					font-family: "LigatureSymbols";
+					line-height: 30px;
+					font-size: 30px;
+					padding: 0;
+					margin: 0;
 				}
 				input {
 					background: transparent;
@@ -1809,6 +1827,7 @@ article.full {
 					background: #3f3f3f;
 					margin-left: -20px;
 					position: relative;
+					font-size: 11px;
 				}
 			}
 		}
@@ -1826,11 +1845,13 @@ article.full {
 		table {
 			width: 100%;
 			tr {
+				th,
 				td {
 					vertical-align: middle;
 					height: 30px;
 					color: #999;
-					font-size: 12px;
+					font-weight: normal;
+					text-align: left;
 					a {
 						text-decoration: none;
 					}
@@ -1843,6 +1864,12 @@ article.full {
 							}
 						}
 					}
+				}
+				td {
+					font-size: 12px;
+				}
+				th {
+					font-size: 10px;
 				}
 			}
 		}

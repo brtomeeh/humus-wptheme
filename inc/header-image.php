@@ -21,7 +21,7 @@ class Humus_Header_Image {
 
 	function get_locations() {
 
-		return apply_filters('humus_header_image_locations', array('post_type' => array('post'), 'taxonomy' => array('category', 'post_tag')));
+		return apply_filters('humus_header_image_locations', array('post_type' => array('post', 'page'), 'taxonomy' => array('category', 'post_tag')));
 
 	}
 
@@ -106,3 +106,24 @@ class Humus_Header_Image {
 }
 
 $humus_header_image = new Humus_Header_Image();
+
+function humus_get_header_image_url() {
+
+	$id = false;
+
+	if(is_tax()) {
+		$term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
+		$id = get_query_var('taxonomy') . '_' . $term->term_id;
+	} elseif(is_category()) {
+		$term = get_category_by_slug(get_query_var('category_name'));
+		$id = 'category_' . $term->term_id;
+	} elseif(is_single() || is_page()) {
+		global $post;
+		$id = $post->ID;
+	}
+
+	if($id)
+		return get_field('header_image', $id);
+
+	return false;
+}

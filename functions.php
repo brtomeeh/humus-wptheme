@@ -76,6 +76,7 @@ function humus_scripts() {
 	wp_register_script('lockfixed', get_template_directory_uri() . '/js/jquery.lockfixed.min.js', array('jquery'), '0.1');
 	wp_register_script('sly', get_template_directory_uri() . '/js/sly.min.js', array('jquery'), '1.1.0');
 	wp_register_script('isotope', get_template_directory_uri() . '/js/jquery.isotope.min.js', array('jquery'), '1.5.25');
+	wp_deregister_script('underscore');
 	wp_register_script('underscore', get_template_directory_uri() . '/js/underscore-min.js', array(), '1.5.2');
 
 	wp_register_script('swipebox', get_template_directory_uri() . '/js/swipebox/jquery.swipebox.min.js', array('jquery'));
@@ -162,27 +163,6 @@ function humus_logo() {
 	if($url) {
 		echo '<img src="' . $url . '" alt="' . get_bloginfo('name') . '" />';
 	}
-}
-
-function humus_get_header_image_url() {
-
-	$id = false;
-
-	if(is_tax()) {
-		$term = get_term_by('slug', get_query_var('term'), get_query_var('taxonomy'));
-		$id = get_query_var('taxonomy') . '_' . $term->term_id;
-	} elseif(is_category()) {
-		$term = get_category_by_slug(get_query_var('category_name'));
-		$id = 'category_' . $term->term_id;
-	} elseif(is_single()) {
-		global $post;
-		$id = $post->ID;
-	}
-
-	if($id)
-		return get_field('header_image', $id);
-
-	return false;
 }
 
 function humus_breadcrumb($before = '', $sep = '/', $after = '/') {

@@ -44,7 +44,7 @@ class Humus_Partners {
 			'show_in_menu' => true,
 			'has_archive' => true,
 			'menu_position' => 4,
-			'rewrite' => array('slug' => 'partners', 'with_front' => false)
+			'rewrite' => array('slug' => 'parceiros', 'with_front' => false)
 		);
 
 		register_post_type('partner', $args);

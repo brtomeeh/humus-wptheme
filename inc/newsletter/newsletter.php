@@ -27,6 +27,7 @@ class Humus_Newsletter {
 		<div class="newsletter-form">
 			<form class="newsletter-signup">
 				<input type="text" name="email" placeholder="<?php _e('Enter your email address', 'humus'); ?>" />
+				<input type="submit" value="<?php _e('Send', 'humus'); ?>" />
 			</form>
 		</div>
 		<?php
