@@ -716,7 +716,7 @@ function humus_album_content($content) {
 		remove_shortcode('gallery', 'humus_gallery');
 		add_shortcode('gallery', 'humus_album_gallery');
 
-		add_action('humus_after_page_content', 'humus_outside_album_gallery');
+		add_action('humus_after_single_post', 'humus_outside_album_gallery', 1);
 
 	}
 

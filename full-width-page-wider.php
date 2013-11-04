@@ -15,7 +15,11 @@ get_header(); ?>
 
 				the_post();
 
-				do_action('humus_before_page_content');
+				if(is_page())
+					do_action('humus_before_page_content');
+
+				if(is_single())
+					do_action('humus_before_single_post');
 
 				$header_image = humus_get_header_image_url();
 				$section_icon = humus_get_term_icon_url($post->ID, 'section');
@@ -56,7 +60,13 @@ get_header(); ?>
 				</article>
 				<?php
 
-				do_action('humus_after_page_content');
+				if(is_page())
+					do_action('humus_after_page_content');
+
+				if(is_single()) {
+					error_log('hi');
+					do_action('humus_after_single_post');
+				}
 
 				// If comments are open or we have at least one comment, load up the comment template.
 				if (comments_open() || get_comments_number()) {
