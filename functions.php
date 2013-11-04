@@ -413,7 +413,7 @@ function humus_archive_header($short_version = false) {
 
 			<div class="container">
 
-				<div class="row">
+				<div class="clearfix">
 
 					<div class="one column">
 						<?php if($section_icon) : ?>
@@ -500,7 +500,7 @@ function humus_archive_header($short_version = false) {
 				<?php
 				if((is_tax() || is_tag() || is_category()) && !$short_version) :
 					?>
-					<div class="row">
+					<div class="clearfix">
 						<div class="one column">&nbsp;</div>
 						<div class="ten columns">
 							<?php
@@ -896,3 +896,12 @@ function humus_enable_filter_partner() {
 	return true;
 }
 add_filter('humus_enable_filter', 'humus_enable_filter_partner');
+
+function humus_search_query($query) {
+	if($query->is_main_query() && $query->is_search()) {
+		$post_types = get_post_types(array('public' => true));
+		unset($post_types['page']);
+		$query->set('post_type', $post_types);
+	} 
+}
+add_action('pre_get_posts', 'humus_search_query');
