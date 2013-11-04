@@ -413,93 +413,106 @@ function humus_archive_header($short_version = false) {
 
 			<div class="container">
 
-				<div class="one column">
-					<?php if($section_icon) : ?>
-						<img src="<?php echo $section_icon; ?>" alt="<?php single_term_title(); ?>" />
-					<?php else : ?>
-						&nbsp;
-					<?php endif; ?>
-				</div>
+				<div class="row">
 
-				<div class="six columns">
+					<div class="one column">
+						<?php if($section_icon) : ?>
+							<img src="<?php echo $section_icon; ?>" alt="<?php single_term_title(); ?>" />
+						<?php else : ?>
+							&nbsp;
+						<?php endif; ?>
+					</div>
 
-					<?php humus_breadcrumb(); ?>
+					<div class="six columns">
 
-					<h1 class="page-title">
+						<?php humus_breadcrumb(); ?>
 
-						<?php
+						<h1 class="page-title">
 
-						if(is_day()) :
-							printf( __( 'Day: %s', 'humus' ), get_the_date() );
+							<?php
 
-						elseif(is_month()) :
-							printf( __( 'Month: %s', 'humus' ), get_the_date( 'F Y' ) );
+							if(is_day()) :
+								printf( __( 'Day: %s', 'humus' ), get_the_date() );
 
-						elseif(is_year()) :
-							printf( __( 'Year: %s', 'humus' ), get_the_date( 'Y' ) );
+							elseif(is_month()) :
+								printf( __( 'Month: %s', 'humus' ), get_the_date( 'F Y' ) );
 
-						elseif(is_tax() || is_tag() || is_category()) :
-							single_term_title();
+							elseif(is_year()) :
+								printf( __( 'Year: %s', 'humus' ), get_the_date( 'Y' ) );
 
-						elseif(is_post_type_archive()) :
-							post_type_archive_title();
+							elseif(is_tax() || is_tag() || is_category()) :
+								single_term_title();
 
-						elseif(is_search()) :
-							_e('Search', 'humus');
+							elseif(is_post_type_archive()) :
+								post_type_archive_title();
 
-						elseif(is_404()) :
-							_e('Nothing found', 'humus');
+							elseif(is_search()) :
+								_e('Search', 'humus');
 
-						else :
-							_e( 'Archives', 'humus' );
+							elseif(is_404()) :
+								_e('Nothing found', 'humus');
 
-						endif;
-						?>
-
-					</h1>
-
-					<?php
-					if((is_tax() || is_tag() || is_category()) && !$short_version) :
-
-							$description = term_description();
-							if($description) :
-								echo $description;
+							else :
+								_e( 'Archives', 'humus' );
 
 							endif;
-
-					elseif(is_search() || is_404()) :
-					
-						global $wp;
-
-						$s_request = str_replace('/', ' ', str_replace('-', ' ', $wp->request));
-
-						$s = isset($_GET['s']) ? $_GET['s'] : $s_request;
-
-						if(is_404()) : 
 							?>
-							<p class="results"><?php _e('Try using our search:', 'humus'); ?></p>
+
+						</h1>
+
+						<?php
+						if(is_search() || is_404()) :
+						
+							global $wp;
+
+							$s_request = str_replace('/', ' ', str_replace('-', ' ', $wp->request));
+
+							$s = isset($_GET['s']) ? $_GET['s'] : $s_request;
+
+							if(is_404()) : 
+								?>
+								<p class="results"><?php _e('Try using our search:', 'humus'); ?></p>
+								<?php
+							endif;
+							?>
+							<form id="searchform" action="<?php echo home_url(); ?>">
+								<input name="s"	 type="text" placeholder="<?php _e('Type your search...', 'humus'); ?>" value="<?php if($s) echo $s; ?>" />
+							</form>
 							<?php
+							if(is_search()) :
+								global $wp_query;
+								?>
+								<p class="results">
+									<?php printf(_n('We found just %d result for your search', 'We found %d results for your search', $wp_query->found_posts, 'humus'), $wp_query->found_posts); ?>
+								</p>
+								<?php
+							endif;
+
 						endif;
 						?>
-						<form id="searchform" action="<?php echo home_url(); ?>">
-							<input name="s"	 type="text" placeholder="<?php _e('Type your search...', 'humus'); ?>" value="<?php if($s) echo $s; ?>" />
-						</form>
-						<?php
-						if(is_search()) :
-							global $wp_query;
-							?>
-							<p class="results">
-								<?php printf(_n('We found just %d result for your search', 'We found %d results for your search', $wp_query->found_posts, 'humus'), $wp_query->found_posts); ?>
-							</p>
-							<?php
-						endif;
 
-					endif;
-					?>
+					</div>
+
+					<?php do_action('humus_header_content'); ?>
 
 				</div>
 
-				<?php do_action('humus_header_content'); ?>
+				<?php
+				if((is_tax() || is_tag() || is_category()) && !$short_version) :
+					?>
+					<div class="row">
+						<div class="one column">&nbsp;</div>
+						<div class="ten columns">
+							<?php
+							$description = term_description();
+							if($description)
+								echo $description;
+							?>
+						</div>
+					</div>
+					<?php
+				endif;
+				?>
 
 			</div>
 
