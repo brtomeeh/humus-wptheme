@@ -711,7 +711,9 @@ add_action('pre_pet_posts', 'humus_album_query');
 
 function humus_album_content($content) {
 
-	if(has_term('albuns', 'section') && strpos($content, '[gallery') === false) {
+	global $wp_query;
+
+	if($wp_query->is_single() && has_term('albuns', 'section') && strpos($content, '[gallery') === false) {
 
 		remove_shortcode('gallery', 'humus_gallery');
 		add_shortcode('gallery', 'humus_album_gallery');
