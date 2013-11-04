@@ -42,6 +42,9 @@
 				},
 				onEachFeature: function(f, l) {
 					l.setIcon(defaultIcon);
+					if(l._popup) {
+						l.bindPopup(l._popup);
+					}
 				}
 			});
 
@@ -137,6 +140,9 @@
 
 				if(typeof activeMarker !== 'undefined'){
 					activeMarker.setIcon(defaultIcon);
+					if(activeMarker._popup) {
+						activeMarker.bindPopup(activeMarker._popup);
+					}
 					activeMarker = undefined;
 				}
 
@@ -230,12 +236,18 @@
 
 					if(typeof activeMarker !== 'undefined'){
 						activeMarker.setIcon(defaultIcon);
+						if(activeMarker._popup) {
+							activeMarker.bindPopup(activeMarker._popup);
+						}
 						activeMarker = undefined;
 					}
 
 					marker = marker[0];
 
 					marker.setIcon(activeIcon);
+					if(marker._popup) {
+						marker.bindPopup(marker._popup);
+					}
 					activeMarker = marker;
 
 					map.setView(marker.getLatLng(), 15);
@@ -304,6 +316,9 @@
 
 				if(typeof activeMarker !== 'undefined'){
 					activeMarker.setIcon(defaultIcon);
+					if(activeMarker._popup) {
+						activeMarker.bindPopup(activeMarker._popup);
+					}
 					activeMarker = undefined;
 				}
 
@@ -421,7 +436,7 @@
 
 				var geojson = m.toGeoJSON();
 
-				m.bindPopup('<h3>' + geojson.properties.post_title + '</h3><p>' + geojson.properties.excerpt + '</p>');
+				m.bindPopup('<h3>' + geojson.properties.post_title + '</h3>');
 
 				m.on('click', function() {
 					fragment().set({'post': geojson.properties.postid });

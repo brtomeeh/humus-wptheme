@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Humus\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-04 00:41-0300\n"
-"PO-Revision-Date: 2013-11-04 00:55-0300\n"
+"PO-Revision-Date: 2013-11-04 02:13-0300\n"
 "Last-Translator: Miguel Peixe <miguel@cardume.art.br>\n"
 "Language-Team: Cardume <miguel@cardume.art.br>\n"
 "Language: \n"
@@ -2639,7 +2639,7 @@ msgstr "Ver desta cidade"
 #: ../inc/map/template.php:29
 #: ../inc/map/template.php:69
 msgid "Back to city list"
-msgstr "Voltar para a lista de cidades."
+msgstr "Voltar para a lista de cidades"
 
 #: ../inc/map/template.php:63
 msgid "View"

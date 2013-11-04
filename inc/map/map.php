@@ -288,7 +288,7 @@ class Humus_Map {
 		wp_register_style('leaflet-ie', get_template_directory_uri() . '/inc/map/css/leaflet.ie.css');
 		$GLOBALS['wp_styles']->add_data('leaflet-ie', 'conditional', 'lte IE 8');
 
-		wp_register_script('jquery-hashchange', get_template_directory_uri() . '/inc/map/js/jquery.ba-hashchange.min.js', array('jquery'), '1.3');
+		wp_register_script('jquery-hashchange', get_template_directory_uri() . '/inc/map/js/jquery.ba-hashchange.min.js', array('jquery'), '1.3.1');
 
 		wp_register_script('humus-map', get_template_directory_uri() . '/inc/map/js/map.js', array('jquery', 'underscore', 'leaflet', 'fitvids', 'jquery-hashchange'), '0.1.3');
 
@@ -301,13 +301,13 @@ class Humus_Map {
 				'iconUrl' => get_template_directory_uri() . '/inc/map/img/pin_small.png',
 				'iconSize' => array(30, 48),
 				'iconAnchor' => array(15, 48),
-				'popupAnchor' => array(0, -40)
+				'popupAnchor' => array(0, -52)
 			),
 			'pin_active' => array(
 				'iconUrl' => get_template_directory_uri() . '/inc/map/img/pin_big.png',
 				'iconSize' => array(50, 80),
 				'iconAnchor' => array(25, 80),
-				'popupAnchor' => array(0, -70)
+				'popupAnchor' => array(0, -84)
 			)
 		));
 
