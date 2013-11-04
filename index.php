@@ -224,12 +224,14 @@ get_header(); ?>
 											<h2><?php _e('Recent videos', 'humus'); ?></h2>
 										</div>
 										<div class="nine columns">
-											<div class="video-container">
-											</div>
-											<div class="video-info"></div>
-											<div class="video-links">
-												<a href="#" class="read-more"><?php _e('Read more on this content', 'humus'); ?></a>
-												<a href="#" class="yt-button"><?php _e('Subscribe to our channel', 'humus'); ?></a>
+											<div class="active-video clearfix">
+												<div class="video-container">
+												</div>
+												<div class="video-info"></div>
+												<div class="video-links">
+													<a href="#" class="read-more"><?php _e('Read more on this content', 'humus'); ?></a>
+													<a href="#" class="yt-button"><?php _e('Subscribe to our channel', 'humus'); ?></a>
+												</div>
 											</div>
 										</div>
 										<div class="three columns">
