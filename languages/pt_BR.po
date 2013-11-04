@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Humus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-21 14:22-0300\n"
-"PO-Revision-Date: 2013-10-24 13:42-0300\n"
+"POT-Creation-Date: 2013-11-04 00:41-0300\n"
+"PO-Revision-Date: 2013-11-04 00:55-0300\n"
 "Last-Translator: Miguel Peixe <miguel@cardume.art.br>\n"
 "Language-Team: Cardume <miguel@cardume.art.br>\n"
 "Language: \n"
@@ -17,120 +17,120 @@ msgstr ""
 "X-Poedit-Country: BRAZIL\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../comments.php:52
+#: ../comments.php:46
 msgid "Comment navigation"
 msgstr "Navegação nos comentários"
 
-#: ../comments.php:53
+#: ../comments.php:47
 msgid "&larr; Older Comments"
 msgstr "&larr; Comentários mais antigos"
 
-#: ../comments.php:54
+#: ../comments.php:48
 msgid "Newer Comments &rarr;"
 msgstr "Comentários mais novos &rarr;"
 
-#: ../comments.php:59
+#: ../comments.php:53
 msgid "Comments are closed."
 msgstr "Comentários estão fechados."
 
-#: ../functions.php:113
+#: ../functions.php:115
 msgid "Primary menu"
 msgstr "Menu principal"
 
-#: ../functions.php:140
+#: ../functions.php:142
 #, php-format
 msgid "Page %s"
 msgstr "Página %s"
 
-#: ../functions.php:365
+#: ../functions.php:346
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: ../functions.php:365
+#: ../functions.php:346
 msgid "(Edit)"
 msgstr "(Editar)"
 
-#: ../functions.php:395
+#: ../functions.php:376
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s às %2$s"
 
-#: ../functions.php:399
+#: ../functions.php:380
 msgid "Edit"
 msgstr "Editar"
 
-#: ../functions.php:403
+#: ../functions.php:384
 msgid "Your comment is awaiting moderation."
 msgstr "Seu comentário está aguardando moderação."
 
-#: ../functions.php:411
+#: ../functions.php:392
 msgid "Reply"
 msgstr "Responder"
 
-#: ../functions.php:452
+#: ../functions.php:435
 #, php-format
 msgid "Day: %s"
 msgstr "Dia: %s"
 
-#: ../functions.php:455
+#: ../functions.php:438
 #, php-format
 msgid "Month: %s"
 msgstr "Mês: %s"
 
-#: ../functions.php:458
+#: ../functions.php:441
 #, php-format
 msgid "Year: %s"
 msgstr "Ano: %s"
 
-#: ../functions.php:467
+#: ../functions.php:450
 msgid "Search"
 msgstr "Buscar"
 
-#: ../functions.php:470
+#: ../functions.php:453
 msgid "Nothing found"
 msgstr "Nada encontrado"
 
-#: ../functions.php:473
+#: ../functions.php:456
 msgid "Archives"
 msgstr "Arquivos"
 
-#: ../functions.php:499
+#: ../functions.php:474
 msgid "Try using our search:"
 msgstr "Tente usar nossa busca:"
 
-#: ../functions.php:504
+#: ../functions.php:479
 #: ../searchform.php:3
 msgid "Type your search..."
 msgstr "Digite sua busca..."
 
-#: ../functions.php:511
+#: ../functions.php:486
 #, php-format
 msgid "We found just %d result for your search"
 msgid_plural "We found %d results for your search"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Nós encontramos apenas %d resultado para  sua busca"
+msgstr[1] "Nós encontramos %d resultados para sua busca"
 
-#: ../functions.php:572
+#: ../functions.php:566
 msgid "Next image"
 msgstr "Próxima imagem"
 
-#: ../functions.php:573
+#: ../functions.php:567
 msgid "Previous image"
 msgstr "Imagem anterior"
 
-#: ../functions.php:820
+#: ../functions.php:823
 msgid "Show author info"
 msgstr "Exibir informação do autor"
 
-#: ../functions.php:824
+#: ../functions.php:827
 msgid "Author info"
 msgstr "Informação do autor"
 
-#: ../functions.php:827
+#: ../functions.php:830
 msgid "Check to show author information"
 msgstr "Marque para exibir informação do autor"
 
-#: ../functions.php:828
+#: ../functions.php:831
 msgid "Display author information"
 msgstr "Exibir informação do autor"
 
@@ -146,39 +146,39 @@ msgstr "Parceiro anterior"
 msgid "Next partner"
 msgstr "Próximo parceiro"
 
-#: ../footer.php:75
+#: ../footer.php:102
 msgid "Around the web"
 msgstr "Nas redes"
 
-#: ../footer.php:104
+#: ../footer.php:131
 msgid "Newsletter"
 msgstr "Newsletter"
 
-#: ../footer.php:106
+#: ../footer.php:133
 msgid "Sign up to our newsletter and be the first to know about our latest contents"
 msgstr "Cadastre-se na nossa newsletter e seja o primeiro a saber sobre nossos novos conteúdos"
 
-#: ../footer.php:117
+#: ../footer.php:144
 msgid "Contact"
 msgstr "Contato"
 
-#: ../footer.php:124
+#: ../footer.php:151
 msgid "Colophon"
 msgstr "Colofon"
 
-#: ../footer.php:127
+#: ../footer.php:154
 msgid "Typography"
 msgstr "Tipografia"
 
-#: ../footer.php:131
+#: ../footer.php:158
 msgid "Some icons by"
 msgstr "Alguns ícones por"
 
-#: ../footer.php:135
+#: ../footer.php:162
 msgid "License"
 msgstr "Licença"
 
-#: ../footer.php:139
+#: ../footer.php:166
 msgid "Development"
 msgstr "Desenvolvimento"
 
@@ -214,18 +214,18 @@ msgstr "por"
 #, php-format
 msgid "%d image"
 msgid_plural "%d images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d imagem"
+msgstr[1] "%d imagens"
 
 #: ../index.php:25
 msgid "Scroll to explore our content"
 msgstr "Role para explorar nosso conteúdo"
 
-#: ../index.php:151
+#: ../index.php:150
 msgid "View all content from this section"
 msgstr "Ver todo o conteúdo desta seção"
 
-#: ../index.php:225
+#: ../index.php:224
 msgid "Recent videos"
 msgstr "Vídeos recentes"
 
@@ -242,103 +242,115 @@ msgstr "Assine nosso canal"
 msgid "%1$s %2$s is sponsored by %3$s"
 msgstr "%1$s %2$s é um oferecimento de %3$s"
 
-#: ../inc/axis.php:26
+#: ../inc/axis.php:29
 msgctxt "Axis general name"
 msgid "Axes"
 msgstr "Eixos"
 
-#: ../inc/axis.php:27
+#: ../inc/axis.php:30
 msgctxt "Axis singular name"
 msgid "Axis"
 msgstr "Eixo"
 
-#: ../inc/axis.php:28
+#: ../inc/axis.php:31
 msgid "All axes"
 msgstr "Todos os eixos"
 
-#: ../inc/axis.php:29
+#: ../inc/axis.php:32
 msgid "Edit axis"
 msgstr "Editar eixo"
 
-#: ../inc/axis.php:30
+#: ../inc/axis.php:33
 msgid "View axis"
 msgstr "Ver eixo"
 
-#: ../inc/axis.php:31
+#: ../inc/axis.php:34
 msgid "Update axis"
 msgstr "Atualizar eixo"
 
-#: ../inc/axis.php:32
+#: ../inc/axis.php:35
 msgid "Add new axis"
 msgstr "Adicionar novo eixo"
 
-#: ../inc/axis.php:33
+#: ../inc/axis.php:36
 msgid "New axis name"
 msgstr "Novo nome de eixo"
 
-#: ../inc/axis.php:34
+#: ../inc/axis.php:37
 msgid "Parent axis"
 msgstr "Eixo pai"
 
-#: ../inc/axis.php:35
+#: ../inc/axis.php:38
 msgid "Parent axis:"
 msgstr "Eixo pai:"
 
-#: ../inc/axis.php:36
+#: ../inc/axis.php:39
 msgid "Search axes"
 msgstr "Buscar eixos"
 
-#: ../inc/axis.php:37
+#: ../inc/axis.php:40
 msgid "Popular axes"
 msgstr "Eixos populares"
 
-#: ../inc/axis.php:38
+#: ../inc/axis.php:41
 msgid "Separate axes with commas"
 msgstr "Separar eixos por vírgulas"
 
-#: ../inc/axis.php:39
+#: ../inc/axis.php:42
 msgid "Add or remove axes"
 msgstr "Adicionar ou remover eixos"
 
-#: ../inc/axis.php:40
+#: ../inc/axis.php:43
 msgid "Choose from most used axes"
 msgstr "Escolher entre os eixos mais utilizados"
 
-#: ../inc/axis.php:41
+#: ../inc/axis.php:44
 msgid "No axes found"
 msgstr "Nenhum eixo encontrado"
 
-#: ../inc/axis.php:74
+#: ../inc/axis.php:77
 msgid "Home featured options"
 msgstr "Opções de destaque da página inicial"
 
-#: ../inc/axis.php:78
+#: ../inc/axis.php:81
 msgid "Home featured"
 msgstr "Destaque na página inicial"
 
-#: ../inc/axis.php:81
+#: ../inc/axis.php:84
 msgid "Featured on home axes slider"
 msgstr "Destacado na área de eixos da página inicial"
 
-#: ../inc/axis.php:109
+#: ../inc/axis.php:112
 msgid "Title"
 msgstr "Título"
 
-#: ../inc/axis.php:112
+#: ../inc/axis.php:115
 msgid "Title to show on home slider (default is post title)"
 msgstr "Título para exibir na área (padrão é título do post)"
 
-#: ../inc/axis.php:133
+#: ../inc/axis.php:136
 msgid "Description"
 msgstr "Descrição"
 
-#: ../inc/axis.php:136
+#: ../inc/axis.php:139
 msgid "Description to show on home slider (default is post excerpt)"
 msgstr "Descrição para exibir na área (padrão é o resumo do post)"
 
-#: ../inc/axis.php:155
+#: ../inc/axis.php:158
 msgid "Full screen image"
 msgstr "Imagem full screen"
+
+#: ../inc/axis.php:220
+msgid "Custom sort"
+msgstr "Ordem customizada"
+
+#: ../inc/axis.php:224
+msgid "Order"
+msgstr "Ordem"
+
+#: ../inc/axis.php:227
+msgid "Select a number for order of appearance."
+msgstr "Selecione um número para ordem de aparição."
 
 #: ../inc/section.php:28
 msgctxt "Section general name"
@@ -625,7 +637,7 @@ msgstr ""
 
 #: ../inc/acf/acf.php:344
 msgid "Add New"
-msgstr ""
+msgstr "Adicionar novo"
 
 #: ../inc/acf/acf.php:345
 msgid "Add New Field Group"
@@ -2596,6 +2608,7 @@ msgid "Your message here"
 msgstr "Sua mensagem aqui"
 
 #: ../inc/contact/contact.php:77
+#: ../inc/newsletter/newsletter.php:30
 msgid "Send"
 msgstr "Enviar"
 
@@ -2699,15 +2712,15 @@ msgstr "Escolher entre as localizações mais utilizadas"
 msgid "No locations found"
 msgstr "Nenhuma localização encontrada"
 
-#: ../inc/map/map.php:565
+#: ../inc/map/map.php:566
 msgid "View as"
 msgstr "Ver como"
 
-#: ../inc/map/map.php:568
+#: ../inc/map/map.php:569
 msgid "Map"
 msgstr "Mapa"
 
-#: ../inc/map/map.php:569
+#: ../inc/map/map.php:570
 msgid "List"
 msgstr "Lista"
 
@@ -2719,43 +2732,47 @@ msgstr "Preencha com seu endereço de email"
 msgid "Showing"
 msgstr "Exibindo"
 
-#: ../inc/about/about.php:64
+#: ../inc/about/about.php:65
 msgid "Our ideas"
 msgstr "Nossas ideias"
 
-#: ../inc/about/about.php:65
+#: ../inc/about/about.php:68
 msgid "Our heads"
 msgstr "Nossas cabeças"
 
-#: ../inc/about/about.php:110
+#: ../inc/about/about.php:125
+msgid "Previous"
+msgstr "Anterior"
+
+#: ../inc/about/about.php:145
 msgid "About page"
 msgstr "Página \"sobre\""
 
-#: ../inc/about/about.php:116
+#: ../inc/about/about.php:151
 msgid "About content"
 msgstr "Sobre"
 
-#: ../inc/about/about.php:125
+#: ../inc/about/about.php:160
 msgid "Team"
 msgstr "Equipe"
 
-#: ../inc/about/about.php:131
+#: ../inc/about/about.php:166
 msgid "Member name"
 msgstr "Nome do integrante"
 
-#: ../inc/about/about.php:144
+#: ../inc/about/about.php:179
 msgid "Photo"
 msgstr "Foto"
 
-#: ../inc/about/about.php:154
+#: ../inc/about/about.php:189
 msgid "Role"
 msgstr "Função"
 
-#: ../inc/about/about.php:167
+#: ../inc/about/about.php:202
 msgid "Profile"
 msgstr "Perfil"
 
-#: ../inc/about/about.php:179
+#: ../inc/about/about.php:262
 msgid "Add member"
 msgstr "Adicionar integrante"
 
@@ -2948,7 +2965,7 @@ msgstr "começando às"
 #: ../inc/events/events.php:491
 msgctxt "Minimal event time format"
 msgid "g:i a"
-msgstr "G:"
+msgstr "G:i"
 
 #: ../inc/magazine/remix.php:28
 #: ../inc/magazine/remix.php:29
