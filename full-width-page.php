@@ -15,7 +15,10 @@ get_header(); ?>
 
 				the_post();
 
-				do_action('humus_before_page_content');	$header_image = humus_get_header_image_url();
+				do_action('humus_before_page_content');
+
+				$header_image = humus_get_header_image_url();
+				$section_icon = humus_get_term_icon_url($post->ID, 'section');
 
 				?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class('full row'); ?>>
