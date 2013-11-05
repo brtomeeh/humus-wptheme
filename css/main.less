@@ -578,6 +578,8 @@ input[type=submit] {
 					}
 				}
 				> ul {
+					height: 0;
+					overflow: hidden;
 					position: absolute;
 					top: 60px;
 					left: 0;
@@ -599,6 +601,14 @@ input[type=submit] {
 						top: -20px;
 						z-index: 1000;
 						left: 20px;
+					}
+					&:after {
+						content: '';
+						left: 0;
+						right: 0;
+						top: -20px;
+						height: 20px;
+						position: absolute;
 					}
 					> li {
 						background: #fff;
@@ -672,6 +682,8 @@ input[type=submit] {
 				}
 				&:hover {
 					> ul {
+						height: auto;
+						overflow: visible;
 						opacity: 1;
 						margin-top: 20px;
 						.transition(all .2s ease-in-out);
