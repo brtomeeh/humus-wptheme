@@ -557,7 +557,7 @@ function humus_gallery($atts, $content = null) {
 	if(!$images || empty($images))
 		return '';
 
-	wp_enqueue_script('humus-gallery', get_template_directory_uri() . '/js/gallery.js', array('jquery', 'sly'), '0.1.0');
+	wp_enqueue_script('humus-gallery', get_template_directory_uri() . '/js/gallery.js', array('jquery', 'sly'), '0.1.1');
 
 	ob_start();
 	?>

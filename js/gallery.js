@@ -1,6 +1,7 @@
 (function($) {
 
 	var gallery,
+		imgLoad,
 		image,
 		list,
 		current,
@@ -13,6 +14,7 @@
 
 		if(gallery.length) {
 			image = gallery.find('.image');
+
 			list = gallery.find('.image-list li');
 
 			bindEvents();
@@ -37,7 +39,7 @@
 
 	function heights() {
 
-		gallery.find('.image-container').css({
+		gallery.find('.image-container, .image-container .image').css({
 			height: gallery.find('.image-container').width() / 16 * 9
 		});
 
@@ -58,12 +60,12 @@
 			horizontal: 1,
 			itemNav: 'basic',
 			smart: 1,
-			mouseDragging: 1,
-			touchDragging: 1,
-			releaseSwing: 1,
+			mouseDragging: 0,
+			touchDragging: 0,
+			releaseSwing: 0,
 			startAt: 0,
 			scrollBar: gallery.find('.scrollbar'),
-			scrollBy: 1,
+			scrollBy: 0,
 			speed: 300,
 			dragHandle: 1,
 			dynamicHandle: 1,
@@ -80,11 +82,21 @@
 
 	function openImage(url) {
 
-		var newImage = $('<img src="' + url + '" />');
+		var newImage = $('<img src="' + url + '" class="viewing-image" />');
 
 		image.empty().append(newImage);
 
+		imgLoad = imagesLoaded(image);
+
 		pinImage(newImage);
+
+		imgLoad.on('done', function() {
+			setTimeout(function() {
+				image.find('img.viewing-image').css({
+					'padding-top': (image.height()/2) - (image.find('img.viewing-image').height()/2)
+				});
+			});
+		});
 
 		current = list.filter('[data-image="' + url + '"]');
 
