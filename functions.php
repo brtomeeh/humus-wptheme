@@ -780,7 +780,9 @@ function humus_pagination() {
  */
 
 function humus_map_view_terms($terms) {
-	$terms[] = get_term_by('slug', 'tape', 'section');
+	$tape = get_term_by('slug', 'tape', 'section');
+	if($tape)
+		$terms[] = $tape;
 	return $terms;
 }
 add_filter('humus_map_view_terms', 'humus_map_view_terms');
