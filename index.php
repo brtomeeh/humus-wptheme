@@ -46,6 +46,7 @@ get_header(); ?>
 									foreach($axes as $axis) : 
 										$axis_posts = get_posts(array(
 											'posts_per_page' => 4,
+											'post_type' => get_post_types(array('public' => true)),
 											'axis' => $axis->slug,
 											'meta_query' => array(
 												array(
@@ -111,6 +112,7 @@ get_header(); ?>
 							foreach($sections as $section) {
 								$section_post = get_posts(array(
 									'posts_per_page' => 1,
+									'post_type' => get_post_types(array('public' => true)),
 									'section' => $section->slug,
 									'meta_query' => array(
 										array(
