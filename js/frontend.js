@@ -49,11 +49,11 @@ var pinImage;
 			smart: 1,
 			itemSelector: this.contentArea.find('.full-height-section'),
 			activateMiddle: 1,
-			mouseDragging: 1,
-			touchDragging: 1,
+			mouseDragging: 0,
+			touchDragging: 0,
 			releaseSwing: 1,
 			startAt: 0,
-			scrollBy: 1,
+			scrollBy: 0,
 			speed: 600,
 			elasticBounds: 0,
 			dragHandle: 1,
@@ -69,79 +69,73 @@ var pinImage;
 			self.sly.reload();
 		});
 
-		// Prevent double scroll
+		var enableRun = true;
 
-		this.sly.on('moveStart', disableScroll);
-		this.sly.on('moveEnd', enableScroll);
-		this.sly.on('moveEnd', manageFooter);
-		$(window).on('scroll', manageFooter);
+		var runSections = function(delta) {
+
+			if(enableRun) {
+
+				if(delta > 0) {
+					// up
+					self.sly.prev();
+				} else if(delta < 0) {
+					// down
+					self.sly.next();
+				}
 
 
-		function disableMousewheel(e) {
-			e.preventDefault();
-		}
+				enableRun = false;
 
-		function disableScroll() {
-			self.sly.set('scrollBy', 0);
-			self.sly.set('keyboardNavBy', 0);
-			self.sly.set('mouseDragging', 0);
-			self.sly.set('touchDragging', 0);
-			self.sly.set('dragHandle', 0);
-			if(window.addEventListener) {
-				window.addEventListener('DOMMouseScroll', disableMousewheel, false);
+				setTimeout(function() {
+					enableRun = true;
+				}, 800);
+
 			}
-			window.onmousewheel = document.onmousewheel = disableMousewheel;
-		}
 
-		function enableScroll() {
-			self.sly.set('scrollBy', 1);
-			self.sly.set('keyboardNavBy', 'items');
-			self.sly.set('mouseDragging', 1);
-			self.sly.set('touchDragging', 1);
-			self.sly.set('dragHandle', 1);
-			if(window.removeEventListener) {
-				window.removeEventListener('DOMMouseScroll', disableMousewheel);
-			}
-			window.onmousewheel = document.onmousewheel = null;
-		}
+		};
 
-		var previousScroll = $(window).scrollTop();
-
-		function manageFooter(e) {
+		var homeScroll = function(event, delta) {
 
 			var items = self.sly.items;
 			var current = self.sly.rel;
+			var isLastItem = (items.length - 1 === current.lastItem);
 
-			if((items.length - 1) === current.lastItem) {
+			if(isLastItem) {
 
-				$('body').css({'overflow':'auto'});
-				$('.scroll-tip').addClass('hidden');
+				if($(window).scrollTop() === 0 && delta > 0) {
 
-				disableScroll();
+					runSections(delta);
 
-				if(window.removeEventListener) {
-					window.removeEventListener('DOMMouseScroll', disableMousewheel);
-				}
-				window.onmousewheel = document.onmousewheel = null;
-
-				if(e === 'moveEnd')
-					$(window).scrollTop(1);
-
-				if($(window).scrollTop() === 0 && previousScroll !== $(window).scrollTop()) {
-
-					previousScroll = false;
-
-					//$('body').css({'overflow':'hidden'});
-					$('.scroll-tip').removeClass('hidden');
-					enableScroll();
+					event.stopPropagation();
+					event.preventDefault();
 
 				}
+
+				if(!enableRun) {
+					event.stopPropagation();
+					event.preventDefault();
+				}
+
+			} else {
+
+				runSections(delta);
+
+				event.stopPropagation();
+				event.preventDefault();
+			}
+
+		};
+
+		$(window).on('mousewheel', homeScroll);
+		$(window).on('scroll', function() {
+
+			if($(window).scrollTop() > 0) {
+
+				self.sly.toEnd(undefined, true);
 
 			}
 
-			previousScroll = $(window).scrollTop();
-
-		}
+		});
 		
 	}
 
@@ -525,16 +519,16 @@ var pinImage;
 					itemNav: 'basic',
 					smart: 1,
 					activateOn: 'click',
-					mouseDragging: 1,
+					mouseDragging: 0,
 					touchDragging: 1,
 					releaseSwing: 1,
 					startAt: 0,
-					scrollBy: 1,
+					scrollBy: 0,
 					speed: 300,
 					elasticBounds: 0,
 					dragHandle: 1,
 					dynamicHandle: 0,
-					keyboardNavBy: 'items',
+					keyboardNavBy: null,
 					prev: $container.find('.video-list-controls .prev'),
 					next: $container.find('.video-list-controls .next')
 				};
