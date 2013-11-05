@@ -578,7 +578,6 @@ input[type=submit] {
 					}
 				}
 				> ul {
-					overflow: hidden;
 					height: 0;
 					position: absolute;
 					top: 60px;
@@ -587,6 +586,7 @@ input[type=submit] {
 					opacity: 0;
 					margin-top: 40px;
 					width: 200px;
+					background: #fff;
 					.transition(all .2s ease-in-out);
 					&:before {
 						content: '';
@@ -597,7 +597,7 @@ input[type=submit] {
 						border-top: 10px solid transparent;
 						border-bottom: 10px solid #fff;
 						position: absolute;
-						top: 0px;
+						top: -20px;
 						z-index: 1000;
 						left: 20px;
 					}
@@ -617,6 +617,7 @@ input[type=submit] {
 						}
 						> li {
 							padding: 20px;
+							border-bottom: 0;
 						}
 						.axes {
 							width: 130px;
@@ -674,8 +675,7 @@ input[type=submit] {
 					> ul {
 						height: auto;
 						opacity: 1;
-						margin-top: 0;
-						padding: 20px 0;
+						margin-top: 20px;
 						.transition(all .2s ease-in-out);
 					}
 				}
