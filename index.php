@@ -223,7 +223,7 @@ get_header(); ?>
 								<div class="recent-content vertical-center">
 									<div class="container">
 										<div class="twelve columns">
-											<h2><?php _e('Recent videos', 'humus'); ?></h2>
+											<h2><?php _e('Recent posts', 'humus'); ?></h2>
 										</div>
 										<div class="nine columns">
 											<div class="active-video clearfix">

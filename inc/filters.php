@@ -38,12 +38,12 @@ class Humus_Filters {
 
 		$options = array(
 			'default' => array(
-				'name' => __('Most recent', 'humus'),
+				'name' => __('Recent first', 'humus'),
 				'active' => $active ? false : true,
 				'order' => 0
 			),
 			'oldest' => array(
-				'name' => __('Oldest', 'humus'),
+				'name' => __('Old first', 'humus'),
 				'active' => ($active == 'oldest') ? true : false,
 				'order' => 5
 			)

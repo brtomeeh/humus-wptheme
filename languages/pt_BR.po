@@ -2,19 +2,18 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Humus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-04 00:41-0300\n"
-"PO-Revision-Date: 2013-11-04 02:13-0300\n"
+"POT-Creation-Date: 2013-11-05 16:33-0300\n"
+"PO-Revision-Date: 2013-11-05 16:34-0300\n"
 "Last-Translator: Miguel Peixe <miguel@cardume.art.br>\n"
 "Language-Team: Cardume <miguel@cardume.art.br>\n"
-"Language: \n"
+"Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Poedit-Language: Portuguese\n"
-"X-Poedit-Country: BRAZIL\n"
+"X-Generator: Poedit 1.5.4\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../comments.php:46
@@ -33,108 +32,110 @@ msgstr "Comentários mais novos &rarr;"
 msgid "Comments are closed."
 msgstr "Comentários estão fechados."
 
-#: ../functions.php:115
+#: ../functions.php:117
 msgid "Primary menu"
 msgstr "Menu principal"
 
-#: ../functions.php:142
+#: ../functions.php:144
 #, php-format
 msgid "Page %s"
 msgstr "Página %s"
 
-#: ../functions.php:346
+#: ../functions.php:348
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: ../functions.php:346
+#: ../functions.php:348
 msgid "(Edit)"
 msgstr "(Editar)"
 
-#: ../functions.php:376
+#: ../functions.php:378
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s às %2$s"
 
-#: ../functions.php:380
+#: ../functions.php:382 ../inc/acf/core/fields/image.php:84
+#: ../inc/acf/core/views/meta_box_fields.php:122
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:471
 msgid "Edit"
 msgstr "Editar"
 
-#: ../functions.php:384
+#: ../functions.php:386
 msgid "Your comment is awaiting moderation."
 msgstr "Seu comentário está aguardando moderação."
 
-#: ../functions.php:392
+#: ../functions.php:394
 msgid "Reply"
 msgstr "Responder"
 
-#: ../functions.php:435
+#: ../functions.php:437
 #, php-format
 msgid "Day: %s"
 msgstr "Dia: %s"
 
-#: ../functions.php:438
+#: ../functions.php:440
 #, php-format
 msgid "Month: %s"
 msgstr "Mês: %s"
 
-#: ../functions.php:441
+#: ../functions.php:443
 #, php-format
 msgid "Year: %s"
 msgstr "Ano: %s"
 
-#: ../functions.php:450
+#: ../functions.php:452 ../inc/filters.php:126
+#: ../inc/acf/core/fields/relationship.php:647
 msgid "Search"
 msgstr "Buscar"
 
-#: ../functions.php:453
+#: ../functions.php:455
 msgid "Nothing found"
 msgstr "Nada encontrado"
 
-#: ../functions.php:456
+#: ../functions.php:458
 msgid "Archives"
 msgstr "Arquivos"
 
-#: ../functions.php:474
+#: ../functions.php:476
 msgid "Try using our search:"
 msgstr "Tente usar nossa busca:"
 
-#: ../functions.php:479
-#: ../searchform.php:3
+#: ../functions.php:481 ../searchform.php:3
 msgid "Type your search..."
 msgstr "Digite sua busca..."
 
-#: ../functions.php:486
+#: ../functions.php:488
 #, php-format
 msgid "We found just %d result for your search"
 msgid_plural "We found %d results for your search"
 msgstr[0] "Nós encontramos apenas %d resultado para  sua busca"
 msgstr[1] "Nós encontramos %d resultados para sua busca"
 
-#: ../functions.php:566
+#: ../functions.php:568
 msgid "Next image"
 msgstr "Próxima imagem"
 
-#: ../functions.php:567
+#: ../functions.php:569
 msgid "Previous image"
 msgstr "Imagem anterior"
 
-#: ../functions.php:823
+#: ../functions.php:827
 msgid "Show author info"
 msgstr "Exibir informação do autor"
 
-#: ../functions.php:827
+#: ../functions.php:831
 msgid "Author info"
 msgstr "Informação do autor"
 
-#: ../functions.php:830
+#: ../functions.php:834
 msgid "Check to show author information"
 msgstr "Marque para exibir informação do autor"
 
-#: ../functions.php:831
+#: ../functions.php:835
 msgid "Display author information"
 msgstr "Exibir informação do autor"
 
-#: ../footer.php:26
+#: ../footer.php:26 ../inc/partners.php:24 ../inc/partners.php:34
 msgid "Partners"
 msgstr "Parceiros"
 
@@ -155,8 +156,11 @@ msgid "Newsletter"
 msgstr "Newsletter"
 
 #: ../footer.php:133
-msgid "Sign up to our newsletter and be the first to know about our latest contents"
-msgstr "Cadastre-se na nossa newsletter e seja o primeiro a saber sobre nossos novos conteúdos"
+msgid ""
+"Sign up to our newsletter and be the first to know about our latest contents"
+msgstr ""
+"Cadastre-se na nossa newsletter e seja o primeiro a saber sobre nossos novos "
+"conteúdos"
 
 #: ../footer.php:144
 msgid "Contact"
@@ -186,10 +190,8 @@ msgstr "Desenvolvimento"
 msgid "You might also like"
 msgstr "Continue lendo"
 
-#: ../full-width-page-wider.php:48
-#: ../page.php:49
-#: ../full-width-page.php:49
-#: ../content.php:131
+#: ../full-width-page-wider.php:55 ../page.php:49 ../full-width-page.php:56
+#: ../content.php:131 ../inc/acf/core/views/meta_box_options.php:105
 msgid "Tags"
 msgstr "Tags"
 
@@ -205,8 +207,7 @@ msgstr "publicado"
 msgid "Where"
 msgstr "Onde"
 
-#: ../content.php:99
-#: ../content.php:224
+#: ../content.php:99 ../content.php:224
 msgid "by"
 msgstr "por"
 
@@ -217,23 +218,23 @@ msgid_plural "%d images"
 msgstr[0] "%d imagem"
 msgstr[1] "%d imagens"
 
-#: ../index.php:25
+#: ../index.php:25 ../inc/map/template.php:14
 msgid "Scroll to explore our content"
 msgstr "Role para explorar nosso conteúdo"
 
-#: ../index.php:150
+#: ../index.php:152
 msgid "View all content from this section"
 msgstr "Ver todo o conteúdo desta seção"
 
-#: ../index.php:224
-msgid "Recent videos"
-msgstr "Vídeos recentes"
+#: ../index.php:226
+msgid "Recent posts"
+msgstr "Publicações recentes"
 
-#: ../index.php:232
+#: ../index.php:234
 msgid "Read more on this content"
 msgstr "Leia mais sobre este conteúdo"
 
-#: ../index.php:233
+#: ../index.php:235
 msgid "Subscribe to our channel"
 msgstr "Assine nosso canal"
 
@@ -320,11 +321,12 @@ msgstr "Destaque na página inicial"
 msgid "Featured on home axes slider"
 msgstr "Destacado na área de eixos da página inicial"
 
-#: ../inc/axis.php:112
+#: ../inc/axis.php:112 ../inc/section.php:132
+#: ../inc/acf/core/controllers/field_groups.php:147
 msgid "Title"
 msgstr "Título"
 
-#: ../inc/axis.php:115
+#: ../inc/axis.php:115 ../inc/section.php:135
 msgid "Title to show on home slider (default is post title)"
 msgstr "Título para exibir na área (padrão é título do post)"
 
@@ -336,7 +338,7 @@ msgstr "Descrição"
 msgid "Description to show on home slider (default is post excerpt)"
 msgstr "Descrição para exibir na área (padrão é o resumo do post)"
 
-#: ../inc/axis.php:158
+#: ../inc/axis.php:158 ../inc/section.php:93
 msgid "Full screen image"
 msgstr "Imagem full screen"
 
@@ -438,7 +440,9 @@ msgstr "Apenas imagem"
 msgid "Color scheme"
 msgstr "Esquema de cor"
 
-#: ../inc/theme-options.php:34
+#: ../inc/theme-options.php:34 ../inc/acf/core/controllers/field_group.php:377
+#: ../inc/acf/add-ons/acf-options-page/acf-options-page.php:30
+#: ../inc/acf/add-ons/acf-options-page/acf-options-page.php:31
 msgid "Options"
 msgstr "Opções"
 
@@ -454,7 +458,8 @@ msgstr "Logo"
 msgid "Contact info"
 msgstr "Informações de contato"
 
-#: ../inc/theme-options.php:84
+#: ../inc/theme-options.php:84 ../inc/acf/core/fields/email.php:19
+#: ../inc/contact/contact.php:74
 msgid "Email"
 msgstr "Email"
 
@@ -471,12 +476,12 @@ msgid "Social"
 msgstr "Redes sociais"
 
 #: ../inc/filters.php:41
-msgid "Most recent"
-msgstr "Mais recentes"
+msgid "Recent first"
+msgstr "Recentes primeiro"
 
 #: ../inc/filters.php:46
-msgid "Oldest"
-msgstr "Antigas"
+msgid "Old first"
+msgstr "Antigas primeiro"
 
 #: ../inc/filters.php:93
 msgid "Related taxonomies"
@@ -517,8 +522,12 @@ msgid "Icon"
 msgstr "Ícone"
 
 #: ../inc/taxonomy-styles.php:46
-msgid "60x60 image to represent the section on the section's page and posts association"
-msgstr "Imagem 60x60 para representar a seção na página da seção e em associação com posts"
+msgid ""
+"60x60 image to represent the section on the section's page and posts "
+"association"
+msgstr ""
+"Imagem 60x60 para representar a seção na página da seção e em associação com "
+"posts"
 
 #: ../inc/taxonomy-styles.php:53
 msgid "Menu icon"
@@ -572,8 +581,7 @@ msgstr "Nenhum parceiro encontrado na lixeira"
 msgid "Humus partners"
 msgstr "Parceiros do Humus"
 
-#: ../inc/partners.php:58
-#: ../inc/partners.php:62
+#: ../inc/partners.php:58 ../inc/partners.php:62
 msgid "Partner website"
 msgstr "Website do parceiro"
 
@@ -619,11 +627,14 @@ msgstr "URL de mídia"
 
 #: ../inc/media.php:42
 #, php-format
-msgid "Paste a media url from any of the sources <a href=\"%s\" target=\"_blank\">listed here</a>"
-msgstr "Cole uma url de mídia de qualquer uma das origens <a href=\"%s\" target=\"_blank\">listadas aqui</a>."
+msgid ""
+"Paste a media url from any of the sources <a href=\"%s\" target=\"_blank"
+"\">listed here</a>"
+msgstr ""
+"Cole uma url de mídia de qualquer uma das origens <a href=\"%s\" target="
+"\"_blank\">listadas aqui</a>."
 
-#: ../inc/media.php:64
-#: ../inc/media.php:67
+#: ../inc/media.php:64 ../inc/media.php:67
 msgid "Preview"
 msgstr "Pré-visualizar"
 
@@ -631,7 +642,7 @@ msgstr "Pré-visualizar"
 msgid "Field&nbsp;Groups"
 msgstr ""
 
-#: ../inc/acf/acf.php:343
+#: ../inc/acf/acf.php:343 ../inc/acf/core/controllers/field_groups.php:214
 msgid "Advanced Custom Fields"
 msgstr ""
 
@@ -667,12 +678,11 @@ msgstr ""
 msgid "No Field Groups found in Trash"
 msgstr ""
 
-#: ../inc/acf/acf.php:459
+#: ../inc/acf/acf.php:459 ../inc/acf/core/views/meta_box_options.php:96
 msgid "Custom Fields"
 msgstr ""
 
-#: ../inc/acf/acf.php:477
-#: ../inc/acf/acf.php:480
+#: ../inc/acf/acf.php:477 ../inc/acf/acf.php:480
 msgid "Field group updated."
 msgstr ""
 
@@ -741,38 +751,97 @@ msgstr ""
 msgid "Page Link"
 msgstr ""
 
-#: ../inc/acf/core/fields/page_link.php:19
-#: ../inc/acf/core/fields/user.php:19
+#: ../inc/acf/core/fields/page_link.php:19 ../inc/acf/core/fields/user.php:19
+#: ../inc/acf/core/fields/post_object.php:19
+#: ../inc/acf/core/fields/taxonomy.php:19
+#: ../inc/acf/core/fields/relationship.php:19
 msgid "Relational"
 msgstr ""
 
 #: ../inc/acf/core/fields/page_link.php:103
+#: ../inc/acf/core/fields/post_object.php:268
+#: ../inc/acf/core/fields/relationship.php:589
+#: ../inc/acf/core/fields/relationship.php:668
+#: ../inc/acf/core/views/meta_box_location.php:75
 msgid "Post Type"
 msgstr ""
 
 #: ../inc/acf/core/fields/page_link.php:109
 #: ../inc/acf/core/fields/user.php:229
+#: ../inc/acf/core/fields/post_object.php:274
+#: ../inc/acf/core/fields/post_object.php:298
+#: ../inc/acf/core/fields/file.php:186
+#: ../inc/acf/core/fields/relationship.php:595
+#: ../inc/acf/core/fields/relationship.php:619
+#: ../inc/acf/core/fields/image.php:170
+#: ../inc/acf/core/controllers/field_group.php:741
+#: ../inc/acf/core/controllers/field_group.php:762
+#: ../inc/acf/core/controllers/field_group.php:769
 msgid "All"
 msgstr ""
 
 #: ../inc/acf/core/fields/page_link.php:127
-#: ../inc/acf/core/fields/user.php:275
+#: ../inc/acf/core/fields/user.php:275 ../inc/acf/core/fields/select.php:214
+#: ../inc/acf/core/fields/post_object.php:317
+#: ../inc/acf/core/fields/taxonomy.php:331
 msgid "Allow Null?"
 msgstr ""
 
 #: ../inc/acf/core/fields/page_link.php:137
 #: ../inc/acf/core/fields/page_link.php:158
-#: ../inc/acf/core/fields/user.php:284
+#: ../inc/acf/core/fields/user.php:284 ../inc/acf/core/fields/select.php:223
+#: ../inc/acf/core/fields/select.php:242
+#: ../inc/acf/core/fields/wysiwyg.php:228
+#: ../inc/acf/core/fields/post_object.php:327
+#: ../inc/acf/core/fields/post_object.php:348
+#: ../inc/acf/core/fields/taxonomy.php:340
+#: ../inc/acf/core/views/meta_box_fields.php:208
+#: ../inc/acf/core/views/meta_box_fields.php:231
+#: ../inc/acf/core/controllers/field_group.php:441
+#: ../inc/acf/add-ons/acf-location-field/location-v3.php:149
+#: ../inc/acf/add-ons/acf-location-field/location-v3.php:199
+#: ../inc/acf/add-ons/acf-location-field/location-v4.php:210
+#: ../inc/acf/add-ons/acf-location-field/location-v4.php:230
+#: ../inc/acf/add-ons/acf-location-field/location-v4.php:250
+#: ../inc/acf/add-ons/acf-location-field/location-v4.php:270
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:162
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:201
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:221
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v3.php:187
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v3.php:226
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v3.php:246
 msgid "Yes"
 msgstr ""
 
 #: ../inc/acf/core/fields/page_link.php:138
 #: ../inc/acf/core/fields/page_link.php:159
-#: ../inc/acf/core/fields/user.php:285
+#: ../inc/acf/core/fields/user.php:285 ../inc/acf/core/fields/select.php:224
+#: ../inc/acf/core/fields/select.php:243
+#: ../inc/acf/core/fields/wysiwyg.php:229
+#: ../inc/acf/core/fields/post_object.php:328
+#: ../inc/acf/core/fields/post_object.php:349
+#: ../inc/acf/core/fields/taxonomy.php:341
+#: ../inc/acf/core/views/meta_box_fields.php:209
+#: ../inc/acf/core/views/meta_box_fields.php:232
+#: ../inc/acf/core/controllers/field_group.php:440
+#: ../inc/acf/add-ons/acf-location-field/location-v3.php:150
+#: ../inc/acf/add-ons/acf-location-field/location-v3.php:200
+#: ../inc/acf/add-ons/acf-location-field/location-v4.php:211
+#: ../inc/acf/add-ons/acf-location-field/location-v4.php:231
+#: ../inc/acf/add-ons/acf-location-field/location-v4.php:251
+#: ../inc/acf/add-ons/acf-location-field/location-v4.php:271
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:163
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:202
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:222
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v3.php:188
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v3.php:227
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v3.php:247
 msgid "No"
 msgstr ""
 
 #: ../inc/acf/core/fields/page_link.php:148
+#: ../inc/acf/core/fields/select.php:233
+#: ../inc/acf/core/fields/post_object.php:338
 msgid "Select multiple values?"
 msgstr ""
 
@@ -780,36 +849,59 @@ msgstr ""
 msgid "Number"
 msgstr ""
 
-#: ../inc/acf/core/fields/number.php:116
-#: ../inc/acf/core/fields/radio.php:193
+#: ../inc/acf/core/fields/number.php:116 ../inc/acf/core/fields/radio.php:193
+#: ../inc/acf/core/fields/select.php:197
+#: ../inc/acf/core/fields/wysiwyg.php:171
+#: ../inc/acf/core/fields/color_picker.php:89
+#: ../inc/acf/core/fields/textarea.php:96
+#: ../inc/acf/core/fields/checkbox.php:157
+#: ../inc/acf/core/fields/true_false.php:94
+#: ../inc/acf/core/fields/email.php:106 ../inc/acf/core/fields/text.php:116
 msgid "Default Value"
 msgstr ""
 
 #: ../inc/acf/core/fields/number.php:117
+#: ../inc/acf/core/fields/wysiwyg.php:172
+#: ../inc/acf/core/fields/textarea.php:97 ../inc/acf/core/fields/email.php:107
+#: ../inc/acf/core/fields/text.php:117
 msgid "Appears when creating a new post"
 msgstr ""
 
 #: ../inc/acf/core/fields/number.php:133
+#: ../inc/acf/core/fields/password.php:105
+#: ../inc/acf/core/fields/textarea.php:111
+#: ../inc/acf/core/fields/email.php:123 ../inc/acf/core/fields/text.php:131
 msgid "Placeholder Text"
 msgstr ""
 
 #: ../inc/acf/core/fields/number.php:134
+#: ../inc/acf/core/fields/password.php:106
+#: ../inc/acf/core/fields/textarea.php:112
+#: ../inc/acf/core/fields/email.php:124 ../inc/acf/core/fields/text.php:132
 msgid "Appears within the input"
 msgstr ""
 
 #: ../inc/acf/core/fields/number.php:148
+#: ../inc/acf/core/fields/password.php:120
+#: ../inc/acf/core/fields/email.php:138 ../inc/acf/core/fields/text.php:146
 msgid "Prepend"
 msgstr ""
 
 #: ../inc/acf/core/fields/number.php:149
+#: ../inc/acf/core/fields/password.php:121
+#: ../inc/acf/core/fields/email.php:139 ../inc/acf/core/fields/text.php:147
 msgid "Appears before the input"
 msgstr ""
 
 #: ../inc/acf/core/fields/number.php:163
+#: ../inc/acf/core/fields/password.php:135
+#: ../inc/acf/core/fields/email.php:153 ../inc/acf/core/fields/text.php:161
 msgid "Append"
 msgstr ""
 
 #: ../inc/acf/core/fields/number.php:164
+#: ../inc/acf/core/fields/password.php:136
+#: ../inc/acf/core/fields/email.php:154 ../inc/acf/core/fields/text.php:162
 msgid "Appears after the input"
 msgstr ""
 
@@ -826,6 +918,7 @@ msgid "Step Size"
 msgstr ""
 
 #: ../inc/acf/core/fields/user.php:18
+#: ../inc/acf/core/views/meta_box_location.php:94
 msgid "User"
 msgstr ""
 
@@ -833,23 +926,29 @@ msgstr ""
 msgid "Filter by role"
 msgstr ""
 
-#: ../inc/acf/core/fields/user.php:251
+#: ../inc/acf/core/fields/user.php:251 ../inc/acf/core/fields/taxonomy.php:306
+#: ../inc/acf/core/views/meta_box_fields.php:91
+#: ../inc/acf/core/views/meta_box_fields.php:173
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:444
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:521
 msgid "Field Type"
 msgstr ""
 
-#: ../inc/acf/core/fields/user.php:260
+#: ../inc/acf/core/fields/user.php:260 ../inc/acf/core/fields/taxonomy.php:316
 msgid "Multiple Values"
 msgstr ""
 
-#: ../inc/acf/core/fields/user.php:262
+#: ../inc/acf/core/fields/user.php:262 ../inc/acf/core/fields/taxonomy.php:318
 msgid "Multi Select"
 msgstr ""
 
-#: ../inc/acf/core/fields/user.php:264
+#: ../inc/acf/core/fields/user.php:264 ../inc/acf/core/fields/taxonomy.php:320
 msgid "Single Value"
 msgstr ""
 
-#: ../inc/acf/core/fields/user.php:266
+#: ../inc/acf/core/fields/user.php:266 ../inc/acf/core/fields/select.php:18
+#: ../inc/acf/core/fields/select.php:109
+#: ../inc/acf/core/fields/taxonomy.php:322
 msgid "Select"
 msgstr ""
 
@@ -857,15 +956,19 @@ msgstr ""
 msgid "Radio Button"
 msgstr ""
 
-#: ../inc/acf/core/fields/radio.php:19
+#: ../inc/acf/core/fields/radio.php:19 ../inc/acf/core/fields/select.php:19
+#: ../inc/acf/core/fields/checkbox.php:20
+#: ../inc/acf/core/fields/true_false.php:20
 msgid "Choice"
 msgstr ""
 
 #: ../inc/acf/core/fields/radio.php:102
+#: ../inc/acf/core/views/meta_box_location.php:91
 msgid "Other"
 msgstr ""
 
-#: ../inc/acf/core/fields/radio.php:144
+#: ../inc/acf/core/fields/radio.php:144 ../inc/acf/core/fields/select.php:177
+#: ../inc/acf/core/fields/checkbox.php:137
 msgid "Choices"
 msgstr ""
 
@@ -881,11 +984,13 @@ msgstr ""
 msgid "Blue"
 msgstr ""
 
-#: ../inc/acf/core/fields/radio.php:150
+#: ../inc/acf/core/fields/radio.php:150 ../inc/acf/core/fields/select.php:180
+#: ../inc/acf/core/fields/checkbox.php:140
 msgid "red : Red"
 msgstr ""
 
-#: ../inc/acf/core/fields/radio.php:151
+#: ../inc/acf/core/fields/radio.php:151 ../inc/acf/core/fields/select.php:180
+#: ../inc/acf/core/fields/checkbox.php:140
 msgid "blue : Blue"
 msgstr ""
 
@@ -897,16 +1002,22 @@ msgstr ""
 msgid "Save 'other' values to the field's choices"
 msgstr ""
 
-#: ../inc/acf/core/fields/radio.php:209
-#: ../inc/acf/core/fields/tab.php:20
+#: ../inc/acf/core/fields/radio.php:209 ../inc/acf/core/fields/tab.php:20
+#: ../inc/acf/core/fields/checkbox.php:174
+#: ../inc/acf/core/fields/message.php:20
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:23
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:428
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:640
 msgid "Layout"
 msgstr ""
 
 #: ../inc/acf/core/fields/radio.php:220
+#: ../inc/acf/core/fields/checkbox.php:185
 msgid "Vertical"
 msgstr ""
 
 #: ../inc/acf/core/fields/radio.php:221
+#: ../inc/acf/core/fields/checkbox.php:186
 msgid "Horizontal"
 msgstr ""
 
@@ -915,11 +1026,14 @@ msgid "Tab"
 msgstr ""
 
 #: ../inc/acf/core/fields/tab.php:65
+#: ../inc/acf/core/controllers/export.php:300
 msgid "Instructions"
 msgstr ""
 
 #: ../inc/acf/core/fields/tab.php:68
-msgid "All fields proceeding this \"tab field\" (or until another \"tab field\"  is defined) will appear grouped on the edit screen."
+msgid ""
+"All fields proceeding this \"tab field\" (or until another \"tab field\"  is "
+"defined) will appear grouped on the edit screen."
 msgstr ""
 
 #: ../inc/acf/core/fields/tab.php:69
@@ -945,9 +1059,9 @@ msgstr ""
 msgid "Wysiwyg Editor"
 msgstr ""
 
-#: ../inc/acf/core/fields/wysiwyg.php:20
-#: ../inc/acf/core/fields/file.php:20
+#: ../inc/acf/core/fields/wysiwyg.php:20 ../inc/acf/core/fields/file.php:20
 #: ../inc/acf/core/fields/image.php:20
+#: ../inc/acf/add-ons/acf-location-field/location-v4.php:24
 msgid "Content"
 msgstr ""
 
@@ -960,6 +1074,7 @@ msgid "Show Media Upload Buttons?"
 msgstr ""
 
 #: ../inc/acf/core/fields/_base.php:124
+#: ../inc/acf/core/views/meta_box_location.php:74
 msgid "Basic"
 msgstr ""
 
@@ -972,6 +1087,8 @@ msgid "Color Picker"
 msgstr ""
 
 #: ../inc/acf/core/fields/color_picker.php:20
+#: ../inc/acf/core/fields/date_picker/date_picker.php:23
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:25
 msgid "jQuery"
 msgstr ""
 
@@ -979,28 +1096,23 @@ msgstr ""
 msgid "Text Area"
 msgstr ""
 
-#: ../inc/acf/core/fields/textarea.php:126
-#: ../inc/acf/core/fields/text.php:195
+#: ../inc/acf/core/fields/textarea.php:126 ../inc/acf/core/fields/text.php:195
 msgid "Character Limit"
 msgstr ""
 
-#: ../inc/acf/core/fields/textarea.php:127
-#: ../inc/acf/core/fields/text.php:196
+#: ../inc/acf/core/fields/textarea.php:127 ../inc/acf/core/fields/text.php:196
 msgid "Leave blank for no limit"
 msgstr ""
 
-#: ../inc/acf/core/fields/textarea.php:141
-#: ../inc/acf/core/fields/text.php:176
+#: ../inc/acf/core/fields/textarea.php:141 ../inc/acf/core/fields/text.php:176
 msgid "Formatting"
 msgstr ""
 
-#: ../inc/acf/core/fields/textarea.php:142
-#: ../inc/acf/core/fields/text.php:177
+#: ../inc/acf/core/fields/textarea.php:142 ../inc/acf/core/fields/text.php:177
 msgid "Effects value on front end"
 msgstr ""
 
-#: ../inc/acf/core/fields/textarea.php:151
-#: ../inc/acf/core/fields/text.php:186
+#: ../inc/acf/core/fields/textarea.php:151 ../inc/acf/core/fields/text.php:186
 msgid "No formatting"
 msgstr ""
 
@@ -1008,8 +1120,7 @@ msgstr ""
 msgid "Convert new lines into &lt;br /&gt; tags"
 msgstr ""
 
-#: ../inc/acf/core/fields/textarea.php:153
-#: ../inc/acf/core/fields/text.php:187
+#: ../inc/acf/core/fields/textarea.php:153 ../inc/acf/core/fields/text.php:187
 msgid "Convert HTML into tags"
 msgstr ""
 
@@ -1046,12 +1157,13 @@ msgid "Load & Save Terms to Post"
 msgstr ""
 
 #: ../inc/acf/core/fields/taxonomy.php:358
-msgid "Load value based on the post's terms and update the post's terms on save"
+msgid ""
+"Load value based on the post's terms and update the post's terms on save"
 msgstr ""
 
-#: ../inc/acf/core/fields/taxonomy.php:365
-#: ../inc/acf/core/fields/file.php:153
+#: ../inc/acf/core/fields/taxonomy.php:365 ../inc/acf/core/fields/file.php:153
 #: ../inc/acf/core/fields/image.php:118
+#: ../inc/acf/add-ons/acf-location-field/location-v4.php:129
 msgid "Return Value"
 msgstr ""
 
@@ -1079,8 +1191,7 @@ msgstr ""
 msgid "Update File"
 msgstr ""
 
-#: ../inc/acf/core/fields/file.php:29
-#: ../inc/acf/core/fields/image.php:30
+#: ../inc/acf/core/fields/file.php:29 ../inc/acf/core/fields/image.php:30
 msgid "uploaded to this post"
 msgstr ""
 
@@ -1104,13 +1215,11 @@ msgstr ""
 msgid "File ID"
 msgstr ""
 
-#: ../inc/acf/core/fields/file.php:175
-#: ../inc/acf/core/fields/image.php:158
+#: ../inc/acf/core/fields/file.php:175 ../inc/acf/core/fields/image.php:158
 msgid "Library"
 msgstr ""
 
-#: ../inc/acf/core/fields/file.php:187
-#: ../inc/acf/core/fields/image.php:171
+#: ../inc/acf/core/fields/file.php:187 ../inc/acf/core/fields/image.php:171
 msgid "Uploaded to post"
 msgstr ""
 
@@ -1148,6 +1257,7 @@ msgid "Post IDs"
 msgstr ""
 
 #: ../inc/acf/core/fields/relationship.php:638
+#: ../inc/acf/core/controllers/field_groups.php:225
 msgid "Filters"
 msgstr ""
 
@@ -1164,6 +1274,7 @@ msgid "Selected elements will be displayed in each result"
 msgstr ""
 
 #: ../inc/acf/core/fields/relationship.php:666
+#: ../inc/acf/core/views/meta_box_options.php:103
 msgid "Featured Image"
 msgstr ""
 
@@ -1232,6 +1343,7 @@ msgid "True / False"
 msgstr ""
 
 #: ../inc/acf/core/fields/true_false.php:79
+#: ../inc/acf/core/fields/message.php:19 ../inc/acf/core/fields/message.php:70
 msgid "Message"
 msgstr ""
 
@@ -1256,14 +1368,20 @@ msgid "Date Picker"
 msgstr ""
 
 #: ../inc/acf/core/fields/date_picker/date_picker.php:30
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:385
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v3.php:430
 msgid "Done"
 msgstr ""
 
 #: ../inc/acf/core/fields/date_picker/date_picker.php:31
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:386
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v3.php:431
 msgid "Today"
 msgstr ""
 
 #: ../inc/acf/core/fields/date_picker/date_picker.php:34
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:389
+#: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v3.php:434
 msgid "Show a different month"
 msgstr ""
 
@@ -1272,7 +1390,9 @@ msgid "Save format"
 msgstr ""
 
 #: ../inc/acf/core/fields/date_picker/date_picker.php:106
-msgid "This format will determin the value saved to the database and returned via the API"
+msgid ""
+"This format will determin the value saved to the database and returned via "
+"the API"
 msgstr ""
 
 #: ../inc/acf/core/fields/date_picker/date_picker.php:107
@@ -1293,7 +1413,9 @@ msgid "This format will be seen by the user when entering a value"
 msgstr ""
 
 #: ../inc/acf/core/fields/date_picker/date_picker.php:123
-msgid "\"dd/mm/yy\" or \"mm/dd/yy\" are the most used display formats. Read more about"
+msgid ""
+"\"dd/mm/yy\" or \"mm/dd/yy\" are the most used display formats. Read more "
+"about"
 msgstr ""
 
 #: ../inc/acf/core/fields/date_picker/date_picker.php:137
@@ -1301,6 +1423,7 @@ msgid "Week Starts On"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:24
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:420
 msgid "New Field"
 msgstr ""
 
@@ -1340,16 +1463,21 @@ msgid "or"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:88
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:441
 msgid "Field Order"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:89
 #: ../inc/acf/core/views/meta_box_fields.php:141
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:442
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:490
 msgid "Field Label"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:90
 #: ../inc/acf/core/views/meta_box_fields.php:157
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:443
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:506
 msgid "Field Name"
 msgstr ""
 
@@ -1358,47 +1486,60 @@ msgid "Field Key"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:104
-msgid "No fields. Click the <strong>+ Add Field</strong> button to create your first field."
+msgid ""
+"No fields. Click the <strong>+ Add Field</strong> button to create your "
+"first field."
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:119
 #: ../inc/acf/core/views/meta_box_fields.php:122
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:468
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:471
 msgid "Edit this Field"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:123
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:472
 msgid "Read documentation for this field"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:123
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:472
 msgid "Docs"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:124
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:473
 msgid "Duplicate this Field"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:124
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:473
 msgid "Duplicate"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:125
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:474
 msgid "Delete this Field"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:125
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:474
 msgid "Delete"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:142
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:491
 msgid "This is the name which will appear on the EDIT page"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:158
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:507
 msgid "Single word, no spaces. Underscores and dashes allowed"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:187
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:536
 msgid "Field Instructions"
 msgstr ""
 
@@ -1441,10 +1582,12 @@ msgid "these rules are met"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:317
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:589
 msgid "Close Field"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_fields.php:330
+#: ../inc/acf/add-ons/acf-repeater/repeater.php:604
 msgid "Drag and drop to reorder"
 msgstr ""
 
@@ -1457,7 +1600,9 @@ msgid "Rules"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_location.php:49
-msgid "Create a set of rules to determine which edit screens will use these advanced custom fields"
+msgid ""
+"Create a set of rules to determine which edit screens will use these "
+"advanced custom fields"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_location.php:60
@@ -1563,7 +1708,9 @@ msgid "<b>Select</b> items to <b>hide</b> them from the edit screen"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_options.php:84
-msgid "If multiple field groups appear on an edit screen, the first field group's options will be used. (the one with the lowest order number)"
+msgid ""
+"If multiple field groups appear on an edit screen, the first field group's "
+"options will be used. (the one with the lowest order number)"
 msgstr ""
 
 #: ../inc/acf/core/views/meta_box_options.php:94
@@ -1617,6 +1764,8 @@ msgid "Fields"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_group.php:376
+#: ../inc/acf/add-ons/acf-location-field/location-v3.php:36
+#: ../inc/map/map.php:69 ../inc/map/map.php:73
 msgid "Location"
 msgstr ""
 
@@ -1649,6 +1798,7 @@ msgid "Default Template"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_group.php:707
+#: ../inc/acf/add-ons/acf-options-page/acf-options-page.php:489
 msgid "Publish"
 msgstr ""
 
@@ -1708,11 +1858,15 @@ msgid "Export to PHP"
 msgstr ""
 
 #: ../inc/acf/core/controllers/export.php:253
-msgid "ACF will create a .xml export file which is compatible with the native WP import plugin."
+msgid ""
+"ACF will create a .xml export file which is compatible with the native WP "
+"import plugin."
 msgstr ""
 
 #: ../inc/acf/core/controllers/export.php:254
-msgid "Imported field groups <b>will</b> appear in the list of editable field groups. This is useful for migrating fields groups between Wp websites."
+msgid ""
+"Imported field groups <b>will</b> appear in the list of editable field "
+"groups. This is useful for migrating fields groups between Wp websites."
 msgstr ""
 
 #: ../inc/acf/core/controllers/export.php:256
@@ -1749,12 +1903,18 @@ msgstr ""
 
 #: ../inc/acf/core/controllers/export.php:269
 #: ../inc/acf/core/controllers/export.php:310
-msgid "Registered field groups <b>will not</b> appear in the list of editable field groups. This is useful for including fields in themes."
+msgid ""
+"Registered field groups <b>will not</b> appear in the list of editable field "
+"groups. This is useful for including fields in themes."
 msgstr ""
 
 #: ../inc/acf/core/controllers/export.php:270
 #: ../inc/acf/core/controllers/export.php:311
-msgid "Please note that if you export and register field groups within the same WP, you will see duplicate fields on your edit screens. To fix this, please move the original field group to the trash or remove the code from your functions.php file."
+msgid ""
+"Please note that if you export and register field groups within the same WP, "
+"you will see duplicate fields on your edit screens. To fix this, please move "
+"the original field group to the trash or remove the code from your functions."
+"php file."
 msgstr ""
 
 #: ../inc/acf/core/controllers/export.php:272
@@ -1789,11 +1949,17 @@ msgid "Include in theme"
 msgstr ""
 
 #: ../inc/acf/core/controllers/export.php:317
-msgid "The Advanced Custom Fields plugin can be included within a theme. To do so, move the ACF plugin inside your theme and add the following code to your functions.php file:"
+msgid ""
+"The Advanced Custom Fields plugin can be included within a theme. To do so, "
+"move the ACF plugin inside your theme and add the following code to your "
+"functions.php file:"
 msgstr ""
 
 #: ../inc/acf/core/controllers/export.php:323
-msgid "To remove all visual interfaces from the ACF plugin, you can use a constant to enable lite mode. Add the following code to your functions.php file <b>before</b> the include_once code:"
+msgid ""
+"To remove all visual interfaces from the ACF plugin, you can use a constant "
+"to enable lite mode. Add the following code to your functions.php file "
+"<b>before</b> the include_once code:"
 msgstr ""
 
 #: ../inc/acf/core/controllers/export.php:331
@@ -1806,15 +1972,19 @@ msgid ""
 " *  Install Add-ons\n"
 " *  \n"
 " *  The following code will include all 4 premium Add-Ons in your theme.\n"
-" *  Please do not attempt to include a file which does not exist. This will produce an error.\n"
+" *  Please do not attempt to include a file which does not exist. This will "
+"produce an error.\n"
 " *  \n"
-" *  The following code assumes you have a folder 'add-ons' inside your theme.\n"
+" *  The following code assumes you have a folder 'add-ons' inside your "
+"theme.\n"
 " *\n"
 " *  IMPORTANT\n"
-" *  Add-ons may be included in a premium theme/plugin as outlined in the terms and conditions.\n"
+" *  Add-ons may be included in a premium theme/plugin as outlined in the "
+"terms and conditions.\n"
 " *  For more information, please read:\n"
 " *  - http://www.advancedcustomfields.com/terms-conditions/\n"
-" *  - http://www.advancedcustomfields.com/resources/getting-started/including-lite-mode-in-a-plugin-theme/\n"
+" *  - http://www.advancedcustomfields.com/resources/getting-started/"
+"including-lite-mode-in-a-plugin-theme/\n"
 " */"
 msgstr ""
 
@@ -1829,8 +1999,10 @@ msgid ""
 "/**\n"
 " *  Register Field Groups\n"
 " *\n"
-" *  The register_field_group function accepts 1 array which holds the relevant data to register a field group\n"
-" *  You may edit the array as you see fit. However, this may result in errors if the array is not compatible with ACF\n"
+" *  The register_field_group function accepts 1 array which holds the "
+"relevant data to register a field group\n"
+" *  You may edit the array as you see fit. However, this may result in "
+"errors if the array is not compatible with ACF\n"
 " */"
 msgstr ""
 
@@ -1916,7 +2088,10 @@ msgid "Activation codes have grown into plugins!"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:314
-msgid "Add-ons are now activated by downloading and installing individual plugins. Although these plugins will not be hosted on the wordpress.org repository, each Add-on will continue to receive updates in the usual way."
+msgid ""
+"Add-ons are now activated by downloading and installing individual plugins. "
+"Although these plugins will not be hosted on the wordpress.org repository, "
+"each Add-on will continue to receive updates in the usual way."
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:320
@@ -1932,7 +2107,9 @@ msgid "Download your activated Add-ons"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:329
-msgid "This website does not use premium Add-ons and will not be affected by this change."
+msgid ""
+"This website does not use premium Add-ons and will not be affected by this "
+"change."
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:339
@@ -1964,7 +2141,9 @@ msgid "Custom Field Types"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:349
-msgid "Creating your own field type has never been easier! Unfortunately, version 3 field types are not compatible with version 4."
+msgid ""
+"Creating your own field type has never been easier! Unfortunately, version 3 "
+"field types are not compatible with version 4."
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:350
@@ -1984,7 +2163,9 @@ msgid "Actions &amp; Filters"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:353
-msgid "All actions & filters have received a major facelift to make customizing ACF even easier! Please"
+msgid ""
+"All actions & filters have received a major facelift to make customizing ACF "
+"even easier! Please"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:353
@@ -2016,7 +2197,10 @@ msgid "Database Changes"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:363
-msgid "Absolutely <strong>no</strong> changes have been made to the database between versions 3 and 4. This means you can roll back to version 3 without any issues."
+msgid ""
+"Absolutely <strong>no</strong> changes have been made to the database "
+"between versions 3 and 4. This means you can roll back to version 3 without "
+"any issues."
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:365
@@ -2024,7 +2208,10 @@ msgid "Potential Issues"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:366
-msgid "Do to the sizable changes surounding Add-ons, field types and action/filters, your website may not operate correctly. It is important that you read the full"
+msgid ""
+"Do to the sizable changes surounding Add-ons, field types and action/"
+"filters, your website may not operate correctly. It is important that you "
+"read the full"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:366
@@ -2040,7 +2227,9 @@ msgid "Really Important!"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:369
-msgid "If you updated the ACF plugin without prior knowledge of such changes, please roll back to the latest"
+msgid ""
+"If you updated the ACF plugin without prior knowledge of such changes, "
+"please roll back to the latest"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:369
@@ -2056,7 +2245,9 @@ msgid "Thank You"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:375
-msgid "A <strong>BIG</strong> thank you to everyone who has helped test the version 4 beta and for all the support I have received."
+msgid ""
+"A <strong>BIG</strong> thank you to everyone who has helped test the version "
+"4 beta and for all the support I have received."
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:376
@@ -2076,11 +2267,16 @@ msgid "Overview"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:404
-msgid "Previously, all Add-ons were unlocked via an activation code (purchased from the ACF Add-ons store). New to v4, all Add-ons act as separate plugins which need to be individually downloaded, installed and updated."
+msgid ""
+"Previously, all Add-ons were unlocked via an activation code (purchased from "
+"the ACF Add-ons store). New to v4, all Add-ons act as separate plugins which "
+"need to be individually downloaded, installed and updated."
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:406
-msgid "This page will assist you in downloading and installing each available Add-on."
+msgid ""
+"This page will assist you in downloading and installing each available Add-"
+"on."
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:408
@@ -2092,6 +2288,7 @@ msgid "The following Add-ons have been detected as activated on this website."
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:423
+#: ../inc/contact/contact.php:73
 msgid "Name"
 msgstr ""
 
@@ -2120,6 +2317,7 @@ msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:448
 #: ../inc/acf/core/controllers/addons.php:144
+#: ../inc/acf/add-ons/acf-options-page/acf-options-page.php:201
 msgid "Options Page"
 msgstr ""
 
@@ -2152,7 +2350,9 @@ msgid "Use the uploader to browse, select and install your Add-on (.zip file)"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:473
-msgid "Once the plugin has been uploaded and installed, click the 'Activate Plugin' link"
+msgid ""
+"Once the plugin has been uploaded and installed, click the 'Activate Plugin' "
+"link"
 msgstr ""
 
 #: ../inc/acf/core/controllers/field_groups.php:474
@@ -2220,11 +2420,15 @@ msgid "Advanced Custom Fields Add-Ons"
 msgstr ""
 
 #: ../inc/acf/core/controllers/addons.php:196
-msgid "The following Add-ons are available to increase the functionality of the Advanced Custom Fields plugin."
+msgid ""
+"The following Add-ons are available to increase the functionality of the "
+"Advanced Custom Fields plugin."
 msgstr ""
 
 #: ../inc/acf/core/controllers/addons.php:197
-msgid "Each Add-on can be installed as a separate plugin (receives updates) or included in your theme (does not receive updates)."
+msgid ""
+"Each Add-on can be installed as a separate plugin (receives updates) or "
+"included in your theme (does not receive updates)."
 msgstr ""
 
 #: ../inc/acf/core/controllers/addons.php:219
@@ -2253,6 +2457,7 @@ msgid "Upgrade"
 msgstr ""
 
 #: ../inc/acf/core/controllers/upgrade.php:139
+#: ../inc/acf/add-ons/acf-options-page/acf-options-page-update.php:137
 msgid "What's new"
 msgstr ""
 
@@ -2306,7 +2511,8 @@ msgid "Repeater Fields"
 msgstr ""
 
 #: ../inc/acf/add-ons/acf-repeater/repeater.php:452
-msgid "No fields. Click the \"+ Add Sub Field button\" to create your first field."
+msgid ""
+"No fields. Click the \"+ Add Sub Field button\" to create your first field."
 msgstr ""
 
 #: ../inc/acf/add-ons/acf-repeater/repeater.php:556
@@ -2488,7 +2694,9 @@ msgstr ""
 
 #: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:94
 #, php-format
-msgid "eg. mm/dd/yy. read more about <a href=\"%s\" target=\"_blank\">formatting  date</a>"
+msgid ""
+"eg. mm/dd/yy. read more about <a href=\"%s\" target=\"_blank\">formatting  "
+"date</a>"
 msgstr ""
 
 #: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:124
@@ -2499,7 +2707,9 @@ msgstr ""
 #: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:125
 #: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v3.php:163
 #, php-format
-msgid "eg. hh:mm. read more about <a href=\"%s\" target=\"_blank\">formatting  time</a>"
+msgid ""
+"eg. hh:mm. read more about <a href=\"%s\" target=\"_blank\">formatting  "
+"time</a>"
 msgstr ""
 
 #: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:152
@@ -2529,7 +2739,10 @@ msgstr ""
 #: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:191
 #: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v3.php:216
 #, php-format
-msgid "Most users should leave this untouched, only set it to \"No\" if you need a date and time format not supported by <a href=\"%s\" target=\"_blank\">strtotime</a>"
+msgid ""
+"Most users should leave this untouched, only set it to \"No\" if you need a "
+"date and time format not supported by <a href=\"%s\" target=\"_blank"
+"\">strtotime</a>"
 msgstr ""
 
 #: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:210
@@ -2539,7 +2752,11 @@ msgstr ""
 #: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:211
 #: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v3.php:236
 #, php-format
-msgid "Most users should leave this untouched, only set it to \"Yes\" if you need get the  date and time field as a timestamp using  <a href=\"%s\" target=\"_blank\">the_field()</a> or <a href=\"%s\" target=\"_blank\">get_field()</a> "
+msgid ""
+"Most users should leave this untouched, only set it to \"Yes\" if you need "
+"get the  date and time field as a timestamp using  <a href=\"%s\" target="
+"\"_blank\">the_field()</a> or <a href=\"%s\" target=\"_blank\">get_field()</"
+"a> "
 msgstr ""
 
 #: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:387
@@ -2549,6 +2766,7 @@ msgstr ""
 
 #: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v4.php:388
 #: ../inc/acf/add-ons/acf-field-date-time-picker/date_time_picker-v3.php:433
+#: ../inc/about/about.php:126
 msgid "Next"
 msgstr ""
 
@@ -2607,8 +2825,7 @@ msgstr "Assunto"
 msgid "Your message here"
 msgstr "Sua mensagem aqui"
 
-#: ../inc/contact/contact.php:77
-#: ../inc/newsletter/newsletter.php:30
+#: ../inc/contact/contact.php:77 ../inc/newsletter/newsletter.php:30
 msgid "Send"
 msgstr "Enviar"
 
@@ -2629,15 +2846,18 @@ msgid "Invalid email."
 msgstr "Email inválido."
 
 #: ../inc/contact/contact.php:113
-msgid "Thank you! Your message has been sent, we'll get back to you as soon as possible."
-msgstr "Obrigado! Sua mensagem foi enviada, vamos entrar em contato assim que possível."
+msgid ""
+"Thank you! Your message has been sent, we'll get back to you as soon as "
+"possible."
+msgstr ""
+"Obrigado! Sua mensagem foi enviada, vamos entrar em contato assim que "
+"possível."
 
 #: ../inc/map/template.php:28
 msgid "View from this city"
 msgstr "Ver desta cidade"
 
-#: ../inc/map/template.php:29
-#: ../inc/map/template.php:69
+#: ../inc/map/template.php:29 ../inc/map/template.php:69
 msgid "Back to city list"
 msgstr "Voltar para a lista de cidades"
 
@@ -2655,8 +2875,7 @@ msgctxt "Location singular name"
 msgid "Location"
 msgstr "Localização"
 
-#: ../inc/map/map.php:151
-#: ../inc/map/map.php:215
+#: ../inc/map/map.php:151 ../inc/map/map.php:215
 msgid "All locations"
 msgstr "Localizações"
 
@@ -2776,8 +2995,7 @@ msgstr "Perfil"
 msgid "Add member"
 msgstr "Adicionar integrante"
 
-#: ../inc/events/events.php:47
-#: ../inc/events/events.php:57
+#: ../inc/events/events.php:47 ../inc/events/events.php:57
 msgid "Events"
 msgstr "Eventos"
 
@@ -2895,16 +3113,6 @@ msgstr "Configurações de evento"
 msgid "Event time"
 msgstr "Hora do evento"
 
-#: ../inc/events/events.php:130
-msgctxt "Event date"
-msgid "m/d/y"
-msgstr "d/m/y"
-
-#: ../inc/events/events.php:131
-msgctxt "Event time"
-msgid "h:mm tt"
-msgstr "HH:mm"
-
 #: ../inc/events/events.php:139
 msgid "Week featured"
 msgstr "Destaques da semana"
@@ -2944,8 +3152,7 @@ msgstr "Eventos passados"
 msgid "Featured this week"
 msgstr "Destaques da semana"
 
-#: ../inc/events/events.php:336
-#: ../inc/events/events.php:395
+#: ../inc/events/events.php:336 ../inc/events/events.php:395
 #: ../inc/events/events.php:454
 #, php-format
 msgid "%d result"
@@ -2967,8 +3174,7 @@ msgctxt "Minimal event time format"
 msgid "g:i a"
 msgstr "G:i"
 
-#: ../inc/magazine/remix.php:28
-#: ../inc/magazine/remix.php:29
+#: ../inc/magazine/remix.php:28 ../inc/magazine/remix.php:29
 #: ../inc/magazine/remix.php:38
 msgid "Remix"
 msgstr "Remix"
@@ -3009,8 +3215,7 @@ msgstr "Nenhum remix encontrado na lixeira"
 msgid "Humus Remix"
 msgstr "Remix do Humus"
 
-#: ../inc/magazine/remix.php:63
-#: ../inc/magazine/remix.php:67
+#: ../inc/magazine/remix.php:63 ../inc/magazine/remix.php:67
 msgid "Remix URL"
 msgstr "URL do remix"
 
@@ -3018,3 +3223,16 @@ msgstr "URL do remix"
 msgid "Paste the original remix URL"
 msgstr "Cole a URL original do remix"
 
+#~ msgid "Most recent"
+#~ msgstr "Mais recentes"
+
+#~ msgid "Oldest"
+#~ msgstr "Antigas"
+
+#~ msgctxt "Event date"
+#~ msgid "m/d/y"
+#~ msgstr "d/m/y"
+
+#~ msgctxt "Event time"
+#~ msgid "h:mm tt"
+#~ msgstr "HH:mm"
