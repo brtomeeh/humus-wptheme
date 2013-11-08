@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Humus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-05 16:33-0300\n"
-"PO-Revision-Date: 2013-11-05 16:34-0300\n"
+"POT-Creation-Date: 2013-11-08 01:01-0300\n"
+"PO-Revision-Date: 2013-11-08 01:01-0300\n"
 "Last-Translator: Miguel Peixe <miguel@cardume.art.br>\n"
 "Language-Team: Cardume <miguel@cardume.art.br>\n"
 "Language: pt_BR\n"
@@ -119,72 +119,21 @@ msgstr "Próxima imagem"
 msgid "Previous image"
 msgstr "Imagem anterior"
 
-#: ../functions.php:827
+#: ../functions.php:829
 msgid "Show author info"
 msgstr "Exibir informação do autor"
 
-#: ../functions.php:831
+#: ../functions.php:833
 msgid "Author info"
 msgstr "Informação do autor"
 
-#: ../functions.php:834
+#: ../functions.php:836
 msgid "Check to show author information"
 msgstr "Marque para exibir informação do autor"
 
-#: ../functions.php:835
+#: ../functions.php:837
 msgid "Display author information"
 msgstr "Exibir informação do autor"
-
-#: ../footer.php:26 ../inc/partners.php:24 ../inc/partners.php:34
-msgid "Partners"
-msgstr "Parceiros"
-
-#: ../footer.php:42
-msgid "Previous partner"
-msgstr "Parceiro anterior"
-
-#: ../footer.php:43
-msgid "Next partner"
-msgstr "Próximo parceiro"
-
-#: ../footer.php:102
-msgid "Around the web"
-msgstr "Nas redes"
-
-#: ../footer.php:131
-msgid "Newsletter"
-msgstr "Newsletter"
-
-#: ../footer.php:133
-msgid ""
-"Sign up to our newsletter and be the first to know about our latest contents"
-msgstr ""
-"Cadastre-se na nossa newsletter e seja o primeiro a saber sobre nossos novos "
-"conteúdos"
-
-#: ../footer.php:144
-msgid "Contact"
-msgstr "Contato"
-
-#: ../footer.php:151
-msgid "Colophon"
-msgstr "Colofon"
-
-#: ../footer.php:154
-msgid "Typography"
-msgstr "Tipografia"
-
-#: ../footer.php:158
-msgid "Some icons by"
-msgstr "Alguns ícones por"
-
-#: ../footer.php:162
-msgid "License"
-msgstr "Licença"
-
-#: ../footer.php:166
-msgid "Development"
-msgstr "Desenvolvimento"
 
 #: ../yarpp-template-humus.php:15
 msgid "You might also like"
@@ -218,23 +167,74 @@ msgid_plural "%d images"
 msgstr[0] "%d imagem"
 msgstr[1] "%d imagens"
 
+#: ../section-colophon.php:13 ../inc/partners.php:24 ../inc/partners.php:34
+msgid "Partners"
+msgstr "Parceiros"
+
+#: ../section-colophon.php:29
+msgid "Previous partner"
+msgstr "Parceiro anterior"
+
+#: ../section-colophon.php:30
+msgid "Next partner"
+msgstr "Próximo parceiro"
+
+#: ../section-colophon.php:89
+msgid "Around the web"
+msgstr "Nas redes"
+
+#: ../section-colophon.php:118
+msgid "Newsletter"
+msgstr "Newsletter"
+
+#: ../section-colophon.php:120
+msgid ""
+"Sign up to our newsletter and be the first to know about our latest contents"
+msgstr ""
+"Cadastre-se na nossa newsletter e seja o primeiro a saber sobre nossos novos "
+"conteúdos"
+
+#: ../section-colophon.php:131
+msgid "Contact"
+msgstr "Contato"
+
+#: ../section-colophon.php:138
+msgid "Colophon"
+msgstr "Colofon"
+
+#: ../section-colophon.php:141
+msgid "Typography"
+msgstr "Tipografia"
+
+#: ../section-colophon.php:145
+msgid "Some icons by"
+msgstr "Alguns ícones por"
+
+#: ../section-colophon.php:149
+msgid "License"
+msgstr "Licença"
+
+#: ../section-colophon.php:153
+msgid "Development"
+msgstr "Desenvolvimento"
+
 #: ../index.php:25 ../inc/map/template.php:14
 msgid "Scroll to explore our content"
 msgstr "Role para explorar nosso conteúdo"
 
-#: ../index.php:152
+#: ../index.php:153
 msgid "View all content from this section"
 msgstr "Ver todo o conteúdo desta seção"
 
-#: ../index.php:226
+#: ../index.php:227
 msgid "Recent posts"
 msgstr "Publicações recentes"
 
-#: ../index.php:234
+#: ../index.php:235
 msgid "Read more on this content"
 msgstr "Leia mais sobre este conteúdo"
 
-#: ../index.php:235
+#: ../index.php:236
 msgid "Subscribe to our channel"
 msgstr "Assine nosso canal"
 
@@ -2875,7 +2875,7 @@ msgctxt "Location singular name"
 msgid "Location"
 msgstr "Localização"
 
-#: ../inc/map/map.php:151 ../inc/map/map.php:215
+#: ../inc/map/map.php:151
 msgid "All locations"
 msgstr "Localizações"
 
@@ -2930,6 +2930,10 @@ msgstr "Escolher entre as localizações mais utilizadas"
 #: ../inc/map/map.php:164
 msgid "No locations found"
 msgstr "Nenhuma localização encontrada"
+
+#: ../inc/map/map.php:215
+msgid "Locations"
+msgstr "Locais"
 
 #: ../inc/map/map.php:566
 msgid "View as"

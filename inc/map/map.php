@@ -212,7 +212,7 @@ class Humus_Map {
 			<div class="location-dropdown">
 				<div class="humus-dropdown">
 					<ul>
-						<li class="all <?php if(!$current) echo 'active'; ?>"><a href="<?php echo remove_query_arg('humus_location'); ?>"><?php _e('All locations', 'humus'); ?></a></li>
+						<li class="all <?php if(!$current) echo 'active'; ?>"><a href="<?php echo remove_query_arg('humus_location'); ?>"><?php _e('Locations', 'humus'); ?></a></li>
 						<?php foreach($locations as $location) : ?>
 							<li data-location="<?php echo $location->slug; ?>" <?php if($current == $location->term_id) echo 'class="active"'; ?>><a href="<?php echo add_query_arg(array('humus_location' => $location->term_id)); ?>"><?php echo $location->name; ?></a></li>
 						<?php endforeach; ?>
