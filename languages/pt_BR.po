@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Humus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-08 01:01-0300\n"
-"PO-Revision-Date: 2013-11-08 01:01-0300\n"
+"POT-Creation-Date: 2013-11-08 04:44-0300\n"
+"PO-Revision-Date: 2013-11-08 04:45-0300\n"
 "Last-Translator: Miguel Peixe <miguel@cardume.art.br>\n"
 "Language-Team: Cardume <miguel@cardume.art.br>\n"
 "Language: pt_BR\n"
@@ -41,97 +41,97 @@ msgstr "Menu principal"
 msgid "Page %s"
 msgstr "Página %s"
 
-#: ../functions.php:348
+#: ../functions.php:332
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: ../functions.php:348
+#: ../functions.php:332
 msgid "(Edit)"
 msgstr "(Editar)"
 
-#: ../functions.php:378
+#: ../functions.php:362
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s às %2$s"
 
-#: ../functions.php:382 ../inc/acf/core/fields/image.php:84
+#: ../functions.php:366 ../inc/acf/core/fields/image.php:84
 #: ../inc/acf/core/views/meta_box_fields.php:122
 #: ../inc/acf/add-ons/acf-repeater/repeater.php:471
 msgid "Edit"
 msgstr "Editar"
 
-#: ../functions.php:386
+#: ../functions.php:370
 msgid "Your comment is awaiting moderation."
 msgstr "Seu comentário está aguardando moderação."
 
-#: ../functions.php:394
+#: ../functions.php:378
 msgid "Reply"
 msgstr "Responder"
 
-#: ../functions.php:437
+#: ../functions.php:421
 #, php-format
 msgid "Day: %s"
 msgstr "Dia: %s"
 
-#: ../functions.php:440
+#: ../functions.php:424
 #, php-format
 msgid "Month: %s"
 msgstr "Mês: %s"
 
-#: ../functions.php:443
+#: ../functions.php:427
 #, php-format
 msgid "Year: %s"
 msgstr "Ano: %s"
 
-#: ../functions.php:452 ../inc/filters.php:126
+#: ../functions.php:436 ../inc/filters.php:126
 #: ../inc/acf/core/fields/relationship.php:647
 msgid "Search"
 msgstr "Buscar"
 
-#: ../functions.php:455
+#: ../functions.php:439
 msgid "Nothing found"
 msgstr "Nada encontrado"
 
-#: ../functions.php:458
+#: ../functions.php:442
 msgid "Archives"
 msgstr "Arquivos"
 
-#: ../functions.php:476
+#: ../functions.php:460
 msgid "Try using our search:"
 msgstr "Tente usar nossa busca:"
 
-#: ../functions.php:481 ../searchform.php:3
+#: ../functions.php:465 ../searchform.php:3
 msgid "Type your search..."
 msgstr "Digite sua busca..."
 
-#: ../functions.php:488
+#: ../functions.php:472
 #, php-format
 msgid "We found just %d result for your search"
 msgid_plural "We found %d results for your search"
 msgstr[0] "Nós encontramos apenas %d resultado para  sua busca"
 msgstr[1] "Nós encontramos %d resultados para sua busca"
 
-#: ../functions.php:568
+#: ../functions.php:552
 msgid "Next image"
 msgstr "Próxima imagem"
 
-#: ../functions.php:569
+#: ../functions.php:553
 msgid "Previous image"
 msgstr "Imagem anterior"
 
-#: ../functions.php:829
+#: ../functions.php:813
 msgid "Show author info"
 msgstr "Exibir informação do autor"
 
-#: ../functions.php:833
+#: ../functions.php:817
 msgid "Author info"
 msgstr "Informação do autor"
 
-#: ../functions.php:836
+#: ../functions.php:820
 msgid "Check to show author information"
 msgstr "Marque para exibir informação do autor"
 
-#: ../functions.php:837
+#: ../functions.php:821
 msgid "Display author information"
 msgstr "Exibir informação do autor"
 
@@ -233,10 +233,6 @@ msgstr "Publicações recentes"
 #: ../index.php:235
 msgid "Read more on this content"
 msgstr "Leia mais sobre este conteúdo"
-
-#: ../index.php:236
-msgid "Subscribe to our channel"
-msgstr "Assine nosso canal"
 
 #: ../inc/ads.php:49
 #, php-format
@@ -455,23 +451,35 @@ msgid "Logo image"
 msgstr "Logo"
 
 #: ../inc/theme-options.php:78
+msgid "Favicon image"
+msgstr "Favicon"
+
+#: ../inc/theme-options.php:81
+msgid ""
+".ico and .png image files are supported (.png is not supported in older "
+"browsers)"
+msgstr ""
+"Imagens .ico e .png são suportadas (.png não é suportado em navegadores "
+"antigos)"
+
+#: ../inc/theme-options.php:88
 msgid "Contact info"
 msgstr "Informações de contato"
 
-#: ../inc/theme-options.php:84 ../inc/acf/core/fields/email.php:19
+#: ../inc/theme-options.php:94 ../inc/acf/core/fields/email.php:19
 #: ../inc/contact/contact.php:74
 msgid "Email"
 msgstr "Email"
 
-#: ../inc/theme-options.php:94
+#: ../inc/theme-options.php:104
 msgid "Phone number"
 msgstr "Telefone"
 
-#: ../inc/theme-options.php:106
+#: ../inc/theme-options.php:116
 msgid "Footer contact content"
 msgstr "Conteúdo de contato do rodapé"
 
-#: ../inc/theme-options.php:115
+#: ../inc/theme-options.php:125
 msgid "Social"
 msgstr "Redes sociais"
 
@@ -3226,6 +3234,9 @@ msgstr "URL do remix"
 #: ../inc/magazine/remix.php:71
 msgid "Paste the original remix URL"
 msgstr "Cole a URL original do remix"
+
+#~ msgid "Subscribe to our channel"
+#~ msgstr "Assine nosso canal"
 
 #~ msgid "Most recent"
 #~ msgstr "Mais recentes"
