@@ -80,6 +80,7 @@ get_header(); ?>
 																<img src="<?php echo humus_get_term_icon_url($post->ID, 'section'); ?>" class="section-icon" />
 																<h3><a href="<?php the_permalink(); ?>"><?php echo $title; ?></a></h3>
 																<p><a href="<?php the_permalink(); ?>"><?php echo $description; ?></a></p>
+																<a class="area-link" href="<?php the_permalink(); ?>" title="<?php echo $title; ?>"></a>
 															</li>
 															<?php
 															wp_reset_postdata();
@@ -96,9 +97,9 @@ get_header(); ?>
 									endforeach;
 									?>
 								</div>
-								<div class="prev axes-nav"></div>
-								<div class="next axes-nav"></div>
 							</div>
+							<div class="prev axes-nav"></div>
+							<div class="next axes-nav"></div>
 
 						</section>
 
@@ -292,18 +293,35 @@ get_header(); ?>
 						endif;
 						?>
 
+						<?php 
+						$ad = humus_get_ad(array('name' => 'Home'));
+						if($ad) : ?>
+							<section class="ad-section full-height-section">
+								<div class="vertical-center">
+									<?php humus_ad(array('name' => 'Home')); ?>
+								</div>
+							</section>
+							<?php
+						endif;
+						?>
+
+						<section class="footer-section full-height-section" style="overflow: auto;">
+							<?php get_template_part('section', 'colophon'); ?>
+						</section>
+
 					</div><!-- .items -->
 
 				</div><!-- .full-height-sections -->
 
 			</div><!-- #full-height-content -->
 
-			<div class="home-ad">
-				<?php humus_ad(array('name' => 'Home')); ?>
-			</div>
-
 		</div><!-- #content -->
 	</div><!-- #primary -->
 
-<?php
-get_footer();
+	</div><!-- #main -->
+
+	</div><!-- #page -->
+
+	<?php wp_footer(); ?>
+</body>
+</html>

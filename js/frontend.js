@@ -26,7 +26,7 @@ var pinImage;
 	}
 
 	fullHeightSection.prototype.fixHeight = function() {
-		//$('body').css({'overflow':'hidden'});
+		$('body').css({'overflow':'hidden'});
 		var height = $(window).height() - 60 - parseInt($('html').css('marginTop'));
 		this.contentArea.find('.full-height-sections').height(height);
 		this.contentArea.find('.vertical-center').each(function() {
@@ -161,18 +161,12 @@ var pinImage;
 				axes = $container.find('.axis-content'),
 				posts = $container.find('.axis-post'),
 				postsArray = posts.toArray(),
-				nav = $container.find('.axes-nav'),
+				nav = $container.parents('.full-height-section').find('.axes-nav'),
 				post,
 				image,
 				axis,
 				run,
 				clickCount = 0;
-
-			function setNavHeight() {
-				nav.css({
-					'bottom': $container.parent().height()/2
-				});
-			}
 
 			function open(postid) {
 
@@ -188,9 +182,7 @@ var pinImage;
 					activateAxis(post.data('axis'));
 
 					posts.removeClass('active');
-					window.setTimeout(function() {
-						post.addClass('active');
-					}, 600);
+					post.addClass('active');
 
 					image = post.data('image');
 
@@ -284,8 +276,6 @@ var pinImage;
 				$('body').find('.axes-ad').remove();
 
 			}
-
-			$(window).resize(setNavHeight).resize();
 
 			open(posts.eq(_.random(0, posts.length-1)).data('postid'));
 
