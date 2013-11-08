@@ -233,7 +233,6 @@ get_header(); ?>
 												<div class="video-info"></div>
 												<div class="video-links">
 													<a href="#" class="read-more"><?php _e('Read more on this content', 'humus'); ?></a>
-													<a href="#" class="yt-button"><?php _e('Subscribe to our channel', 'humus'); ?></a>
 												</div>
 											</div>
 										</div>
