@@ -120,17 +120,29 @@
 		background: @background;
 		height: 60px;
 		z-index: 9999;
+		cursor: pointer;
 		.transition(height .5s ease-in-out);
+		&.goUp {
+			p img {
+				.transform(rotate(180deg));
+			}
+		}
 		p {
 			line-height: 60px;
 			float: right;
 			span {
 				display: block;
 				float: left;
-				margin-right: 40px;
+				margin-left: 40px;
 			}
-			&:after {
-				content: url(../img/scroll-down.png);
+			.button-container {
+				background: #000;
+				overflow: hidden;
+				display: block;
+				float: right;
+				img {
+					.transition(all .5s ease-in-out);
+				}
 			}
 		}
 		&.hidden {

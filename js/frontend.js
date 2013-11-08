@@ -12,8 +12,8 @@ var pinImage;
 
 		var self = this;
 
-		this.contentArea = container;
-		this.sections = this.contentArea.find('.full-height-section');
+		this.container = container;
+		this.sections = this.container.find('.full-height-section');
 
 		this.sections.imagesLoaded(function() { self.fixHeight(); });
 
@@ -28,8 +28,8 @@ var pinImage;
 	fullHeightSection.prototype.fixHeight = function() {
 		$('body').css({'overflow':'hidden'});
 		var height = $(window).height() - 60 - parseInt($('html').css('marginTop'));
-		this.contentArea.find('.full-height-sections').height(height);
-		this.contentArea.find('.vertical-center').each(function() {
+		this.container.find('.full-height-sections').height(height);
+		this.container.find('.vertical-center').each(function() {
 			$(this).css({
 				'paddingTop': (height/2) - ($(this).height() / 2)
 			});
@@ -47,7 +47,7 @@ var pinImage;
 		var options = {
 			itemNav: 'forceCentered',
 			smart: 1,
-			itemSelector: this.contentArea.find('.full-height-section'),
+			itemSelector: this.container.find('.full-height-section'),
 			activateMiddle: 1,
 			mouseDragging: 0,
 			touchDragging: 0,
@@ -60,7 +60,7 @@ var pinImage;
 			dynamicHandle: 0,
 			keyboardNavBy: 'items'
 		};
-		this.sly = new Sly(this.contentArea.find('.full-height-sections'), options);
+		this.sly = new Sly(this.container.find('.full-height-sections'), options);
 
 		this.sly.init();
 
@@ -153,6 +153,45 @@ var pinImage;
 
 		});
 		
+		if(self.container.find('.scroll-tip').length) {
+
+			var scrollTip = self.container.find('.scroll-tip');
+
+			var tipBehaviour = function() {
+
+				var items = self.sly.items;
+				var current = self.sly.rel;
+				var isLastItem = (items.length - 1 === current.lastItem);
+
+				if(isLastItem) {
+
+					scrollTip.addClass('goUp');
+
+				} else {
+
+					scrollTip.removeClass('goUp');
+
+				}
+
+			}
+
+			scrollTip.on('click', function() {
+
+				if($(this).hasClass('goUp')) {
+
+					self.sly.toStart();
+
+				} else {
+
+					self.sly.next();
+
+				}
+
+			});
+
+			self.sly.on('moveEnd', tipBehaviour);
+
+		}
 	}
 
 	$(document).ready(function() {
