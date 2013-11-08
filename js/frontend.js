@@ -126,7 +126,23 @@ var pinImage;
 
 		};
 
+		var keyPress = function(e) {
+
+			var home = 36;
+			var end = 35;
+
+			if(e.keyCode == home || e.keyCode == end) {
+				e.preventDefault();
+				if(e.keyCode == home)
+					self.sly.toStart();
+				else if(e.keyCode == end)
+					self.sly.toEnd();
+			}
+
+		}
+
 		$(window).on('mousewheel', homeScroll);
+		$(window).on('keyup', keyPress);
 		$(window).on('scroll', function() {
 
 			if($(window).scrollTop() > 0) {
@@ -256,6 +272,30 @@ var pinImage;
 
 			}
 
+			function keyPress(e) {
+
+				if($container.parent().is('.active')) {
+
+					var left = 37;
+					var right = 39;
+
+					if(e.keyCode == left || e.keyCode == right) {
+
+						e.preventDefault();
+
+						if(e.keyCode == left)
+							previous();
+						else if(e.keyCode == right)
+							next();
+
+					}
+
+				}
+
+			}
+
+			$(window).on('keyup', keyPress);
+
 			function displayAd() {
 
 				$.get(humus_frontend.ajaxurl + '?action=humus_ads', function(ad) {
@@ -279,7 +319,7 @@ var pinImage;
 
 			open(posts.eq(_.random(0, posts.length-1)).data('postid'));
 
-			run = setInterval(next, 8000);
+			run = setInterval(next, 12000);
 
 			$container.click(function() {
 
@@ -297,7 +337,7 @@ var pinImage;
 
 				if(run) {
 					clearInterval(run);
-					run = setInterval(next, 8000);
+					run = setInterval(next, 12000);
 				}
 
 				clearAd();
@@ -322,7 +362,7 @@ var pinImage;
 
 					if(run) {
 						clearInterval(run);
-						run = setInterval(next, 8000);
+						run = setInterval(next, 12000);
 					}
 
 					clearAd();
@@ -405,6 +445,51 @@ var pinImage;
 
 			open(list.filter(':first').data('termid'));
 
+			function next() {
+
+				var current = list.filter('.active');
+
+				if(current.is(':last-child'))
+					open(list.filter(':first-child').data('termid'));
+				else
+					open(current.next().data('termid'));
+
+			}
+
+			function previous() {
+
+				var current = list.filter('.active');
+
+				if(current.is(':first-child'))
+					open(list.filter(':last-child').data('termid'));
+				else
+					open(current.prev().data('termid'));
+
+			}
+
+			function keyPress(e) {
+
+				if($container.parent().is('.active')) {
+
+					var left = 37;
+					var right = 39;
+
+					if(e.keyCode == left || e.keyCode == right) {
+
+						e.preventDefault();
+
+						if(e.keyCode == left)
+							previous();
+						else if(e.keyCode == right)
+							next();
+
+					}
+
+				}
+
+			}
+			$(window).on('keyup', keyPress);
+
 			if(posts.length) {
 				$(window).resize(fixHeight).resize();
 			}
@@ -439,68 +524,6 @@ var pinImage;
 				post,
 				sly;
 
-			function open(postid) {
-
-				post = posts.filter('[data-postid="' + postid + '"]');
-
-				if(post.is('.video-active'))
-					return false;
-
-				posts.removeClass('video-active');
-				post.addClass('video-active');
-
-				info.empty().append(post.find('.post-header').contents().clone());
-
-				link.attr('href', post.find('a').attr('href'));
-
-				video.empty().append($(post.data('embed')));
-
-			}
-
-			function fixHeight() {
-
-				var amountVisible = 3;
-
-				if($(window).height() <= 863) {
-					amountVisible = 2;
-				}
-
-				var margin = (amountVisible - 1) * 20;
-
-				height = posts.filter(':first').height() * amountVisible + margin;
-
-				$container.find('.video-list').css({
-					'height': height
-				})
-
-				video.css({
-					'height': height
-				});
-
-			}
-
-			$('#recent-area').on('dataReady', function() {
-				open(posts.filter(':first').data('postid'));
-			});
-
-			$container.imagesLoaded(function() {
-
-				$(window).resize(fixHeight).resize();
-
-				var height = $(window).height() - 60 - parseInt($('html').css('marginTop'));
-				$container.css({
-					'paddingTop': (height/2) - ($container.height()/2)
-				});
-
-				setupSly();
-
-			});
-
-			posts.click(function() {
-				open($(this).data('postid'));
-				return false;
-			});
-
 			/*
 			 * Sly
 			 */
@@ -531,6 +554,116 @@ var pinImage;
 					sly.reload();
 				});
 			}
+
+			function open(postid) {
+
+				post = posts.filter('[data-postid="' + postid + '"]');
+
+				if(post.is('.video-active'))
+					return false;
+
+				posts.removeClass('video-active');
+				post.addClass('video-active');
+
+				info.empty().append(post.find('.post-header').contents().clone());
+
+				link.attr('href', post.find('a').attr('href'));
+
+				video.empty().append($(post.data('embed')));
+
+				sly.activate(post.index());
+
+			}
+
+			function fixHeight() {
+
+				var amountVisible = 3;
+
+				if($(window).height() <= 863) {
+					amountVisible = 2;
+				}
+
+				var margin = (amountVisible - 1) * 20;
+
+				height = posts.filter(':first').height() * amountVisible + margin;
+
+				$container.find('.video-list').css({
+					'height': height
+				})
+
+				video.css({
+					'height': height
+				});
+
+			}
+
+			$('#recent-area').on('dataReady', function() {
+			});
+
+			$container.imagesLoaded(function() {
+
+				$(window).resize(fixHeight).resize();
+
+				var height = $(window).height() - 60 - parseInt($('html').css('marginTop'));
+				$container.css({
+					'paddingTop': (height/2) - ($container.height()/2)
+				});
+
+				setupSly();
+
+				open(posts.filter(':first').data('postid'));
+
+			});
+
+			posts.click(function() {
+				open($(this).data('postid'));
+				return false;
+			});
+
+			function next() {
+
+				var current = posts.filter('.video-active');
+
+				if(current.is(':last-child'))
+					open(posts.filter(':first-child').data('postid'));
+				else
+					open(current.next().data('postid'));
+
+			}
+
+			function previous() {
+
+				var current = posts.filter('.video-active');
+
+				if(current.is(':first-child'))
+					open(posts.filter(':last-child').data('postid'));
+				else
+					open(current.prev().data('postid'));
+
+			}
+
+			function keyPress(e) {
+
+				if($container.parent().is('.active')) {
+
+					var left = 37;
+					var right = 39;
+
+					if(e.keyCode == left || e.keyCode == right) {
+
+						e.preventDefault();
+
+						if(e.keyCode == left)
+							previous();
+						else if(e.keyCode == right)
+							next();
+
+					}
+
+				}
+
+			}
+			$(window).on('keyup', keyPress);
 
 		}
 
