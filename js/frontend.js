@@ -131,12 +131,23 @@ var pinImage;
 			var home = 36;
 			var end = 35;
 
+			var pgUp = 33;
+			var pgDown = 34;
+
 			if(e.keyCode == home || e.keyCode == end) {
 				e.preventDefault();
 				if(e.keyCode == home)
 					self.sly.toStart();
 				else if(e.keyCode == end)
 					self.sly.toEnd();
+			}
+
+			if(e.keyCode == pgUp || e.keyCode == pgDown) {
+				e.preventDefault();
+				if(e.keyCode == pgUp)
+					self.sly.prev();
+				else if(e.keyCode == pgDown)
+					self.sly.next();
 			}
 
 		}
