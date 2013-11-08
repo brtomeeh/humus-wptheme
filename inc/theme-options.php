@@ -74,6 +74,16 @@ class Humus_Theme_Options {
 				'library' => 'all',
 			),
 			array(
+				'key' => 'field_favicon',
+				'label' => __('Favicon image', 'humus'),
+				'name' => 'site_favicon',
+				'type' => 'image',
+				'instructions' => __('.ico and .png image files are supported (.png is not supported in older browsers)', 'humus'),
+				'save_format' => 'object',
+				'preview_size' => 'full',
+				'library' => 'all',
+			),
+			array(
 				'key' => 'field_contact_tab',
 				'label' => __('Contact info', 'humus'),
 				'name' => '',
@@ -172,3 +182,41 @@ class Humus_Theme_Options {
 }
 
 new Humus_Theme_Options();
+
+// Logo
+
+function humus_get_logo_url() {
+	$logo = get_field('site_logo_image', 'option');
+	if($logo)
+		return $logo['url'];
+	return false;
+}
+
+function humus_logo() {
+	$url = humus_get_logo_url();
+	if($url) {
+		echo '<img src="' . $url . '" alt="' . get_bloginfo('name') . '" />';
+	}
+}
+
+// Favicon
+
+function humus_get_favicon() {
+	$logo = get_field('site_favicon', 'option');
+	if($logo)
+		return $logo['url'];
+	return false;
+}
+
+function humus_favicon() {
+	$url = humus_get_favicon();
+	if($url) {
+		$type = '';
+		if(strpos($url, '.ico') !== false)
+			$type = 'image/x-icon';
+		elseif(strpos($url, '.png') !== false)
+			$type = 'image/png';
+
+		echo '<link rel="shortcut icon" href="' . $url . '" type="' . $type . '" />';
+	}
+}

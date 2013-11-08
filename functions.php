@@ -151,22 +151,6 @@ add_filter( 'wp_title', 'humus_wp_title', 10, 2 );
  * Custom options
  */
 
-// Logo
-
-function humus_get_logo_url() {
-	$logo = get_field('site_logo_image', 'option');
-	if($logo)
-		return $logo['url'];
-	return false;
-}
-
-function humus_logo() {
-	$url = humus_get_logo_url();
-	if($url) {
-		echo '<img src="' . $url . '" alt="' . get_bloginfo('name') . '" />';
-	}
-}
-
 function humus_breadcrumb($before = '', $sep = '/', $after = '/') {
 
 	/*
