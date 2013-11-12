@@ -524,11 +524,12 @@
 				text-transform: uppercase;
 				font-family: "Lato";
 			}
-			.video-container {
+			.active-container {
 				width: 100%;
 				position: relative;
 				margin-bottom: 20px;
-				iframe, 
+				overflow: hidden;
+				iframe,
 				object,
 				embed {
 					position: absolute;
@@ -537,11 +538,15 @@
 					width: 100%;
 					height: 100%;
 				}
+				img {
+					width: 100%;
+					height: auto;
+				}
 			}
-			.video-info {
+			.active-info {
 				display: none;
 			}
-			.video-links {
+			.active-links {
 				a {
 					line-height: 30px;
 					font-size: 12px;
@@ -565,7 +570,7 @@
 					}
 				}
 			}
-			.video-list {
+			.item-list {
 				overflow: hidden;
 				ul {
 					li {
@@ -575,7 +580,7 @@
 						opacity: .6;
 						.transition(opacity .3s ease-in-out);
 						&:hover,
-						&.video-active {
+						&.active {
 							opacity: 1;
 						}
 						.section-icon {
@@ -599,7 +604,7 @@
 					}
 				}
 			}
-			.video-list-controls {
+			.list-controls {
 				a {
 					width: 60px;
 					height: 33px;
@@ -764,7 +769,7 @@
 		}
 		#recent-area {
 			.recent-content {
-				.video-list-controls {
+				.list-controls {
 					a {
 						margin-left: 56px !important;
 					}
@@ -778,7 +783,7 @@
 	#full-height-content {
 		#recent-area {
 			.recent-content {
-				.video-list-controls {
+				.list-controls {
 					a {
 						margin-left: 80px;
 					}
@@ -792,15 +797,15 @@
 	#full-height-content {
 		#recent-area {
 			.recent-content {
-				.active-video {
+				.active {
 					position: relative;
 				}
-				.video-container {
+				.active-container {
 					width: 60%;
 					float: right;
 					margin: 0 0 0 20px;
 				}
-				.video-info {
+				.active-info {
 					display: block;
 					h3 {
 						font-weight: 600;
@@ -813,7 +818,7 @@
 						overflow: hidden;
 					}
 				}
-				.video-links {
+				.active-links {
 					position: absolute;
 					left: 0;
 					bottom: 0;
@@ -835,7 +840,7 @@
 	#full-height-content {
 		#recent-area {
 			.recent-content {
-				.video-info {
+				.active-info {
 					p {
 						display: none;
 					}
@@ -849,10 +854,10 @@
 	#full-height-content {
 		#recent-area {
 			.recent-content {
-				.video-info {
+				.active-info {
 					display: none;
 				}
-				.video-links {
+				.active-links {
 					width: 30%;
 					a {
 						line-height: 20px;
@@ -872,19 +877,19 @@
 		#recent-area {
 			.recent-content {
 				padding-top: 65px !important;
-				.video-info {
+				.active-info {
 					display: none;
 				}
-				.video-links {
+				.active-links {
 					display: none;
 				}
-				.video-list {
+				.item-list {
 					display: none;
 				}
-				.video-list-controls {
+				.list-controls {
 					display: none;
 				}
-				.video-container {
+				.active-container {
 					height: 300px !important;
 				}
 			}

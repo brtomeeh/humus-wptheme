@@ -617,9 +617,9 @@ var pinImage;
 
 		if($container.length) {
 
-			var posts = $container.find('.video-list li'),
-				video = $container.find('.video-container'),
-				info = $container.find('.video-info'),
+			var posts = $container.find('.item-list li'),
+				video = $container.find('.active-container'),
+				info = $container.find('.active-info'),
 				link = $container.find('a.read-more'),
 				height,
 				post,
@@ -643,10 +643,10 @@ var pinImage;
 					dragHandle: 1,
 					dynamicHandle: 0,
 					keyboardNavBy: null,
-					prev: $container.find('.video-list-controls .prev'),
-					next: $container.find('.video-list-controls .next')
+					prev: $container.find('.list-controls .prev'),
+					next: $container.find('.list-controls .next')
 				};
-				sly = new Sly($container.find('.video-list'), options);
+				sly = new Sly($container.find('.item-list'), options);
 
 				sly.init();
 
@@ -660,11 +660,8 @@ var pinImage;
 
 				post = posts.filter('[data-postid="' + postid + '"]');
 
-				if(post.is('.video-active'))
-					return false;
-
-				posts.removeClass('video-active');
-				post.addClass('video-active');
+				posts.removeClass('active');
+				post.addClass('active');
 
 				info.empty().append(post.find('.post-header').contents().clone());
 
@@ -688,7 +685,7 @@ var pinImage;
 
 				height = posts.filter(':first').height() * amountVisible + margin;
 
-				$container.find('.video-list').css({
+				$container.find('.item-list').css({
 					'height': height
 				})
 
@@ -697,9 +694,6 @@ var pinImage;
 				});
 
 			}
-
-			$('#recent-area').on('dataReady', function() {
-			});
 
 			$container.imagesLoaded(function() {
 
@@ -712,7 +706,7 @@ var pinImage;
 
 				setupSly();
 
-				open(posts.filter(':first').data('postid'));
+				open(posts.filter(':first-child').data('postid'));
 
 			});
 
@@ -723,7 +717,7 @@ var pinImage;
 
 			function next() {
 
-				var current = posts.filter('.video-active');
+				var current = posts.filter('.active');
 
 				if(current.is(':last-child'))
 					open(posts.filter(':first-child').data('postid'));
@@ -734,7 +728,7 @@ var pinImage;
 
 			function previous() {
 
-				var current = posts.filter('.video-active');
+				var current = posts.filter('.active');
 
 				if(current.is(':first-child'))
 					open(posts.filter(':last-child').data('postid'));

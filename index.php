@@ -208,17 +208,10 @@ get_header(); ?>
 						</section>
 
 						<?php
-						$recent_videos = get_posts(array(
-							'posts_per_page' => 8,
-							'meta_query' => array(
-								array(
-									'key' => 'media_url',
-									'compare' => '!=',
-									'value' => ''
-								)
-							)
+						$recent = get_posts(array(
+							'posts_per_page' => 30
 						));
-						if($recent_videos) : 
+						if($recent) : 
 							?>
 							<section id="recent-area" class="full-height-section">
 								<div class="recent-content vertical-center">
@@ -227,20 +220,20 @@ get_header(); ?>
 											<h2><?php _e('Recent posts', 'humus'); ?></h2>
 										</div>
 										<div class="nine columns">
-											<div class="active-video clearfix">
-												<div class="video-container">
+											<div class="active clearfix">
+												<div class="active-container">
 												</div>
-												<div class="video-info"></div>
-												<div class="video-links">
+												<div class="active-info"></div>
+												<div class="active-links">
 													<a href="#" class="read-more"><?php _e('Read more on this content', 'humus'); ?></a>
 												</div>
 											</div>
 										</div>
 										<div class="three columns">
-											<div class="video-list">
+											<div class="item-list">
 												<ul class="items">
 													<?php
-													foreach($recent_videos as $post) :
+													foreach($recent as $post) :
 														global $post;
 														setup_postdata($post);
 														if(!has_post_thumbnail())
@@ -263,9 +256,14 @@ get_header(); ?>
 																</div>
 															</article>
 															<script>
+																<?php
+																$media = get_post_meta($post->ID, "media_oembed", true);
+																if(!$media)
+																	$media = '<a href="' . get_permalink() . '">' . get_the_post_thumbnail($post->ID, 'humus-wide-medium') . '</a>';
+																?>
 																jQuery(document).ready(function($) {
 																	$('#recent-area li[data-postid="<?php the_ID(); ?>"]')
-																		.data('embed', '<?php echo get_post_meta($post->ID, "media_oembed", true); ?>');
+																		.data('embed', '<?php echo $media; ?>');
 																});
 															</script>
 														</li>
@@ -280,7 +278,7 @@ get_header(); ?>
 													});
 												</script>
 											</div>
-											<div class="video-list-controls">
+											<div class="list-controls">
 												<a href="#" class="prev"></a>
 												<a href="#" class="next"></a>
 											</div>
