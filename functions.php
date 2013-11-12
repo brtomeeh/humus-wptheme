@@ -577,7 +577,7 @@ function humus_gallery($atts, $content = null) {
 	return $output;
 }
 
-function humus_album_gallery() {
+function humus_album_gallery($atts, $content = null) {
 
 	extract(shortcode_atts(array(
 		'ids' => false,
@@ -695,14 +695,19 @@ function humus_album_query($query) {
 }
 add_action('pre_pet_posts', 'humus_album_query');
 
+function humus_album_the_post($post) {
+	if(has_term('albuns', 'section') && is_single()) {
+		remove_shortcode('gallery', 'humus_gallery');
+		add_shortcode('gallery', 'humus_album_gallery');
+	}
+}
+add_action('the_post', 'humus_album_the_post');
+
 function humus_album_content($content) {
 
 	global $wp_query;
 
 	if($wp_query->is_single() && has_term('albuns', 'section') && strpos($content, '[gallery') === false) {
-
-		remove_shortcode('gallery', 'humus_gallery');
-		add_shortcode('gallery', 'humus_album_gallery');
 
 		add_action('humus_after_single_post', 'humus_outside_album_gallery', 1);
 
