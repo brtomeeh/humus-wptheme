@@ -152,6 +152,57 @@ var pinImage;
 
 		}
 
+		var sectionSelector = function() {
+
+			self.sectionSelector = $('<ul class="section-selector" />');
+
+			var activateSelector = function(selector, i) {
+
+					if(self.sly.rel.activeItem === i) {
+						selector.addClass('active');
+					} else {
+						selector.removeClass('active');
+					}
+
+			}
+
+			var fixHeight = function() {
+
+				self.sectionSelector.find('li').css({
+					height: $(window).height() / self.sections.length
+				});
+
+			}
+
+			self.sections.each(function(i) {
+
+				var selector = $('<li class="selector" />');
+				selector.on('click', function() {
+					self.sly.activate(i);
+				});
+
+				self.sly.on('moveEnd', function() {
+
+					activateSelector(selector, i);
+
+				});
+
+				self.sectionSelector.append(selector);
+				activateSelector(selector, i);
+
+			});
+
+			$(window).resize(fixHeight).resize();
+
+			$('body')
+				.append(self.sectionSelector)
+				.parent()
+					.css({
+						'margin-right': self.sectionSelector.width()
+					});
+
+		}();
+
 		$(window).on('mousewheel', homeScroll);
 		$(window).on('keyup', keyPress);
 		$(window).on('scroll', function() {
