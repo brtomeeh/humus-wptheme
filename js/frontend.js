@@ -871,16 +871,18 @@ var pinImage;
 	function articleItemHeight() {
 		var items = $('article.list');
 		if(items.length) {
-			setTimeout(function() {
-				items.each(function() {
-					var height = $(this).find('.wp-post-image').height();
-					$(this).height(height);
-				});
-			}, 200);
+            items.each(function() {
+                var self = this;
+                $(self).imagesLoaded(function() {
+                    setTimeout(function() {
+                        var height = $(self).find('.wp-post-image').height();
+                        $(self).height(height);
+                    }, 200);
+                });
+            });
 		}
 	}
-	$('body').imagesLoaded(articleItemHeight);
-	$(window).resize(articleItemHeight);
+	$(window).resize(articleItemHeight).resize();
 
 	/*
 	 * Fit vids
