@@ -86,7 +86,7 @@ function humus_scripts() {
 
 	wp_register_script('jquery-mousewheel', get_template_directory_uri() . '/js/jquery.mousewheel.js', array('jquery'));
 
-	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery', 'underscore', 'imagesloaded', 'fitvids', 'lockfixed', 'sly', 'responsive-nav', 'jquery-mousewheel'), '0.2.4');
+	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery', 'underscore', 'imagesloaded', 'fitvids', 'lockfixed', 'sly', 'responsive-nav', 'jquery-mousewheel'), '0.2.5');
 
 
 	wp_enqueue_script('frontend');
@@ -901,3 +901,19 @@ function humus_search_query($query) {
 	} 
 }
 add_action('pre_get_posts', 'humus_search_query');
+
+function humus_prev_next_post_link() {
+	if(is_single()) :
+		?>
+		<div class="post-navigation-links">
+			<p class="previous-post">
+				<?php previous_post('%', '', 'yes'); ?>
+			</p>
+			<p class="next-post">
+				<?php next_post('%', '', 'yes'); ?>
+			</p>
+		</div>
+		<?php
+	endif;
+}
+//add_action('wp_footer', 'humus_prev_next_post_link');

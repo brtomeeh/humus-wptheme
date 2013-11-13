@@ -1,23 +1,21 @@
 var pinImage;
 
-(function($) {
-	'use scrict';
-
+(function ($) {
 	/**
 	 * Full height section system
 	 * Adjust height of sections and change sections between scroll events
 	 */
 
-	var fullHeightSection = function(container) {
+	var fullHeightSection = function (container) {
 
 		var self = this;
 
 		this.container = container;
 		this.sections = this.container.find('.full-height-section');
 
-		this.sections.imagesLoaded(function() { self.fixHeight(); });
+		this.sections.imagesLoaded(function () { self.fixHeight(); });
 
-		$(window).on('resize', function() { self.fixHeight(); });
+		$(window).on('resize', function () { self.fixHeight(); });
 
 		// Scroll control
 		this.scrollControl();
@@ -1081,5 +1079,18 @@ var pinImage;
 
 	 });
 
+    /*
+     * Fix explore menu width
+     */
+    $(document).ready(function() {
+        var exploreMenu = $('.explore-menu');
+        if(exploreMenu.length) {
+            var width = exploreMenu.find('.axes').innerWidth() + exploreMenu.find('.sections').innerWidth();
+            exploreMenu.css({
+                width: width,
+                marginLeft: -width/2 + (exploreMenu.parent().width()/2)
+            });
+        }
+    });
 
 })(jQuery);

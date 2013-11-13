@@ -71,7 +71,12 @@ class Humus_Header_Menu_Walker extends Walker_Nav_Menu {
 
 		if($sections) {
 
-			$output .= '<li class="sections">';
+            $class = 'two-columns';
+            if(count($sections) <= 3) {
+                $class = 'one-column';
+            }
+
+			$output .= '<li class="sections ' . $class . '">';
 			$output .= '<h3>' . __('Sections', 'humus') . '</h3>';
 			$output .= '<ul class="clearfix">';
 			foreach($sections as $section) {
