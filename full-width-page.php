@@ -27,6 +27,7 @@ get_header(); ?>
 				?>
 				<article id="post-<?php the_ID(); ?>" <?php post_class('full row'); ?>>
 					<header class="page-header post-header <?php if($header_image) echo 'header-image'; ?>" <?php if($header_image) echo 'style="background-image:url(' . $header_image . ')"'; ?>>
+                        <div class="gradient"></div>
 						<?php do_action('humus_before_header_content'); ?>
 						<div class="header-content">
 							<div class="container">

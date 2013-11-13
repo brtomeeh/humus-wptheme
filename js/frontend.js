@@ -767,7 +767,7 @@ var pinImage;
 	 */
 	function fixedPageHeader() {
 		var header = $('.page-header');
-		var content = header.find('> *');
+		var content = header.find('.header-content');
 		var height = header.innerHeight();
 
 		header.css('height', header.height());

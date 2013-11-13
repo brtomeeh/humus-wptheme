@@ -394,6 +394,8 @@ function humus_archive_header($short_version = false) {
 	?>
 	<header class="page-header <?php if($header_image) echo 'header-image'; ?>" <?php if($header_image) echo 'style="background-image:url(' . $header_image . ')"'; ?>>
 
+        <div class="gradient"></div>
+
 		<div class="header-content">
 
 			<?php do_action('humus_before_header_content'); ?>

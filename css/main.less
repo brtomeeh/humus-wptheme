@@ -874,6 +874,16 @@ input[type=submit] {
 	padding-top: 140px;
 	height: 100px;
 	position: relative;
+    &.header-image {
+        .gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 20%;
+            .gradient(transparent, transparent, rgba(0,0,0,1));
+        }
+    }
 	.header-content {
 		position: fixed;
 		z-index: 1;

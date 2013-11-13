@@ -793,6 +793,19 @@ input[type=submit]:hover {
   height: 100px;
   position: relative;
 }
+.page-header.header-image .gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 20%;
+  background: transparent;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, transparent), color-stop(1, #000000));
+  background: -ms-linear-gradient(bottom, transparent, #000000);
+  background: -moz-linear-gradient(center bottom, transparent 0%, #000000 100%);
+  background: -o-linear-gradient(#000000, transparent);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#000000', endColorstr='transparent', GradientType=0);
+}
 .page-header .header-content {
   position: fixed;
   z-index: 1;
