@@ -108,44 +108,57 @@ class Humus_Taxonomy_Styles {
 
 	}
 
+    function get_post_color($post_id = false) {
+        global $post;
+        $post_id = $post_id ? $post_id : $post->ID;
+
+        $taxonomies = $this->get_taxonomies();
+        $term = false;
+
+        foreach($taxonomies as $taxonomy) {
+
+            if($term)
+                continue;
+
+            $terms = get_the_terms($post->ID, $taxonomy);
+
+            if($terms) {
+
+                foreach($terms as $t) {
+
+                    if($term)
+                        continue;
+
+                    if(get_field('term_color', $t->taxonomy . '_' . $t->term_id))
+                        $term = array_shift($terms);
+                }
+
+            }
+
+        }
+
+        $color = get_field('term_color', $term->taxonomy . '_' . $term->term_id);
+
+        return $color;
+
+    }
+
 	function color_var() {
 
 		if(!isset($GLOBALS['humus_page_color'])) {
 
 			$taxonomies = $this->get_taxonomies();
-			$term = false;
 
 			if(is_tax($taxonomies)) {
 
 				$term = get_queried_object();
+                $color = get_field('term_color', $term->taxonomy . '_' . $term->term_id);
 
 			} elseif(is_single()) {
 
-				global $post;
+				$color = $this->get_post_color();
 
-				foreach($taxonomies as $taxonomy) {
-
-					if($term)
-						continue;
-
-					$terms = get_the_terms($post->ID, $taxonomy);
-
-					if($terms) {
-
-						foreach($terms as $t) {
-
-							if($term)
-								continue;
-
-							if(get_field('term_color', $t->taxonomy . '_' . $t->term_id))
-								$term = array_shift($terms);
-						}
-
-					}
-
-				}
 			}
-			$color = get_field('term_color', $term->taxonomy . '_' . $term->term_id);
 
 			$GLOBALS['humus_page_color'] = apply_filters('humus_page_color', $color);
 
@@ -177,7 +190,11 @@ class Humus_Taxonomy_Styles {
 
 }
 
-new Humus_Taxonomy_Styles();
+$GLOBALS['humus_taxonomy_styles'] = new Humus_Taxonomy_Styles();
+
+function humus_get_post_color($post_id = false) {
+    return $GLOBALS['humus_taxonomy_styles']->get_post_color($post_id);
+}
 
 function humus_get_term_icon_url($id = false, $tax = false) {
 

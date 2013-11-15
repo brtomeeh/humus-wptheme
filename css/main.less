@@ -1711,37 +1711,68 @@ article.full {
 .post-navigation-links {
 	position: relative;
 	z-index: 9999;
-	p {
+	> div {
 		position: fixed;
 		top: 50%;
+        margin-top: -30px;
 		min-width: 60px;
 		height: 60px;
 		background: #000;
-		.transition(width .2s ease-in-out);
+		.transition(all .2s ease-in-out);
 		background-repeat: no-repeat;
 		overflow: hidden;
-		a {
+        .area-link {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+		.post-content {
 			display: none;
+            margin: 20px;
+            height: 60px;
+            h3 {
+                font-size: 14px;
+                line-height: 18px;
+                font-weight: 800;
+                margin: 0;
+                text-transform: uppercase;
+                a {
+                    text-decoration: none;
+                }
+            }
+            p {
+                color: #f0f0f0;
+                font-size: 10px;
+                line-height: 18px;
+                margin: 0;
+            }
 		}
 		&:hover {
-			a {
+            width: 300px;
+            height: 115px;
+            margin-top: -75px;
+			.post-content {
 				display: block;
+                height: 72px;
+                overflow: hidden;
 			}
 		}
 		&.previous-post {
 			left: 0;
 			background-image: url(../img/arrow-left-big-blackbg.png);
 			background-position: left center;
-			a {
-				padding-left: 100px;
+			.post-content {
+				margin-left: 80px;
 			}
 		}
 		&.next-post {
 			right: 0;
 			background-image: url(../img/arrow-right-big-blackbg.png);
 			background-position: right center;
-			a {
-				padding-right: 100px;
+			.post-content {
+				margin-right: 80px;
 			}
 		}
 	}

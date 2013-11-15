@@ -59,7 +59,7 @@ function humus_styles() {
 	wp_register_style('skeleton', get_template_directory_uri() . '/css/skeleton.css', array('base'));
 	wp_register_style('webfonts', 'http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic|Open+Sans:300italic,400italic,600italic,400,300,600,700,800');
 	wp_register_style('responsive-nav', get_template_directory_uri() . '/css/responsive-nav.css');
-	wp_register_style('main', get_template_directory_uri() . '/css/main.css', array('skeleton', 'webfonts', 'responsive-nav'), '0.1.0');
+	wp_register_style('main', get_template_directory_uri() . '/css/main.css', array('skeleton', 'webfonts', 'responsive-nav'), '0.1.1');
 	wp_register_style('home', get_template_directory_uri() . '/css/home.css', array('main'), '0.1.1');
 
 	wp_enqueue_style('main');
@@ -86,7 +86,7 @@ function humus_scripts() {
 
 	wp_register_script('jquery-mousewheel', get_template_directory_uri() . '/js/jquery.mousewheel.js', array('jquery'));
 
-	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery', 'underscore', 'imagesloaded', 'fitvids', 'lockfixed', 'sly', 'responsive-nav', 'jquery-mousewheel'), '0.2.6');
+	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery', 'underscore', 'imagesloaded', 'fitvids', 'lockfixed', 'sly', 'responsive-nav', 'jquery-mousewheel'), '0.2.8');
 
 
 	wp_enqueue_script('frontend');
@@ -906,16 +906,155 @@ add_action('pre_get_posts', 'humus_search_query');
 
 function humus_prev_next_post_link() {
 	if(is_single()) :
+        global $post;
+        $prev_post = humus_get_previous_post_in_section();
+        $next_post = humus_get_next_post_in_section();
 		?>
 		<div class="post-navigation-links">
-			<p class="previous-post">
-				<?php previous_post('%', '', 'yes'); ?>
-			</p>
-			<p class="next-post">
-				<?php next_post('%', '', 'yes'); ?>
-			</p>
+            <?php if($prev_post) :
+                $post = $prev_post;
+                echo $post->ID;
+                ?>
+                <div class="previous-post">
+                    <div class="post-content">
+                        <h3><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" style="color: <?php echo humus_get_post_color(); ?>;"><?php the_title(); ?></a></h3>
+                        <?php the_excerpt(); ?>
+                    </div>
+                    <a class="area-link" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"></a>
+                </div>
+                <?php
+                wp_reset_postdata();
+            endif; ?>
+            <?php if($next_post) :
+                $post = $next_post;
+                setup_postdata($post);
+                ?>
+                <div class="next-post">
+                    <div class="post-content">
+                        <h3><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" style="color: <?php echo humus_get_post_color(); ?>;"><?php the_title(); ?></a></h3>
+                        <?php the_excerpt(); ?>
+                    </div>
+                    <a class="area-link" href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"></a>
+                </div>
+                <?php
+                wp_reset_postdata();
+            endif; ?>
 		</div>
 		<?php
 	endif;
 }
-//add_action('wp_footer', 'humus_prev_next_post_link');
+add_action('wp_footer', 'humus_prev_next_post_link');
+
+function humus_get_next_post_in_section() {
+
+    global $post;
+    $section = get_the_terms($post->ID, 'section');
+    if($section)
+        $section = array_shift($section);
+
+    $args = array(
+        'post_type' => 'any',
+        'section' => $section->slug,
+        'posts_per_page' => 1,
+        'post__not_in' => array($post->ID),
+        'orderby' => 'date',
+        'order' => 'DESC',
+        'date_query' => array(
+            array(
+                'before' => $post->post_date
+            )
+        )
+    );
+
+    $query = new WP_Query($args);
+
+    $next_post = false;
+
+    if($query->have_posts()) {
+
+        while($query->have_posts()) {
+            $query->the_post();
+            $next_post = $post;
+            wp_reset_postdata();
+        }
+
+    } else {
+
+        unset($args['date_query']);
+
+        $query = new WP_Query($args);
+
+        if($query->have_posts()) {
+
+            while($query->have_posts()) {
+                $query->the_post();
+                $next_post = $post;
+                wp_reset_postdata();
+            }
+
+        }
+
+    }
+
+    wp_reset_query();
+
+    return $next_post;
+
+}
+
+function humus_get_previous_post_in_section() {
+
+    global $post;
+    $section = get_the_terms($post->ID, 'section');
+    if($section)
+        $section = array_shift($section);
+
+    $args = array(
+        'post_type' => 'any',
+        'section' => $section->slug,
+        'posts_per_page' => 1,
+        'post__not_in' => array($post->ID),
+        'orderby' => 'date',
+        'order' => 'ASC',
+        'date_query' => array(
+            array(
+                'after' => $post->post_date
+            )
+        )
+    );
+
+    $query = new WP_Query($args);
+
+    $next_post = false;
+
+    if($query->have_posts()) {
+
+        while($query->have_posts()) {
+            $query->the_post();
+            $next_post = $post;
+            wp_reset_postdata();
+        }
+
+    } else {
+
+        unset($args['date_query']);
+
+        $query = new WP_Query($args);
+
+        if($query->have_posts()) {
+
+            while($query->have_posts()) {
+                $query->the_post();
+                $next_post = $post;
+                wp_reset_postdata();
+            }
+
+        }
+
+    }
+
+    wp_reset_query();
+
+    return $next_post;
+
+}

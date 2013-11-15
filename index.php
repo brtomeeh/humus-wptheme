@@ -148,7 +148,7 @@ get_header(); ?>
 											<?php foreach($sections as $section) : ?>
 												<li data-termid="<?php echo $section->term_id; ?>" class="clearfix">
 													<?php if($section->description) : ?>
-														<p class="description"><?php echo $section->description; ?></p>
+														<p class="description"><a href="<?php echo get_term_link($section); ?>"><?php echo $section->description; ?></a></p>
 													<?php endif; ?>
 													<p class="link"><a href="<?php echo get_term_link($section); ?>"><?php _e('View all content from this section', 'humus'); ?></a></p>
 												</li>

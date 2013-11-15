@@ -199,6 +199,10 @@ var pinImage;
 						'margin-right': self.sectionSelector.width()
 					});
 
+            $('#masthead').css({
+                right: self.sectionSelector.width()
+            });
+
 		}();
 
 		$(window).on('mousewheel', homeScroll);
@@ -595,8 +599,10 @@ var pinImage;
 
 			list.click(function() {
 
-				open($(this).data('termid'));
-				return false;
+                if(!$(this).is('.active')) {
+                    open($(this).data('termid'));
+                    return false;
+                }
 
 			});
 
@@ -673,7 +679,7 @@ var pinImage;
 
 			function fixHeight() {
 
-				var amountVisible = 3;
+				var amountVisible = 2;
 
 				if($(window).height() <= 863) {
 					amountVisible = 2;
