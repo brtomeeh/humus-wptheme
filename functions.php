@@ -59,8 +59,8 @@ function humus_styles() {
 	wp_register_style('skeleton', get_template_directory_uri() . '/css/skeleton.css', array('base'));
 	wp_register_style('webfonts', 'http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic|Open+Sans:300italic,400italic,600italic,400,300,600,700,800');
 	wp_register_style('responsive-nav', get_template_directory_uri() . '/css/responsive-nav.css');
-	wp_register_style('main', get_template_directory_uri() . '/css/main.css', array('skeleton', 'webfonts', 'responsive-nav'), '0.1.1');
-	wp_register_style('home', get_template_directory_uri() . '/css/home.css', array('main'), '0.1.1');
+	wp_register_style('main', get_template_directory_uri() . '/css/main.css', array('skeleton', 'webfonts', 'responsive-nav'), '0.1.2');
+	wp_register_style('home', get_template_directory_uri() . '/css/home.css', array('main'), '0.1.2');
 
 	wp_enqueue_style('main');
 
@@ -86,7 +86,7 @@ function humus_scripts() {
 
 	wp_register_script('jquery-mousewheel', get_template_directory_uri() . '/js/jquery.mousewheel.js', array('jquery'));
 
-	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery', 'underscore', 'imagesloaded', 'fitvids', 'lockfixed', 'sly', 'responsive-nav', 'jquery-mousewheel'), '0.2.8');
+	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery', 'underscore', 'imagesloaded', 'fitvids', 'lockfixed', 'sly', 'responsive-nav', 'jquery-mousewheel'), '0.2.9');
 
 
 	wp_enqueue_script('frontend');
@@ -552,10 +552,12 @@ function humus_gallery($atts, $content = null) {
 	<div class="humus-gallery-container row">
 
 		<div class="image-container">
-			<a href="#" class="next"><?php _e('Next image', 'humus'); ?></a>
-			<a href="#" class="prev"><?php _e('Previous image', 'humus'); ?></a>
 			<div class="image"></div>
 		</div>
+        <div class="gallery-navigation">
+            <a href="#" class="next"><?php _e('Next image', 'humus'); ?></a>
+            <a href="#" class="prev"><?php _e('Previous image', 'humus'); ?></a>
+        </div>
 		<div class="image-list-container">
 			<ul class="image-list">
 				<?php foreach($images as $image) :
@@ -910,10 +912,10 @@ function humus_prev_next_post_link() {
         $prev_post = humus_get_previous_post_in_section();
         $next_post = humus_get_next_post_in_section();
 		?>
-		<div class="post-navigation-links">
+		<div class="post-navigation-links hide-if-mobile">
             <?php if($prev_post) :
                 $post = $prev_post;
-                echo $post->ID;
+                setup_postdata($post);
                 ?>
                 <div class="previous-post">
                     <div class="post-content">

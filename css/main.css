@@ -255,6 +255,9 @@ input[type=submit]:hover {
   padding: 10px;
   background: #f0f0f0;
 }
+.humus-gallery-container {
+  position: relative;
+}
 .humus-gallery-container .image-container {
   width: 100%;
   height: 600px;
@@ -272,21 +275,21 @@ input[type=submit]:hover {
   margin: 0 auto;
   display: block;
 }
-.humus-gallery-container .image-container .next,
-.humus-gallery-container .image-container .prev {
+.humus-gallery-container .gallery-navigation .next,
+.humus-gallery-container .gallery-navigation .prev {
   position: absolute;
   display: block;
   top: 50%;
-  margin-top: -30px;
+  margin-top: -80px;
   width: 33px;
   height: 60px;
   text-indent: -9999px;
 }
-.humus-gallery-container .image-container .prev {
+.humus-gallery-container .gallery-navigation .prev {
   background: url(../img/arrow-left-big.png);
   left: -60px;
 }
-.humus-gallery-container .image-container .next {
+.humus-gallery-container .gallery-navigation .next {
   background: url(../img/arrow-right-big.png);
   right: -60px;
 }
@@ -2118,6 +2121,9 @@ article.full .post-content .humus-gallery-container {
     position: absolute;
     right: 0;
     top: 10px;
+    font-size: 45px;
+    line-height: 45px;
+    text-decoration: none;
   }
   .js .nav-collapse {
     clip: rect(0 0 0 0);
@@ -2126,5 +2132,77 @@ article.full .post-content .humus-gallery-container {
     display: block;
     overflow: hidden;
     zoom: 1;
+  }
+  .page-header {
+    padding-top: 100px;
+    height: auto;
+  }
+  .page-header .header-content {
+    position: relative;
+    height: auto;
+  }
+  .page-header .humus-breadcrumb {
+    margin-top: 10px;
+  }
+  .page-header .page-title {
+    font-size: 50px;
+    line-height: 55px;
+  }
+  #filters .humus-dropdown {
+    margin: 0 0 20px;
+  }
+  article.list {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+  }
+  article.list .post-thumbnail {
+    margin: 0 0 20px;
+  }
+  article.list .post-thumbnail img {
+    width: 100%;
+    height: auto;
+  }
+  article.list .with-thumbnail {
+    position: static;
+  }
+  article.list .post-meta {
+    position: static;
+  }
+  article.full #post-meta .share {
+    margin-bottom: 20px;
+  }
+  article.full #post-meta .share ul {
+    width: 100%;
+    display: table;
+    float: none;
+  }
+  article.full #post-meta .share ul li {
+    display: table-cell;
+    width: 1%;
+    float: none;
+  }
+  article.full .post-content .humus-gallery-container {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .humus-gallery-container .gallery-navigation {
+    height: 60px;
+    width: 100px;
+    margin: 0 auto 20px;
+  }
+  .humus-gallery-container .gallery-navigation .prev,
+  .humus-gallery-container .gallery-navigation .next {
+    position: static;
+    margin: 0;
+  }
+  .humus-gallery-container .gallery-navigation .next {
+    float: right;
+  }
+  .humus-gallery-container .gallery-navigation .prev {
+    float: left;
+  }
+  #colophon .row {
+    width: 100%;
   }
 }

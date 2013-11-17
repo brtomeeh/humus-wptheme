@@ -1,6 +1,14 @@
 var pinImage;
 
 (function ($) {
+
+    /*
+     * Check for mobile
+     */
+    function isMobile() {
+        return ($(window).width() <= 768);
+    }
+
 	/**
 	 * Full height section system
 	 * Adjust height of sections and change sections between scroll events
@@ -24,15 +32,25 @@ var pinImage;
 	}
 
 	fullHeightSection.prototype.fixHeight = function() {
-		$('body').css({'overflow':'hidden'});
-		var height = $(window).height() - 60 - parseInt($('html').css('marginTop'));
-		this.container.find('.full-height-sections').height(height);
-		this.container.find('.vertical-center').each(function() {
-			$(this).css({
-				'paddingTop': (height/2) - ($(this).height() / 2)
-			});
-		});
-		this.sections.height(height);
+        if(this.sly.initialized) {
+            $('body').css({'overflow':'hidden'});
+            var height = $(window).height() - $('.scroll-tip').height() - parseInt($('html').css('marginTop'));
+            this.container.find('.full-height-sections').css({
+                'height': height
+            });
+        } else {
+            this.sections.addClass('active');
+            var height = $(window).height() - parseInt($('html').css('marginTop'));
+        }
+        this.container.find('.vertical-center').each(function() {
+            $(this).css({
+                'paddingTop': (height/2) - ($(this).height() / 2)
+            });
+        });
+        this.sections.css({
+            'height': height,
+            'min-height': height
+        });
 	}
 
 	fullHeightSection.prototype.scrollControl = function() {
@@ -60,11 +78,19 @@ var pinImage;
 		};
 		this.sly = new Sly(this.container.find('.full-height-sections'), options);
 
-		this.sly.init();
+        if(!isMobile())
+            this.sly.init();
 
 		// Reload on resize
 		$(window).on('resize', function() {
-			self.sly.reload();
+            if(isMobile()) {
+                self.sly.destroy();
+            } else {
+                if(!self.sly.initialized) {
+                    self.sly.init();
+                }
+                self.sly.reload();
+            }
 		});
 
 		var enableRun = true;
@@ -94,59 +120,67 @@ var pinImage;
 
 		var homeScroll = function(event, delta) {
 
-			var items = self.sly.items;
-			var current = self.sly.rel;
-			var isLastItem = (items.length - 1 === current.lastItem);
+            if(self.sly.initialized) {
 
-			if(isLastItem) {
+                var items = self.sly.items;
+                var current = self.sly.rel;
+                var isLastItem = (items.length - 1 === current.lastItem);
 
-				if($(window).scrollTop() === 0 && delta > 0) {
+                if(isLastItem) {
 
-					runSections(delta);
+                    if($(window).scrollTop() === 0 && delta > 0) {
 
-					event.stopPropagation();
-					event.preventDefault();
+                        runSections(delta);
 
-				}
+                        event.stopPropagation();
+                        event.preventDefault();
 
-				if(!enableRun) {
-					event.stopPropagation();
-					event.preventDefault();
-				}
+                    }
 
-			} else {
+                    if(!enableRun) {
+                        event.stopPropagation();
+                        event.preventDefault();
+                    }
 
-				runSections(delta);
+                } else {
 
-				event.stopPropagation();
-				event.preventDefault();
-			}
+                    runSections(delta);
+
+                    event.stopPropagation();
+                    event.preventDefault();
+                }
+
+            }
 
 		};
 
 		var keyPress = function(e) {
 
-			var home = 36;
-			var end = 35;
+            if(self.sly.initialized) {
 
-			var pgUp = 33;
-			var pgDown = 34;
+                var home = 36;
+                var end = 35;
 
-			if(e.keyCode == home || e.keyCode == end) {
-				e.preventDefault();
-				if(e.keyCode == home)
-					self.sly.toStart();
-				else if(e.keyCode == end)
-					self.sly.toEnd();
-			}
+                var pgUp = 33;
+                var pgDown = 34;
 
-			if(e.keyCode == pgUp || e.keyCode == pgDown) {
-				e.preventDefault();
-				if(e.keyCode == pgUp)
-					self.sly.prev();
-				else if(e.keyCode == pgDown)
-					self.sly.next();
-			}
+                if(e.keyCode == home || e.keyCode == end) {
+                    e.preventDefault();
+                    if(e.keyCode == home)
+                        self.sly.toStart();
+                    else if(e.keyCode == end)
+                        self.sly.toEnd();
+                }
+
+                if(e.keyCode == pgUp || e.keyCode == pgDown) {
+                    e.preventDefault();
+                    if(e.keyCode == pgUp)
+                        self.sly.prev();
+                    else if(e.keyCode == pgDown)
+                        self.sly.next();
+                }
+
+            }
 
 		}
 
@@ -192,16 +226,18 @@ var pinImage;
 
 			$(window).resize(fixHeight).resize();
 
-			$('body')
-				.append(self.sectionSelector)
-				.parent()
-					.css({
-						'margin-right': self.sectionSelector.width()
-					});
+            if(self.sly.initialized) {
+                $('body')
+                    .append(self.sectionSelector)
+                    .parent()
+                        .css({
+                            'margin-right': self.sectionSelector.width()
+                        });
 
-            $('#masthead').css({
-                right: self.sectionSelector.width()
-            });
+                $('#masthead').css({
+                    right: self.sectionSelector.width()
+                });
+            }
 
 		}();
 
@@ -612,14 +648,14 @@ var pinImage;
 
 	/*
 	 * Home
-	 * Recent videos
+	 * Recent content
 	 */
 
 	$(document).ready(function() {
 
 		var $container = $('#full-height-content .recent-content');
 
-		if($container.length) {
+		if($container.length && !isMobile()) {
 
 			var posts = $container.find('.item-list li'),
 				video = $container.find('.active-container'),
@@ -776,22 +812,28 @@ var pinImage;
 		var content = header.find('.header-content');
 		var height = header.innerHeight();
 
-		header.css('height', header.height());
+        if(!isMobile()) {
+            header.css('height', header.height());
+        }
 
 		function scroll() {
-			var contentHeight = height - $(window).scrollTop();
-			if(contentHeight >= 0) {
-				content.show().css({
-					'max-height': contentHeight
-				});
-			} else {
-				content.hide();
-			}
+            if(!isMobile()) {
+                var contentHeight = height - $(window).scrollTop();
+                if(contentHeight >= 0) {
+                    content.show().css({
+                        'max-height': contentHeight
+                    });
+                } else {
+                    content.hide();
+                }
+            }
 		}
 
 		function resize() {
-			var height = content.innerHeight();
-			header.height(height);
+            if(!isMobile()) {
+                var height = content.innerHeight();
+                header.height(height);
+            }
 		}
 
 		$(window).scroll(scroll).scroll();
@@ -875,18 +917,20 @@ var pinImage;
 	 * Adjust article list item height
 	 */
 	function articleItemHeight() {
-		var items = $('article.list');
-		if(items.length) {
-            items.each(function() {
-                var self = this;
-                $(self).imagesLoaded(function() {
-                    setTimeout(function() {
-                        var height = $(self).find('.wp-post-image').height();
-                        $(self).height(height);
-                    }, 200);
+        if(!isMobile()) {
+            var items = $('article.list');
+            if(items.length) {
+                items.each(function() {
+                    var self = this;
+                    $(self).imagesLoaded(function() {
+                        setTimeout(function() {
+                            var height = $(self).find('.wp-post-image').height();
+                            $(self).height(height);
+                        }, 200);
+                    });
                 });
-            });
-		}
+            }
+        }
 	}
 	$(window).resize(articleItemHeight).resize();
 
@@ -901,10 +945,12 @@ var pinImage;
 	 * Follow scroll
 	 */
 	$(document).ready(function() {
-		if($('#post-terms').length) {
-			var bottom = $('body').outerHeight() - ($('#post-content').offset().top + $('#post-content').innerHeight());
-			$.lockfixed('#post-terms', { offset: { top: 160, bottom: bottom }});
-		}
+        if(!isMobile()) {
+            if($('#post-terms').length) {
+                var bottom = $('body').outerHeight() - ($('#post-content').offset().top + $('#post-content').innerHeight());
+                $.lockfixed('#post-terms', { offset: { top: 160, bottom: bottom }});
+            }
+        }
 	});
 
 	/*
@@ -1036,7 +1082,9 @@ var pinImage;
 	 * RESPONSIVE
 	 */
 	 $(document).ready(function() {
-		var nav = responsiveNav(".header-navigation");
+		var nav = responsiveNav(".header-navigation", {
+            label: '&#xE08e'
+        });
 	});
 
 	 /*
@@ -1092,7 +1140,7 @@ var pinImage;
      */
     $(document).ready(function() {
         var exploreMenu = $('.explore-menu');
-        if(exploreMenu.length) {
+        if(exploreMenu.length && !isMobile()) {
             var width = exploreMenu.find('.axes').innerWidth() + exploreMenu.find('.sections').innerWidth();
             exploreMenu.css({
                 width: width,

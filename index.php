@@ -242,10 +242,6 @@ get_header(); ?>
 														?>
 														<li data-postid="<?php the_ID(); ?>">
 															<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-																<header class="post-header">
-																	<h3><?php the_title(); ?></h3>
-																	<?php the_excerpt(); ?>
-																</header>
 																<?php if($section_icon) : ?>
 																	<img src="<?php echo $section_icon; ?>" class="section-icon" />
 																<?php endif; ?>
@@ -254,6 +250,10 @@ get_header(); ?>
 																		<?php the_post_thumbnail('humus-wide-thumbnail', array('class' => 'scale-with-grid')); ?>
 																	</a>
 																</div>
+																<header class="post-header">
+																	<h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+																	<?php the_excerpt(); ?>
+																</header>
 															</article>
 															<script>
 																<?php

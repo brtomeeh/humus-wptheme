@@ -39,8 +39,14 @@
 
 	function heights() {
 
+        var height = gallery.find('.image-container').width() / 16*9;
+
+        if(isMobile()) {
+            height = gallery.find('.image-container').width() / 4*3;
+        }
+
 		gallery.find('.image-container, .image-container .image').css({
-			height: gallery.find('.image-container').width() / 16 * 9
+			height: height
 		});
 
 		list.css({
@@ -147,5 +153,12 @@
 		$(window).resize(heights).resize();
 
 	}
+
+    /*
+     * Check for mobile
+     */
+    function isMobile() {
+        return ($(window).width() <= 768);
+    }
 
 })(jQuery);

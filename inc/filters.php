@@ -156,7 +156,7 @@ class Humus_Filters {
 		$taxonomies = $this->get_taxonomies();
 		$relatable_taxonomies = $this->get_related_selector_taxonomies();
 		?>
-		<section id="filters">
+		<section id="filters" class="hide-if-mobile">
 			<div class="container">
 				<div class="row">
 

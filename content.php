@@ -180,7 +180,7 @@ else :
 		?>
 
 		<div class="three columns">
-			<article id="post-<?php the_ID(); ?>" <?php post_class('list'); ?>>
+			<article id="post-<?php the_ID(); ?>" <?php post_class('list clearfix'); ?>>
 				<?php if(has_post_thumbnail()) : ?>
 					<div class="post-thumbnail">
 						<a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_post_thumbnail('humus-thumbnail', array('class' => 'scale-with-grid')); ?></a>
@@ -197,7 +197,7 @@ else :
 	<?php else : ?>
 
 		<div class="six columns">
-			<article id="post-<?php the_ID(); ?>" <?php post_class('list'); ?>>
+			<article id="post-<?php the_ID(); ?>" <?php post_class('list clearfix'); ?>>
 				<?php if(has_post_thumbnail()) : ?>
 					<div class="three columns alpha">
 						<div class="post-thumbnail">

@@ -92,22 +92,22 @@
 						<?php
 						$facebook = get_field('facebook_url', 'option');
 						if($facebook)
-							echo '<a href="' . $facebook . '" title="Facebook" target="_blank">facebook</a>';
+							echo '<a href="' . $facebook . '" title="Facebook" target="_blank">&#xE047</a>';
 						$twitter = get_field('twitter_url', 'option');
 						if($twitter)
-							echo '<a href="' . $twitter . '" title="Twitter" target="_blank">twitter</a>';
+							echo '<a href="' . $twitter . '" title="Twitter" target="_blank">&#xE12f</a>';
 						$youtube = get_field('youtube_url', 'option');
 						if($youtube)
-							echo '<a href="' . $youtube . '" title="YouTube" target="_blank">youtube</a>';
+							echo '<a href="' . $youtube . '" title="YouTube" target="_blank">&#xE141</a>';
 						$instagram = get_field('instagram_url', 'option');
 						if($instagram)
-							echo '<a href="' . $instagram . '" title="Instagram" target="_blank">instagram</a>';
+							echo '<a href="' . $instagram . '" title="Instagram" target="_blank">&#xE155</a>';
 						$gplus = get_field('gplus_url', 'option');
 						if($gplus)
-							echo '<a href="' . $gplus . '" title="Google Plus" target="_blank">google</a>';
+							echo '<a href="' . $gplus . '" title="Google Plus" target="_blank">&#xE05a</a>';
 						$pinterest = get_field('pinterest_url', 'option');
 						if($pinterest)
-							echo '<a href="' . $pinterest . '" title="Pinterest" target="_blank">pinterest</a>';
+							echo '<a href="' . $pinterest . '" title="Pinterest" target="_blank">&#xE104</a>';
 						?>
 					</div>
 				</div>
