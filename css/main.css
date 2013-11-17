@@ -470,10 +470,12 @@ input[type=submit]:hover {
   padding: 0;
   float: left;
   line-height: 60px;
+  zoom: 0;
 }
 #masthead h1.with-logo {
   text-indent: -9999px;
   line-height: 0;
+  padding: 0;
 }
 #masthead h1.with-logo a {
   padding: 0;
@@ -489,6 +491,9 @@ input[type=submit]:hover {
 }
 #masthead h1 img {
   display: block;
+  margin: 0;
+  padding: 0;
+  zoom: 1;
 }
 #masthead #mastnav {
   float: left;
