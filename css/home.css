@@ -826,9 +826,14 @@
   }
   #full-height-content #recent-area .recent-content .item-list ul li {
     margin: 0 0 40px;
+    opacity: 1;
   }
   #full-height-content #recent-area .recent-content .item-list ul li .post-thumbnail {
     margin: 0 0 20px;
+  }
+  #full-height-content #recent-area .recent-content .item-list ul li .post-thumbnail img {
+    width: 100%;
+    height: auto;
   }
   #full-height-content #recent-area .recent-content .item-list ul li .post-header {
     display: block;

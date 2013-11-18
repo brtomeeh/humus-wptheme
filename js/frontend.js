@@ -1,13 +1,13 @@
 var pinImage;
 
-(function ($) {
+/*
+ * Check for mobile
+ */
+function isMobile() {
+    return (jQuery(window).width() <= 768);
+}
 
-    /*
-     * Check for mobile
-     */
-    function isMobile() {
-        return ($(window).width() <= 768);
-    }
+(function ($) {
 
 	/**
 	 * Full height section system
@@ -66,14 +66,12 @@ var pinImage;
 			itemSelector: this.container.find('.full-height-section'),
 			activateMiddle: 1,
 			mouseDragging: 0,
-			touchDragging: 0,
+			touchDragging: 1,
 			releaseSwing: 1,
 			startAt: 0,
 			scrollBy: 0,
 			speed: 600,
 			elasticBounds: 0,
-			dragHandle: 1,
-			dynamicHandle: 0,
 			keyboardNavBy: 'items'
 		};
 		this.sly = new Sly(this.container.find('.full-height-sections'), options);
