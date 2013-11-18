@@ -1085,7 +1085,7 @@ var pinImage;
 	 */
 	 $(document).ready(function() {
 		var nav = responsiveNav(".header-navigation", {
-            label: '&#xE08e'
+            label: '&#xE08e;'
         });
 	});
 
