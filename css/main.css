@@ -2218,6 +2218,9 @@ article.full .post-content .humus-gallery-container {
     padding: 0;
     margin: 0 0 20px;
   }
+  .post-content .humus-about .humus-about-heads .member-item {
+    height: auto;
+  }
   .post-content .humus-about .member-content-container {
     padding-top: 120px;
   }

@@ -47,10 +47,17 @@
 
 		currentMember = member;
 
-		memberArea
-			.find('.member-content')
-			.empty()
-			.append(member.html());
+		memberArea.animate({
+            scrollTop: 0
+        }, 200, function() {
+            memberArea
+                .find('.member-content')
+                .empty()
+                .append(member.html());
+        });
+
+
+
 
 		memberArea.show();
 
