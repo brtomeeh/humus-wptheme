@@ -544,7 +544,7 @@ function humus_gallery($atts, $content = null) {
 	if(!$images || empty($images))
 		return '';
 
-	wp_enqueue_script('humus-gallery', get_template_directory_uri() . '/js/gallery.js', array('jquery', 'sly'), '0.1.1');
+	wp_enqueue_script('humus-gallery', get_template_directory_uri() . '/js/gallery.js', array('jquery', 'sly'), '0.1.2');
 
 	ob_start();
 	?>
@@ -615,7 +615,7 @@ function humus_album_gallery($atts, $content = null) {
 
 	wp_enqueue_style('swipebox');
 
-	wp_enqueue_script('humus-gallery', get_template_directory_uri() . '/js/gallery.js', array('jquery', 'sly', 'isotope', 'imagesloaded', 'swipebox'), '0.1.0');
+	wp_enqueue_script('humus-gallery', get_template_directory_uri() . '/js/gallery.js', array('jquery', 'sly', 'isotope', 'imagesloaded', 'swipebox'), '0.1.2');
 
 	ob_start();
 	?>
