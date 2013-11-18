@@ -84,7 +84,9 @@ var pinImage;
 		// Reload on resize
 		$(window).on('resize', function() {
             if(isMobile()) {
-                self.sly.destroy();
+                if(self.sly.initialized) {
+                    self.sly.destroy();
+                }
             } else {
                 if(!self.sly.initialized) {
                     self.sly.init();
@@ -1015,7 +1017,7 @@ var pinImage;
 
 		var images = $('.single .post-content img, .humus-masonry-gallery img');
 
-		if(images.length) {
+		if(images.length && !isMobile()) {
 
 			images.each(function() {
 				if(!$(this).parents('.humus-gallery-container').length)
@@ -1107,6 +1109,14 @@ var pinImage;
 	 				clearTimeout(t);
 
 	 			});
+
+                hover.on('click', function() {
+
+                    activate();
+                    clearTimeout(t);
+                    t = setTimeout(deactivate, 2000);
+
+                });
 
 	 			hover.on('mouseout', function() {
 
