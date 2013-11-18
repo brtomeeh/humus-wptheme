@@ -43,9 +43,7 @@
 
 	function viewMember(member) {
 
-		$('body').css({
-			'overflow': 'hidden'
-		});
+		$('html').addClass('overflow-hidden');
 
 		currentMember = member;
 
@@ -78,9 +76,7 @@
 
 	function closeMember() {
 
-		$('body').css({
-			'overflow': 'auto'
-		});
+		$('html').removeClass('overflow-hidden');
 
 		memberArea.hide();
 

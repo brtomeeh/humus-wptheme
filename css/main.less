@@ -164,6 +164,10 @@ body {
 	}
 }
 
+.overflow-hidden {
+    overflow: hidden !important;
+}
+
 /*
  * Elements
  */
@@ -2287,6 +2291,50 @@ article.full {
                 width: 100%;
                 padding: 0;
                 margin: 0 0 20px;
+            }
+        }
+    }
+    .post-content {
+        .humus-about {
+            .member-content-container {
+                padding-top: 120px;
+                .member-content {
+                    max-height: none;
+                    height: auto;
+                    padding-bottom: 120px;
+                    .member-thumbnail {
+                        width: 100%;
+                        height: auto;
+                        float: none;
+                        img {
+                            width: 100%;
+                            height: auto;
+                        }
+                    }
+                    .member-profile-content {
+                        height: auto;
+                        padding: 0 0 0 20px;
+                    }
+                }
+                .navigation {
+                    position: fixed;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: #333;;
+                    top: auto;
+                    z-index: 99999;
+                    a {
+                        margin: 10px;
+                        position: static;
+                        &.next {
+                            float: right;
+                        }
+                        &.previous {
+                            float: left;
+                        }
+                    }
+                }
             }
         }
     }

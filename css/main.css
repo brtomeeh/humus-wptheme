@@ -73,6 +73,9 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-thumb:hover {
   background: #222;
 }
+.overflow-hidden {
+  overflow: hidden !important;
+}
 /*
  * Elements
  */
@@ -2214,6 +2217,46 @@ article.full .post-content .humus-gallery-container {
     width: 100%;
     padding: 0;
     margin: 0 0 20px;
+  }
+  .post-content .humus-about .member-content-container {
+    padding-top: 120px;
+  }
+  .post-content .humus-about .member-content-container .member-content {
+    max-height: none;
+    height: auto;
+    padding-bottom: 120px;
+  }
+  .post-content .humus-about .member-content-container .member-content .member-thumbnail {
+    width: 100%;
+    height: auto;
+    float: none;
+  }
+  .post-content .humus-about .member-content-container .member-content .member-thumbnail img {
+    width: 100%;
+    height: auto;
+  }
+  .post-content .humus-about .member-content-container .member-content .member-profile-content {
+    height: auto;
+    padding: 0 0 0 20px;
+  }
+  .post-content .humus-about .member-content-container .navigation {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #333;
+    top: auto;
+    z-index: 99999;
+  }
+  .post-content .humus-about .member-content-container .navigation a {
+    margin: 10px;
+    position: static;
+  }
+  .post-content .humus-about .member-content-container .navigation a.next {
+    float: right;
+  }
+  .post-content .humus-about .member-content-container .navigation a.previous {
+    float: left;
   }
   #colophon .row {
     width: 100%;

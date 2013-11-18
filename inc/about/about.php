@@ -46,7 +46,7 @@ class Humus_About_Page {
 
 	function content() {
 
-		wp_enqueue_script('humus-about', get_template_directory_uri() . '/inc/about/about.js', array('jquery'), '0.1.0');
+		wp_enqueue_script('humus-about', get_template_directory_uri() . '/inc/about/about.js', array('jquery'), '0.1.1');
 
 		$content = get_field('about_content', 'option');
 		$team = get_field('team', 'option');

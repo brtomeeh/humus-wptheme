@@ -86,7 +86,7 @@ function humus_scripts() {
 
 	wp_register_script('jquery-mousewheel', get_template_directory_uri() . '/js/jquery.mousewheel.js', array('jquery'));
 
-	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery', 'underscore', 'imagesloaded', 'fitvids', 'lockfixed', 'sly', 'responsive-nav', 'jquery-mousewheel'), '0.2.12');
+	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery', 'underscore', 'imagesloaded', 'fitvids', 'lockfixed', 'sly', 'responsive-nav', 'jquery-mousewheel'), '0.3.1');
 
 
 	wp_enqueue_script('frontend');
