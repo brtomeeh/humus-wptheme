@@ -709,6 +709,61 @@ input[type=submit]:hover {
 #masthead .search .searchform form input[type=submit] {
   display: none;
 }
+#masthead .newsletter {
+  width: 26px;
+  float: left;
+  padding: 20px 20px 19px 20px;
+  position: relative;
+}
+#masthead .newsletter:before {
+  content: url(../img/stamp-icon.png);
+}
+#masthead .newsletter:hover .newsletter-content,
+#masthead .newsletter.active .newsletter-content {
+  height: auto;
+  opacity: 1;
+}
+#masthead .newsletter .newsletter-content {
+  width: 300px;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  -webkit-transition: all 0.2s ease-in-out;
+  -khtml-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+#masthead .newsletter .newsletter-content .newsletter-container {
+  background: #efefef;
+  margin-top: 20px;
+}
+#masthead .newsletter .newsletter-content .newsletter-container:before {
+  content: url(../img/stamp-light.png);
+}
+#masthead .newsletter .newsletter-content .newsletter-container:after {
+  content: '';
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid #eee;
+  position: absolute;
+  top: 0px;
+  z-index: 1000;
+  right: 27px;
+}
+#masthead .newsletter .newsletter-content .newsletter-container form input {
+  background: #fff;
+}
+#masthead .newsletter .newsletter-content .newsletter-container form:after {
+  color: #333;
+  z-index: 10;
+}
 #masthead .social {
   width: 26px;
   float: left;
@@ -1862,59 +1917,6 @@ article.full .post-content .humus-gallery-container {
 #colophon .newsletter {
   width: 80%;
 }
-#colophon .newsletter .newsletter-container {
-  padding: 20px;
-  background: #222;
-}
-#colophon .newsletter .newsletter-container:before {
-  content: url(../img/stamp.png);
-  float: right;
-  margin: 0 0 20px 20px;
-}
-#colophon .newsletter .newsletter-container p {
-  color: #999;
-}
-#colophon .newsletter .newsletter-container form {
-  position: relative;
-}
-#colophon .newsletter .newsletter-container form input[type=submit] {
-  position: absolute;
-  color: #f0f0f0;
-  top: 10px;
-  right: 0;
-  text-indent: -9999px;
-  line-height: 30px;
-  padding: 0;
-  margin: 0;
-  z-index: 2;
-  width: 30px;
-  display: block;
-  background: transparent;
-}
-#colophon .newsletter .newsletter-container form:after {
-  z-index: 1;
-  content: '\E08a';
-  position: absolute;
-  width: auto;
-  color: #f0f0f0;
-  top: 10px;
-  right: 0;
-  font-family: "LigatureSymbols";
-  line-height: 30px;
-  font-size: 30px;
-  padding: 0;
-  margin: 0;
-}
-#colophon .newsletter .newsletter-container form input {
-  background: transparent;
-  width: 100%;
-  padding: 15px 20px;
-  border: 0;
-  background: #3f3f3f;
-  margin-left: -20px;
-  position: relative;
-  font-size: 11px;
-}
 #colophon .contacts {
   width: 80%;
 }
@@ -1962,6 +1964,59 @@ article.full .post-content .humus-gallery-container {
 }
 #colophon .colophon table tr th {
   font-size: 10px;
+}
+.newsletter-container {
+  padding: 20px;
+  background: #222;
+}
+.newsletter-container:before {
+  content: url(../img/stamp.png);
+  float: right;
+  margin: 0 0 20px 20px;
+}
+.newsletter-container p {
+  color: #999;
+}
+.newsletter-container form {
+  position: relative;
+}
+.newsletter-container form input[type=submit] {
+  position: absolute;
+  color: #f0f0f0;
+  top: 10px;
+  right: 0;
+  text-indent: -9999px;
+  line-height: 30px;
+  padding: 0;
+  margin: 0;
+  z-index: 2;
+  width: 30px;
+  display: block;
+  background: transparent;
+}
+.newsletter-container form:after {
+  z-index: 1;
+  content: '\E08a';
+  position: absolute;
+  width: auto;
+  color: #f0f0f0;
+  top: 10px;
+  right: 0;
+  font-family: "LigatureSymbols";
+  line-height: 30px;
+  font-size: 30px;
+  padding: 0;
+  margin: 0;
+}
+.newsletter-container form input {
+  background: transparent;
+  width: 100%;
+  padding: 15px 20px;
+  border: 0;
+  background: #3f3f3f;
+  margin-left: -20px;
+  position: relative;
+  font-size: 11px;
 }
 #swipebox-action,
 #swipebox-caption {
