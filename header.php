@@ -54,7 +54,7 @@
 								<?php get_search_form(); ?>
 							</div>
 						</div>
-                        <div class="newsletter maintain-hover">
+                        <div class="newsletter hide-if-mobile maintain-hover">
                             <div class="newsletter-content">
                                 <div class="newsletter-container">
                                     <p><?php _e('Sign up to our newsletter and be the first to know about our latest contents', 'humus'); ?></p>
