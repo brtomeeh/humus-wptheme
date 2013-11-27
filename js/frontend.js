@@ -990,7 +990,9 @@ function isMobile() {
                     });
                 });
             }
-        }
+        } else {
+			$('article.list').height('auto');	
+		}
 	}
 	$(window).resize(articleItemHeight).resize();
 
