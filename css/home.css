@@ -619,6 +619,9 @@
   right: 0;
   bottom: 0;
 }
+.footer-section {
+  background: #333;
+}
 .footer-section #colophon {
   position: absolute;
   width: 100%;
