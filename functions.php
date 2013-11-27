@@ -166,6 +166,16 @@ function humus_pre_get_posts($query) {
 }
 add_action('pre_get_posts', 'humus_pre_get_posts');
 
+
+// Enable qTranslate for WordPress SEO
+function humus_qtranslate_filter($text){
+	return __($text);
+}
+add_filter('wpseo_title', 'humus_qtranslate_filter', 10, 1);
+add_filter('wpseo_metadesc', 'humus_qtranslate_filter', 10, 1);
+add_filter('wpseo_metakey', 'humus_qtranslate_filter', 10, 1);
+add_filter('wpseo_opengraph_title', 'humus_qtranslate_filter', 10, 1);
+
 /*
  * Custom options
  */
