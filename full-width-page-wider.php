@@ -50,6 +50,66 @@ get_header(); ?>
 					</header>
 					<section class="page-content">
 						<div class="container">
+							<?php if(is_single()) : ?>
+								<div class="twelve columns">
+									<div class="row">
+										<aside id="post-meta">
+											<div class="three columns alpha">
+												<?php if(get_post_type() == 'event'	) : ?>
+													<div class="event-date">
+														<p>
+															<span><?php _e('When', 'humus'); ?></span>
+															<span class="meta-content"><?php echo humus_get_event_date(); ?></span>
+														</p>
+													</div>
+												<?php else : ?>
+													<div class="post-date">
+														<p>
+															<span><?php _e('published', 'humus'); ?></span>
+															<span class="meta-content"><?php the_date(); ?></span>
+														</p>
+													</div>
+												<?php endif; ?>
+											</div>
+											<div class="five columns">
+												<?php if(get_post_type() == 'event') : ?>
+													<div class="event-location">
+														<p>
+															<span><?php _e('Where', 'humus'); ?></span>
+															<span class="meta-content"><?php echo humus_get_event_location(); ?></span>
+														</p>
+													</div>
+												<?php elseif($display_author) : ?>
+													<div class="post-author">
+														<p>
+															<span><?php _e('by', 'humus'); ?></span>
+															<span class="meta-content"><?php the_author(); ?></span>
+														</p>
+													</div>
+												<?php else : ?>
+													&nbsp;
+												<?php endif; ?>
+											</div>
+											<div class="four columns omega">
+												<div class="share">
+													<ul>
+														<li>
+															<div class="fb-like" data-href="<?php the_permalink(); ?>" data-layout="box_count" data-show-faces="false" data-send="false"></div>
+														</li>
+														<li>
+															<a href="https://twitter.com/share" class="twitter-share-button" data-url="<?php the_permalink(); ?>" data-lang="en" data-count="vertical">Tweet</a>
+														</li>
+														<li>
+															<div class="g-plusone" data-size="tall" data-href="<?php the_permalink(); ?>"></div>
+														</li>
+													</ul>
+												</div>
+											</div>
+											<div class="clearfix"></div>
+										</aside>
+									</div>
+								</div>
+							<?php endif; ?>
 							<div class="twelve columns">
 								<section id="post-content" class="post-content">
 									<?php the_content(); ?>
