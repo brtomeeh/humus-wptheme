@@ -880,6 +880,9 @@ input[type=submit]:hover {
   z-index: 1;
   width: 100%;
 }
+.page-header .header-content .one.column {
+  width: 60px !important;
+}
 .page-header .humus-breadcrumb {
   text-transform: uppercase;
   font-size: 12px;

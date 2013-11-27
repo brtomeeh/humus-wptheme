@@ -1000,7 +1000,7 @@ function isMobile() {
 	 * Fit vids
 	 */
 	$(document).ready(function() {
-		$('body').fitVids();
+		//$('body').fitVids();
 	});
 
 	/*

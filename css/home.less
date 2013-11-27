@@ -868,6 +868,40 @@
 	}
 }
 
+@media only screen and (max-height: 600px) {
+	#full-height-content {
+        #axes-area {
+            .axes-content {
+                .axis-content {
+                    &.active {
+						.axis-posts {
+							height: 50px;
+						}
+                    }
+					.axis-posts {
+						.axis-post {
+							padding: 0 30px 30px;
+						}
+					}
+					h2 {
+						font-size: 30px;
+						line-height: 30px;
+						margin: 20px 30px 0;
+						a {
+							display: block;
+							margin: -20px -30px 0;
+							padding: 20px 30px 10px;
+						}
+					}
+					p {
+						display: none;
+					}
+                }
+            }
+		}
+	}
+}
+
 @media only screen and (max-width: 767px) {
 	#full-height-content {
         margin: 0;
@@ -893,11 +927,18 @@
                     &.active {
                         position: absolute;
                         bottom: 95px;
+						padding-bottom: 20px !important;
+						.axis-posts {
+							height: 50px;
+						}
                     }
                     h2 {
                         font-size: 16px;
                         line-height: 16px;
                     }
+					p {
+						display: none;
+					}
                 }
             }
             .axes-nav {

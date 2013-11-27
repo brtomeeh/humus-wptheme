@@ -773,6 +773,27 @@
     padding-bottom: 15px;
   }
 }
+@media only screen and (max-height: 600px) {
+  #full-height-content #axes-area .axes-content .axis-content.active .axis-posts {
+    height: 50px;
+  }
+  #full-height-content #axes-area .axes-content .axis-content .axis-posts .axis-post {
+    padding: 0 30px 30px;
+  }
+  #full-height-content #axes-area .axes-content .axis-content h2 {
+    font-size: 30px;
+    line-height: 30px;
+    margin: 20px 30px 0;
+  }
+  #full-height-content #axes-area .axes-content .axis-content h2 a {
+    display: block;
+    margin: -20px -30px 0;
+    padding: 20px 30px 10px;
+  }
+  #full-height-content #axes-area .axes-content .axis-content p {
+    display: none;
+  }
+}
 @media only screen and (max-width: 767px) {
   #full-height-content {
     margin: 0;
@@ -798,10 +819,17 @@
   #full-height-content #axes-area .axes-content .axis-content.active {
     position: absolute;
     bottom: 95px;
+    padding-bottom: 20px !important;
+  }
+  #full-height-content #axes-area .axes-content .axis-content.active .axis-posts {
+    height: 50px;
   }
   #full-height-content #axes-area .axes-content .axis-content h2 {
     font-size: 16px;
     line-height: 16px;
+  }
+  #full-height-content #axes-area .axes-content .axis-content p {
+    display: none;
   }
   #full-height-content #axes-area .axes-nav {
     top: 120px;
