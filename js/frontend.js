@@ -1060,11 +1060,13 @@ function isMobile() {
 					if(sly.initialized) {
 						sly.destroy();
 					}
+					$('.related-content .next, .related-content .prev').hide();
 				} else {
 					if(!sly.initialized) {
 						sly.init();
 					}
 					sly.reload();
+					$('.related-content .next, .related-content .prev').show();
 				}
 			});
 
