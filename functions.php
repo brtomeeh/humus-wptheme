@@ -155,6 +155,17 @@ function humus_wp_title( $title, $sep ) {
 }
 add_filter( 'wp_title', 'humus_wp_title', 10, 2 );
 
+function humus_pre_get_posts($query) {
+
+	if($query->is_main_query()) {
+		if(is_front_page() || is_search() || is_category() || is_tag() || is_tax()) {
+			$query->set('post_type', get_post_types(array('public' => true)));
+		}
+	}
+	
+}
+add_action('pre_get_posts', 'humus_pre_get_posts');
+
 /*
  * Custom options
  */

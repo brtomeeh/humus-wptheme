@@ -44,9 +44,6 @@ class Humus_Magazine_Remix extends Humus_Magazine {
 			'description' => __('Humus Remix', 'humus'),
 			'supports' => array('title', 'editor', 'author', 'excerpt', 'thumbnail'),
 			'public' => true,
-			'show_ui' => true,
-			'show_in_menu' => true,
-			'has_archive' => false,
 			'menu_position' => 4,
 			'taxonomies' => array('category', 'post_tag'),
 			'rewrite' => array('slug' => 'remix', 'with_front' => false)
