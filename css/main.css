@@ -373,6 +373,9 @@ input[type=submit]:hover {
   height: auto;
   display: block;
 }
+.humus-contact input {
+  display: inline;
+}
 .humus-contact .contacts .email,
 .humus-contact .contacts .phone {
   padding-top: 70px;
