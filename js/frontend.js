@@ -866,7 +866,15 @@ function isMobile() {
 
         if(!Modernizr.touch) {
             header.css('height', header.height());
-        }
+        } else {
+			header.css({
+				'height': 'auto'
+			});
+			content.css({
+				'position': 'relative',
+				'height': 'auto'
+			});
+		}
 
 		function scroll() {
             if(!Modernizr.touch) {
