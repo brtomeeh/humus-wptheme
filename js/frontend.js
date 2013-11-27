@@ -1056,7 +1056,16 @@ function isMobile() {
 			});
 
 			$(window).on('resize', function() {
-				sly.reload();
+				if(isMobile() || Modernizr.touch) {
+					if(sly.initialized) {
+						sly.destroy();
+					}
+				} else {
+					if(!sly.initialized) {
+						sly.init();
+					}
+					sly.reload();
+				}
 			});
 
 			sly.init();

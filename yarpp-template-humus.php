@@ -6,8 +6,6 @@
  * @subpackage Humus
  */
 ?>
-
-<?php // query_posts() ; ?>
 <?php if(have_posts()) : ?>
 	<div class="container">
 		<div class="related-content row">
@@ -31,4 +29,3 @@
 		</div>
 	</div>
 <?php endif; ?>
-<?php // wp_reset_query(); ?>
