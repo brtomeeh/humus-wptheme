@@ -34,13 +34,24 @@ function isMobile() {
 	fullHeightSection.prototype.fixHeight = function() {
         if(this.sly.initialized) {
             $('body').css({'overflow':'hidden'});
+			$('.scroll-tip').show();
             var height = $(window).height() - $('.scroll-tip').height() - parseInt($('html').css('marginTop'));
+			if(Modernizr.touch) {
+				height = $(window).height() - parseInt($('html').css('marginTop'));
+				$('.scroll-tip').hide();
+			}
             this.container.find('.full-height-sections').css({
                 'height': height
             });
         } else {
-            this.sections.addClass('active');
+			$('body').css({'overflow':'auto'});
+			$('.scroll-tip').hide();
             var height = $(window).height() - parseInt($('html').css('marginTop'));
+            this.container.find('.full-height-sections').css({
+                'height': 'auto'
+            });
+			this.container.find('.full-height-sections > .items').attr('style', '');
+            this.sections.addClass('active');
         }
         this.container.find('.vertical-center').each(function() {
             $(this).css({
@@ -56,6 +67,8 @@ function isMobile() {
 	fullHeightSection.prototype.scrollControl = function() {
 
 		var self = this;
+		
+		var enableSly = !Modernizr.touch;
 
 		/*
 		 * Sly
@@ -66,7 +79,7 @@ function isMobile() {
 			itemSelector: this.container.find('.full-height-section'),
 			activateMiddle: 1,
 			mouseDragging: 0,
-			touchDragging: 1,
+			touchDragging: 0,
 			releaseSwing: 1,
 			startAt: 0,
 			scrollBy: 0,
@@ -76,12 +89,12 @@ function isMobile() {
 		};
 		this.sly = new Sly(this.container.find('.full-height-sections'), options);
 
-        if(!isMobile())
+        if(enableSly && !isMobile())
             this.sly.init();
 
 		// Reload on resize
 		$(window).on('resize', function() {
-            if(isMobile()) {
+            if(!enableSly || isMobile()) {
                 if(self.sly.initialized) {
                     self.sly.destroy();
                 }
@@ -128,27 +141,34 @@ function isMobile() {
 
                 if(isLastItem) {
 
-                    if($(window).scrollTop() === 0 && delta > 0) {
+                    if(delta > 0) {
 
                         runSections(delta);
 
-                        event.stopPropagation();
-                        event.preventDefault();
+						if(typeof event.stopPropagation !== 'undefined')
+							event.stopPropagation();
+						if(typeof event.preventDefault !== 'undefined')
+							event.preventDefault();
 
                     }
 
                     if(!enableRun) {
-                        event.stopPropagation();
-                        event.preventDefault();
-                    }
+						if(typeof event.stopPropagation !== 'undefined')
+							event.stopPropagation();
+						if(typeof event.preventDefault !== 'undefined')
+							event.preventDefault();
+					}
 
                 } else {
 
                     runSections(delta);
 
-                    event.stopPropagation();
-                    event.preventDefault();
-                }
+					if(typeof event.stopPropagation !== 'undefined')
+						event.stopPropagation();
+					if(typeof event.preventDefault !== 'undefined')
+						event.preventDefault();
+
+				}
 
             }
 
@@ -200,9 +220,28 @@ function isMobile() {
 
 			var fixHeight = function() {
 
-				self.sectionSelector.find('li').css({
-					height: $(window).height() / self.sections.length
-				});
+				if(self.sly.initialized) {
+					self.sectionSelector.show();
+					self.sectionSelector.find('li').css({
+						height: $(window).height() / self.sections.length
+					});
+					
+					$('html').css({
+						'margin-right': self.sectionSelector.width()
+					});
+					
+					$('#masthead').css({
+						right: self.sectionSelector.width()
+					});
+				} else {
+					self.sectionSelector.hide();
+					$('html').css({
+						'margin-right': 0
+					});
+					$('#masthead').css({
+						right: 0
+					});
+				}
 
 			}
 
@@ -226,18 +265,7 @@ function isMobile() {
 
 			$(window).resize(fixHeight).resize();
 
-            if(self.sly.initialized) {
-                $('body')
-                    .append(self.sectionSelector)
-                    .parent()
-                        .css({
-                            'margin-right': self.sectionSelector.width()
-                        });
-
-                $('#masthead').css({
-                    right: self.sectionSelector.width()
-                });
-            }
+			$('body').append(self.sectionSelector);
 
 		}();
 
@@ -655,7 +683,7 @@ function isMobile() {
 
 		var $container = $('#full-height-content .recent-content');
 
-		if($container.length && !isMobile()) {
+		if($container.length) {
 
 			var posts = $container.find('.item-list li'),
 				video = $container.find('.active-container'),
@@ -688,12 +716,6 @@ function isMobile() {
 				};
 				sly = new Sly($container.find('.item-list'), options);
 
-				sly.init();
-
-				// Reload on resize
-				$(window).on('resize', function() {
-					sly.reload();
-				});
 			}
 
 			function open(postid) {
@@ -714,24 +736,50 @@ function isMobile() {
 			}
 
 			function fixHeight() {
-
-				var amountVisible = 2;
-
-				if($(window).height() <= 863) {
-					amountVisible = 2;
+				
+				if(typeof sly !== 'undefined') {
+					if(isMobile()) {
+						if(sly.initialized) {
+							sly.destroy();
+							$container.find('.item-list > .items').attr('style', '');
+						}
+					} else {
+						if(!sly.initialized) {
+							sly.init();
+						}
+						sly.reload();
+					}
+				}
+				
+				if($(window).height() <= 580 || isMobile()) {
+					$container.find('.list-controls').hide();
+				} else {
+					$container.find('.list-controls').show();
 				}
 
-				var margin = (amountVisible - 1) * 20;
-
-				height = posts.filter(':first').height() * amountVisible + margin;
-
-				$container.find('.item-list').css({
-					'height': height
-				})
-
-				video.css({
-					'height': height
-				});
+				if(!isMobile()) {
+					var amountVisible = 2;
+	
+					if($(window).height() <= 863) {
+						amountVisible = 2;
+					}
+	
+					var margin = (amountVisible - 1) * 20;
+	
+					height = posts.filter(':first').height() * amountVisible + margin;
+	
+					$container.find('.item-list').css({
+						'height': height
+					})
+	
+					video.css({
+						'height': height
+					});
+				} else {
+					$container.find('.item-list').css({
+						'height': 'auto'
+					});
+				}
 
 			}
 
@@ -745,14 +793,18 @@ function isMobile() {
 				});
 
 				setupSly();
+				
+				$(window).trigger('resize');
 
 				open(posts.filter(':first-child').data('postid'));
 
 			});
 
 			posts.click(function() {
-				open($(this).data('postid'));
-				return false;
+				if(!isMobile()) {
+					open($(this).data('postid'));
+					return false;
+				}
 			});
 
 			function next() {
@@ -812,12 +864,12 @@ function isMobile() {
 		var content = header.find('.header-content');
 		var height = header.innerHeight();
 
-        if(!isMobile()) {
+        if(!Modernizr.touch) {
             header.css('height', header.height());
         }
 
 		function scroll() {
-            if(!isMobile()) {
+            if(!Modernizr.touch) {
                 var contentHeight = height - $(window).scrollTop();
                 if(contentHeight >= 0) {
                     content.show().css({
@@ -830,7 +882,7 @@ function isMobile() {
 		}
 
 		function resize() {
-            if(!isMobile()) {
+            if(!Modernizr.touch) {
                 var height = content.innerHeight();
                 header.height(height);
             }
@@ -1146,15 +1198,25 @@ function isMobile() {
     /*
      * Fix explore menu width
      */
-    $(document).ready(function() {
-        var exploreMenu = $('.explore-menu');
-        if(exploreMenu.length && !isMobile()) {
-            var width = exploreMenu.find('.axes').innerWidth() + exploreMenu.find('.sections').innerWidth();
-            exploreMenu.css({
-                width: width,
-                marginLeft: -width/2 + (exploreMenu.parent().width()/2)
-            });
-        }
-    });
+	$(document).ready(function() {
+		var exploreMenu = $('.explore-menu');
+
+		if(exploreMenu.length) {
+			$(window).resize(function() {
+				if(!isMobile()) {
+					var width = exploreMenu.find('.axes').innerWidth() + exploreMenu.find('.sections').innerWidth();
+					exploreMenu.css({
+						width: width,
+						marginLeft: -width/2 + (exploreMenu.parent().width()/2)
+					});
+				} else {
+					exploreMenu.css({
+						width: 'auto',
+						marginLeft: 0
+					});
+				}
+			}).resize();
+		}
+	});
 
 })(jQuery);

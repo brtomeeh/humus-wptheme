@@ -78,6 +78,13 @@ function humus_scripts() {
 	wp_register_script('isotope', get_template_directory_uri() . '/js/jquery.isotope.min.js', array('jquery'), '1.5.25');
 	wp_deregister_script('underscore');
 	wp_register_script('underscore', get_template_directory_uri() . '/js/underscore-min.js', array(), '1.5.2');
+	wp_register_script('humus-modernizr', get_template_directory_uri() . '/js/modernizr.js', array());
+	
+	wp_register_script('zepto-core', get_template_directory_uri(). '/js/zepto/zepto.js', array(), '1.0.0');
+	wp_register_script('zepto-event', get_template_directory_uri(). '/js/zepto/event.js', array('zepto-core'), '1.0.0');
+	wp_register_script('zepto-touch', get_template_directory_uri(). '/js/zepto/touch.js', array('zepto-event'), '1.0.0');
+	
+	wp_register_script('hammerjs', get_template_directory_uri() . '/js/hammer.min.js', array('jquery'), '1.0.5');
 
 	wp_register_script('swipebox', get_template_directory_uri() . '/js/swipebox/jquery.swipebox.min.js', array('jquery'));
 	wp_register_style('swipebox', get_template_directory_uri() . '/js/swipebox/swipebox.css');
@@ -86,7 +93,7 @@ function humus_scripts() {
 
 	wp_register_script('jquery-mousewheel', get_template_directory_uri() . '/js/jquery.mousewheel.js', array('jquery'));
 
-	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery', 'underscore', 'imagesloaded', 'fitvids', 'lockfixed', 'sly', 'responsive-nav', 'jquery-mousewheel'), '0.3.1');
+	wp_register_script('frontend', get_template_directory_uri() . '/js/frontend.js', array('jquery', 'underscore', 'imagesloaded', 'fitvids', 'lockfixed', 'sly', 'responsive-nav', 'jquery-mousewheel', 'humus-modernizr'), '0.3.1');
 
 
 	wp_enqueue_script('frontend');
