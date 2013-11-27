@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Humus\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-11-08 04:44-0300\n"
-"PO-Revision-Date: 2013-11-08 04:45-0300\n"
+"PO-Revision-Date: 2013-11-27 03:14-0300\n"
 "Last-Translator: Miguel Peixe <miguel@cardume.art.br>\n"
 "Language-Team: Cardume <miguel@cardume.art.br>\n"
 "Language: pt_BR\n"
@@ -2298,7 +2298,7 @@ msgstr ""
 #: ../inc/acf/core/controllers/field_groups.php:423
 #: ../inc/contact/contact.php:73
 msgid "Name"
-msgstr ""
+msgstr "Nome"
 
 #: ../inc/acf/core/controllers/field_groups.php:424
 msgid "Activation Code"
