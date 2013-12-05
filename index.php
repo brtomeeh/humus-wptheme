@@ -209,7 +209,7 @@ get_header(); ?>
 
 						<?php
 						$recent = get_posts(array(
-							'posts_per_page' => 30
+							'posts_per_page' => 10
 						));
 						if($recent) : 
 							?>
