@@ -59,7 +59,7 @@ function humus_styles() {
 	wp_register_style('skeleton', get_template_directory_uri() . '/css/skeleton.css', array('base'));
 	wp_register_style('webfonts', 'http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic|Open+Sans:300italic,400italic,600italic,400,300,600,700,800');
 	wp_register_style('responsive-nav', get_template_directory_uri() . '/css/responsive-nav.css');
-	wp_register_style('main', get_template_directory_uri() . '/css/main.css', array('skeleton', 'webfonts', 'responsive-nav'), '0.1.4');
+	wp_register_style('main', get_template_directory_uri() . '/css/main.css', array('skeleton', 'webfonts', 'responsive-nav'), '0.1.5');
 	wp_register_style('home', get_template_directory_uri() . '/css/home.css', array('main'), '0.1.2');
 
 	wp_enqueue_style('main');
