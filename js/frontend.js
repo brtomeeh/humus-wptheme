@@ -112,14 +112,13 @@ function isMobile() {
 
 			if(enableRun) {
 
-				if(delta > 0) {
+				if(delta < 0) {
 					// up
 					self.sly.prev();
-				} else if(delta < 0) {
+				} else if(delta > 0) {
 					// down
 					self.sly.next();
 				}
-
 
 				enableRun = false;
 
@@ -131,7 +130,9 @@ function isMobile() {
 
 		};
 
-		var homeScroll = function(event, delta) {
+		var homeScroll = function(event) {
+
+			var delta = event.deltaY;
 
             if(self.sly.initialized) {
 
@@ -141,7 +142,7 @@ function isMobile() {
 
                 if(isLastItem) {
 
-                    if(delta > 0) {
+                    if(delta < 0) {
 
                         runSections(delta);
 
@@ -569,7 +570,8 @@ function isMobile() {
 
 			function fixHeight() {
 				posts.css({
-					'height': $('#sections-area').innerHeight() - $container.innerHeight()
+					'height': $('#sections-area').innerHeight() - $container.innerHeight(),
+					'margin-top': posts.height()
 				});
 			}
 
