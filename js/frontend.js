@@ -120,11 +120,13 @@ function isMobile() {
 					self.sly.next();
 				}
 
+                /*
 				enableRun = false;
 
 				setTimeout(function() {
 					enableRun = true;
 				}, 800);
+                */
 
 			}
 
@@ -270,8 +272,18 @@ function isMobile() {
 
 		}();
 
-		$(window).on('mousewheel', homeScroll);
+		$(window).on('mousewheel', {
+            mousewheel: {
+                debounce: {
+                    leading: true,
+                    trailing: false,
+                    delay: 800
+                }
+            }
+        }, homeScroll);
 		$(window).on('keyup', keyPress);
+        
+        /*
 		$(window).on('scroll', function() {
 
 			if($(window).scrollTop() > 0) {
@@ -281,6 +293,7 @@ function isMobile() {
 			}
 
 		});
+        */
 		
 		if(self.container.find('.scroll-tip').length) {
 
