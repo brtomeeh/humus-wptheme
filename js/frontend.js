@@ -276,7 +276,7 @@ function isMobile() {
             mousewheel: {
                 debounce: {
                     leading: true,
-                    trailing: false,
+                    trailing: true,
                     delay: 800,
                     maxDelay: 800
                 }
