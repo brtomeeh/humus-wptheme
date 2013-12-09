@@ -120,13 +120,11 @@ function isMobile() {
 					self.sly.next();
 				}
 
-                /*
 				enableRun = false;
 
 				setTimeout(function() {
 					enableRun = true;
 				}, 800);
-                */
 
 			}
 
@@ -271,8 +269,8 @@ function isMobile() {
 			$('body').append(self.sectionSelector);
 
 		}();
-
-		$(window).on('mousewheel', {
+        
+        var settings = {
             mousewheel: {
                 debounce: {
                     leading: true,
@@ -280,7 +278,11 @@ function isMobile() {
                     delay: 800
                 }
             }
-        }, homeScroll);
+        };
+        
+        settings = null;
+
+		$(window).on('mousewheel', settings, homeScroll);
 		$(window).on('keyup', keyPress);
         
         /*
