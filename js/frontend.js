@@ -276,9 +276,7 @@ function isMobile() {
             mousewheel: {
                 debounce: {
                     leading: true,
-                    trailing: true,
-                    delay: 800,
-                    maxDelay: 800
+                    delay: 800
                 }
             }
         }, homeScroll);
