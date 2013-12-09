@@ -277,6 +277,7 @@ function isMobile() {
                 debounce: {
                     leading: true,
                     trailing: false,
+                    delay: 800,
                     maxDelay: 800
                 }
             }
