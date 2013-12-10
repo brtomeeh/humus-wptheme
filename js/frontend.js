@@ -1024,12 +1024,14 @@ function isMobile() {
 	 * Follow scroll
 	 */
 	$(document).ready(function() {
-        if(!isMobile() && !Modernizr.touch) {
-            if($('#post-terms').length) {
-                var bottom = $('body').outerHeight() - ($('#post-content').offset().top + $('#post-content').innerHeight());
-                $.lockfixed('#post-terms', { offset: { top: 160, bottom: bottom }});
-            }
-        }
+		setTimeout(function() {
+	        if(!isMobile() && !Modernizr.touch) {
+	            if($('#post-terms').length) {
+	                var bottom = $('body').outerHeight() - ($('#post-content').offset().top + $('#post-content').innerHeight());
+	                $.lockfixed('#post-terms', { offset: { top: 160, bottom: bottom }});
+	            }
+	        }
+	    }, 1000);
 	});
 
 	/*

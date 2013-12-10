@@ -97,10 +97,8 @@
 		pinImage(newImage);
 
 		imgLoad.on('done', function() {
-			setTimeout(function() {
-				image.find('img.viewing-image').css({
-					'padding-top': (image.height()/2) - (image.find('img.viewing-image').height()/2)
-				});
+			image.find('img.viewing-image').css({
+				'padding-top': (image.height()/2) - (image.find('img.viewing-image').height()/2)
 			});
 		});
 
