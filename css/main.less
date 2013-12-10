@@ -2127,6 +2127,13 @@ article.full {
 	}
 }
 
+@media only screen and (max-height: 580px) {
+	#masthead {
+		position: absolute;
+		top: 0 !important;
+	}
+}
+
 @media only screen and (max-width: 767px) {
 	.hide-if-mobile {
 		display: none !important;
@@ -2135,7 +2142,7 @@ article.full {
 		.header-navigation {
 			background: #fff;
 			top: 60px;
-			position: fixed !important;
+			position: absolute !important;
 			clip: auto;
 			left: 0;
 			right: 0;

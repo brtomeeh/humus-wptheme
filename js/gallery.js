@@ -26,7 +26,10 @@
 
 		// Masonry
 		masonry = $('.humus-masonry-gallery');
-        $('.swipebox').swipebox();
+
+		if($('.swipebox').length)
+	        $('.swipebox').swipebox();
+
 		if(masonry.length && !isMobile()) {
 			masonry.imagesLoaded(function() {
 				masonry.find('ul').isotope({
