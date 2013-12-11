@@ -282,7 +282,13 @@ function isMobile() {
         
         settings = null;
 
-		$(window).on('mousewheel', settings, homeScroll);
+        /*
+         * Home mousewheel feature
+         * Uncomment this to enable this feature
+         *
+		 * $(window).on('mousewheel', settings, homeScroll);
+		 */
+		 
 		$(window).on('keyup', keyPress);
         
         /*

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Humus\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-11-08 04:44-0300\n"
-"PO-Revision-Date: 2013-11-27 03:14-0300\n"
+"POT-Creation-Date: 2013-12-10 22:17-0300\n"
+"PO-Revision-Date: 2013-12-10 22:18-0300\n"
 "Last-Translator: Miguel Peixe <miguel@cardume.art.br>\n"
 "Language-Team: Cardume <miguel@cardume.art.br>\n"
 "Language: pt_BR\n"
@@ -32,135 +32,143 @@ msgstr "Comentários mais novos &rarr;"
 msgid "Comments are closed."
 msgstr "Comentários estão fechados."
 
-#: ../functions.php:117
+#: ../header.php:60 ../section-colophon.php:120
+msgid ""
+"Sign up to our newsletter and be the first to know about our latest contents"
+msgstr ""
+"Cadastre-se na nossa newsletter e seja o primeiro a saber sobre nossos novos "
+"conteúdos"
+
+#: ../functions.php:125
 msgid "Primary menu"
 msgstr "Menu principal"
 
-#: ../functions.php:144
+#: ../functions.php:152
 #, php-format
 msgid "Page %s"
 msgstr "Página %s"
 
-#: ../functions.php:332
+#: ../functions.php:361
 msgid "Pingback:"
 msgstr "Pingback:"
 
-#: ../functions.php:332
+#: ../functions.php:361
 msgid "(Edit)"
 msgstr "(Editar)"
 
-#: ../functions.php:362
+#: ../functions.php:391
 #, php-format
 msgid "%1$s at %2$s"
 msgstr "%1$s às %2$s"
 
-#: ../functions.php:366 ../inc/acf/core/fields/image.php:84
+#: ../functions.php:395 ../inc/acf/core/fields/image.php:84
 #: ../inc/acf/core/views/meta_box_fields.php:122
 #: ../inc/acf/add-ons/acf-repeater/repeater.php:471
 msgid "Edit"
 msgstr "Editar"
 
-#: ../functions.php:370
+#: ../functions.php:399
 msgid "Your comment is awaiting moderation."
 msgstr "Seu comentário está aguardando moderação."
 
-#: ../functions.php:378
+#: ../functions.php:407
 msgid "Reply"
 msgstr "Responder"
 
-#: ../functions.php:421
+#: ../functions.php:452
 #, php-format
 msgid "Day: %s"
 msgstr "Dia: %s"
 
-#: ../functions.php:424
+#: ../functions.php:455
 #, php-format
 msgid "Month: %s"
 msgstr "Mês: %s"
 
-#: ../functions.php:427
+#: ../functions.php:458
 #, php-format
 msgid "Year: %s"
 msgstr "Ano: %s"
 
-#: ../functions.php:436 ../inc/filters.php:126
+#: ../functions.php:467 ../inc/filters.php:126
 #: ../inc/acf/core/fields/relationship.php:647
 msgid "Search"
 msgstr "Buscar"
 
-#: ../functions.php:439
+#: ../functions.php:470
 msgid "Nothing found"
 msgstr "Nada encontrado"
 
-#: ../functions.php:442
+#: ../functions.php:473
 msgid "Archives"
 msgstr "Arquivos"
 
-#: ../functions.php:460
+#: ../functions.php:491
 msgid "Try using our search:"
 msgstr "Tente usar nossa busca:"
 
-#: ../functions.php:465 ../searchform.php:3
+#: ../functions.php:496 ../searchform.php:3
 msgid "Type your search..."
 msgstr "Digite sua busca..."
 
-#: ../functions.php:472
+#: ../functions.php:503
 #, php-format
 msgid "We found just %d result for your search"
 msgid_plural "We found %d results for your search"
 msgstr[0] "Nós encontramos apenas %d resultado para  sua busca"
 msgstr[1] "Nós encontramos %d resultados para sua busca"
 
-#: ../functions.php:552
+#: ../functions.php:586
 msgid "Next image"
 msgstr "Próxima imagem"
 
-#: ../functions.php:553
+#: ../functions.php:587
 msgid "Previous image"
 msgstr "Imagem anterior"
 
-#: ../functions.php:813
+#: ../functions.php:851
 msgid "Show author info"
 msgstr "Exibir informação do autor"
 
-#: ../functions.php:817
+#: ../functions.php:855
 msgid "Author info"
 msgstr "Informação do autor"
 
-#: ../functions.php:820
+#: ../functions.php:858
 msgid "Check to show author information"
 msgstr "Marque para exibir informação do autor"
 
-#: ../functions.php:821
+#: ../functions.php:859
 msgid "Display author information"
 msgstr "Exibir informação do autor"
 
-#: ../yarpp-template-humus.php:15
+#: ../yarpp-template-humus.php:13
 msgid "You might also like"
 msgstr "Continue lendo"
 
-#: ../full-width-page-wider.php:55 ../page.php:49 ../full-width-page.php:56
-#: ../content.php:131 ../inc/acf/core/views/meta_box_options.php:105
-msgid "Tags"
-msgstr "Tags"
-
-#: ../content.php:75
+#: ../full-width-page-wider.php:61 ../full-width-page.php:61 ../content.php:76
 msgid "When"
 msgstr "Quando"
 
-#: ../content.php:82
+#: ../full-width-page-wider.php:68 ../full-width-page.php:68 ../content.php:83
 msgid "published"
 msgstr "publicado"
 
-#: ../content.php:92
+#: ../full-width-page-wider.php:78 ../full-width-page.php:78 ../content.php:93
 msgid "Where"
 msgstr "Onde"
 
-#: ../content.php:99 ../content.php:224
+#: ../full-width-page-wider.php:85 ../full-width-page.php:85
+#: ../content.php:100 ../content.php:225
 msgid "by"
 msgstr "por"
 
-#: ../content.php:191
+#: ../full-width-page-wider.php:116 ../page.php:50 ../full-width-page.php:117
+#: ../content.php:132 ../inc/acf/core/views/meta_box_options.php:105
+msgid "Tags"
+msgstr "Tags"
+
+#: ../content.php:192
 #, php-format
 msgid "%d image"
 msgid_plural "%d images"
@@ -187,13 +195,6 @@ msgstr "Nas redes"
 msgid "Newsletter"
 msgstr "Newsletter"
 
-#: ../section-colophon.php:120
-msgid ""
-"Sign up to our newsletter and be the first to know about our latest contents"
-msgstr ""
-"Cadastre-se na nossa newsletter e seja o primeiro a saber sobre nossos novos "
-"conteúdos"
-
 #: ../section-colophon.php:131
 msgid "Contact"
 msgstr "Contato"
@@ -218,19 +219,19 @@ msgstr "Licença"
 msgid "Development"
 msgstr "Desenvolvimento"
 
-#: ../index.php:25 ../inc/map/template.php:14
-msgid "Scroll to explore our content"
-msgstr "Role para explorar nosso conteúdo"
+#: ../index.php:25
+msgid "Click to explore our content"
+msgstr "Clique para explorar nosso conteúdo"
 
 #: ../index.php:153
 msgid "View all content from this section"
 msgstr "Ver todo o conteúdo desta seção"
 
-#: ../index.php:227
+#: ../index.php:220
 msgid "Recent posts"
 msgstr "Publicações recentes"
 
-#: ../index.php:235
+#: ../index.php:228
 msgid "Read more on this content"
 msgstr "Leia mais sobre este conteúdo"
 
@@ -613,7 +614,7 @@ msgstr "Visitar site oficial"
 msgid "Axes"
 msgstr "Eixos"
 
-#: ../inc/header-menu-walker.php:75
+#: ../inc/header-menu-walker.php:80
 msgid "Sections"
 msgstr "Seções"
 
@@ -2833,7 +2834,7 @@ msgstr "Assunto"
 msgid "Your message here"
 msgstr "Sua mensagem aqui"
 
-#: ../inc/contact/contact.php:77 ../inc/newsletter/newsletter.php:30
+#: ../inc/contact/contact.php:77 ../inc/newsletter/newsletter.php:34
 msgid "Send"
 msgstr "Enviar"
 
@@ -2860,6 +2861,10 @@ msgid ""
 msgstr ""
 "Obrigado! Sua mensagem foi enviada, vamos entrar em contato assim que "
 "possível."
+
+#: ../inc/map/template.php:14
+msgid "Scroll to explore our content"
+msgstr "Role para explorar nosso conteúdo"
 
 #: ../inc/map/template.php:28
 msgid "View from this city"
@@ -2955,7 +2960,15 @@ msgstr "Mapa"
 msgid "List"
 msgstr "Lista"
 
-#: ../inc/newsletter/newsletter.php:29
+#: ../inc/newsletter/newsletter.php:23
+msgid "Great! You've received an email to confirm your subscription"
+msgstr "Ótimo! Você recebeu um email para confirmar sua inscrição"
+
+#: ../inc/newsletter/newsletter.php:24
+msgid "Something went wrong. Make sure you typed your email right."
+msgstr "Algo deu errado. Verifique se seu email foi digitado corretamente."
+
+#: ../inc/newsletter/newsletter.php:33
 msgid "Enter your email address"
 msgstr "Preencha com seu endereço de email"
 
@@ -3227,11 +3240,11 @@ msgstr "Nenhum remix encontrado na lixeira"
 msgid "Humus Remix"
 msgstr "Remix do Humus"
 
-#: ../inc/magazine/remix.php:63 ../inc/magazine/remix.php:67
+#: ../inc/magazine/remix.php:60 ../inc/magazine/remix.php:64
 msgid "Remix URL"
 msgstr "URL do remix"
 
-#: ../inc/magazine/remix.php:71
+#: ../inc/magazine/remix.php:68
 msgid "Paste the original remix URL"
 msgstr "Cole a URL original do remix"
 

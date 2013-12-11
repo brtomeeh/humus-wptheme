@@ -22,7 +22,7 @@ get_header(); ?>
 				<div class="scroll-tip">
 					<div class="container">
 						<div class="twelve columns">
-							<p><span><?php _e('Scroll to explore our content', 'humus'); ?></span><span class="button-container"><img src="<?php echo get_template_directory_uri(); ?>/img/scroll-down.png" /></span></p>
+							<p><span><?php _e('Click to explore our content', 'humus'); ?></span><span class="button-container"><img src="<?php echo get_template_directory_uri(); ?>/img/scroll-down.png" /></span></p>
 						</div>
 					</div>
 				</div>
