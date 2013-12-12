@@ -70,6 +70,9 @@ function isMobile() {
 		
 		var enableSly = !Modernizr.touch;
 
+		// Comment the line below to enable custom scrolling system
+		enableSly = false;
+
 		/*
 		 * Sly
 		 */
@@ -282,12 +285,7 @@ function isMobile() {
         
         settings = null;
 
-        /*
-         * Home mousewheel feature
-         * Uncomment this to enable this feature
-         *
-		 * $(window).on('mousewheel', settings, homeScroll);
-		 */
+		$(window).on('mousewheel', settings, homeScroll);
 		 
 		$(window).on('keyup', keyPress);
         
